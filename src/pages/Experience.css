@@ -1,0 +1,22 @@
+
+.timeline-icon {
+  font-size: 2rem;
+  color: #2196F3;
+}
+
+.timeline-card img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.timeline-card-content {
+  text-align: left;
+}
+
+.customized-timeline .p-timeline-event-content {
+  width: 100%;
+}
+
