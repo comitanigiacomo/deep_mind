@@ -1,0 +1,58 @@
+.navbar {
+  background-color: black !important;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+  position: relative;
+  margin: 0 1rem;
+  display: inline-block;
+  font-family: monospace;
+  text-decoration: none;
+}
+
+.navbar .nav-link > span {
+  display: inline-block;
+  position: relative;
+  padding-left: 2.7rem;
+}
+
+.navbar .nav-link > span::before {
+  content: " cd /";
+  position: absolute;
+  left: 0;
+  color: light-blue;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Sottolineatura */
+.navbar .nav-link > span::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 2.8em;
+  width: calc(100% - 2.8em);
+  height: 2px;
+  background-color: #bbb;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.navbar .nav-link:hover > span::before {
+  opacity: 1;
+}
+
+.navbar .nav-link:hover > span::after {
+  transform: scaleX(1);
+}
+
+
+.navbar .navbar-brand {
+  color: #fff !important;
+  font-family: monospace;
+  text-decoration: none;
+}
+
