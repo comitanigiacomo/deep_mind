@@ -18,7 +18,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="contact-section">
+    <section id="contacts" className="contact-section">
       <h2 className="text-4xl font-bold text-center mb-12 text-indigo-700 fade-in">Contattami</h2>
       <div className="contact-container">
         <form onSubmit={handleSubmit} className="contact-form animate-form">
