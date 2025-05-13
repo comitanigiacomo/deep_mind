@@ -36,6 +36,8 @@ const ExperiencePage = () => {
   ];
 
   return (
+
+    <section id="experience">
     <div className="p-m-4">
       <h1>Experience</h1>
       <Timeline
@@ -57,6 +59,7 @@ const ExperiencePage = () => {
         )}
       />
     </div>
+    </section>
   );
 };
 
