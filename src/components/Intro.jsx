@@ -12,7 +12,7 @@ export default function Intro({ onEnd }) {
 
     const endTimer = setTimeout(() => {
       onEnd(); // Chiama onEnd dopo la dissolvenza
-    }, 2000); // Totale 2s
+    }, 1500); // Totale 2s
 
     return () => {
       clearTimeout(fadeTimer);
