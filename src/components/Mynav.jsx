@@ -8,7 +8,7 @@ function Mynav() {
     <>
       <Navbar fixed="top" >
         <Container>
-          <Navbar.Brand href="#about">Deep Mind</Navbar.Brand>
+          <Navbar.Brand href="#about"><span>Deep Mind</span></Navbar.Brand>
           <Nav className="ms-0">
             <Nav.Link href="#about"><span>About</span></Nav.Link>
             <Nav.Link href="#experience"><span>Education</span></Nav.Link>
