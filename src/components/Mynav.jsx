@@ -11,7 +11,7 @@ function Mynav() {
           <Navbar.Brand href="#about"><span>Deep Mind</span></Navbar.Brand>
           <Nav className="ms-0">
             <Nav.Link href="#about"><span>About</span></Nav.Link>
-            <Nav.Link href="#experience"><span>Education</span></Nav.Link>
+            <Nav.Link href="#education"><span>Education</span></Nav.Link>
             <Nav.Link href="#projects"><span>Projects</span></Nav.Link>
             <Nav.Link href="#contacts"><span>Contacts</span></Nav.Link>
           </Nav>
