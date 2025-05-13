@@ -1,22 +1,124 @@
 
+/* Sfondo e layout */
+#about {
+  background-color: black;
+  color: #d3d3d3; /* Grigio chiaro per il testo */
+  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
+}
+
+/* Layout con contenuto a sinistra */
+.about-container {
+  color: #d3d3d3; /* Impostiamo il testo di colore grigio chiaro per contrastare con lo sfondo scuro */
+  background-color: transparent; /* Sfondo trasparente */
+  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
+}
+
+/* Animazione fade-in */
 .fade-in {
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Testo "Hey, I'm" più piccolo */
+.small-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #07589D; /* Grigio medio per la frase "Hey, I'm" */
+}
+
+/* Titolo "Jack" */
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 5rem; /* Grande per il nome */
+  color: #d3d3d3; /* Colore grigio chiaro per il nome */
+  text-transform: uppercase;
+}
+
+/* "An IT student from Milan" con la stessa dimensione di Jack */
+.medium-text {
+  font-family: 'Georgia', serif;
+  font-size: 3rem; /* La stessa dimensione del nome per uniformità */
+  color: #bbb; /* Grigio chiaro ma più scuro rispetto a "Jack" */
+  margin-top: 15px;
+}
+
+/* Sezione di codice o simboli */
+.code-snippet p {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  color: #888; /* Grigio medio per il codice */
+  margin: 10px 0;
+  white-space: nowrap;
+}
+
+/* Media queries per ottimizzazione */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem; /* Ottimizza la dimensione del titolo per dispositivi mobili */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .small-text {
+    font-size: 1rem;
+  }
+
+  .medium-text {
+    font-size: 2rem; /* Riduce la dimensione del testo in base alla larghezza dello schermo */
+  }
+
+  .code-snippet p {
+    font-size: 1rem;
   }
 }
 
+
+/* Layout con contenuto a sinistra */
 .about-container {
-  min-height: 100vh;
+  color: #d3d3d3; /* Impostiamo il testo di colore grigio chiaro per contrastare con lo sfondo scuro */
+  background-color: transparent; /* Sfondo trasparente */
+  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
+}
+
+/* Colonna per le icone e il bottone */
+.contact-icons {
   display: flex;
-  align-items: center;
+  justify-content: center; /* Centra le icone orizzontalmente */
+  gap: 30px; /* Maggiore distanza tra le icone */
+  margin-top: 20px;
+}
+
+.icon {
+  font-size: 3rem; /* Aumenta la dimensione delle icone */
+  color: #bbb; /* Colore grigio di default */
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: #07589D; /* Colore blu quando ci si passa sopra */
+}
+
+/* Bottone "See My Projects" */
+.minimal-btn {
+  background: none;
+  border: 1px solid #888; /* Colore grigio chiaro */
+  color: #888;
+  padding: 15px 25px; /* Più spazio nel bottone */
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  margin-top: 40px; /* Più spazio sopra il bottone */
+  display: block; /* Per fare in modo che il bottone venga visualizzato come blocco e allineato sotto le icone */
+  margin-left: auto; /* Allinea il bottone a destra */
+  margin-right: 0; /* Allinea il bottone a destra */
+}
+
+.minimal-btn:hover {
+  background-color: #888; /* Colore grigio scuro */
+  color: #fff; /* Colore testo bianco */
 }
 
