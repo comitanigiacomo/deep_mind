@@ -22,11 +22,13 @@ export default function Intro({ onEnd }) {
 
   return (
     <div className={`intro-container ${fadeOut ? 'fade-out' : ''}`}>
-      <img
-        src="../../signature.gif"
-        alt="Firma animata"
-        className="intro-gif"
-      />
+      
+    <img
+      src={`../../signature.gif?reload=${Date.now()}`}
+      alt="Firma animata"
+      className="intro-gif"
+     />
+
     </div>
   );
 }
