@@ -8,10 +8,27 @@ import Contacts from './pages/Contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import VerticalLine from './components/VerticalLine';
-
+import { useEffect } from 'react';
 
 export default function App() {
-  return (
+
+useEffect(() => {
+    // Controlla se c'è un hash nell'URL
+    if(window.location.hash) {
+      window.history.replaceState(null, null, ' ');
+    }
+
+    // Scrolla alla sezione About dopo il caricamento
+    setTimeout(() => {
+      const aboutSection = document.getElementById('about');
+      if(aboutSection) {
+        aboutSection.scrollIntoView({ 
+          behavior: 'auto',
+          block: 'start'
+        });
+      }
+    }, 50); // Piccolo ritardo per assicurarsi che il DOM sia caricato
+  }, []);  return (
     <>
       <Mynav />
       <VerticalLine />
@@ -20,7 +37,7 @@ export default function App() {
           <section id="about">
             <About />
           </section>
-          <section id="experience">
+          <section id="education">
             <Experience />
           </section>
           <section id="projects">
