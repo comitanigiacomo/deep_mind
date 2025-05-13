@@ -21,7 +21,7 @@
   content: " cd /";
   position: absolute;
   left: 0;
-  color: light-blue;
+  color: #07589D;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -56,3 +56,26 @@
   text-decoration: none;
 }
 
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 10ch; /* Assicurati che 'ch' corrisponda alla lunghezza della stringa */
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.navbar-brand span {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 4px solid;
+  animation: typing 3s steps(13) infinite, blink-caret 0.75s step-end infinite;
+}
