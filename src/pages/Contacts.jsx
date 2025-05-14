@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
@@ -13,45 +12,98 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Messaggio inviato:', formData);
-    // Qui potresti aggiungere email service, ecc.
     alert('Grazie per il messaggio!');
   };
 
   return (
-    <section id="contacts" className="contact-section">
-      <h2 className="text-4xl font-bold text-center mb-12 text-indigo-700 fade-in">Contattami</h2>
+    <section id="contacts" className="projects-section">
+      <div className="section-header">
+        <h2 className="section-title">Contattami</h2>
+        <div className="title-underline"></div>
+      </div>
+
       <div className="contact-container">
-        <form onSubmit={handleSubmit} className="contact-form animate-form">
-          <span className="p-float-label">
-            <InputText id="name" name="name" value={formData.name} onChange={handleChange} className="w-full mb-4" />
-            <label htmlFor="name">Nome</label>
-          </span>
-          <span className="p-float-label">
-            <InputText id="email" name="email" value={formData.email} onChange={handleChange} className="w-full mb-4" />
-            <label htmlFor="email">Email</label>
-          </span>
-          <span className="p-float-label">
-            <InputTextarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} className="w-full mb-4" />
-            <label htmlFor="message">Messaggio</label>
-          </span>
-          <Button type="submit" label="Invia" icon="pi pi-send" className="p-button-primary w-full hover-button" />
+        {/* Form Card */}
+        <form onSubmit={handleSubmit} className="project-card card-visible">
+          <div className="card-content">
+            <div className="input-group">
+              <span className="p-float-label">
+                <InputText 
+                  id="name" 
+                  name="name" 
+                  value={formData.name} 
+                  onChange={handleChange} 
+                  className="custom-input"
+                />
+                <label htmlFor="name">Nome</label>
+              </span>
+            </div>
+
+            <div className="input-group">
+              <span className="p-float-label">
+                <InputText 
+                  id="email" 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  className="custom-input"
+                />
+                <label htmlFor="email">Email</label>
+              </span>
+            </div>
+
+            <div className="input-group">
+              <span className="p-float-label">
+                <InputTextarea 
+                  id="message" 
+                  name="message" 
+                  value={formData.message} 
+                  onChange={handleChange} 
+                  rows={5} 
+                  className="custom-input"
+                />
+                <label htmlFor="message">Messaggio</label>
+              </span>
+            </div>
+
+            <Button 
+              type="submit" 
+              label="Invia" 
+              icon="pi pi-send" 
+              className="minimal-btn"
+            />
+          </div>
         </form>
 
-        <div className="contact-info animate-fade-in">
-          <h3 className="text-xl font-semibold mb-4 text-indigo-600">Oppure contattami qui:</h3>
-          <p><i className="pi pi-envelope mr-2 text-indigo-500"></i> tuoemail@example.com</p>
-          <p><i className="pi pi-phone mr-2 text-indigo-500"></i> +39 123 456 7890</p>
-          <div className="mt-4 flex gap-4">
-            <a href="https://github.com/tuo-utente" target="_blank" rel="noopener noreferrer">
-              <i className="pi pi-github text-2xl hover:text-gray-700 transition-colors duration-300"></i>
-            </a>
-            <a href="https://linkedin.com/in/tuo-profilo" target="_blank" rel="noopener noreferrer">
-              <i className="pi pi-linkedin text-2xl hover:text-blue-600 transition-colors duration-300"></i>
-            </a>
+        {/* Info Card */}
+        <div className="project-card card-visible contact-info">
+          <div className="card-content">
+            <h3 className="card-title">Altri contatti</h3>
+            
+            <div className="meta-info">
+              <p>
+                <i className="pi pi-envelope mr-2"></i>
+                tuoemail@example.com
+              </p>
+              <p>
+                <i className="pi pi-phone mr-2"></i>
+                +39 123 456 7890
+              </p>
+            </div>
+            
+            <div className="language-stats social-links">
+              <a href="https://github.com/tuo-utente" target="_blank" rel="noopener noreferrer" className="lang-tag">
+                <i className="pi pi-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://linkedin.com/in/tuo-profilo" target="_blank" rel="noopener noreferrer" className="lang-tag">
+                <i className="pi pi-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
