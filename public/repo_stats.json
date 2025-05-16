@@ -158,11 +158,11 @@
   },
   "comitanigiacomo/deep_mind": {
     "title": "Deep_mind",
-    "image": "/About.png",
+    "image": "/About.jpeg",
     "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
-    "commits": 76,
+    "commits": 78,
     "languages": [
       {
         "name": "CSS",
@@ -181,7 +181,7 @@
         "percent": 0.6
       }
     ],
-    "updated_at": "2025-05-16T23:20:44Z",
+    "updated_at": "2025-05-16T23:26:52Z",
     "license": "MIT License",
     "topics": [
       "portfolio",
