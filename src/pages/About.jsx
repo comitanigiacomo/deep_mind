@@ -28,7 +28,8 @@ export default function About() {
               {/* Sezione di codice o simboli */}
               <div className="code-snippet">
                 <p>console.log("Turning ideas into code, one step at a time")</p>
-              </div>
+
+                <p>Can you guess what my favorite colors are?</p>              </div>
             </Col>
 
             {/* Colonna per il bottone e le icone sulla destra */}
