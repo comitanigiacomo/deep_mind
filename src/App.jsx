@@ -2,7 +2,7 @@
 
 import Mynav from './components/Mynav.jsx';
 import About from './pages/About';
-import Experience from './pages/Experience';
+import Experience from './pages/Education';
 import Projects from './pages/Projects';
 import Contacts from './pages/Contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -38,7 +38,7 @@ useEffect(() => {
           <section id="about">
             <About />
           </section>
-          <section id="experience">
+          <section id="education">
             <Experience />
           </section>
           <section id="projects">
