@@ -3,7 +3,6 @@
 #about {
   background-color: black;
   color: #d3d3d3; /* Grigio chiaro per il testo */
-  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
 }
 
 /* Layout con contenuto a sinistra */
@@ -73,6 +72,15 @@ h1 {
   .code-snippet p {
     font-size: 1rem;
   }
+
+  .image-wrapper {
+    max-width: 280px;
+    margin: 0 auto 2rem;
+  }
+  
+  .about-image {
+    border-width: 1px;
+  }
 }
 
 
@@ -87,8 +95,8 @@ h1 {
 .contact-icons {
   display: flex;
   justify-content: center; /* Centra le icone orizzontalmente */
-  gap: 30px; /* Maggiore distanza tra le icone */
-  margin-top: 20px;
+  gap: 2rem; /* Maggiore distanza tra le icone */
+  margin:  0 0 2rem;
 }
 
 .icon {
@@ -111,10 +119,6 @@ h1 {
   cursor: pointer;
   border-radius: 30px;
   transition: all 0.3s ease;
-  margin-top: 40px; /* Più spazio sopra il bottone */
-  display: block; /* Per fare in modo che il bottone venga visualizzato come blocco e allineato sotto le icone */
-  margin-left: auto; /* Allinea il bottone a destra */
-  margin-right: 0; /* Allinea il bottone a destra */
 }
 
 .minimal-btn:hover {
@@ -122,3 +126,23 @@ h1 {
   color: #fff; /* Colore testo bianco */
 }
 
+.image-wrapper {
+  position: relative;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.image-column {
+  margin-top: 0px;
+}
+
+.about-container .row {
+  min-height: calc(100vh - 100px);
+}
