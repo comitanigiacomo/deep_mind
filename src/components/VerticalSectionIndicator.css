@@ -1,0 +1,41 @@
+
+/* src/components/VerticalSectionIndicator.css */
+.vertical-line-container {
+  position: fixed;
+  bottom: 0;
+  left: 60px;
+  width: 2px;
+  height: calc(150px + 80px + 150px); /* top + gap + bottom */
+  display: grid;
+  grid-template-rows: 
+    150px  /* top segment, sempre 150px */
+    130px   /* gap centrale, sempre 80px */
+    150px; /* bottom segment, sempre 150px */
+  z-index: 999;
+  pointer-events: none;
+}
+
+.vertical-line.top,
+.vertical-line.bottom {
+  width: 2px;
+  background-color: white;
+  justify-self: center;
+  align-self: stretch; /* riempie esattamente i 150px della riga */
+}
+
+.section-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  white-space: nowrap;
+
+  /* centrato nella cella di 80px, ma senza modificarla */
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+}
+
