@@ -1,20 +1,15 @@
-/* Projects.js */
 import React, { useRef, useEffect } from 'react';
 import { Card } from 'primereact/card';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
-import repoStats from '../../public/repo_stats.json';  // Importa il JSON completo
+import repoStats from '../../public/repo_stats.json';
 
-// Converti l'oggetto JSON in un array di progetti
 const projects = Object.entries(repoStats).map(([key, value]) => ({
-  // Estrai owner e repo dalla chiave
   owner: key.split('/')[0],
   repo: key.split('/')[1],
-  // Estrai gli altri campi dal valore
   title: value.title || key.split('/')[1],
   image: value.image || '/fallback-image.png',
-  // Mantieni tutte le statistiche
   stats: value
 }));
 
@@ -33,6 +28,17 @@ export default function Projects() {
     return () => observer.disconnect();
   }, []);
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const formatSize = (sizeMB) => {
+    return sizeMB > 1024 
+      ? `${(sizeMB / 1024).toFixed(1)} GB` 
+      : `${sizeMB.toFixed(1)} MB`;
+  };
+
   return (
     <section id="projects" className="projects-section">
       <div className="section-title">
@@ -41,41 +47,84 @@ export default function Projects() {
       </div>
 
       <div className="projects-grid">
-        {projects.map((project, index) => (
-          <article key={index} className="project-item" ref={el => cardsRef.current[index] = el}>
-            <div className="project-image">
-              <img src={project.image} alt={project.title} />
-              <div className="stats-overlay">
-                <span><i className="pi pi-star" /> {project.stats.stars || 0}</span>
-                <span><i className="pi pi-share-alt" /> {project.stats.forks || 0}</span>
-                <span><GoCommit /> {project.stats.commits || 0}</span>
-              </div>
-            </div>
+        {projects.map((project, index) => {
+          const repoSize = formatSize(project.stats.size);
+          const lastUpdated = formatDate(project.stats.updated_at);
 
-            <div className="project-info">
-              <h3>{project.title}</h3>
-              <p>{project.stats.description || 'Nessuna descrizione disponibile'}</p>
-              
-              <div className="language-stats">
-                {(project.stats.languages || []).map((lang, i) => (
-                  <span key={i} className="lang-tag">
-                    {lang.name} {lang.percent}%
-                  </span>
-                ))}
+          return (
+            <article key={index} className="project-item" ref={el => cardsRef.current[index] = el}>
+              <div className="project-image">
+                <img src={project.image} alt={project.title} />
+                <div className="stats-overlay">
+                  <span><i className="pi pi-star" /> {project.stats.stars}</span>
+                  <span><i className="pi pi-share-alt" /> {project.stats.forks}</span>
+                  <span><GoCommit /> {project.stats.commits}</span>
+                </div>
               </div>
 
-              <a
-                href={`https://github.com/${project.owner}/${project.repo}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="github-button">
-                  <i className="pi pi-github" /> Vedi Repository
-                </Button>
-              </a>
-            </div>
-          </article>
-        ))}
+              <div className="project-info">
+                <div className="repo-header">
+                  <h3>{project.title}</h3>
+                  <div className="repo-status-badges">
+                    {project.stats.archived && (
+                      <span className="badge archived-badge">
+                        <i className="pi pi-lock"></i> Archived
+                      </span>
+                    )}
+                    <span className="badge branch-badge">
+                      <i className="pi pi-code"></i> {project.stats.default_branch}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="repo-description">{project.stats.description}</p>
+
+                <div className="repo-metadata">
+                  <div className="metadata-item">
+                    <i className="pi pi-calendar"></i>
+                    <span>Updated: {lastUpdated}</span>
+                  </div>
+                  <div className="metadata-item">
+                    <i className="pi pi-database"></i>
+                    <span>Size: {repoSize}</span>
+                  </div>
+                </div>
+
+                {project.stats.topics.length > 0 && (
+                  <div className="topics-container">
+                    {project.stats.topics.map((topic, i) => (
+                      <span key={i} className="topic-badge">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+
+                <div className="project-links">
+                  <div className="license-badge-wrapper">
+                    {project.stats.license !== "No license" && (
+                      <div className="license-badge">
+                        <i className="pi pi-file"></i>
+                        {project.stats.license}
+                      </div>
+                    )}
+                  </div>
+  
+                  <a
+                  href={`https://github.com/${project.owner}/${project.repo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >
+                  <Button className="github-button">
+                    <i className="pi pi-github"></i> Repository
+                  </Button>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
