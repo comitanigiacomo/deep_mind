@@ -200,32 +200,97 @@
   transform: scale(1.1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .experience-section {
-    padding: 2rem 0;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .p-timeline::before {
-    left: 20px;
-    transform: none;
-  }
-  
-  .p-timeline-event-connector {
-    left: 20px;
-    transform: none;
-  }
-  
-  .p-timeline-align-alternate .p-timeline-event:nth-child(even) .p-timeline-event-connector {
-    left: auto;
-    right: 20px;
+/* Tablet e mobile miglioramenti */
+@media (max-width: 1024px) {
+  .timeline-card-content {
+    padding: 1rem;
   }
 
+  .institution-logo {
+    height: 60px;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
 }
+
+@media (max-width: 768px) {
+  .timeline-container {
+    padding: 20px 10px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-marker {
+    width: 30px;
+    height: 30px;
+  }
+
+  .timeline-marker i {
+    font-size: 1rem;
+  }
+
+  .p-timeline {
+    padding-left: 40px;
+  }
+
+  .p-timeline-event {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .p-timeline-event-content {
+    margin-left: 1rem !important;
+  }
+
+  .timeline-card {
+    margin-bottom: 2rem;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .experience-type {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .institution-logo {
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-card {
+    padding: 1rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1rem;
+  }
+
+  .timeline-card h5 {
+    font-size: 0.9rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.85rem;
+  }
+}
+
 
 .institution-logo {
   height: 80px;
