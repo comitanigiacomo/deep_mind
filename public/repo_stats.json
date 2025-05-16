@@ -1,0 +1,135 @@
+{
+  "comitanigiacomo/quicklaunch": {
+    "title": "QuickLaunch",
+    "image": "/quicklaunch.png",
+    "description": "GNOME Shell Extension - Pin favorite apps to top panel",
+    "stars": 1,
+    "forks": 0,
+    "commits": 64,
+    "languages": [
+      {
+        "name": "JavaScript",
+        "percent": 96.7
+      },
+      {
+        "name": "CSS",
+        "percent": 3.3
+      }
+    ],
+    "updated_at": "2025-05-10T23:17:06Z",
+    "license": "GNU General Public License v3.0",
+    "topics": [],
+    "size": 1.36
+  },
+  "comitanigiacomo/Universal": {
+    "title": "Universal",
+    "image": "/universal.png",
+    "description": "Progetto per il corso di \"basi di dati\", anno scolastico 2023/2024",
+    "stars": 0,
+    "forks": 0,
+    "commits": 171,
+    "languages": [
+      {
+        "name": "PHP",
+        "percent": 53.6
+      },
+      {
+        "name": "PLpgSQL",
+        "percent": 36.4
+      },
+      {
+        "name": "CSS",
+        "percent": 10.0
+      }
+    ],
+    "updated_at": "2025-05-05T17:34:17Z",
+    "license": "MIT License",
+    "topics": [
+      "database",
+      "html",
+      "php",
+      "postgresql",
+      "query"
+    ],
+    "size": 9.86
+  },
+  "comitanigiacomo/leetcode": {
+    "title": "Leetcode",
+    "image": "/leetcode.png",
+    "description": "Some of my Leetcode's problem solutions",
+    "stars": 0,
+    "forks": 0,
+    "commits": 459,
+    "languages": [
+      {
+        "name": "Python",
+        "percent": 91.7
+      },
+      {
+        "name": "Go",
+        "percent": 7.3
+      },
+      {
+        "name": "Java",
+        "percent": 0.8
+      },
+      {
+        "name": "Rust",
+        "percent": 0.2
+      }
+    ],
+    "updated_at": "2025-05-09T17:56:54Z",
+    "license": "No license",
+    "topics": [
+      "learning",
+      "programming",
+      "skills"
+    ],
+    "size": 2.36
+  },
+  "comitanigiacomo/cyberSecurity": {
+    "title": "CyberSecurity",
+    "image": "/cybersecurity.png",
+    "description": "Exercises I do in my free time regarding cyber security",
+    "stars": 0,
+    "forks": 0,
+    "commits": 81,
+    "languages": [
+      {
+        "name": "Python",
+        "percent": 91.2
+      },
+      {
+        "name": "Shell",
+        "percent": 8.8
+      }
+    ],
+    "updated_at": "2025-05-06T20:01:26Z",
+    "license": "No license",
+    "topics": [
+      "challenge",
+      "ctf",
+      "cyber-security",
+      "skills"
+    ],
+    "size": 0.29
+  },
+  "comitanigiacomo/Reti_di_calcolatori": {
+    "title": "Reti_di_calcolatori",
+    "image": "/reti.png",
+    "description": null,
+    "stars": 1,
+    "forks": 1,
+    "commits": 39,
+    "languages": [
+      {
+        "name": "Typst",
+        "percent": 100.0
+      }
+    ],
+    "updated_at": "2025-05-04T10:15:53Z",
+    "license": "MIT License",
+    "topics": [],
+    "size": 6.13
+  }
+}
