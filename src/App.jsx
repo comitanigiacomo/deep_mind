@@ -8,7 +8,7 @@ import Contacts from './pages/Contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { useEffect } from 'react';
-
+import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx';
 
 export default function App() {
 
@@ -33,6 +33,7 @@ useEffect(() => {
   return (
     <>
       <Mynav />
+      <VerticalSectionIndicator />
       <div className="background-wrapper">
         <div className="container mt-3">
           <section id="about">
