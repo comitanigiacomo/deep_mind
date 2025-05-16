@@ -155,5 +155,23 @@
     "size": 6.13,
     "archived": false,
     "default_branch": "main"
+  },
+  "comitanigiacomo/deep_mind": {
+    "title": "Deep_mind",
+    "image": "/About.png",
+    "description": "N/A",
+    "stars": 0,
+    "forks": 0,
+    "commits": 0,
+    "languages": [],
+    "updated_at": "",
+    "license": "No license",
+    "topics": [],
+    "size": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "homepage": "",
+    "archived": false,
+    "default_branch": "main"
   }
 }
