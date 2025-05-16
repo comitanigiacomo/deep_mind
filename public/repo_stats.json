@@ -2,7 +2,7 @@
   "comitanigiacomo/quicklaunch": {
     "title": "QuickLaunch",
     "image": "/quicklaunch.png",
-    "description": "GNOME Shell Extension - Pin favorite apps to top panel",
+    "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 1,
     "forks": 0,
     "commits": 64,
@@ -16,9 +16,14 @@
         "percent": 3.3
       }
     ],
-    "updated_at": "2025-05-10T23:17:06Z",
+    "updated_at": "2025-05-16T19:53:46Z",
     "license": "GNU General Public License v3.0",
-    "topics": [],
+    "topics": [
+      "application-launcher",
+      "desktop-customization",
+      "gnome-shell-extension",
+      "quick-access"
+    ],
     "size": 1.36,
     "archived": false,
     "default_branch": "main"
@@ -26,7 +31,7 @@
   "comitanigiacomo/Universal": {
     "title": "Universal",
     "image": "/universal.png",
-    "description": "Progetto per il corso di \"basi di dati\", anno scolastico 2023/2024",
+    "description": "University project for managing students, exams, and courses using a web-based database system.",
     "stars": 0,
     "forks": 0,
     "commits": 171,
@@ -44,14 +49,14 @@
         "percent": 10.0
       }
     ],
-    "updated_at": "2025-05-05T17:34:17Z",
+    "updated_at": "2025-05-16T15:11:07Z",
     "license": "MIT License",
     "topics": [
       "database",
-      "html",
-      "php",
-      "postgresql",
-      "query"
+      "docker",
+      "student-management",
+      "university-project",
+      "web-application"
     ],
     "size": 9.86,
     "archived": false,
@@ -60,10 +65,10 @@
   "comitanigiacomo/leetcode": {
     "title": "Leetcode",
     "image": "/leetcode.png",
-    "description": "Some of my Leetcode's problem solutions",
+    "description": "A growing archive of LeetCode problem solutions",
     "stars": 0,
     "forks": 0,
-    "commits": 459,
+    "commits": 461,
     "languages": [
       {
         "name": "Python",
@@ -82,24 +87,26 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2025-05-09T17:56:54Z",
-    "license": "No license",
+    "updated_at": "2025-05-16T15:05:54Z",
+    "license": "MIT License",
     "topics": [
-      "learning",
-      "programming",
-      "skills"
+      "algorithms",
+      "coding-challenges",
+      "data-structures",
+      "interview-preparation",
+      "problem-solving"
     ],
-    "size": 2.36,
+    "size": 2.37,
     "archived": false,
     "default_branch": "main"
   },
   "comitanigiacomo/cyberSecurity": {
     "title": "CyberSecurity",
     "image": "/cybersecurity.png",
-    "description": "Exercises I do in my free time regarding cyber security",
+    "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
     "stars": 0,
     "forks": 0,
-    "commits": 81,
+    "commits": 82,
     "languages": [
       {
         "name": "Python",
@@ -110,13 +117,14 @@
         "percent": 8.8
       }
     ],
-    "updated_at": "2025-05-06T20:01:26Z",
-    "license": "No license",
+    "updated_at": "2025-05-16T15:16:52Z",
+    "license": "MIT License",
     "topics": [
-      "challenge",
-      "ctf",
-      "cyber-security",
-      "skills"
+      "cybersecurity",
+      "ethical-hacking",
+      "linux",
+      "network-security",
+      "security-tools"
     ],
     "size": 0.29,
     "archived": false,
@@ -125,7 +133,7 @@
   "comitanigiacomo/Reti_di_calcolatori": {
     "title": "Reti_di_calcolatori",
     "image": "/reti.png",
-    "description": null,
+    "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
     "stars": 1,
     "forks": 1,
     "commits": 39,
@@ -135,9 +143,15 @@
         "percent": 100.0
       }
     ],
-    "updated_at": "2025-05-04T10:15:53Z",
+    "updated_at": "2025-05-16T15:18:44Z",
     "license": "MIT License",
-    "topics": [],
+    "topics": [
+      "computer-networks",
+      "course-notes",
+      "data-communicatio",
+      "network-security",
+      "networking"
+    ],
     "size": 6.13,
     "archived": false,
     "default_branch": "main"
