@@ -34,8 +34,13 @@ PROJECTS = [
         "owner": "comitanigiacomo",
         "repo": "Reti_di_calcolatori",
         "image": "/reti.png",
-    }
-]
+    },
+    {
+        "title": "Deep_mind",
+        "owner": "comitanigiacomo",
+        "repo": "deep_mind",
+        "image": "/About.png",
+    }]
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
 
