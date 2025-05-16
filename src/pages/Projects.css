@@ -4,7 +4,7 @@
   position: relative;
   z-index: 1;
   scroll-margin-top: 80px;
-  transform-style: preserve-3d; /* Fix per il calcolo dell'intersezione */
+  transform-style: preserve-3d;
 }
 
 .projects-grid {
@@ -43,7 +43,6 @@
   min-height: 500px;
 }
 
-/* Alternanza layout con posizionamento stats */
 .project-item:nth-child(odd) { 
   justify-content: flex-start; 
 }
@@ -86,7 +85,6 @@
   filter: grayscale(0);
 }
 
-/* Info Panel */
 .project-info {
   position: absolute;
   width: 40%;
@@ -125,7 +123,6 @@
   transform: translateY(-50%);
 }
 
-/* Badge Linguaggi */
 .language-stats {
   display: flex;
   flex-wrap: wrap;
@@ -153,7 +150,6 @@
   display: flex;
   align-items: center;
 }
-/* Stats Overlay */
 .stats-overlay {
   position: absolute;
   bottom: 20px;
@@ -168,7 +164,6 @@
   border: 1px solid #333;
 }
 
-/* Pulsante GitHub */
 .github-button {
   background: transparent !important;
   border: 1px solid #2196F3 !important;
@@ -204,7 +199,6 @@
   opacity: 0.3;
 }
 
-/* Statistiche aggiuntive */
 .additional-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -228,7 +222,6 @@
   font-size: 1rem;
 }
 
-/* Licenza */
 .license-badge {
   color: #888;
   background: transparent;
@@ -324,7 +317,6 @@
   border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-/* Pulsanti */
 .project-links {
   display: flex;
   justify-content: space-between;
@@ -338,7 +330,6 @@
 .project-links > a {
   flex-shrink: 0;
 }
-/* Responsive */
 @media (max-width: 768px) {
   .project-item {
     flex-direction: column;

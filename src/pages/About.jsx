@@ -24,7 +24,6 @@ export default function About() {
         ) : (
           <Container className="about-container py-5 fade-in">
             <Row>
-              {/* Colonna sinistra: testo centrato verticalmente */}
               <Col
                 md={6}
                 className="d-flex flex-column justify-content-center"
@@ -38,7 +37,6 @@ export default function About() {
                 </div>
               </Col>
 
-              {/* Colonna destra: contenuti in alto e centrati orizzontalmente */}
               <Col
                 md={6}
                 className="image-column d-flex flex-column align-items-center justify-content-start"

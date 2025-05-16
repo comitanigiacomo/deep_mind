@@ -13,12 +13,10 @@ import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx'
 export default function App() {
 
 useEffect(() => {
-    // Controlla se c'è un hash nell'URL
     if(window.location.hash) {
       window.history.replaceState(null, null, ' ');
     }
 
-    // Scrolla alla sezione About dopo il caricamento
     setTimeout(() => {
       const aboutSection = document.getElementById('about');
       if(aboutSection) {
@@ -27,7 +25,7 @@ useEffect(() => {
           block: 'start'
         });
       }
-    }, 50); // Piccolo ritardo per assicurarsi che il DOM sia caricato
+    }, 50); 
   }, []);  
 
   return (

@@ -7,12 +7,12 @@ export default function Intro({ onEnd }) {
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => {
-      setFadeOut(true); // Avvia dissolvenza
-    }, 1500); // Avvia fade poco prima di onEnd()
+      setFadeOut(true);
+    }, 1500); 
 
     const endTimer = setTimeout(() => {
-      onEnd(); // Chiama onEnd dopo la dissolvenza
-    }, 1500); // Totale 2s
+      onEnd(); 
+    }, 1500);
 
     return () => {
       clearTimeout(fadeTimer);
