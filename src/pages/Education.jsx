@@ -25,7 +25,7 @@ const ExperiencePage = () => {
       description: 'Scientific curriculum',
       type: 'highschool',
       icon: 'pi pi-graduation-cap',
-      logo: '../../public/leonardoDaVinci.png'
+      logo: '/leonardoDaVinci.png'
     },
     {
       date: '2021 – 2025',
