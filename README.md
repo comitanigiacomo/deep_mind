@@ -5,6 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
 
 A clean and minimal portfolio to present my projects and experience.
+
 ![Portfolio Screenshot](/public/About.jpeg)
 
 ## Features
