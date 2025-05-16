@@ -66,7 +66,6 @@ def fetch_repo_data(project):
     repo = project["repo"]
     
     try:
-        # Base repo data
         repo_url = f"https://api.github.com/repos/{owner}/{repo}"
         repo_response = requests.get(repo_url, headers=HEADERS)
         
@@ -78,22 +77,20 @@ def fetch_repo_data(project):
         repo_response.raise_for_status()
         repo_data = repo_response.json()
 
-        # Languages data
+        # Languages
         langs_response = requests.get(repo_data["languages_url"], headers=HEADERS)
         if langs_response.status_code == 403:
-            print("Rate limit reached! Waiting 60 seconds...")
             time.sleep(60)
             langs_response = requests.get(repo_data["languages_url"], headers=HEADERS)
             
         langs_data = langs_response.json() if langs_response.status_code == 200 else {}
-
-        # Calculate languages percentages
         total_bytes = sum(langs_data.values()) or 1
         languages = [
             {"name": lang, "percent": round((bytes / total_bytes) * 100, 1)}
             for lang, bytes in langs_data.items()
         ]
 
+        # Nuovi dati aggiunti
         return {
             "title": project["title"],
             "image": project["image"],
@@ -103,9 +100,11 @@ def fetch_repo_data(project):
             "commits": get_commit_count(owner, repo),
             "languages": languages,
             "updated_at": repo_data.get("updated_at", ""),
-            "license": (repo_data.get("license") or {}).get("name", "No license"),  # Fix here
+            "license": (repo_data.get("license") or {}).get("name", "No license"),
             "topics": repo_data.get("topics", []),
-            "size": round(repo_data.get("size", 0) / 1024, 2)
+            "size": round(repo_data.get("size", 0) / 1024, 2),  # Size in MB
+            "archived": repo_data.get("archived", False),
+            "default_branch": repo_data.get("default_branch", "main")
         }
 
     except requests.exceptions.RequestException as e:
@@ -121,7 +120,12 @@ def fetch_repo_data(project):
             "updated_at": "",
             "license": "No license",
             "topics": [],
-            "size": 0
+            "size": 0,
+            "open_issues": 0,
+            "watchers": 0,
+            "homepage": "",
+            "archived": False,
+            "default_branch": "main"
         }
 
 def main():
@@ -129,11 +133,8 @@ def main():
     
     for idx, project in enumerate(PROJECTS):
         print(f"Processing {idx+1}/{len(PROJECTS)}: {project['owner']}/{project['repo']}")
-        
         stats = fetch_repo_data(project)
-        key = f"{project['owner']}/{project['repo']}"
-        all_stats[key] = stats
-        
+        all_stats[f"{project['owner']}/{project['repo']}"] = stats
         time.sleep(1.5)
     
     with open("../public/repo_stats.json", "w") as f:
