@@ -1,6 +1,4 @@
-import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { Button } from 'primereact/button';
+
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import './Contact.css';
 import ProfilePhoto from '../assets/profile.png';
@@ -17,7 +15,7 @@ export default function Contact() {
             alt="Profilo" 
             className="profile-photo" 
             onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/150'; // Fallback image
+              e.target.src = 'https://via.placeholder.com/150';
             }}
           />
           <div className="profile-info">

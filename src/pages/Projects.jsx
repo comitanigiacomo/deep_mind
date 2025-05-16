@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import { Card } from 'primereact/card';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";

@@ -2,17 +2,15 @@
 /* Sfondo e layout */
 #about {
   background-color: black;
-  color: #d3d3d3; /* Grigio chiaro per il testo */
+  color: #d3d3d3; 
 }
 
-/* Layout con contenuto a sinistra */
 .about-container {
-  color: #d3d3d3; /* Impostiamo il testo di colore grigio chiaro per contrastare con lo sfondo scuro */
-  background-color: transparent; /* Sfondo trasparente */
-  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
+  color: #d3d3d3;
+  background-color: transparent;
+  padding-top: 100px; 
 }
 
-/* Animazione fade-in */
 .fade-in {
   animation: fadeIn 1s ease-in-out;
 }
@@ -22,43 +20,37 @@
   100% { opacity: 1; }
 }
 
-/* Testo "Hey, I'm" più piccolo */
 .small-text {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  color: #07589D; /* Grigio medio per la frase "Hey, I'm" */
+  color: #07589D; 
 }
 
-/* Titolo "Jack" */
 h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  font-size: 5rem; /* Grande per il nome */
-  color: #d3d3d3; /* Colore grigio chiaro per il nome */
+  font-size: 5rem;
+  color: #d3d3d3; 
   text-transform: uppercase;
 }
 
-/* "An IT student from Milan" con la stessa dimensione di Jack */
 .medium-text {
   font-family: 'Georgia', serif;
-  font-size: 3rem; /* La stessa dimensione del nome per uniformità */
-  color: #bbb; /* Grigio chiaro ma più scuro rispetto a "Jack" */
+  font-size: 3rem; 
   margin-top: 15px;
 }
 
-/* Sezione di codice o simboli */
 .code-snippet p {
   font-family: 'Courier New', monospace;
   font-size: 1.2rem;
-  color: #07589D; /* Grigio medio per il codice */
+  color: #07589D;
   margin: 10px 0;
   white-space: nowrap;
 }
 
-/* Media queries per ottimizzazione */
 @media (max-width: 768px) {
   h1 {
-    font-size: 3rem; /* Ottimizza la dimensione del titolo per dispositivi mobili */
+    font-size: 3rem; 
   }
 
   .small-text {
@@ -66,7 +58,7 @@ h1 {
   }
 
   .medium-text {
-    font-size: 2rem; /* Riduce la dimensione del testo in base alla larghezza dello schermo */
+    font-size: 2rem;
   }
 
   .code-snippet p {
@@ -84,37 +76,34 @@ h1 {
 }
 
 
-/* Layout con contenuto a sinistra */
 .about-container {
-  color: #d3d3d3; /* Impostiamo il testo di colore grigio chiaro per contrastare con lo sfondo scuro */
-  background-color: transparent; /* Sfondo trasparente */
-  padding-top: 100px; /* Per lasciare spazio al navbar fisso */
+  color: #d3d3d3;
+  background-color: transparent;
+  padding-top: 100px; 
 }
 
-/* Colonna per le icone e il bottone */
 .contact-icons {
   display: flex;
-  justify-content: center; /* Centra le icone orizzontalmente */
-  gap: 2rem; /* Maggiore distanza tra le icone */
+  justify-content: center;
+  gap: 2rem; 
   margin:  0 0 2rem;
 }
 
 .icon {
-  font-size: 3rem; /* Aumenta la dimensione delle icone */
-  color: #bbb; /* Colore grigio di default */
+  font-size: 3rem;
+  color: #bbb; 
   transition: color 0.3s ease;
 }
 
 .icon:hover {
-  color: #07589D; /* Colore blu quando ci si passa sopra */
+  color: #07589D; 
 }
 
-/* Bottone "See My Projects" */
 .minimal-btn {
   background: none;
-  border: 1px solid #888; /* Colore grigio chiaro */
+  border: 1px solid #888; 
   color: #888;
-  padding: 15px 25px; /* Più spazio nel bottone */
+  padding: 15px 25px; 
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 30px;
@@ -122,8 +111,8 @@ h1 {
 }
 
 .minimal-btn:hover {
-  background-color: #888; /* Colore grigio scuro */
-  color: #fff; /* Colore testo bianco */
+  background-color: #888; 
+  color: #fff;
 }
 
 .image-wrapper {
@@ -149,7 +138,6 @@ h1 {
 
 
 @media (max-width: 768px) {
-  /* Stack verticale invece di due colonne */
   .about-container .row {
     flex-direction: column;
     align-items: center;

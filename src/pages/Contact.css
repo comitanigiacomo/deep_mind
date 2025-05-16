@@ -89,7 +89,6 @@
 .linkedin { color: #0A66C2; }
 .instagram { color: #E1306C; }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .contact-wrapper {
     padding: 0 1rem;
