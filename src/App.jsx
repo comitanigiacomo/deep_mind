@@ -7,8 +7,8 @@ import Projects from './pages/Projects';
 import Contacts from './pages/Contacts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import VerticalLine from './components/VerticalLine';
 import { useEffect } from 'react';
+
 
 export default function App() {
 
@@ -28,16 +28,17 @@ useEffect(() => {
         });
       }
     }, 50); // Piccolo ritardo per assicurarsi che il DOM sia caricato
-  }, []);  return (
+  }, []);  
+
+  return (
     <>
       <Mynav />
-      <VerticalLine />
       <div className="background-wrapper">
         <div className="container mt-3">
           <section id="about">
             <About />
           </section>
-          <section id="education">
+          <section id="experience">
             <Experience />
           </section>
           <section id="projects">
