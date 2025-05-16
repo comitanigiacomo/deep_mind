@@ -8,6 +8,7 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
   padding-top: 60px;
+  position: relative;
 }
 
 html, body {
@@ -20,4 +21,17 @@ html, body {
   height: 100vh;
   width: 100%;
 }
+
+.section-wrapper {
+  min-height: 100vh;
+  scroll-margin-top: 80px;
+  position: relative;
+  overflow: visible;
+  padding: 2rem 0;
+}
+
+.container.mt-3 {
+  margin-top: 0 !important;
+}
+
 
