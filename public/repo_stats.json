@@ -19,7 +19,9 @@
     "updated_at": "2025-05-10T23:17:06Z",
     "license": "GNU General Public License v3.0",
     "topics": [],
-    "size": 1.36
+    "size": 1.36,
+    "archived": false,
+    "default_branch": "main"
   },
   "comitanigiacomo/Universal": {
     "title": "Universal",
@@ -51,7 +53,9 @@
       "postgresql",
       "query"
     ],
-    "size": 9.86
+    "size": 9.86,
+    "archived": false,
+    "default_branch": "main"
   },
   "comitanigiacomo/leetcode": {
     "title": "Leetcode",
@@ -85,7 +89,9 @@
       "programming",
       "skills"
     ],
-    "size": 2.36
+    "size": 2.36,
+    "archived": false,
+    "default_branch": "main"
   },
   "comitanigiacomo/cyberSecurity": {
     "title": "CyberSecurity",
@@ -112,7 +118,9 @@
       "cyber-security",
       "skills"
     ],
-    "size": 0.29
+    "size": 0.29,
+    "archived": false,
+    "default_branch": "main"
   },
   "comitanigiacomo/Reti_di_calcolatori": {
     "title": "Reti_di_calcolatori",
@@ -130,6 +138,8 @@
     "updated_at": "2025-05-04T10:15:53Z",
     "license": "MIT License",
     "topics": [],
-    "size": 6.13
+    "size": 6.13,
+    "archived": false,
+    "default_branch": "main"
   }
 }
