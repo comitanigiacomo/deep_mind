@@ -71,4 +71,4 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 - UI Design influenced by modern developer portfolios
 
-[LIVE DEMO]()
+[LIVE DEMO](https://jacksdeepmind.netlify.app/)
