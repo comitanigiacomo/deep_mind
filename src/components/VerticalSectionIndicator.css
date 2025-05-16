@@ -39,3 +39,8 @@
   margin: 0;
 }
 
+@media (max-width: 768px) {
+  .vertical-line-container {
+    display: none;
+  }
+}
