@@ -141,6 +141,11 @@
   transform: translateY(-2px);
 }
 
+.license-badge-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
 /* Stats Overlay */
 .stats-overlay {
   position: absolute;
@@ -162,7 +167,6 @@
   border: 1px solid #2196F3 !important;
   color: #2196F3 !important;
   padding: 0.8rem 1.5rem;
-  margin-top: 1rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -193,6 +197,140 @@
   opacity: 0.3;
 }
 
+/* Statistiche aggiuntive */
+.additional-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.stat-item i {
+  color: #2196F3;
+  font-size: 1rem;
+}
+
+/* Licenza */
+.license-badge {
+  color: #888;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  border: none !important;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.repo-metadata {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.repo-header {
+  margin-bottom:20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.repo-header h3 {
+  color: #d3d3d3;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  max-width: 70%;
+}
+.metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metadata-item i {
+  color: #2196F3;
+  font-size: 1.1rem;
+}
+
+.topics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.topic-badge {
+  background: rgba(33, 150, 243, 0.1);
+  color: #2196F3;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.additional-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.stat-item i {
+  color: #2196F3;
+  font-size: 1rem;
+}
+
+.license-badge {
+  color: #d3d3d3;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Pulsanti */
+.project-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  min-height:45px;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-links > a {
+  flex-shrink: 0;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .project-item {
