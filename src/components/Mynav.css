@@ -26,7 +26,6 @@
   transition: opacity 0.3s ease;
 }
 
-/* Sottolineatura */
 .navbar .nav-link > span::after {
   content: "";
   position: absolute;
@@ -40,7 +39,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Hover effect */
 .navbar .nav-link:hover > span::before {
   opacity: 1;
 }
@@ -49,33 +47,31 @@
   transform: scaleX(1);
 }
 
-
+/* STILI TYPEWRITER */
 .navbar .navbar-brand {
   color: #fff !important;
   font-family: monospace;
-  text-decoration: none;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 10ch; /* Assicurati che 'ch' corrisponda alla lunghezza della stringa */
-  }
-}
-
-@keyframes blink-caret {
-  50% {
-    border-color: transparent;
-  }
-}
-
-.navbar-brand span {
-  display: inline-block;
-  overflow: hidden;
+  min-width: 200px;
+  position: relative;
+  padding-right: 8px;
   white-space: nowrap;
-  width: 0;
-  border-right: 4px solid;
-  animation: typing 3s steps(13) infinite, blink-caret 0.75s step-end infinite;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.navbar-brand {
+  position: relative;
+}
+
+.navbar-brand::after {
+  content: "|";
+  animation: blink 1s step-end infinite;
+  color: white;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
