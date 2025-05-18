@@ -4,7 +4,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
 
-A clean and minimal portfolio to present my projects and experience.
+A clean and minimal portfolio to present my projects and experience. [Deep Mind](https://jacksdeepmind.netlify.app/)
 
 ![Portfolio Screenshot](/public/About.jpeg)
 
@@ -71,4 +71,3 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 - UI Design influenced by modern developer portfolios
 
-[LIVE DEMO](https://jacksdeepmind.netlify.app/)
