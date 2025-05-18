@@ -142,7 +142,7 @@ def main():
         all_stats[f"{project['owner']}/{project['repo']}"] = stats
         time.sleep(1.5)
     
-    with open("../public/repo_stats.json", "w") as f:
+    with open("/public/repo_stats.json", "w") as f:
         json.dump(all_stats, f, indent=2, default=str)
     
     print(f"✅ Successfully saved data for {len(all_stats)} repositories")
