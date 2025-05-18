@@ -96,7 +96,7 @@
       "interview-preparation",
       "problem-solving"
     ],
-    "size": 2.41,
+    "size": 2.43,
     "archived": false,
     "default_branch": "main"
   },
@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
-    "commits": 87,
+    "commits": 90,
     "languages": [
       {
         "name": "JavaScript",
@@ -181,7 +181,7 @@
         "percent": 0.7
       }
     ],
-    "updated_at": "2025-05-18T19:59:16Z",
+    "updated_at": "2025-05-18T20:09:00Z",
     "license": "MIT License",
     "topics": [
       "portfolio",
