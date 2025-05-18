@@ -1,19 +1,29 @@
-import React, { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
-import repoStats from '../../public/repo_stats.json';
-
-const projects = Object.entries(repoStats).map(([key, value]) => ({
-  owner: key.split('/')[0],
-  repo: key.split('/')[1],
-  title: value.title || key.split('/')[1],
-  image: value.image || '/fallback-image.png',
-  stats: value
-}));
 
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
   const cardsRef = useRef([]);
+
+  // Carica i dati dal JSON ogni volta che la pagina viene montata
+  useEffect(() => {
+    fetch('/repo_stats.json')
+      .then(res => res.json())
+      .then(repoStats => {
+        const parsed = Object.entries(repoStats).map(([key, value]) => ({
+          owner: key.split('/')[0],
+          repo: key.split('/')[1],
+          title: value.title || key.split('/')[1],
+          image: value.image || '/fallback-image.png',
+          stats: value
+        }));
+        setProjects(parsed);
+      })
+      .catch(err => console.error('Errore caricamento JSON:', err));
+  }, []);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
