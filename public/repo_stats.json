@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
-    "commits": 99,
+    "commits": 100,
     "languages": [
       {
         "name": "CSS",
@@ -181,7 +181,7 @@
         "percent": 0.6
       }
     ],
-    "updated_at": "2025-05-19T20:53:55Z",
+    "updated_at": "2025-05-19T20:55:21Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
