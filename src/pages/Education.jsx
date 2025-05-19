@@ -10,24 +10,6 @@ import './Education.css';
 const ExperiencePage = () => {
   const experiences = [
     {
-      date: '2015 – 2017',
-      title: 'Lower Secondary School Diploma',
-      institution: 'A. B. Sabin Comprehensive Institute',
-      description: 'Science track',
-      type: 'school',
-      icon: 'pi pi-book',
-      logo: '/logo-ic-sabin.png'
-    },
-    {
-      date: '2017 – 2021',
-      title: 'High School Diploma',
-      institution: 'Leonardo Da Vinci State High School (Cologno Monzese)',
-      description: 'Scientific curriculum',
-      type: 'highschool',
-      icon: 'pi pi-graduation-cap',
-      logo: '/leonardoDaVinci.png'
-    },
-    {
       date: '2021 – 2025',
       title: 'Bachelor of Science in Computer Science',
       institution: 'University of Milan',
@@ -37,13 +19,13 @@ const ExperiencePage = () => {
       logo: '/Unimi-logo.png'
     },
     {
-      date: '2025 – 2027',
-      title: 'Master of Science in Computer Science',
-      institution: 'University of Milan',
-      description: 'Graduate degree program (expected)',
-      type: 'master',
-      icon: 'pi pi-briefcase',
-      logo: '/Unimi-logo.png'
+      date: '2016 – 2021',
+      title: 'High School Diploma',
+      institution: 'Leonardo Da Vinci State High School (Cologno Monzese)',
+      description: 'Scientific curriculum',
+      type: 'highschool',
+      icon: 'pi pi-graduation-cap',
+      logo: '/leonardoDaVinci.png'
     }
   ];
 
