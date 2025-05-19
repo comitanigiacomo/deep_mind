@@ -74,7 +74,7 @@ const ExperiencePage = () => {
                       className="institution-logo"
                     />
                   )}
-                  {item.institution}
+                  <p>{item.institution}</p>
                 </h5>
                 <p>{item.description}</p>
                 <div className="experience-divider"></div>
