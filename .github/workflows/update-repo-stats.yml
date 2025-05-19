@@ -45,6 +45,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nessuna modifica da commettere"
           else
-            git commit -m "🔄 Aggiorna repo_stats.json [skip ci]"
+            git commit -m "🔄 Aggiorna repo_stats.json"
             git push
           fi
