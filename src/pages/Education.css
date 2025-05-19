@@ -211,6 +211,10 @@
     font-size: 0.9rem;
     line-height: 1.4;
   }
+
+  .p-card-content {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -233,7 +237,7 @@
   }
 
   .p-timeline {
-    padding-left: 40px;
+    padding-left: 30px;
   }
 
   .p-timeline-event {
@@ -261,8 +265,23 @@
   }
 
   .institution-logo {
+    display: flex ;
+    margin-left: 35%;
+    margin-top: 20px;
     height: 50px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 20px;
+  }
+
+  .p-card-body {
+    padding: 0;
+  }
+
+  .timeline-card-content {
+    padding: 0;
+  }
+
+  h3 {
+    text-align: center;
   }
 }
 
@@ -287,6 +306,14 @@
 
 .institution-logo {
   height: 80px;
-  margin-right: 10px;
   vertical-align: middle;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3,
+p {
+  text-align: left;
 }
