@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
-    "commits": 90,
+    "commits": 93,
     "languages": [
       {
         "name": "JavaScript",
@@ -181,13 +181,13 @@
         "percent": 0.7
       }
     ],
-    "updated_at": "2025-05-18T20:09:00Z",
+    "updated_at": "2025-05-18T20:14:16Z",
     "license": "MIT License",
     "topics": [
       "portfolio",
       "show-project"
     ],
-    "size": 5.29,
+    "size": 5.3,
     "archived": false,
     "default_branch": "main"
   }
