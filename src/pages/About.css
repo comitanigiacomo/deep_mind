@@ -144,16 +144,22 @@ h1 {
     text-align: center;
   }
 
+  .small-text {
+    text-align: center;
+  }
+
   .image-column {
     margin-top: 3rem;
   }
 
   h1 {
     font-size: 3rem;
+    text-align: center;
   }
 
   .medium-text {
     font-size: 1.8rem;
+    text-align: center;
   }
 
   .code-snippet p {
@@ -216,3 +222,44 @@ h1 {
   }
 }
 
+.terminal {
+  background-color: black;
+  color: #d3d3d3;
+  font-family: 'Courier New', monospace;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #07589D;
+  margin-left: 0.5rem;
+  flex: 1;
+  caret-color: #07589D;
+}
+
+.terminal-input::placeholder {
+  color: blue;
+}
+
+.terminal-output {
+  margin-top: 0.5rem;
+}
+
+/* Cursore bianco */
+.terminal-input {
+  caret-color: rgb(197, 197, 197);
+}
+
+.terminal-prompt,
+.terminal-line > span {
+  color: #07589D;
+}
