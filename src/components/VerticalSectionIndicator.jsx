@@ -1,7 +1,7 @@
 
-// src/components/VerticalSectionIndicator.jsx
 import { useEffect, useState } from 'react';
 import './VerticalSectionIndicator.css';
+import {useTheme} from '../context/ThemeContext'
 
 const sections = [
   { id: 'about',     name: 'About' },
@@ -11,6 +11,7 @@ const sections = [
 ];
 
 export default function VerticalSectionIndicator() {
+  const { isDarkMode } = useTheme();
   const [currentSection, setCurrentSection] = useState(sections[0].name);
 
   useEffect(() => {
