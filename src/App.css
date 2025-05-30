@@ -1,7 +1,6 @@
 
 .background-wrapper {
-  background-color: black;
-  background-size: cover;
+  background-color: var(--bg);
   background-repeat: repeat;
   background-attachment: fixed;
   height: 100vh;
@@ -9,17 +8,21 @@
   scroll-behavior: smooth;
   padding-top: 60px;
   position: relative;
+  transition: background-color 0 ease;
 }
 
 html, body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  background-color: var(--bg) !important;
+  transition: background-color 0s ease;
 }
 
 .section {
   height: 100vh;
   width: 100%;
+  background-color: var(--bg);
 }
 
 .section-wrapper {
@@ -28,10 +31,10 @@ html, body {
   position: relative;
   overflow: visible;
   padding: 2rem 0;
+  background-color: var(--bg);
 }
 
 .container.mt-3 {
   margin-top: 0 !important;
 }
-
 
