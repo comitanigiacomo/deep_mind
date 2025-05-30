@@ -1,5 +1,4 @@
 
-/* src/components/VerticalSectionIndicator.css */
 .vertical-line-container {
   position: fixed;
   bottom: 0;
@@ -13,12 +12,13 @@
     150px; /* bottom segment */
   z-index: 999;
   pointer-events: none;
+  color: var(--text);
 }
 
 .vertical-line.top,
 .vertical-line.bottom {
   width: 2px;
-  background-color: white;
+  background-color: var(--text);
   justify-self: center;
   align-self: stretch;
 }
@@ -27,7 +27,7 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-size: 0.85rem;
-  color: white;
+  color: var(--text);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
