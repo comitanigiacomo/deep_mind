@@ -317,3 +317,79 @@ h3,
 p {
   text-align: left;
 }
+
+[data-theme="light"] .experience-section {
+  background: #ffffff;
+}
+
+[data-theme="light"] .section-title {
+  color: #2a2a2a;
+}
+
+[data-theme="light"] .section-title::after {
+  background: #0d6efd;
+}
+
+[data-theme="light"] .p-timeline::before,
+[data-theme="light"] .p-timeline-event-connector {
+  background-color: #0d6efd;
+}
+
+[data-theme="light"] .timeline-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .timeline-card:hover {
+  box-shadow: 0 10px 30px rgba(13, 110, 253, 0.15);
+}
+
+[data-theme="light"] .timeline-card::before {
+  animation: borderPulseLight 1.5s infinite;
+}
+
+@keyframes borderPulseLight {
+  0% { border-color: rgba(13, 110, 253, 0); }
+  50% { border-color: rgba(13, 110, 253, 0.3); }
+  100% { border-color: rgba(13, 110, 253, 0); }
+}
+
+[data-theme="light"] .timeline-card::after {
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(13, 110, 253, 0.05) 50%,
+    transparent 75%
+  );
+}
+
+[data-theme="light"] .experience-type {
+  background: #0d6efd;
+  color: white;
+}
+
+[data-theme="light"] .timeline-card h3 {
+  color: #2a2a2a;
+}
+
+[data-theme="light"] .timeline-card h5 {
+  color: #666;
+}
+
+[data-theme="light"] .timeline-card p {
+  color: #555;
+}
+
+[data-theme="light"] .timeline-marker {
+  background: #0d6efd;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+[data-theme="light"] .experience-divider {
+  border-top: 1px solid #eee;
+}
+
+[data-theme="light"] .institution-logo {
+  filter: brightness(0.9);
+}
