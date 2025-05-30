@@ -1,3 +1,83 @@
+:root {
+  --bg: #000000;
+  --text: #d3d3d3;
+  --accent: #07589D;
+  --border: #888;
+  --terminal-bg: #000000;
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #2a2a2a;
+  --accent: #0d6efd;
+  --border: #ced4da;
+  --terminal-bg: #f8f9fa;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] #about {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="light"] .about-container {
+  color: var(--text);
+}
+
+[data-theme="light"] .small-text,
+[data-theme="light"] .code-snippet p,
+[data-theme="light"] .terminal-prompt,
+[data-theme="light"] .terminal-line > span {
+  color: var(--accent);
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] .medium-text {
+  color: var(--text);
+}
+
+[data-theme="light"] .icon {
+  color: var(--text);
+}
+
+[data-theme="light"] .icon:hover {
+  color: var(--accent);
+}
+
+[data-theme="light"] .minimal-btn {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="light"] .minimal-btn:hover {
+  background-color: var(--accent);  
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+[data-theme="light"] .terminal {
+  background-color: white;
+  color: var(--text);
+}
+
+[data-theme="light"] .terminal-input {
+  color: var(--accent);
+  caret-color: var(--text);
+}
+
 
 /* Sfondo e layout */
 #about {
@@ -92,7 +172,7 @@ h1 {
 .icon {
   font-size: 3rem;
   color: #bbb; 
-  transition: color 0.3s ease;
+  transition: color 0s ease;
 }
 
 .icon:hover {
