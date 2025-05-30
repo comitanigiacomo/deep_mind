@@ -6,6 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deep Mind</title>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="85abdd6c-280f-4484-b7fb-dac569b2b6d0"></script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    html[data-theme="dark"],
+    body[data-theme="dark"] {
+      background-color: #000000;
+    }
+
+    html[data-theme="light"],
+    body[data-theme="light"] {
+      background-color: #ffffff;
+    }
+  </style>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+      window.__INITIAL_THEME__ = initialTheme;
+
+      document.documentElement.setAttribute('data-theme', initialTheme);
+      document.body.style.backgroundColor = initialTheme === 'dark' ? '#000000' : '#f8f9fa';
+      document.body.style.transition = 'none';
+    })();
+  </script>
 </head>
 
 <body>
