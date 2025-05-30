@@ -1,4 +1,3 @@
-// About.jsx
 import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,8 +5,10 @@ import Col from 'react-bootstrap/Col';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import './About.css';
 import Intro from '../components/Intro';
+import { useTheme } from '../context/ThemeContext';
 
 export default function About() {
+  const { isDarkMode } = useTheme();
   const [showIntro, setShowIntro] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
@@ -68,7 +69,7 @@ export default function About() {
 
               <Col md={6} className="image-column d-flex flex-column align-items-center justify-content-start">
                 <div className="image-wrapper">
-                  <img src="/finaleVero.png" alt="Profile" className="about-image img-fluid" />
+                  <img src={isDarkMode ? "/finaleVero.png" : "/chiaro.png"}  alt="Profile" className="about-image img-fluid" />
                 </div>
 
                 <div className="contact-icons">
