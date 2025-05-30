@@ -1,14 +1,29 @@
+:root {
+  --nav-bg: #000000;
+  --nav-text: #ffffff;
+  --nav-accent: #07589D;
+  --nav-hover-line: #bbbbbb;
+}
+
+[data-theme="light"] {
+  --nav-bg: #ffffff;
+  --nav-text: #2a2a2a;
+  --nav-accent: #0d6efd;
+  --nav-hover-line: #666666;
+}
+
 .navbar {
-  background-color: black !important;
+  background-color: var(--nav-bg) !important;
 }
 
 .navbar .nav-link {
-  color: #fff !important;
+  color: var(--nav-text) !important;
   position: relative;
   margin: 0 1rem;
   display: inline-block;
   font-family: monospace;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .navbar .nav-link > span {
@@ -21,7 +36,7 @@
   content: " cd /";
   position: absolute;
   left: 0;
-  color: #07589D;
+  color: var(--nav-accent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -33,7 +48,7 @@
   left: 2.8em;
   width: calc(100% - 2.8em);
   height: 2px;
-  background-color: #bbb;
+  background-color: var(--nav-hover-line);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -47,9 +62,8 @@
   transform: scaleX(1);
 }
 
-/* STILI TYPEWRITER */
 .navbar .navbar-brand {
-  color: #fff !important;
+  color: var(--nav-text) !important;
   font-family: monospace;
   min-width: 200px;
   position: relative;
@@ -59,7 +73,6 @@
   align-items: center;
 }
 
-
 .navbar-brand {
   position: relative;
 }
@@ -67,8 +80,9 @@
 .navbar-brand::after {
   content: "|";
   animation: blink 1s step-end infinite;
-  color: white;
+  color: var(--nav-text);
   margin-left: 1px;
+  transition: color 0.3s ease;
 }
 
 @keyframes blink {
@@ -76,8 +90,46 @@
   50% { opacity: 0; }
 }
 
+[data-theme="light"] .navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .nav-link:hover > span::after {
+  background-color: var(--nav-accent);
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
     display: none !important;
+  }
+}
+
+.navbar .nav:last-child {
+  margin-left: auto !important;
+}
+
+.theme-toggle-text {
+  opacity: 0.8;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+}
+
+.theme-toggle-text > span {
+  padding-left: 0 !important;
+}
+
+.theme-toggle-text > span::before,
+.theme-toggle-text > span::after {
+  display: none !important;
+}
+
+.theme-toggle-text:hover {
+  opacity: 1;
+  color: var(--nav-accent) !important;
+}
+
+@media (max-width: 768px) {
+  .navbar .nav:last-child::before {
+    display: none;
   }
 }
