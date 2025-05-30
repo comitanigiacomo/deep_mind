@@ -1,5 +1,4 @@
-
-
+import { ThemeProvider } from './context/ThemeContext';
 import Mynav from './components/Mynav.jsx';
 import About from './pages/About';
 import Experience from './pages/Education';
@@ -12,7 +11,7 @@ import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx'
 
 export default function App() {
 
-useEffect(() => {
+  useEffect(() => {
     if(window.location.hash) {
       window.history.replaceState(null, null, ' ');
     }
@@ -29,7 +28,7 @@ useEffect(() => {
   }, []);  
 
   return (
-    <>
+    <ThemeProvider>
       <Mynav />
       <VerticalSectionIndicator />
       <div className="background-wrapper">
@@ -48,7 +47,6 @@ useEffect(() => {
           </section>
         </div>
       </div>
-    </>
+    </ThemeProvider>
   );
 }
-
