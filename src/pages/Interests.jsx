@@ -15,17 +15,23 @@ export default function Interests() {
     {
       number: "01",
       title: "Formula 1",
-      description: "Sono un appassionato di Formula 1 da sempre. Seguo ogni Gran Premio e mi affascina l'aspetto tecnico delle monoposto, oltre all'aspetto sportivo."
+      description: "Sono un appassionato di Formula 1 da sempre. Seguo ogni Gran Premio e mi affascina l'aspetto tecnico delle monoposto, oltre all'aspetto sportivo.",
+      image: "../../public/ferrari.jpg",
+      skills: ["Analisi Tecnica", "Strategia", "Aerodinamica", "Telemetria"]
     },
     {
       number: "02",
       title: "Tecnologia",
-      description: "La mia passione per l'informatica e la tecnologia mi ha portato a studiare IT. Mi piace sperimentare con nuove tecnologie e framework."
+      description: "La mia passione per l'informatica e la tecnologia mi ha portato a studiare IT. Mi piace sperimentare con nuove tecnologie e framework.",
+      image: "/images/technology.jpg",
+      skills: ["React", "JavaScript", "Node.js", "Python", "Machine Learning"]
     },
     {
       number: "03",
       title: "Musica",
-      description: "Suono diversi strumenti e ascolto molta musica, soprattutto rock e generi alternativi. La musica è una parte importante della mia vita quotidiana."
+      description: "Suono diversi strumenti e ascolto molta musica, soprattutto rock e generi alternativi. La musica è una parte importante della mia vita quotidiana.",
+      image: "../../public/music.jpeg",
+      skills: ["Chitarra", "Pianoforte", "Produzione", "Mixing", "Composizione"]
     },
   ];
 
@@ -61,7 +67,7 @@ export default function Interests() {
 
   return (
     <section id="interests" ref={sectionRef} className="interests-section">
-      <div className="interests-container" style={{ height: `${interests.length * 300}vh` }}>
+      <div className="interests-container" style={{ height: `${interests.length * 200}vh` }}>
         <div className="sticky-content">
           <Container>
             <Row className="align-items-center h-100">
@@ -92,10 +98,24 @@ export default function Interests() {
               <Col lg={6} className="interests-right">
                 {interests.map((interest, index) => (
                   <div 
-                    key={`desc-${index}`}
-                    className={`description-item ${index === activeIndex ? 'active' : ''}`}
+                    key={`interest-${index}`}
+                    className={`interest-content ${index === activeIndex ? 'active' : ''}`}
                   >
-                    <p>{interest.description}</p>
+                    <div className="interest-image">
+                      <img src={interest.image} alt={interest.title} />
+                    </div>
+                    <div className="interest-info">
+                      <div className="interest-description">
+                        <p>{interest.description}</p>
+                      </div>
+                      <div className="interest-skills">
+                        {interest.skills.map((skill, skillIndex) => (
+                          <span key={skillIndex} className="skill-badge">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </Col>
