@@ -23,7 +23,7 @@ export default function Interests() {
       number: "02",
       title: "Tecnologia",
       description: "La mia passione per l'informatica e la tecnologia mi ha portato a studiare IT. Mi piace sperimentare con nuove tecnologie e framework.",
-      image: "/images/technology.jpg",
+      image: "../../public/it.jpeg",
       skills: ["React", "JavaScript", "Node.js", "Python", "Machine Learning"]
     },
     {
