@@ -2,6 +2,16 @@
   --accent-color-dark: #ffffffcc; 
 }
 
+/* Definizione colori per ogni interesse */
+:root {
+  --interest-1-color: #FF6B35; /* Arancione caldo per programmazione */
+  --interest-2-color: #4ECDC4; /* Turchese per design */
+  --interest-3-color: #45B7D1; /* Blu cielo per fotografia */
+  --interest-4-color: #96CEB4; /* Verde menta per natura/sport */
+  --interest-5-color: #FFEAA7; /* Giallo dorato per musica */
+  --interest-6-color: #DDA0DD; /* Viola per arte/creatività */
+}
+
 .interests-section {
   position: relative;
   width: 100%;
@@ -145,13 +155,88 @@
 }
 
 .number-item.active {
-  opacity: 0.2;
+  opacity: 0.3;
   transform: translateY(0);
 }
 
-.dark .number-item {
-  color: var(--accent-color-dark);
-  opacity: 0.25;
+/* Colori specifici per ogni numero */
+.number-item:nth-child(1).active {
+  color: var(--interest-1-color);
+  text-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
+}
+
+.number-item:nth-child(2).active {
+  color: var(--interest-2-color);
+  text-shadow: 0 0 50px rgba(78, 205, 196, 0.3);
+}
+
+.number-item:nth-child(3).active {
+  color: var(--interest-3-color);
+  text-shadow: 0 0 50px rgba(69, 183, 209, 0.3);
+}
+
+.number-item:nth-child(4).active {
+  color: var(--interest-4-color);
+  text-shadow: 0 0 50px rgba(150, 206, 180, 0.3);
+}
+
+.number-item:nth-child(5).active {
+  color: var(--interest-5-color);
+  text-shadow: 0 0 50px rgba(255, 234, 167, 0.3);
+}
+
+.number-item:nth-child(6).active {
+  color: var(--interest-6-color);
+  text-shadow: 0 0 50px rgba(221, 160, 221, 0.3);
+}
+
+/* Effetto gradiente per i numeri in tema scuro */
+.dark .number-item:nth-child(1).active {
+  background: linear-gradient(145deg, var(--interest-1-color), #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+.dark .number-item:nth-child(2).active {
+  background: linear-gradient(145deg, var(--interest-2-color), #5FDDD6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+.dark .number-item:nth-child(3).active {
+  background: linear-gradient(145deg, var(--interest-3-color), #5BC8E3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+.dark .number-item:nth-child(4).active {
+  background: linear-gradient(145deg, var(--interest-4-color), #A8D8C6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+.dark .number-item:nth-child(5).active {
+  background: linear-gradient(145deg, var(--interest-5-color), #FFF2B9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+.dark .number-item:nth-child(6).active {
+  background: linear-gradient(145deg, var(--interest-6-color), #E9B2E9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.4;
 }
 
 .titles-display {
@@ -388,6 +473,37 @@
 [data-theme="light"] .skill-badge:hover {
   background: rgba(13, 110, 253, 0.28);
   box-shadow: 0 10px 25px rgba(13, 110, 253, 0.25);
+}
+
+/* Colori per tema chiaro - numeri più contrastati */
+[data-theme="light"] .number-item:nth-child(1).active {
+  color: #D63031;
+  text-shadow: 0 0 30px rgba(214, 48, 49, 0.2);
+}
+
+[data-theme="light"] .number-item:nth-child(2).active {
+  color: #00B894;
+  text-shadow: 0 0 30px rgba(0, 184, 148, 0.2);
+}
+
+[data-theme="light"] .number-item:nth-child(3).active {
+  color: #0984E3;
+  text-shadow: 0 0 30px rgba(9, 132, 227, 0.2);
+}
+
+[data-theme="light"] .number-item:nth-child(4).active {
+  color: #00B894;
+  text-shadow: 0 0 30px rgba(0, 184, 148, 0.2);
+}
+
+[data-theme="light"] .number-item:nth-child(5).active {
+  color: #FDCB6E;
+  text-shadow: 0 0 30px rgba(253, 203, 110, 0.3);
+}
+
+[data-theme="light"] .number-item:nth-child(6).active {
+  color: #A29BFE;
+  text-shadow: 0 0 30px rgba(162, 155, 254, 0.2);
 }
 
 /* Animazioni sfalsate per i nuovi elementi */
