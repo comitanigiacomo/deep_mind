@@ -16,21 +16,21 @@ export default function Interests() {
       number: "01",
       title: "Formula 1",
       description: "Sono un appassionato di Formula 1 da sempre. Seguo ogni Gran Premio e mi affascina l'aspetto tecnico delle monoposto, oltre all'aspetto sportivo.",
-      image: "../../public/ferrari.jpg",
+      image: "../../public/ferrari.png",
       skills: ["Analisi Tecnica", "Strategia", "Aerodinamica", "Telemetria"]
     },
     {
       number: "02",
       title: "Tecnologia",
       description: "La mia passione per l'informatica e la tecnologia mi ha portato a studiare IT. Mi piace sperimentare con nuove tecnologie e framework.",
-      image: "../../public/it.jpeg",
+      image: "../../public/tec.png",
       skills: ["React", "JavaScript", "Node.js", "Python", "Machine Learning"]
     },
     {
       number: "03",
       title: "Musica",
       description: "Suono diversi strumenti e ascolto molta musica, soprattutto rock e generi alternativi. La musica è una parte importante della mia vita quotidiana.",
-      image: "../../public/music.jpeg",
+      image: "../../public/music.png",
       skills: ["Chitarra", "Pianoforte", "Produzione", "Mixing", "Composizione"]
     },
   ];
