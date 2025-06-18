@@ -41,11 +41,11 @@ export default function About() {
         ) : (
           <Container className="about-container py-5 fade-in">
             <Row>
-              <Col md={6} className="d-flex flex-column justify-content-center">
+              {/* Colonna Testo */}
+              <Col md={6} className="d-flex flex-column justify-content-center text-column">
                 <p className="small-text">Hey, I'm</p>
                 <h1 className="display-1 fw-bold">Jack</h1>
                 <p className="medium-text">an IT student from Milan</p>
-
                 <div className="terminal">
                   <span className="terminal-prompt">&gt; console.log("Can you guess my favorite colors?")</span>
                   <div className="terminal-line">
@@ -66,31 +66,38 @@ export default function About() {
                   )}
                 </div>
               </Col>
-
-              <Col md={6} className="image-column d-flex flex-column align-items-center justify-content-start">
+              
+              {/* Colonna Immagine e Bottoni - Modificata per mobile */}
+              <Col md={6} className="image-column">
+                {/* Immagine spostata qui */}
                 <div className="image-wrapper">
-                  <img src={isDarkMode ? "/finaleVero.png" : "/chiaro.png"}  alt="Profile" className="about-image img-fluid" />
+                  <img 
+                    src={isDarkMode ? "/face.png" : "/face.png"} 
+                    alt="Profile" 
+                    className="about-image" 
+                  />
                 </div>
-
-                <div className="contact-icons">
-                  <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
-                    <FaGithub className="icon" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="icon" />
-                  </a>
-                  <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="icon" />
-                  </a>
+                
+                {/* Bottoni spostati qui */}
+                <div className="image-controls">
+                  <div className="contact-icons">
+                    <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
+                      <FaGithub className="icon" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
+                      <FaLinkedin className="icon" />
+                    </a>
+                    <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
+                      <FaInstagram className="icon" />
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => (window.location.href = '#projects')}
+                    className="minimal-btn"
+                  >
+                    See My Projects
+                  </button>
                 </div>
-
-                <button
-                  variant="outline-light"
-                  onClick={() => (window.location.href = '#projects')}
-                  className="minimal-btn mt-3 btn btn-outline-light"
-                >
-                  See My Projects
-                </button>
               </Col>
             </Row>
           </Container>
