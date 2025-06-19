@@ -9,8 +9,8 @@ export default function Projects() {
   const [prevIndex, setPrevIndex] = useState(-1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const sectionRef = useRef(null);
-  const isScrollingRef = useRef(false);
-  const touchStartY = useRef(0);
+  const animationFrameRef = useRef(null);
+  const transitionTimeoutRef = useRef(null);
 
   // Carica i dati dal JSON
   useEffect(() => {
@@ -29,124 +29,49 @@ export default function Projects() {
       .catch(err => console.error('Errore caricamento JSON:', err));
   }, []);
 
-  // Inizializza l'altezza del container
   useEffect(() => {
-    if (projects.length > 0) {
-      document.documentElement.style.setProperty('--num-projects', projects.length);
-    }
-  }, [projects.length]);
+    const updateActiveIndex = () => {
+      if (!sectionRef.current || projects.length === 0) return;
 
-  // Gestione dello scroll controllato
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const handleScroll = (e) => {
-      if (isScrollingRef.current) return;
-      
+      const section = sectionRef.current;
+      const { top, height } = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const scrollPosition = section.scrollTop;
-      const newIndex = Math.round(scrollPosition / windowHeight);
       
-      if (newIndex !== activeIndex) {
-        isScrollingRef.current = true;
-        setPrevIndex(activeIndex);
-        setActiveIndex(newIndex);
-        setIsTransitioning(true);
-        
-        section.scrollTo({
-          top: newIndex * windowHeight,
-          behavior: 'smooth'
-        });
-        
-        setTimeout(() => {
-          isScrollingRef.current = false;
-          setIsTransitioning(false);
-        }, 1000);
-      }
-    };
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (-top) / (height - windowHeight)
+      ));
 
-    const handleWheel = (e) => {
-      if (isScrollingRef.current) {
-        e.preventDefault();
-        return;
-      }
-
-      const delta = Math.sign(e.deltaY);
       const newIndex = Math.min(
-        projects.length - 1, 
-        Math.max(0, activeIndex + delta)
+        projects.length - 1,
+        Math.floor(scrollProgress * projects.length)
       );
-      
+
       if (newIndex !== activeIndex) {
-        e.preventDefault();
-        isScrollingRef.current = true;
         setPrevIndex(activeIndex);
         setActiveIndex(newIndex);
         setIsTransitioning(true);
         
-        section.scrollTo({
-          top: newIndex * window.innerHeight,
-          behavior: 'smooth'
-        });
-        
-        setTimeout(() => {
-          isScrollingRef.current = false;
-          setIsTransitioning(false);
-        }, 1000);
-      }
-    };
-
-    const handleTouchStart = (e) => {
-      touchStartY.current = e.touches[0].clientY;
-    };
-    
-    const handleTouchMove = (e) => {
-      if (isScrollingRef.current) {
-        e.preventDefault();
-        return;
-      }
-      
-      const y = e.touches[0].clientY;
-      const delta = touchStartY.current - y;
-      
-      if (Math.abs(delta) > 50) {
-        e.preventDefault();
-        isScrollingRef.current = true;
-        const direction = delta > 0 ? 1 : -1;
-        const newIndex = Math.min(
-          projects.length - 1, 
-          Math.max(0, activeIndex + direction)
-        );
-        
-        if (newIndex !== activeIndex) {
-          setPrevIndex(activeIndex);
-          setActiveIndex(newIndex);
-          setIsTransitioning(true);
-          
-          section.scrollTo({
-            top: newIndex * window.innerHeight,
-            behavior: 'smooth'
-          });
-          
-          setTimeout(() => {
-            isScrollingRef.current = false;
-            setIsTransitioning(false);
-          }, 1000);
+        if (transitionTimeoutRef.current) {
+          clearTimeout(transitionTimeoutRef.current);
         }
+        
+        transitionTimeoutRef.current = setTimeout(() => {
+          setIsTransitioning(false);
+        }, 1200); // Match with CSS transition duration
       }
+
+      animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
     };
 
-    section.addEventListener('scroll', handleScroll);
-    section.addEventListener('wheel', handleWheel, { passive: false });
-    section.addEventListener('touchstart', handleTouchStart, { passive: false });
-    section.addEventListener('touchmove', handleTouchMove, { passive: false });
+    animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
     
     return () => {
-      section.removeEventListener('scroll', handleScroll);
-      section.removeEventListener('wheel', handleWheel);
-      section.removeEventListener('touchstart', handleTouchStart);
-      section.removeEventListener('touchmove', handleTouchMove);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
     };
   }, [projects.length, activeIndex]);
 
@@ -163,7 +88,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={sectionRef} className="projects-section">
-      <div className="projects-container">
+      <div className="projects-container" style={{ height: `${projects.length * 200}vh` }}>
         <div className="sticky-content">
           <div className="section-title">
             <h2>PROJECTS</h2>
@@ -182,6 +107,7 @@ export default function Projects() {
                 className += ' exiting';
               }
 
+              // Determina la direzione dello swap
               const swapDirection = index % 2 === 0 ? 'swap-left' : 'swap-right';
 
               return (
