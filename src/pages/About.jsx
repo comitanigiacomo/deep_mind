@@ -72,7 +72,7 @@ export default function About() {
                 {/* Immagine spostata qui */}
                 <div className="image-wrapper">
                   <img 
-                    src={isDarkMode ? "/face.png" : "/face.png"} 
+                    src={isDarkMode ? "/face2.png" : "/face.png"} 
                     alt="Profile" 
                     className="about-image" 
                   />
