@@ -5,6 +5,7 @@ import {useTheme} from '../context/ThemeContext'
 
 const sections = [
   { id: 'about',     name: 'About' },
+  { id: 'interests',     name: 'Interests' },
   { id: 'education', name: 'Education' },
   { id: 'projects',  name: 'Projects' },
   { id: 'contacts',  name: 'Contacts' },
