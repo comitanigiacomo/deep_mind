@@ -4,6 +4,7 @@ import About from './pages/About';
 import Experience from './pages/Education';
 import Projects from './pages/Projects';
 import Contacts from './pages/Contacts';
+import Interests from './pages/Interests.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { useEffect } from 'react';
@@ -35,6 +36,9 @@ export default function App() {
         <div className="container mt-3">
           <section id="about">
             <About />
+          </section>
+          <section id="interests">
+            <Interests />
           </section>
           <section id="education">
             <Experience />
