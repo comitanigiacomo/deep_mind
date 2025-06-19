@@ -40,7 +40,7 @@
 [data-theme="light"] .small-text,
 [data-theme="light"] .code-snippet p,
 [data-theme="light"] .terminal-prompt,
-[data-theme="light"] .terminal-line > span {
+[data-theme="light"] .terminal-line>span {
   color: var(--accent);
 }
 
@@ -63,7 +63,7 @@
 }
 
 [data-theme="light"] .minimal-btn:hover {
-  background-color: var(--accent);  
+  background-color: var(--accent);
   color: var(--bg);
   border-color: var(--accent);
 }
@@ -81,13 +81,13 @@
 /* Sfondo e layout */
 #about {
   background-color: black;
-  color: #d3d3d3; 
+  color: #d3d3d3;
 }
 
 .about-container {
   color: #d3d3d3;
   background-color: transparent;
-  padding-top: 100px; 
+  padding-top: 100px;
 }
 
 .fade-in {
@@ -95,27 +95,32 @@
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .small-text {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  color: #07589D; 
+  color: #07589D;
 }
 
 h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   font-size: 5rem;
-  color: #d3d3d3; 
+  color: #d3d3d3;
   text-transform: uppercase;
 }
 
 .medium-text {
   font-family: 'Georgia', serif;
-  font-size: 3rem; 
+  font-size: 3rem;
   margin-top: 15px;
 }
 
@@ -130,13 +135,13 @@ h1 {
 .contact-icons {
   display: flex;
   justify-content: center;
-  gap: 2.5rem; 
+  gap: 2.5rem;
   margin-bottom: 2rem;
 }
 
 .icon {
   font-size: 2.2rem;
-  color: #888; 
+  color: #888;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -196,7 +201,7 @@ h1 {
 
 .minimal-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 12px 25px rgba(7, 88, 157, 0.4),
     0 6px 12px rgba(0, 0, 0, 0.15);
   background: linear-gradient(135deg, rgba(7, 88, 157, 0.9), rgba(7, 88, 157, 1.1));
@@ -250,12 +255,10 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(7, 88, 157, 0.1) 0%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(7, 88, 157, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%);
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -316,7 +319,7 @@ h1 {
 }
 
 .terminal-prompt,
-.terminal-line > span {
+.terminal-line>span {
   color: #07589D;
 }
 
@@ -328,56 +331,62 @@ h1 {
 }
 
 @media (max-width: 992px) {
+
+
+  .image-wrapper {
+    display: none;
+  }
+
+  .text-column {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
   .about-container .row {
-    flex-direction: column;
+    justify-content: center;
     text-align: center;
   }
-  
+
   /* Rimuovi margini e padding non necessari */
-  .image-column, .text-column {
+  .image-column,
+  .text-column {
     padding: 0 1rem;
     min-height: auto;
   }
-  
-  .image-wrapper {
-    max-width: 280px; /* Ridotto da 320px */
-    margin: 1.5rem auto 1rem; /* Ridotto margine verticale */
-  }
-  
+
   .image-controls {
-    margin-top: 0.5rem;
-    animation: slideInUp 0.6s ease-out 0.8s forwards;
+    margin-top: 3rem;
+    width: 100%;
   }
-  
+
   /* Ordina le colonne */
   .order-1 {
-    order: 1 !important; /* Testo per primo */
+    order: 1 !important;
+    /* Testo per primo */
   }
-  
+
   .order-2 {
-    order: 2 !important; /* Immagine dopo il testo */
+    order: 2 !important;
+    /* Immagine dopo il testo */
   }
-  
+
   .order-3 {
-    order: 3 !important; /* Bottoni dopo l'immagine */
+    order: 3 !important;
+    /* Bottoni dopo l'immagine */
   }
-  
+
   /* Migliora lo spazio tra gli elementi */
   .terminal {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    max-width: 100%;
   }
 }
 
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 3rem; 
-  }
-
-  .image-wrapper {
-    max-width: 240px; /* Ulteriore riduzione */
-    margin: 1rem auto 0.5rem;
+    font-size: 2rem;
   }
 
   .small-text {
@@ -397,12 +406,8 @@ h1 {
   .image-column {
     padding: 2rem 1rem;
   }
-  
-  .image-wrapper {
-    max-width: 280px;
-    margin-bottom: 1.5rem;
-  }
-  
+
+
   .contact-icons {
     gap: 2rem;
     margin-bottom: 1.5rem;
@@ -424,7 +429,8 @@ h1 {
   }
 
   .image-wrapper {
-    max-width: 200px; /* Massima riduzione */
+    max-width: 200px;
+    /* Massima riduzione */
     margin: 0.5rem auto 0;
   }
 
@@ -448,7 +454,7 @@ h1 {
   .image-wrapper {
     max-width: 250px;
   }
-  
+
   .contact-icons {
     gap: 1.8rem;
   }
