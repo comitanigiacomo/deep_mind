@@ -13,25 +13,39 @@ export default function Interests() {
 
   const interests = [
     {
-      number: "01",
+      number: "00",
       title: "Formula 1",
-      description: "Sono un appassionato di Formula 1 da sempre. Seguo ogni Gran Premio e mi affascina l'aspetto tecnico delle monoposto, oltre all'aspetto sportivo.",
+      description: "Formula 1 has always fascinated me, i follow every race and enjoy learning about the technology and strategy behind the sport.",
       image: "../../public/ferrari.png",
-      skills: ["Analisi Tecnica", "Strategia", "Aerodinamica", "Telemetria"]
+      skills: ["Race Enthusiast", "Strategic Thinking", "Curiosity for Technology", "Attention to Detail"]
+    },
+    {
+      number: "01",
+      title: "IT",
+      description: "I'm currently studying IT at university, following a lifelong interest in technology and problem-solving.",
+      image: "../../public/tec.png",
+      skills: ["Problem Solving", "Critical Thinking", "Tech Curiosity", "Team Collaboration"]
     },
     {
       number: "02",
-      title: "Tecnologia",
-      description: "La mia passione per l'informatica e la tecnologia mi ha portato a studiare IT. Mi piace sperimentare con nuove tecnologie e framework.",
-      image: "../../public/tec.png",
-      skills: ["React", "JavaScript", "Node.js", "Python", "Machine Learning"]
+      title: "Music",
+      description: "I’m passionate about music, I listen to all kinds of genres and enjoy playing the drums in my free time.",
+      image: "../../public/music.png",
+      skills: ["Rhythm & Timing", "Creativity", "Active Listening", "Musical Expression"]
     },
     {
       number: "03",
-      title: "Musica",
-      description: "Suono diversi strumenti e ascolto molta musica, soprattutto rock e generi alternativi. La musica è una parte importante della mia vita quotidiana.",
-      image: "../../public/music.png",
-      skills: ["Chitarra", "Pianoforte", "Produzione", "Mixing", "Composizione"]
+      title: "Anime",
+      description: "Anime is one of my biggest passions. I watch a wide variety of shows and enjoy the creativity and storytelling behind them.",
+      image: "../../public/luffy.png",
+      skills: ["Anime Enthusiast", "Strong Visual Sense", "Narrative Curiosity", "Consistent Watcher"]
+    },
+    {
+      number: "04",
+      title: "Gym",
+      description: "Going to the gym has become an important part of my routine. It helps me stay focused, build discipline, and improve both physically and mentally. I enjoy challenging myself and seeing progress over time. I'm currently on a short break due to my studies, but I’ll be getting back to it soon.",
+      image: "../../public/gym.png",
+      skills: ["Discipline", "Consistency", "Self-Motivation", "Goal-Oriented"]
     },
   ];
 
@@ -42,8 +56,8 @@ export default function Interests() {
       const section = sectionRef.current;
       const { top, height } = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      const scrollProgress = Math.max(0, Math.min(1, 
+
+      const scrollProgress = Math.max(0, Math.min(1,
         (-top) / (height - windowHeight)
       ));
 
@@ -57,7 +71,7 @@ export default function Interests() {
     };
 
     animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
-    
+
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -75,7 +89,7 @@ export default function Interests() {
                 <div className="number-title-wrapper">
                   <div className="number-display">
                     {interests.map((interest, index) => (
-                      <div 
+                      <div
                         key={`num-${index}`}
                         className={`number-item ${index === activeIndex ? 'active' : ''}`}
                       >
@@ -85,11 +99,11 @@ export default function Interests() {
                   </div>
                   <div className="titles-display">
                     {interests.map((interest, index) => (
-                      <h2 
+                      <h2
                         key={`title-${index}`}
                         className={`title-item ${index === activeIndex ? 'active' : ''}`}
                       >
-                        {interest.title}
+
                       </h2>
                     ))}
                   </div>
@@ -97,7 +111,7 @@ export default function Interests() {
               </Col>
               <Col lg={6} className="interests-right">
                 {interests.map((interest, index) => (
-                  <div 
+                  <div
                     key={`interest-${index}`}
                     className={`interest-content ${index === activeIndex ? 'active' : ''}`}
                   >
@@ -105,6 +119,9 @@ export default function Interests() {
                       <img src={interest.image} alt={interest.title} />
                     </div>
                     <div className="interest-info">
+                      <div className="interest-title">
+                        <p>{interest.title}</p>
+                      </div>
                       <div className="interest-description">
                         <p>{interest.description}</p>
                       </div>
