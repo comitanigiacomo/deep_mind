@@ -27,7 +27,7 @@ const EducationPage = () => {
       type: 'highschool',
       icon: 'pi pi-graduation-cap',
       logo: '/leonardoDaVinci.png',
-      color: '#8b5cf6',
+      color: '#3b82f6',
       progress: 100
     }
   ];
