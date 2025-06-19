@@ -79,7 +79,7 @@
   transform: translateX(-50%) scaleX(0);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(90deg, #3b82f6, #3b82f6);
   border-radius: 4px;
   animation: lineExpand 0.8s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.6s forwards;
 }
@@ -120,10 +120,7 @@
   width: 4px;
   left: 50%;
   transform: translateX(-50%);
-  height: 100%;
-}
-
-.timeline-card {
+  height: 100%;.timeline-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -135,6 +132,22 @@
   overflow: hidden;
   will-change: transform, opacity;
 }
+}
+
+.timeline-card {
+  background: rgba(59, 130, 246, 0.1); /* Sfondo blu trasparente */
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.3); /* Bordo blu */
+  border-radius: 24px;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, opacity;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2); /* Ombra blu */
+}
+
 
 .timeline-card::before {
   content: '';
@@ -143,15 +156,17 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(90deg, #3b82f6, #3b82f6);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+
 .timeline-card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 60px rgba(59, 130, 246, 0.3); /* Ombra blu più intensa al hover */
+  background: rgba(59, 130, 246, 0.15); /* Sfondo leggermente più intenso al hover */
 }
 
 .timeline-card:hover::before {
@@ -164,7 +179,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -225,7 +240,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0.2));
   backdrop-filter: blur(5px);
   transform: translateX(-20px);
   opacity: 0;
@@ -268,7 +283,8 @@
   border-radius: 3px;
   width: 0;
   transition: width 1.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.8s;
-  box-shadow: 0 0 15px currentColor;
+  background: #3b82f6; /* Colore blu per la barra di progresso */
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Ombra blu */
 }
 
 .timeline-item-visible .progress-fill {
@@ -371,14 +387,14 @@
   z-index: 2;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #3b82f6, #3b82f6);
 }
 
 .marker-pulse {
   position: absolute;
   width: 100px;
   height: 100px;
-  border: 2px solid rgba(59, 130, 246, 0.5);
+  border: 2px solid #3b82f6;
   border-radius: 50%;
   opacity: 0;
   animation: pulseRing 3s infinite;
@@ -524,7 +540,7 @@
 }
 
 [data-theme="light"] .section-title::after {
-  background: linear-gradient(90deg, #1e40af, #7c3aed);
+  background: linear-gradient(90deg, #1e40af, #1e40af);
 }
 
 [data-theme="light"] .section-subtitle {
@@ -566,5 +582,5 @@
 }
 
 [data-theme="light"] .marker-dot {
-  background: linear-gradient(135deg, #1e40af, #7c3aed);
+  background: linear-gradient(135deg, #1e40af, #1e40af);
 }
