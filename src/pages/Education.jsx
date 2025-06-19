@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Timeline } from 'primereact/timeline';
 import { Card } from 'primereact/card';
@@ -7,7 +6,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import './Education.css';
 
-const ExperiencePage = () => {
+const EducationPage = () => {
   const experiences = [
     {
       date: '2021 – 2025',
@@ -16,7 +15,9 @@ const ExperiencePage = () => {
       description: 'Undergraduate degree program (in progress)',
       type: 'bachelor',
       icon: 'pi pi-microchip',
-      logo: '/Unimi-logo.png'
+      logo: '/Unimi-logo.png',
+      color: '#3b82f6',
+      progress: 85
     },
     {
       date: '2016 – 2021',
@@ -25,7 +26,9 @@ const ExperiencePage = () => {
       description: 'Scientific curriculum',
       type: 'highschool',
       icon: 'pi pi-graduation-cap',
-      logo: '/leonardoDaVinci.png'
+      logo: '/leonardoDaVinci.png',
+      color: '#8b5cf6',
+      progress: 100
     }
   ];
 
@@ -34,6 +37,13 @@ const ExperiencePage = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('timeline-item-visible');
+          
+          // Animazione progress bar
+          const progressFill = entry.target.querySelector('.progress-fill');
+          if (progressFill) {
+            const progress = progressFill.dataset.progress;
+            progressFill.style.width = `${progress}%`;
+          }
         }
       });
     }, { threshold: 0.1 });
@@ -47,24 +57,65 @@ const ExperiencePage = () => {
 
   return (
     <section id="education" className="experience-section">
+      <div className="stars-bg">
+        {[...Array(30)].map((_, i) => (
+          <div key={i} className="star" style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 3}s`,
+            animationDuration: `${2 + Math.random() * 3}s`
+          }} />
+        ))}
+      </div>
+      
       <div className="timeline-container">
-        <h1 className="section-title">Education</h1>
+        <div className="section-header">
+          <h1 className="section-title">
+            <span className="title-line">Education</span>
+          </h1>
+          <p className="section-subtitle">
+            Building knowledge through structured learning and continuous growth
+          </p>
+        </div>
+        
         <Timeline
           value={experiences}
           align="alternate"
           className="customized-timeline"
           marker={(item) => (
             <div className="timeline-marker">
-              <i className={item.icon}></i>
+              <div className="marker-ring" style={{ borderColor: item.color }} />
+              <div className="marker-dot" style={{ backgroundColor: item.color }}>
+                <i className={item.icon}></i>
+              </div>
+              <div className="marker-pulse" style={{ borderColor: item.color }} />
             </div>
           )}
           content={(item) => (
             <Card className="timeline-card">
+              <div className="card-glow" style={{ backgroundColor: `${item.color}20` }} />
               <div className="timeline-card-content">
                 <div className="experience-header">
-                  <span className="experience-type">{item.type.toUpperCase()}</span>
+                  <span 
+                    className="experience-type"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    {item.type.toUpperCase()}
+                  </span>
                   <span className="experience-date">{item.date}</span>
                 </div>
+                
+                <div className="progress-container">
+                  <div className="progress-bar">
+                    <div 
+                      className="progress-fill"
+                      data-progress={item.progress}
+                      style={{ backgroundColor: item.color }}
+                    />
+                  </div>
+                  <span className="progress-text">{item.progress}% Complete</span>
+                </div>
+                
                 <h3>{item.title}</h3>
                 <h5>
                   {item.logo && (
@@ -90,4 +141,4 @@ const ExperiencePage = () => {
   );
 };
 
-export default ExperiencePage;
+export default EducationPage;
