@@ -1,18 +1,10 @@
-:root {
-  --num-projects: 1;
-}
-
 .projects-section {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
 }
 
 .projects-container {
   position: relative;
-  height: calc(100vh * var(--num-projects));
 }
 
 .sticky-content {
@@ -57,7 +49,7 @@
 .project-content {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +99,7 @@
 }
 
 .swap-left .project-info-container {
-  right: -100px;
+  right: 20px;
   top: 70%;
   transform: translateY(-50%) translateX(100%);
 }
@@ -120,7 +112,7 @@
 }
 
 .swap-right .project-info-container {
-  left: -100px;
+  left: 20px;
   top: 70%;
   transform: translateY(-50%) translateX(-100%);
 }
@@ -355,15 +347,6 @@
 
 /* Stili responsive */
 @media (max-width: 992px) {
-  .projects-section {
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .projects-container {
-    height: auto;
-  }
-
   .sticky-content {
     position: relative;
     height: auto;
