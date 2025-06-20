@@ -8,11 +8,22 @@ export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(-1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
   const animationFrameRef = useRef(null);
   const transitionTimeoutRef = useRef(null);
 
-  // Carica i dati dal JSON
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Load project data
   useEffect(() => {
     fetch('/repo_stats.json')
       .then(res => res.json())
@@ -30,14 +41,16 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const updateActiveIndex = () => {
       if (!sectionRef.current || projects.length === 0) return;
 
       const section = sectionRef.current;
       const { top, height } = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      const scrollProgress = Math.max(0, Math.min(1, 
+
+      const scrollProgress = Math.max(0, Math.min(1,
         (-top) / (height - windowHeight)
       ));
 
@@ -50,21 +63,21 @@ export default function Projects() {
         setPrevIndex(activeIndex);
         setActiveIndex(newIndex);
         setIsTransitioning(true);
-        
+
         if (transitionTimeoutRef.current) {
           clearTimeout(transitionTimeoutRef.current);
         }
-        
+
         transitionTimeoutRef.current = setTimeout(() => {
           setIsTransitioning(false);
-        }, 1200); // Match with CSS transition duration
+        }, 1200);
       }
 
       animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
     };
 
     animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
-    
+
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -73,7 +86,7 @@ export default function Projects() {
         clearTimeout(transitionTimeoutRef.current);
       }
     };
-  }, [projects.length, activeIndex]);
+  }, [projects.length, activeIndex, isMobile]);
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -81,14 +94,14 @@ export default function Projects() {
   };
 
   const formatSize = (sizeMB) => {
-    return sizeMB > 1024 
-      ? `${(sizeMB / 1024).toFixed(1)} GB` 
+    return sizeMB > 1024
+      ? `${(sizeMB / 1024).toFixed(1)} GB`
       : `${sizeMB.toFixed(1)} MB`;
   };
 
   return (
     <section id="projects" ref={sectionRef} className="projects-section">
-      <div className="projects-container" style={{ height: `${projects.length * 200}vh` }}>
+      <div className="projects-container" style={{ height: isMobile ? 'auto' : `${projects.length * 200}vh` }}>
         <div className="sticky-content">
           <div className="section-title">
             <h2>PROJECTS</h2>
@@ -99,7 +112,36 @@ export default function Projects() {
             {projects.map((project, index) => {
               const repoSize = formatSize(project.stats.size);
               const lastUpdated = formatDate(project.stats.updated_at);
-              
+
+              if (isMobile) {
+                return (
+                  <div key={index} className="project-item-mobile">
+                    <div className="project-image-mobile">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="project-info-mobile">
+                      <h3>{project.title}</h3>
+                      <p className="repo-description-mobile">{project.stats.description}</p>
+                      <div className="project-links-mobile">
+                        <a
+                          href={`https://github.com/${project.owner}/${project.repo}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button className="github-button-mobile">
+                            <i className="pi pi-github"></i> View Repository
+                          </Button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               let className = 'project-content';
               if (index === activeIndex) {
                 className += ' active';
@@ -107,11 +149,10 @@ export default function Projects() {
                 className += ' exiting';
               }
 
-              // Determina la direzione dello swap
               const swapDirection = index % 2 === 0 ? 'swap-left' : 'swap-right';
 
               return (
-                <div 
+                <div
                   key={index}
                   className={`${className} ${swapDirection}`}
                   style={{
@@ -121,9 +162,9 @@ export default function Projects() {
                   <article className="project-item">
                     <div className="project-image-container">
                       <div className="project-image">
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
+                        <img
+                          src={project.image}
+                          alt={project.title}
                           loading="lazy"
                         />
                         <div className="stats-overlay">
@@ -182,7 +223,7 @@ export default function Projects() {
                               </div>
                             )}
                           </div>
-            
+
                           <a
                             href={`https://github.com/${project.owner}/${project.repo}`}
                             target="_blank"
