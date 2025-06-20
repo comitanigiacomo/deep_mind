@@ -20,7 +20,7 @@
 
 A clean and minimal portfolio to present my projects and experience. [Deep Mind](https://jacksdeepmind.netlify.app/)
 
-![Portfolio Screenshot](/public/About.jpeg)
+![Portfolio Screenshot](/public/Deep.png)
 
 ## Features
 
