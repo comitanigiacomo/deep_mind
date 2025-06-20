@@ -69,7 +69,7 @@ const EducationPage = () => {
       
       <div className="timeline-container">
         <div className="section-header">
-          <h1 className="section-title">
+          <h1 className="section-title" style={{ marginTop: '1px' }}>
             <span className="title-line">Education</span>
           </h1>
           <p className="section-subtitle">
