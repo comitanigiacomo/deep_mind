@@ -11,23 +11,25 @@
   transition: background-color 0 ease;
 }
 
-html, body {
+html, body, #root {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--bg) !important;
-  transition: background-color 0s ease;
-  overflow: auto; /* meglio scroll se serve */
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   transform: scale(0.8);
   transform-origin: top left;
   width: 125vw;
-  height: 130vh; /* un po’ più alto per togliere bordo nero */
+  overflow-x: hidden;
+}
+
+#root {
+  flex: 1 1 auto;
   min-height: 100vh;
-  overflow: visible;
 }
 
 .section {
