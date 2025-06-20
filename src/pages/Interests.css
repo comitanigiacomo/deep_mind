@@ -124,7 +124,7 @@
 
 .number-item {
   position: absolute;
-  font-size: 40rem;
+  font-size: 10rem;
   font-weight: 700;
   line-height: 0.8;
   color: var(--accent-color);
