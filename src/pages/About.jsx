@@ -7,9 +7,8 @@ import './About.css';
 import Intro from '../components/Intro';
 import { useTheme } from '../context/ThemeContext';
 
-export default function About() {
+export default function About({ showIntro, setShowIntro }) {
   const { isDarkMode } = useTheme();
-  const [showIntro, setShowIntro] = useState(true);
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
 
@@ -33,10 +32,28 @@ export default function About() {
     }
   };
 
-  return (
-    <section id="about" style={{ position: 'relative', minHeight: '100vh' }}>
+  if (showIntro) {
+    return (
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 1000,
+        backgroundColor: isDarkMode ? '#000000' : '#f8f9fa'
+      }}>
+        <Intro onEnd={() => setShowIntro(false)} />
+      </div>
+    );
+  }
 
-      {/* Contenuto della pagina */}
+  return (
+    <section id="about" style={{ 
+      position: 'relative', 
+      minHeight: '100vh',
+      backgroundColor: isDarkMode ? '#000000' : '#f8f9fa'
+    }}>
       <div style={{
         position: 'relative',
         zIndex: 1,
@@ -44,70 +61,64 @@ export default function About() {
         display: 'flex',
         alignItems: 'center'
       }}>
-        {showIntro ? (
-          <Intro onEnd={() => setShowIntro(false)} />
-        ) : (
-          <Container className="about-container py-5 fade-in">
-            <Row>
-              {/* Colonna Testo */}
-              <Col md={6} className="d-flex flex-column justify-content-center text-column">
-                <p className="small-text">Hey, I'm</p>
-                <h1 className="display-1 fw-bold">Jack</h1>
-                <p className="medium-text">an IT student from Milan</p>
-                <div className="terminal">
-                  <span className="terminal-prompt">&gt; console.log("Can you guess my favorite colors?")</span>
-                  <div className="terminal-line">
-                    <span>&gt; </span>
-                    <input
-                      type="text"
-                      value={inputValue}
-                      onChange={(e) => { setInputValue(e.target.value); setOutput(''); }}
-                      onKeyDown={handleKeyDown}
-                      className="terminal-input"
-                      autoFocus
-                    />
-                  </div>
-                  {output && (
-                    <div className="terminal-output">
-                      <span>{output}</span>
-                    </div>
-                  )}
-                </div>
-              </Col>
-
-              {/* Colonna Immagine e Bottoni */}
-              <Col md={6} className="image-column">
-                <div className="image-wrapper">
-                  <img
-                    src={isDarkMode ? "/face2.png" : "/face2.png"}
-                    alt="Profile"
-                    className="about-image"
+        <Container className="about-container py-5 fade-in">
+          <Row>
+            <Col md={6} className="d-flex flex-column justify-content-center text-column">
+              <p className="small-text">Hey, I'm</p>
+              <h1 className="display-1 fw-bold">Jack</h1>
+              <p className="medium-text">an IT student from Milan</p>
+              <div className="terminal">
+                <span className="terminal-prompt">&gt; console.log("Can you guess my favorite colors?")</span>
+                <div className="terminal-line">
+                  <span>&gt; </span>
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => { setInputValue(e.target.value); setOutput(''); }}
+                    onKeyDown={handleKeyDown}
+                    className="terminal-input"
+                    autoFocus
                   />
                 </div>
-
-                <div className="image-controls">
-                  <div className="contact-icons">
-                    <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
-                      <FaGithub className="icon" />
-                    </a>
-                    <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
-                      <FaLinkedin className="icon" />
-                    </a>
-                    <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
-                      <FaInstagram className="icon" />
-                    </a>
+                {output && (
+                  <div className="terminal-output">
+                    <span>{output}</span>
                   </div>
-                  <button
-                    onClick={() => (window.location.href = '#projects')}
-                    className="minimal-btn"
-                  >
-                    See My Projects
-                  </button>
+                )}
+              </div>
+            </Col>
+
+            <Col md={6} className="image-column">
+              <div className="image-wrapper">
+                <img
+                  src="/face2.png"
+                  alt="Profile"
+                  className="about-image"
+                />
+              </div>
+
+              <div className="image-controls">
+                <div className="contact-icons">
+                  <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
+                    <FaGithub className="icon" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin className="icon" />
+                  </a>
+                  <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
+                    <FaInstagram className="icon" />
+                  </a>
                 </div>
-              </Col>
-            </Row>
-          </Container>
-        )}
+                <button
+                  onClick={() => (window.location.href = '#projects')}
+                  className="minimal-btn"
+                >
+                  See My Projects
+                </button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </section>
   );
