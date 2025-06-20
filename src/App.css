@@ -18,14 +18,15 @@ html, body {
   width: 100%;
   background-color: var(--bg) !important;
   transition: background-color 0s ease;
-  overflow: visible; /* cambia da hidden a visible */
+  overflow: auto; /* meglio scroll se serve */
 }
 
 body {
   transform: scale(0.8);
   transform-origin: top left;
   width: 125vw;
-  height: 125vh;
+  height: 130vh; /* un po’ più alto per togliere bordo nero */
+  min-height: 100vh;
   overflow: visible;
 }
 
