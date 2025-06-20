@@ -78,7 +78,6 @@
   caret-color: var(--text);
 }
 
-/* Sfondo e layout */
 #about {
   background-color: black;
   color: #d3d3d3;
@@ -106,7 +105,7 @@
 
 .small-text {
   font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
+  font-size: 1.7rem;
   color: #07589D;
 }
 
@@ -211,7 +210,6 @@ h1 {
   transform: translateY(-1px);
 }
 
-/* LAYOUT FOTO PROFESSIONALE */
 .image-column {
   position: relative;
   margin-top: 0;
@@ -247,7 +245,6 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Overlay sottile per effetto premium */
 .image-wrapper::after {
   content: '';
   position: absolute;
@@ -267,7 +264,6 @@ h1 {
   opacity: 1;
 }
 
-/* Animazione di apparizione per i controlli */
 .image-controls {
   opacity: 0;
   transform: translateY(20px);
@@ -298,6 +294,8 @@ h1 {
 .terminal-line {
   display: flex;
   align-items: center;
+  font-size: 1.2rem;
+
 }
 
 .terminal-input {
@@ -316,14 +314,16 @@ h1 {
 
 .terminal-output {
   margin-top: 0.5rem;
+  font-size: 1.2rem;
+
 }
 
 .terminal-prompt,
 .terminal-line>span {
   color: #07589D;
+  font-size: 1.2rem;
 }
 
-/* RESPONSIVE DESIGN MIGLIORATO */
 @media (max-width: 1200px) {
   .image-wrapper {
     max-width: 380px;
@@ -348,7 +348,6 @@ h1 {
     text-align: center;
   }
 
-  /* Rimuovi margini e padding non necessari */
   .image-column,
   .text-column {
     padding: 0 1rem;
@@ -360,23 +359,18 @@ h1 {
     width: 100%;
   }
 
-  /* Ordina le colonne */
   .order-1 {
     order: 1 !important;
-    /* Testo per primo */
   }
 
   .order-2 {
     order: 2 !important;
-    /* Immagine dopo il testo */
   }
 
   .order-3 {
     order: 3 !important;
-    /* Bottoni dopo l'immagine */
   }
 
-  /* Migliora lo spazio tra gli elementi */
   .terminal {
     margin: 2rem auto;
     max-width: 100%;
@@ -430,7 +424,6 @@ h1 {
 
   .image-wrapper {
     max-width: 200px;
-    /* Massima riduzione */
     margin: 0.5rem auto 0;
   }
 
