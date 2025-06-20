@@ -7,12 +7,12 @@
   --interest-4-color: #ffffff;
   --interest-5-color: #ffffff;
   --card-bg: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(23, 23, 23, 0.95) 100%);
-  --card-border: 1px solid rgba(255, 255, 255, 0.12);
-  --card-shadow: 0 30px 60px -25px rgba(33, 150, 243, 0.18);
+  --card-border: 0.0625rem solid rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 1.875rem 3.75rem -1.5625rem rgba(33, 150, 243, 0.18);
   --skill-bg: rgba(33, 150, 243, 0.15);
   --skill-color: #2196F3;
-  --skill-border: 1px solid rgba(33, 150, 243, 0.25);
-  --image-border: 1px solid #333;
+  --skill-border: 0.0625rem solid rgba(33, 150, 243, 0.25);
+  --image-border: 0.0625rem solid #333;
   --image-filter: grayscale(30%) brightness(0.85);
   --divider-color: rgba(255, 255, 255, 0.1);
 }
@@ -20,12 +20,12 @@
 [data-theme="light"] {
   --text-color: #555;
   --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 249, 250, 0.96) 100%);
-  --card-border: 1px solid rgba(220, 220, 220, 0.4);
-  --card-shadow: 0 30px 60px -25px rgba(13, 110, 253, 0.18);
+  --card-border: 0.0625rem solid rgba(220, 220, 220, 0.4);
+  --card-shadow: 0 1.875rem 3.75rem -1.5625rem rgba(13, 110, 253, 0.18);
   --skill-bg: rgba(13, 110, 253, 0.12);
   --skill-color: #0d6efd;
-  --skill-border: 1px solid rgba(13, 110, 253, 0.22);
-  --image-border: 1px solid #e0e0e0;
+  --skill-border: 0.0625rem solid rgba(13, 110, 253, 0.22);
+  --image-border: 0.0625rem solid #e0e0e0;
   --image-filter: grayscale(25%) brightness(0.9);
   --divider-color: rgba(0, 0, 0, 0.05);
 
@@ -39,14 +39,14 @@
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.9);
-    filter: blur(1px);
+    transform: translateY(0.625rem) scale(0.9);
+    filter: blur(0.0625rem);
   }
 
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0px);
+    filter: blur(0);
   }
 }
 
@@ -63,12 +63,12 @@
 .interests-section {
   position: relative;
   width: 100%;
-  padding-top: 120px;
+  padding-top: 7.5rem;
 }
 
 .interests-container {
   position: relative;
-  margin-top: -80px;
+  margin-top: -5rem;
 }
 
 .sticky-content {
@@ -91,7 +91,7 @@
   color: white;
   font-size: 3.5rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
 }
 
 .interest-title::after {
@@ -100,10 +100,10 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
+  width: 6.25rem;
+  height: 0.1875rem;
   background: var(--accent-color);
-  border-radius: 3px;
+  border-radius: 0.1875rem;
 }
 
 .interests-left {
@@ -117,7 +117,7 @@
 
 .number-display {
   position: relative;
-  height: 150px;
+  height: 9.375rem;
   margin-bottom: 2rem;
   width: 100%;
 }
@@ -134,7 +134,7 @@
   top: -110%;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(1.875rem);
   z-index: -2;
   pointer-events: none;
 }
@@ -163,7 +163,7 @@
 
 .titles-display {
   position: relative;
-  height: 80px;
+  height: 5rem;
   margin-bottom: 1rem;
   width: 100%;
   text-align: center;
@@ -177,7 +177,7 @@
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
   left: 23%;
-  transform: translateX(-50%) translateY(20px);
+  transform: translateX(-50%) translateY(1.25rem);
   width: max-content;
 }
 
@@ -198,15 +198,15 @@
 .interest-content {
   position: absolute;
   width: 80%;
-  height: 500px;
+  height: 200%;
   display: flex;
   align-items: center;
   justify-content: center;
   left: -20%;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
-  transform: translateY(60px) scale(0.95);
-  filter: blur(8px);
+  transform: translateY(3.75rem) scale(0.95);
+  filter: blur(0.5rem);
   pointer-events: none;
   background:
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 20%),
@@ -216,7 +216,7 @@
 .interest-content.active {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0px);
+  filter: blur(0);
   pointer-events: auto;
 }
 
@@ -224,9 +224,9 @@
   position: relative;
   width: 120%;
   height: 120%;
-  border-radius: 32px;
+  border-radius: 2rem;
   overflow: hidden;
-  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1.875rem 5rem -2.5rem rgba(0, 0, 0, 0.7);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: var(--image-border);
   z-index: 1;
@@ -245,36 +245,36 @@
   right: -60%;
   bottom: -35%;
   width: 80%;
-  height: fit-content; /* Ridotto da 200px */
-  padding: 1.5rem; /* Ridotto da 2.2rem */
+  height: fit-content;
+  padding: 1.5rem;
   background: var(--card-bg);
-  backdrop-filter: blur(25px);
-  border-radius: 28px;
+  backdrop-filter: blur(1.5625rem);
+  border-radius: 1.75rem;
   border: var(--card-border);
   box-shadow: var(--card-shadow);
   z-index: 3;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
-  transform: translateY(40px) translateX(30px) scale(0.9);
-  filter: blur(8px);
+  transform: translateY(2.5rem) translateX(1.875rem) scale(0.9);
+  filter: blur(0.5rem);
 }
 
 .interest-description {
   position: relative;
   margin-bottom: 1.8rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--divider-color);
+  border-bottom: 0.0625rem solid var(--divider-color);
 }
 
 .interest-description p {
-  font-size: 1.0rem; /* Ridotto da 1.3rem */
-  line-height: 1.5; /* Ridotto da 1.7 */
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--text-color);
   margin: 0;
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(0.9375rem);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: blur(3px);
+  filter: blur(0.1875rem);
 }
 
 .interest-skills {
@@ -283,29 +283,29 @@
   gap: 0.7rem;
   justify-content: center;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(1.25rem);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: blur(3px);
+  filter: blur(0.1875rem);
 }
 
 .skill-badge {
   background: var(--skill-bg);
   color: var(--skill-color);
   padding: 0.65rem 1.3rem;
-  border-radius: 22px;
+  border-radius: 1.375rem;
   font-size: 0.8rem;
   font-weight: 500;
   border: var(--skill-border);
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
-  transform: translateY(15px) scale(0.85);
-  filter: blur(2px);
+  transform: translateY(0.9375rem) scale(0.85);
+  filter: blur(0.125rem);
 }
 
 .interest-content.active .interest-info {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
-  filter: blur(0px);
+  filter: blur(0);
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0.2s;
 }
@@ -313,7 +313,7 @@
 .interest-content.active .interest-description p {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0px);
+  filter: blur(0);
   transition-delay: 0.4s;
 }
 
@@ -321,7 +321,7 @@
 .interest-content.active .skill-badge {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0px);
+  filter: blur(0);
 }
 
 .skill-badge:nth-child(1) {
@@ -342,8 +342,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .interest-content.active:hover .interest-image {
-    transform: translateX(-15px) scale(1.03);
-    box-shadow: 0 35px 90px -35px rgba(0, 0, 0, 0.8);
+    transform: translateX(-0.9375rem) scale(1.03);
+    box-shadow: 0 2.1875rem 5.625rem -2.1875rem rgba(0, 0, 0, 0.8);
   }
 
   .interest-content.active:hover .interest-image img {
@@ -351,22 +351,22 @@
   }
 
   .interest-content.active:hover .interest-info {
-    transform: translateY(-8px) scale(1.04) translateX(-8px);
-    box-shadow: 0 35px 70px rgba(33, 150, 243, 0.25);
-    backdrop-filter: blur(30px);
+    transform: translateY(-0.5rem) scale(1.04) translateX(-0.5rem);
+    box-shadow: 0 2.1875rem 4.375rem rgba(33, 150, 243, 0.25);
+    backdrop-filter: blur(1.875rem);
   }
 
   .skill-badge:hover {
     background: rgba(33, 150, 243, 0.3);
-    transform: translateY(-4px) scale(1.08);
-    box-shadow: 0 10px 25px rgba(33, 150, 243, 0.3);
+    transform: translateY(-0.25rem) scale(1.08);
+    box-shadow: 0 0.625rem 1.5625rem rgba(33, 150, 243, 0.3);
     border-color: rgba(33, 150, 243, 0.4);
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 62rem) {
   .section-title{
-    margin-top: -120px;
+    margin-top: -7.5rem;
   }
   .interests-container {
     height: auto !important;
@@ -385,7 +385,7 @@
 
   .interests-right {
     width: 100%;
-    max-width: 600px;
+    max-width: 37.5rem;
     margin: 0 auto;
     padding: 0 1rem;
   }
@@ -400,9 +400,9 @@
     pointer-events: auto !important;
     margin-bottom: 2rem;
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.3);
     border: var(--card-border);
     display: flex;
     flex-direction: column;
@@ -410,9 +410,9 @@
 
   .interest-image {
     width: 100% !important;
-    height: 180px !important;
+    height: 11.25rem !important;
     border-radius: 0 !important;
-    border-bottom: 1px solid var(--divider-color);
+    border-bottom: 0.0625rem solid var(--divider-color);
   }
 
   .interest-info {
@@ -458,7 +458,7 @@
     filter: none !important;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--divider-color);
+    border-top: 0.0625rem solid var(--divider-color);
   }
 
   .skill-badge {
@@ -472,10 +472,9 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 36rem) {
   .interest-image {
-    height: 160px !important;
-
+    height: 10rem !important;
   }
 
   .interest-title p {
