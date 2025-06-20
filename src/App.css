@@ -1,35 +1,39 @@
 
 .background-wrapper {
-  background-color: var(--bg);
-  background-repeat: repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  overflow-y: scroll;
+  min-height: 100vh;
+  overflow-y: auto;
   scroll-behavior: smooth;
   padding-top: 60px;
   position: relative;
-  transition: background-color 0 ease;
+  background-color: var(--bg);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  transition: background-color 0s ease;
 }
 
 html, body, #root {
-  height: 100%;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  width: 100%;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 130vh;  /* prova anche 130vh se 125vh non basta */
+  width: 125vw;
   transform: scale(0.8);
   transform-origin: top left;
-  width: 125vw;
   overflow-x: hidden;
 }
 
 #root {
   flex: 1 1 auto;
   min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .section {
