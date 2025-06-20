@@ -28,7 +28,7 @@
   --image-border: 1px solid #e0e0e0;
   --image-filter: grayscale(25%) brightness(0.9);
   --divider-color: rgba(0, 0, 0, 0.05);
-  
+
   --interest-1-color: #07589D;
   --interest-2-color: #07589D;
   --interest-3-color: #0984E3;
@@ -42,6 +42,7 @@
     transform: translateY(10px) scale(0.9);
     filter: blur(1px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -49,13 +50,25 @@
   }
 }
 
+.section-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 2rem 0;
+  z-index: 10;
+}
+
 .interests-section {
   position: relative;
   width: 100%;
+  padding-top: 120px;
 }
 
 .interests-container {
   position: relative;
+  margin-top: -80px;
 }
 
 .sticky-content {
@@ -132,10 +145,21 @@
   color: var(--interest-1-color);
 }
 
-.number-item:nth-child(2).active { color: var(--interest-2-color); }
-.number-item:nth-child(3).active { color: var(--interest-3-color); }
-.number-item:nth-child(4).active { color: var(--interest-4-color); }
-.number-item:nth-child(5).active { color: var(--interest-5-color); }
+.number-item:nth-child(2).active {
+  color: var(--interest-2-color);
+}
+
+.number-item:nth-child(3).active {
+  color: var(--interest-3-color);
+}
+
+.number-item:nth-child(4).active {
+  color: var(--interest-4-color);
+}
+
+.number-item:nth-child(5).active {
+  color: var(--interest-5-color);
+}
 
 .titles-display {
   position: relative;
@@ -300,10 +324,21 @@
   filter: blur(0px);
 }
 
-.skill-badge:nth-child(1) { transition-delay: 0.6s; }
-.skill-badge:nth-child(2) { transition-delay: 0.7s; }
-.skill-badge:nth-child(3) { transition-delay: 0.8s; }
-.skill-badge:nth-child(4) { transition-delay: 0.9s; }
+.skill-badge:nth-child(1) {
+  transition-delay: 0.6s;
+}
+
+.skill-badge:nth-child(2) {
+  transition-delay: 0.7s;
+}
+
+.skill-badge:nth-child(3) {
+  transition-delay: 0.8s;
+}
+
+.skill-badge:nth-child(4) {
+  transition-delay: 0.9s;
+}
 
 @media (hover: hover) and (pointer: fine) {
   .interest-content.active:hover .interest-image {
@@ -330,28 +365,31 @@
 }
 
 @media (max-width: 992px) {
+  .section-title{
+    margin-top: -120px;
+  }
   .interests-container {
     height: auto !important;
     padding: 2rem 0;
   }
-  
+
   .sticky-content {
     position: relative;
     height: auto;
     padding: 0;
   }
-  
+
   .interests-left {
     display: none;
   }
-  
+
   .interests-right {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
     padding: 0 1rem;
   }
-  
+
   .interest-content {
     position: relative !important;
     height: auto !important;
@@ -364,19 +402,19 @@
     background: var(--card-bg);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: var(--card-border);
     display: flex;
     flex-direction: column;
   }
-  
+
   .interest-image {
     width: 100% !important;
     height: 180px !important;
     border-radius: 0 !important;
     border-bottom: 1px solid var(--divider-color);
   }
-  
+
   .interest-info {
     position: relative !important;
     width: 100% !important;
@@ -391,19 +429,19 @@
     box-shadow: none !important;
     border: none !important;
   }
-  
+
   .interest-title p {
     font-size: 1.8rem !important;
     margin-bottom: 1rem;
     text-align: left;
   }
-  
+
   .interest-description {
     padding-bottom: 0;
     border-bottom: none;
     margin-bottom: 1rem;
   }
-  
+
   .interest-description p {
     font-size: 1rem;
     line-height: 1.6;
@@ -412,7 +450,7 @@
     filter: none !important;
     margin-bottom: 0;
   }
-  
+
   .interest-skills {
     justify-content: flex-start;
     opacity: 1 !important;
@@ -422,7 +460,7 @@
     padding-top: 1rem;
     border-top: 1px solid var(--divider-color);
   }
-  
+
   .skill-badge {
     font-size: 0.75rem;
     padding: 0.4rem 0.8rem;
@@ -437,18 +475,18 @@
 @media (max-width: 576px) {
   .interest-image {
     height: 160px !important;
-    
+
   }
-  
+
   .interest-title p {
     font-size: 1.6rem !important;
     text-align: center;
   }
-  
+
   .interest-info {
     padding: 1.2rem !important;
   }
-  
+
   .skill-badge {
     font-size: 0.7rem;
     padding: 0.35rem 0.7rem;
