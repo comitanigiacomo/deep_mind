@@ -38,7 +38,6 @@ const EducationPage = () => {
         if (entry.isIntersecting) {
           entry.target.classList.add('timeline-item-visible');
           
-          // Animazione progress bar
           const progressFill = entry.target.querySelector('.progress-fill');
           if (progressFill) {
             const progress = progressFill.dataset.progress;
