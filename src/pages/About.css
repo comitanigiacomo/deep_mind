@@ -1,13 +1,13 @@
 :root {
-  --bg: #000000;
+  --bg: #000;
   --text: #d3d3d3;
   --accent: #07589D;
   --border: #888;
-  --terminal-bg: #000000;
+  --terminal-bg: #000;
 }
 
 [data-theme="light"] {
-  --bg: #ffffff;
+  --bg: #fff;
   --text: #2a2a2a;
   --accent: #0d6efd;
   --border: #ced4da;
@@ -15,20 +15,11 @@
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 @keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 #about {
@@ -38,7 +29,6 @@
 
 .about-container {
   color: var(--text);
-  background-color: transparent;
   padding-top: 100px;
 }
 
@@ -54,29 +44,29 @@
 h1 {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  font-size: 5rem;
+  font-size: 4rem;
   color: var(--text);
   text-transform: uppercase;
 }
 
 .small-text {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.36rem;
   color: var(--accent);
 }
 
 .medium-text {
   font-family: 'Georgia', serif;
-  font-size: 3rem;
-  margin-top: 15px;
+  font-size: 2.4rem;
+  margin-top: 12px;
   color: var(--text);
 }
 
 .code-snippet p {
   font-family: 'Courier New', monospace;
-  font-size: 1.2rem;
+  font-size: 0.96rem;
   color: var(--accent);
-  margin: 10px 0;
+  margin: 8px 0;
   white-space: nowrap;
 }
 
@@ -84,22 +74,21 @@ h1 {
   position: fixed;
   top: 100px;
   right: 20px;
-  background: none;
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 20px;
   cursor: pointer;
   z-index: 1000;
   transition: all 0.3s ease;
+  background: none;
 }
 
 .minimal-btn {
   background: linear-gradient(135deg, rgba(7, 88, 157, 0.8), rgba(7, 88, 157, 1));
-  border: none;
   color: white;
-  padding: 14px 32px;
-  font-size: 1rem;
+  padding: 11px 26px;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   border-radius: 50px;
@@ -108,6 +97,7 @@ h1 {
   overflow: hidden;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  border: none;
 }
 
 .minimal-btn::before {
@@ -137,20 +127,19 @@ h1 {
 
 .image-column {
   position: relative;
-  margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100%;
-  padding: 2rem 1rem;
+  padding: 1.6rem 0.8rem;
 }
 
 .image-wrapper {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  margin-bottom: 3rem;
+  max-width: 336px;
+  margin-bottom: 2.4rem;
   overflow: hidden;
   border-radius: 20px;
 }
@@ -196,14 +185,14 @@ h1 {
   color: var(--text);
   font-family: 'Courier New', monospace;
   border-radius: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   background-color: var(--terminal-bg);
 }
 
 .terminal-line {
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 0.96rem;
 }
 
 .terminal-input {
@@ -211,35 +200,35 @@ h1 {
   border: none;
   outline: none;
   color: var(--accent);
-  margin-left: 0.5rem;
+  margin-left: 0.4rem;
   flex: 1;
   caret-color: var(--text);
 }
 
 .terminal-output {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
+  margin-top: 0.4rem;
+  font-size: 0.96rem;
 }
 
 .terminal-prompt,
 .terminal-line>span {
   color: var(--accent);
-  font-size: 1.2rem;
+  font-size: 0.96rem;
 }
 
 [data-theme="light"] .terminal {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .contact-icons {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
+  margin-bottom: 1.6rem;
 }
 
 .icon {
-  font-size: 2.2rem;
+  font-size: 1.76rem;
   color: var(--border);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -248,10 +237,10 @@ h1 {
 .icon::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
   background: rgba(7, 88, 157, 0.1);
   border-radius: 50%;
   transform: scale(0);
@@ -277,7 +266,7 @@ h1 {
 
 @media (max-width: 1200px) {
   .image-wrapper {
-    max-width: 380px;
+    max-width: 304px;
   }
 }
 
@@ -289,7 +278,7 @@ h1 {
   .text-column {
     width: 100%;
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.8rem;
   }
 
   .about-container .row {
@@ -299,76 +288,76 @@ h1 {
 
   .image-column,
   .text-column {
-    padding: 0 1rem;
+    padding: 0 0.8rem;
     min-height: auto;
   }
 
   .image-controls {
-    margin-top: 3rem;
+    margin-top: 2.4rem;
     width: 100%;
   }
 
   .terminal {
-    margin: 2rem auto;
+    margin: 1.6rem auto;
     max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .small-text {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .medium-text {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .code-snippet p {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .contact-icons {
-    gap: 2rem;
-    margin-bottom: 1.5rem;
+    gap: 1.6rem;
+    margin-bottom: 1.2rem;
   }
 
   .icon {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .minimal-btn {
-    font-size: 0.9rem;
-    padding: 12px 28px;
+    font-size: 0.72rem;
+    padding: 10px 22px;
   }
 }
 
 @media (max-width: 576px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .medium-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .small-text {
-    font-size: 0.9rem;
+    font-size: 0.72rem;
   }
 
   .icon {
-    font-size: 1.8rem;
+    font-size: 1.44rem;
   }
 
   .minimal-btn {
-    font-size: 0.85rem;
-    padding: 10px 24px;
+    font-size: 0.68rem;
+    padding: 8px 19px;
   }
 
   .contact-icons {
-    gap: 1.8rem;
+    gap: 1.44rem;
   }
 }
