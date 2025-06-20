@@ -18,9 +18,63 @@
   to { opacity: 1; }
 }
 
-@keyframes slideInUp {
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-left {
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-scale {
+  opacity: 0;
+  animation: fadeInScale 1s ease-out forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
 
 #about {
   background-color: var(--bg);
@@ -37,8 +91,12 @@
   align-items: center;
 }
 
-.fade-in {
-  animation: fadeIn 1s ease-in-out;
+.small-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.36rem;
+  color: var(--accent);
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out 0.2s forwards;
 }
 
 h1 {
@@ -47,12 +105,8 @@ h1 {
   font-size: 4rem;
   color: var(--text);
   text-transform: uppercase;
-}
-
-.small-text {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.36rem;
-  color: var(--accent);
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out 0.4s forwards;
 }
 
 .medium-text {
@@ -60,6 +114,23 @@ h1 {
   font-size: 2.4rem;
   margin-top: 12px;
   color: var(--text);
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out 0.6s forwards;
+}
+
+.terminal {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+
+.image-wrapper {
+  opacity: 0;
+  animation: fadeInScale 1s ease-out 0.5s forwards;
+}
+
+.image-controls {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 1.2s forwards;
 }
 
 .code-snippet p {
@@ -173,12 +244,6 @@ h1 {
 
 .image-wrapper:hover::after {
   opacity: 1;
-}
-
-.image-controls {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideInUp 0.8s ease-out 1.5s forwards;
 }
 
 .terminal {
