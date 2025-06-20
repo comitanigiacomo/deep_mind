@@ -17,6 +17,11 @@ html, body {
   overflow: hidden;
   background-color: var(--bg) !important;
   transition: background-color 0s ease;
+  transform: scale(0.8);
+  transform-origin: top left;
+  width: 125%;
+  height: auto;
+  overflow-x: hidden;
 }
 
 .section {
