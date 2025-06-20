@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,6 +11,20 @@ export default function About({ showIntro, setShowIntro }) {
   const { isDarkMode } = useTheme();
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolling(true);
+      } else {
+        setIsScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -49,8 +63,8 @@ export default function About({ showIntro, setShowIntro }) {
   }
 
   return (
-    <section id="about" style={{ 
-      position: 'relative', 
+    <section id="about" style={{
+      position: 'relative',
       minHeight: '100vh',
       backgroundColor: isDarkMode ? '#000000' : '#f8f9fa'
     }}>
@@ -119,6 +133,13 @@ export default function About({ showIntro, setShowIntro }) {
             </Col>
           </Row>
         </Container>
+      </div>
+
+      <div className={`scroll-indicator ${isScrolling ? 'fade-out' : ''}`}>
+        <div className="scroll-text">Scroll down</div>
+        <div className="scroll-icon">
+          <div className="scroll-dot"></div>
+        </div>
       </div>
     </section>
   );
