@@ -91,7 +91,16 @@ export default function Interests() {
             <Row className="align-items-center h-100">
               <Col lg={6} className="interests-left">
                 <div className="number-title-wrapper">
-                  
+                  <div className="number-display">
+                    {interests.map((interest, index) => (
+                      <div
+                        key={`num-${index}`}
+                        className={`number-item ${index === activeIndex ? 'active' : ''}`}
+                      >
+                        {interest.number}
+                      </div>
+                    ))}
+                  </div>
                   <div className="titles-display">
                     {interests.map((interest, index) => (
                       <h2
