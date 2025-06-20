@@ -83,6 +83,10 @@ export default function Interests() {
     <section id="interests" ref={sectionRef} className="interests-section">
       <div className="interests-container" style={{ height: `${interests.length * 200}vh` }}>
         <div className="sticky-content">
+          <div className="section-title">
+            <h2>INTERESTS</h2>
+            <div className="title-underline"></div>
+          </div>
           <Container>
             <Row className="align-items-center h-100">
               <Col lg={6} className="interests-left">
