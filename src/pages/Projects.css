@@ -1,6 +1,7 @@
 .projects-section {
   position: relative;
   width: 100%;
+  background-color: #000000;
 }
 
 .projects-container {
@@ -58,7 +59,6 @@
   pointer-events: none;
 }
 
-/* Stili per i contenuti */
 .project-item {
   position: relative;
   display: flex;
@@ -71,7 +71,6 @@
   padding: 0 20px;
 }
 
-/* Contenitori con posizionamento assoluto */
 .project-image-container {
   position: absolute;
   width: 80%;
@@ -91,7 +90,6 @@
   z-index: 2;
 }
 
-/* Configurazione swap-left (immagine a sinistra, info a destra) */
 .swap-left .project-image-container {
   left: 0;
   top: 50%;
@@ -104,7 +102,6 @@
   transform: translateY(-50%) translateX(100%);
 }
 
-/* Configurazione swap-right (immagine a destra, info a sinistra) */
 .swap-right .project-image-container {
   right: 0;
   top: 50%;
@@ -117,7 +114,6 @@
   transform: translateY(-50%) translateX(-100%);
 }
 
-/* Stato attivo - elementi entrano in posizione */
 .project-content.active {
   opacity: 1;
   pointer-events: auto;
@@ -135,7 +131,6 @@
   transform: translateY(-50%) translateX(15%) !important;
 }
 
-/* Transizione uscita */
 .project-content.exiting .project-image-container {
   transform: translateY(-50%) translateX(100%) !important;
 }
@@ -152,14 +147,13 @@
   transform: translateY(-50%) translateX(100%) !important;
 }
 
-/* Stili immagine - dimensioni fisse */
 .project-image {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 20px 50px -25px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.5);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid #333;
 }
@@ -176,7 +170,6 @@
   filter: grayscale(0);
 }
 
-/* Stili info - dimensioni fisse */
 .project-info {
   width: 100%;
   height: 100%;
@@ -211,7 +204,6 @@
   transition: all 0.4s ease;
 }
 
-/* Sposta stats-overlay a destra quando l'immagine è a destra */
 .swap-right .stats-overlay {
   left: auto;
   right: 20px;
@@ -317,7 +309,6 @@
   transition: all 0.4s ease;
 }
 
-/* Status badges */
 .repo-status-badges {
   display: flex;
   gap: 0.5rem;
@@ -345,110 +336,193 @@
   border: 1px solid rgba(108, 117, 125, 0.3);
 }
 
-/* Stili responsive */
-@media (max-width: 992px) {
-  .sticky-content {
-    position: relative;
-    height: auto;
-    padding-bottom: 2rem;
-  }
+.project-item-mobile {
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
-  .projects-display {
-    height: auto;
-  }
+.project-image-mobile {
+  width: 100%;
+  height: 200px;
+}
 
-  .project-content {
-    position: relative;
-    height: auto;
-    margin-bottom: 3rem;
-    opacity: 1;
-    pointer-events: auto;
-  }
+.project-image-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .project-item {
-    flex-direction: column;
-    height: auto;
-    gap: 2rem;
-    padding-bottom: 2rem;
-  }
+.project-info-mobile {
+  padding: 1.5rem;
+}
 
-  .project-image-container,
-  .project-info-container {
-    position: relative !important;
-    transform: none !important;
-    width: 100% !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-  }
+.project-info-mobile h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
 
-  .project-image {
-    height: 300px;
-  }
+.repo-description-mobile {
+  color: #bbb;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+}
 
-  .project-info {
-    min-height: 280px;
-    height: auto;
-  }
+.project-links-mobile {
+  display: flex;
+  justify-content: center;
+}
 
-  .stats-overlay {
-    left: 20px !important;
-    right: auto !important;
-  }
+.github-button-mobile {
+  background: transparent !important;
+  border: 1px solid #2196F3 !important;
+  color: #2196F3 !important;
+  padding: 0.75rem 2rem !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  width: 100%;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
+  .projects-container {
+    height: auto !important;
+  }
+
+  .sticky-content {
+    position: relative !important;
+    height: auto !important;
+    padding: 2rem 1rem !important;
+  }
+
   .section-title {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
 
-  .project-image {
-    height: 250px;
+  .projects-display {
+    position: relative !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
   }
 
-  .repo-header h3 {
-    font-size: 1.25rem;
-  }
-
-  .repo-description {
-    font-size: 0.9rem;
-  }
-
-  .repo-metadata {
-    grid-template-columns: 1fr;
+  .project-content:not(.project-item-mobile),
+  .stats-overlay,
+  .repo-metadata,
+  .topics-container,
+  .repo-status-badges,
+  .license-badge {
+    display: none !important;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
+  .sticky-content {
+    padding: 1.5rem 0.75rem !important;
+  }
+
   .section-title {
     font-size: 1.8rem;
   }
 
-  .project-image {
-    height: 200px;
+  .projects-display {
+    gap: 1.25rem !important;
   }
 
-  .project-info {
-    padding: 1.2rem;
+  .project-image-mobile {
+    height: 180px !important;
   }
 
-  .stats-overlay {
-    padding: 8px 15px;
-    gap: 10px;
-    font-size: 0.9rem;
+  .project-info-mobile {
+    padding: 1.25rem !important;
   }
 
-  .github-button {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+  .project-info-mobile h3 {
+    font-size: 1.2rem !important;
   }
 
-  .license-badge {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+  .repo-description-mobile {
+    font-size: 0.9rem !important;
+  }
+
+  .github-button-mobile {
+    padding: 0.7rem 1.5rem !important;
+    font-size: 0.9rem !important;
   }
 }
+
+/* Light Theme - Desktop */
+[data-theme="light"] .project-item {
+  background: #ffffff;
+}
+
+[data-theme="light"] .project-info {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .repo-header h3 {
+  color: #2a2a2a !important;
+}
+
+[data-theme="light"] .repo-description {
+  color: #555 !important;
+}
+
+[data-theme="light"] .github-button {
+  border: 1px solid #0d6efd !important;
+  color: #0d6efd !important;
+}
+
+[data-theme="light"] .metadata-item {
+  color: #666 !important;
+}
+
+[data-theme="light"] .topic-badge {
+  background: rgba(13, 110, 253, 0.1) !important;
+  color: #0d6efd !important;
+  border: 1px solid rgba(13, 110, 253, 0.2) !important;
+}
+
+[data-theme="light"] .stats-overlay {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #0d6efd !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] .project-image {
+  border: 1px solid #e0e0e0 !important;
+}
+
+[data-theme="light"] .project-links {
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .license-badge {
+  color: #2a2a2a !important;
+  border: 1px solid rgba(76, 175, 80, 0.3) !important;
+}
+
+[data-theme="light"] .archived-badge {
+  background: rgba(255, 193, 7, 0.1) !important;
+  color: #b58b00 !important;
+  border: 1px solid rgba(255, 193, 7, 0.3) !important;
+}
+
+[data-theme="light"] .branch-badge {
+  background: rgba(108, 117, 125, 0.1) !important;
+  color: #5a6268 !important;
+  border: 1px solid rgba(108, 117, 125, 0.3) !important;
+}
+
 
 /* Light theme */
 [data-theme="light"] .projects-section {
@@ -463,79 +537,25 @@
   background: #0d6efd;
 }
 
-[data-theme="light"] .project-info {
-  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 20px 30px -15px rgba(13, 110, 253, 0.1);
+[data-theme="light"] .project-item-mobile {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
-[data-theme="light"] .project-info h3 {
-  color: #2a2a2a;
+[data-theme="light"] .project-info-mobile {
+  background: #ffffff !important;
 }
 
-[data-theme="light"] .repo-description {
-  color: #555;
+[data-theme="light"] .project-info-mobile h3 {
+  color: #2a2a2a !important;
 }
 
-[data-theme="light"] .project-image {
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 20px 50px -25px rgba(0,0,0,0.1);
+[data-theme="light"] .repo-description-mobile {
+  color: #555 !important;
 }
 
-[data-theme="light"] .project-image img {
-  filter: grayscale(20%);
-}
-
-[data-theme="light"] .project-content.active:hover .project-image img {
-  filter: grayscale(0);
-}
-
-[data-theme="light"] .stats-overlay {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e0e0e0;
-  color: #0d6efd;
-}
-
-[data-theme="light"] .metadata-item i {
-  color: #0d6efd;
-}
-
-[data-theme="light"] .metadata-item span {
-  color: #666;
-}
-
-[data-theme="light"] .topic-badge {
-  background: rgba(13, 110, 253, 0.1);
-  color: #0d6efd;
-  border: 1px solid rgba(13, 110, 253, 0.2);
-}
-
-[data-theme="light"] .github-button {
+[data-theme="light"] .github-button-mobile {
   border: 1px solid #0d6efd !important;
   color: #0d6efd !important;
-}
-
-[data-theme="light"] .github-button:hover {
-  background: rgba(13, 110, 253, 0.05) !important;
-}
-
-[data-theme="light"] .license-badge {
-  color: #555;
-  border: 1px solid rgba(76, 175, 80, 0.2);
-}
-
-[data-theme="light"] .project-links {
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="light"] .archived-badge {
-  background: rgba(255, 193, 7, 0.1);
-  color: #f57c00;
-  border: 1px solid rgba(255, 193, 7, 0.3);
-}
-
-[data-theme="light"] .branch-badge {
-  background: rgba(108, 117, 125, 0.1);
-  color: #495057;
-  border: 1px solid rgba(108, 117, 125, 0.3);
 }
