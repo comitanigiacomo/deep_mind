@@ -253,7 +253,6 @@
   margin-bottom: 1.8rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  /* Linea sotto la descrizione */
 }
 
 .interest-description p {
@@ -279,7 +278,6 @@
   flex-wrap: wrap;
   gap: 0.7rem;
   justify-content: center;
-  /* Aggiunto per centrare i badge */
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
