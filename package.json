@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^10.3.0",
+    "@react-three/fiber": "^9.1.2",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.6",
     "framer-motion": "^12.16.0",
     "icons": "^1.0.0",
+    "ogl": "^1.0.11",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.5",
     "react": "^19.1.0",
@@ -24,7 +27,8 @@
     "react-router-dom": "^7.6.0",
     "react-scroll-motion": "^0.3.5",
     "react-type-animation": "^3.2.0",
-    "reactflow": "^11.11.4"
+    "reactflow": "^11.11.4",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
