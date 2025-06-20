@@ -283,10 +283,8 @@ h1 {
 }
 
 .terminal {
-  background-color: black;
   color: #d3d3d3;
   font-family: 'Courier New', monospace;
-  padding: 1rem;
   border-radius: 0.5rem;
   margin-top: 1rem;
 }
