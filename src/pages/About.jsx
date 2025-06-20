@@ -26,16 +26,24 @@ export default function About() {
       if (hasBlack && hasBlue) {
         setOutput('Correct. My favorite colors are black and blue.');
       } else if (hasBlack || hasBlue) {
-        setOutput('Almost there. You’ve got one right, keep going!');
+        setOutput('Almost there. You\'ve got one right, keep going!');
       } else {
-        setOutput('Those aren’t my colors. Try again with a different guess.');
+        setOutput('Those aren\'t my colors. Try again with a different guess.');
       }
     }
   };
 
   return (
-    <section id="about">
-      <div style={{ minHeight: '100vh' }} className="d-flex align-items-center">
+    <section id="about" style={{ position: 'relative', minHeight: '100vh' }}>
+
+      {/* Contenuto della pagina */}
+      <div style={{
+        position: 'relative',
+        zIndex: 1,
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center'
+      }}>
         {showIntro ? (
           <Intro onEnd={() => setShowIntro(false)} />
         ) : (
@@ -66,19 +74,17 @@ export default function About() {
                   )}
                 </div>
               </Col>
-              
-              {/* Colonna Immagine e Bottoni - Modificata per mobile */}
+
+              {/* Colonna Immagine e Bottoni */}
               <Col md={6} className="image-column">
-                {/* Immagine spostata qui */}
                 <div className="image-wrapper">
-                  <img 
-                    src={isDarkMode ? "/face2.png" : "/face2.png"} 
-                    alt="Profile" 
-                    className="about-image" 
+                  <img
+                    src={isDarkMode ? "/face2.png" : "/face2.png"}
+                    alt="Profile"
+                    className="about-image"
                   />
                 </div>
-                
-                {/* Bottoni spostati qui */}
+
                 <div className="image-controls">
                   <div className="contact-icons">
                     <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
