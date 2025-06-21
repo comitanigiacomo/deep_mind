@@ -39,7 +39,7 @@ PROJECTS = [
         "title": "Deep_mind",
         "owner": "comitanigiacomo",
         "repo": "deep_mind",
-        "image": "/About.jpeg",
+        "image": "/Deep.png",
     }]
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
