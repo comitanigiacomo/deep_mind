@@ -11,19 +11,30 @@ export default function About({ showIntro, setShowIntro }) {
   const { isDarkMode } = useTheme();
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
+    let timeoutId;
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolling(true);
-      } else {
-        setIsScrolling(false);
-      }
+      requestAnimationFrame(() => {
+        if (timeoutId) clearTimeout(timeoutId);
+
+        if (window.scrollY > 50) {
+          setShowScrollIndicator(false);
+        } else {
+          timeoutId = setTimeout(() => {
+            setShowScrollIndicator(window.scrollY === 0);
+          }, 300);
+        }
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   const handleKeyDown = (e) => {
@@ -135,12 +146,14 @@ export default function About({ showIntro, setShowIntro }) {
         </Container>
       </div>
 
-      <div className={`scroll-indicator ${isScrolling ? 'fade-out' : ''}`}>
-        <div className="scroll-text">Scroll down</div>
-        <div className="scroll-icon">
-          <div className="scroll-dot"></div>
+      {showScrollIndicator && (
+        <div className="scroll-indicator">
+          <div className="scroll-text">Scroll down</div>
+          <div className="scroll-icon">
+            <div className="scroll-dot"></div>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
