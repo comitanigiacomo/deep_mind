@@ -158,30 +158,30 @@
   },
   "comitanigiacomo/deep_mind": {
     "title": "Deep_mind",
-    "image": "/Deep.png",
+    "image": "/About.jpeg",
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 163,
+    "commits": 245,
     "languages": [
       {
         "name": "CSS",
-        "percent": 49.5
+        "percent": 52.6
       },
       {
         "name": "JavaScript",
-        "percent": 39.3
+        "percent": 40.2
       },
       {
         "name": "Python",
-        "percent": 8.9
+        "percent": 5.7
       },
       {
         "name": "HTML",
-        "percent": 2.3
+        "percent": 1.4
       }
     ],
-    "updated_at": "2025-06-19T00:49:28Z",
+    "updated_at": "2025-06-20T18:03:45Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -190,7 +190,7 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 5.58,
+    "size": 21.23,
     "archived": false,
     "default_branch": "main"
   }
