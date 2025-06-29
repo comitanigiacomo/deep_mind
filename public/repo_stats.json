@@ -5,7 +5,7 @@
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 0,
-    "commits": 77,
+    "commits": 79,
     "languages": [
       {
         "name": "JavaScript",
@@ -16,7 +16,7 @@
         "percent": 3.1
       }
     ],
-    "updated_at": "2025-06-29T09:30:53Z",
+    "updated_at": "2025-06-29T13:54:49Z",
     "license": "GNU General Public License v3.0",
     "topics": [
       "application-launcher",
@@ -24,7 +24,7 @@
       "gnome-shell-extension",
       "quick-access"
     ],
-    "size": 1.28,
+    "size": 1.31,
     "archived": false,
     "default_branch": "main"
   },
@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 265,
+    "commits": 269,
     "languages": [
       {
         "name": "CSS",
@@ -181,7 +181,7 @@
         "percent": 1.4
       }
     ],
-    "updated_at": "2025-06-29T10:58:23Z",
+    "updated_at": "2025-06-29T17:15:06Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -190,7 +190,7 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 21.19,
+    "size": 22.4,
     "archived": false,
     "default_branch": "main"
   },
@@ -200,14 +200,14 @@
     "description": "My first Kotlin Android app. A simple yet practical solution for tracking container status (full/empty) in real-time using Firebase",
     "stars": 0,
     "forks": 0,
-    "commits": 25,
+    "commits": 29,
     "languages": [
       {
         "name": "Kotlin",
         "percent": 100.0
       }
     ],
-    "updated_at": "2025-06-29T10:33:00Z",
+    "updated_at": "2025-06-29T12:44:45Z",
     "license": "GNU General Public License v3.0",
     "topics": [
       "android",
@@ -216,7 +216,7 @@
       "realtime-database",
       "smart-home"
     ],
-    "size": 10.38,
+    "size": 12.81,
     "archived": false,
     "default_branch": "main"
   }
