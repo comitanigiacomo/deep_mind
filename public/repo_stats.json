@@ -5,7 +5,7 @@
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 0,
-    "commits": 76,
+    "commits": 77,
     "languages": [
       {
         "name": "JavaScript",
@@ -16,7 +16,7 @@
         "percent": 3.1
       }
     ],
-    "updated_at": "2025-06-27T20:37:56Z",
+    "updated_at": "2025-06-29T09:30:53Z",
     "license": "GNU General Public License v3.0",
     "topics": [
       "application-launcher",
@@ -162,26 +162,26 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 261,
+    "commits": 265,
     "languages": [
       {
         "name": "CSS",
-        "percent": 52.6
+        "percent": 52.5
       },
       {
         "name": "JavaScript",
-        "percent": 40.4
+        "percent": 40.3
       },
       {
         "name": "Python",
-        "percent": 5.6
+        "percent": 5.8
       },
       {
         "name": "HTML",
         "percent": 1.4
       }
     ],
-    "updated_at": "2025-06-28T00:47:34Z",
+    "updated_at": "2025-06-29T10:58:23Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -191,6 +191,32 @@
       "show-project"
     ],
     "size": 21.19,
+    "archived": false,
+    "default_branch": "main"
+  },
+  "comitanigiacomo/TankCheck": {
+    "title": "TankCheck",
+    "image": "/mockup.png",
+    "description": "My first Kotlin Android app. A simple yet practical solution for tracking container status (full/empty) in real-time using Firebase",
+    "stars": 0,
+    "forks": 0,
+    "commits": 25,
+    "languages": [
+      {
+        "name": "Kotlin",
+        "percent": 100.0
+      }
+    ],
+    "updated_at": "2025-06-29T10:33:00Z",
+    "license": "GNU General Public License v3.0",
+    "topics": [
+      "android",
+      "firebase",
+      "kotlin",
+      "realtime-database",
+      "smart-home"
+    ],
+    "size": 10.38,
     "archived": false,
     "default_branch": "main"
   }
