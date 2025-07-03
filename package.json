@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^10.3.0",
-    "@react-three/fiber": "^9.1.2",
+    "@react-spring/three": "^10.0.1",
+    "@react-three/drei": "^10.4.2",
+    "@react-three/fiber": "^9.1.4",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.6",
     "framer-motion": "^12.16.0",
