@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import Mynav from './components/Mynav.jsx';
 import About from './pages/About';
+import Skills from './pages/Skills.jsx'
 import Experience from './pages/Education';
 import Projects from './pages/Projects';
 import Contacts from './pages/Contacts';
@@ -41,6 +42,9 @@ export default function App() {
           </section>
           {!showIntro && (
             <>
+              <section id="skills">
+                <Skills />
+              </section>
               <section id="interests">
                 <Interests />
               </section>
