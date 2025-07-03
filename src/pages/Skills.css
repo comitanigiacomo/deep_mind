@@ -1,89 +1,264 @@
+/* Skills Section */
 .skills-section {
   position: relative;
   width: 100%;
-  padding: 6rem 0;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 6rem 0;
   overflow: hidden;
 }
 
+.section-title {
+    margin-top: 6%;
+}
+
+/* Layout Container */
 .skills-container {
-  max-width: 200%;
-  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
+/* 3D Scene Column */
 .skills-scene-col {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  flex: 0 0 75%;
+  max-width: 75%;
+  height: 100%;
+  padding: 0;
 }
 
+/* Card Column */
 .skills-title-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+  height: 100%;
+  padding: 1rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
 }
 
+/* Canvas Wrapper */
 .skills-scene-wrapper {
   width: 100%;
-  height: 80%;
-  max-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Centered Card Container */
+.skill-card-container {
+  width: 120%;
+  height: 100%;
+  margin-bottom: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* === Skill Card Styling === */
+.skill-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(16px);
+  border-radius: 1.5rem;
+  border: var(--card-border, 1px solid rgba(0, 0, 0, 0.08));
+  box-shadow: var(--card-shadow, 0 20px 40px rgba(0, 0, 0, 0.12));
+  padding: 2.5rem;
+  width: 140%;
+  max-width: 800px;
+  min-height: 400px; /* Altezza minima aumentata */
+  animation: fadeInScale 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
   overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
 }
 
-.skills-scene-wrapper > div {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 100% !important;
-  object-fit: contain;
+/* Card Decoration */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, 
+    rgba(33, 150, 243, 0.08) 0%, 
+    transparent 60%);
+  transform: rotate(30deg);
+  z-index: -1;
+  transition: transform 0.6s ease;
 }
 
-.skills-title {
-  color: var(--accent-color);
-  font-size: 3.5rem;
+/* Card Header */
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Icon Container */
+.skill-card-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: rgba(33, 150, 243, 0.1);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.skill-card-icon span {
+  font-size: 2rem;
+  color: var(--accent-color, #2196f3);
+}
+
+/* Title */
+.skill-card h3 {
+  color: var(--accent-color, #2196f3);
+  font-size: 1.75rem;
   font-weight: 700;
-  text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-  opacity: 0.9;
   margin: 0;
-  padding-right: 2rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
 }
 
+/* Description */
+.skill-card p {
+  color: var(--text-color, #444);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+/* Progress Container */
+.skill-progress {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.skill-level-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-color, #666);
+}
+
+/* Progress Bar */
+.skill-level {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  height: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.skill-level-bar {
+  background: var(--accent-color, #2196f3);
+  height: 100%;
+  border-radius: 1rem;
+  width: 80%; /* Valore dinamico */
+  transition: width 0.6s ease, background 0.3s ease;
+}
+
+/* Footer Tags */
+.skill-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto; /* Spinge il footer in basso */
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.skill-tag {
+  background: rgba(33, 150, 243, 0.15);
+  color: var(--accent-color, #1976d2);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover Effects */
+@media (hover: hover) {
+  .skill-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(33, 150, 243, 0.2);
+  }
+  
+  .skill-card:hover::before {
+    transform: rotate(35deg);
+  }
+  
+  .skill-card:hover .skill-level-bar {
+    background: var(--accent-hover, #1976d2);
+  }
+  
+  .skill-tag:hover {
+    background: rgba(33, 150, 243, 0.25);
+    transform: translateY(-2px);
+  }
+}
+
+/* Centratura migliorata */
+.skill-card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Responsive */
 @media (max-width: 992px) {
-  .skills-scene-col, 
-  .skills-title-col {
-    height: auto;
-    min-height: 50vh;
-    justify-content: center;
-    padding: 2rem !important;
+  .skill-card {
+    min-height: 380px;
+    padding: 2rem;
   }
-
-  .skills-scene-col {
-    order: 2;
-  }
-
-  .skills-title-col {
-    order: 1;
-  }
-
-  .skills-title {
-    padding-right: 0;
-    text-align: center;
-    font-size: 2.5rem;
-  }
-
-  .skills-scene-wrapper {
-    height: 60vh;
-    width: 100%;
+  
+  .skill-card h3 {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 576px) {
-  .skills-title {
-    font-size: 2rem;
+  .skill-card {
+    min-height: 360px;
+    padding: 1.75rem;
+  }
+  
+  .skill-card-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .skill-card-icon span {
+    font-size: 1.75rem;
   }
 }
