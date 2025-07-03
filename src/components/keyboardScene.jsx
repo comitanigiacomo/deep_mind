@@ -1,9 +1,10 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
 import { animated, useSpring } from '@react-spring/three'
+import {useState} from 'react'
 
-function KeyWithPanel({ keyNode, panelNode }) {
+function KeyWithPanel({ keyNode, panelNode, onHover }) {
   const [hovered, setHovered] = useState(false)
 
   const { y } = useSpring({
@@ -11,11 +12,23 @@ function KeyWithPanel({ keyNode, panelNode }) {
     config: { mass: 1, tension: 300, friction: 20 }
   })
 
+  const handlePointerOver = (e) => {
+    e.stopPropagation()
+    setHovered(true)
+    onHover(keyNode.name)
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation()
+    setHovered(false)
+    onHover(null)
+  }
+
   return (
     <animated.group
       position-y={y}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true) }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false) }}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
     >
       <primitive object={keyNode} />
       {panelNode && <primitive object={panelNode} />}
@@ -23,10 +36,9 @@ function KeyWithPanel({ keyNode, panelNode }) {
   )
 }
 
-function Keyboard(props) {
+function Keyboard({ onKeyHover, ...props }) {
   const { scene } = useGLTF('skils.glb')
 
-  // Trova i nodi key-* e Panel.*
   const { keyWithPanels, others } = useMemo(() => {
     const keys = []
     const panels = new Map()
@@ -60,22 +72,32 @@ function Keyboard(props) {
       ))}
 
       {keyWithPanels.map(({ keyNode, panelNode }, i) => (
-        <KeyWithPanel key={i} keyNode={keyNode} panelNode={panelNode} />
+        <KeyWithPanel
+          key={i}
+          keyNode={keyNode}
+          panelNode={panelNode}
+          onHover={onKeyHover}
+        />
       ))}
     </group>
   )
 }
 
-export default function KeyboardScene() {
+export default function KeyboardScene({ onKeyHover, fixedRotation = [0, 0, 0], scale = 1, ...props }) {
   return (
     <Canvas
-      style={{ width: '100vw', height: '100vh' }}
       camera={{ position: [-3.48, 2.74, 9.96], fov: 80, rotation: [-0.27, -0.33, -0.09] }}
+      {...props}
     >
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 10]} intensity={1} />
       <OrbitControls />
-      <Keyboard position={[7, 1, 0]} rotation={[7.3, 1.8, -0.5]} />
+      <Keyboard
+        position={[7, 1, 0]}
+        rotation={fixedRotation}
+        scale={[scale, scale, scale]}
+        onKeyHover={onKeyHover}
+      />
     </Canvas>
-  )
+  );
 }
