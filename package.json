@@ -14,7 +14,7 @@
     "@react-three/drei": "^10.4.2",
     "@react-three/fiber": "^9.1.4",
     "aos": "^2.3.4",
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.7",
     "framer-motion": "^12.16.0",
     "icons": "^1.0.0",
     "ogl": "^1.0.11",
