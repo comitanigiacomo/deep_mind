@@ -1,8 +1,9 @@
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
-import { useMemo } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import { animated, useSpring } from '@react-spring/three'
-import {useState} from 'react'
+import * as THREE from 'three'
+
 
 function KeyWithPanel({ keyNode, panelNode, onHover }) {
   const [hovered, setHovered] = useState(false)
@@ -37,7 +38,7 @@ function KeyWithPanel({ keyNode, panelNode, onHover }) {
 }
 
 function Keyboard({ onKeyHover, ...props }) {
-  const { scene } = useGLTF('skils.glb')
+  const { scene } = useGLTF('/skils.glb')
 
   const { keyWithPanels, others } = useMemo(() => {
     const keys = []
@@ -84,14 +85,19 @@ function Keyboard({ onKeyHover, ...props }) {
 }
 
 export default function KeyboardScene({ onKeyHover, fixedRotation = [0, 0, 0], scale = 1, ...props }) {
+  const controlsRef = useRef()
+
   return (
-    <Canvas
-      camera={{ position: [-3.48, 2.74, 9.96], fov: 80, rotation: [-0.27, -0.33, -0.09] }}
-      {...props}
-    >
+    <Canvas camera={{ position: [-2.261002305580865, 23.819658128449888, -4.378382727281629], fov: 80 }} {...props}>
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 10]} intensity={1} />
-      <OrbitControls />
+
+      <OrbitControls
+        ref={controlsRef}
+        target={[9.592548488616103, -2.8169092959774797, -6.84844724550611]}
+        enableZoom={false}
+        
+      />
       <Keyboard
         position={[7, 1, 0]}
         rotation={fixedRotation}
@@ -99,5 +105,5 @@ export default function KeyboardScene({ onKeyHover, fixedRotation = [0, 0, 0], s
         onKeyHover={onKeyHover}
       />
     </Canvas>
-  );
+  )
 }
