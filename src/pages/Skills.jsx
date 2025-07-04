@@ -6,34 +6,79 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const keyCardMap = {
+const keyDescriptions = {
     'key-01': {
-        title: 'Go',
-        description: 'Go è un linguaggio open-source progettato per l efficienza e la semplicità.'
+        title: 'Go Development',
+        highlights: [
+            'Sviluppo backend performante',
+            'Microservizi scalabili',
+            'Concorrenza efficiente con goroutines',
+            'Tooling CLI avanzato'
+        ]
     },
     'key-02': {
-        title: 'JavaScript',
-        description: 'JavaScript è il linguaggio dominante per il web moderno.'
+        title: 'JavaScript/TypeScript',
+        highlights: [
+            'React/Next.js applications',
+            'Node.js backend systems',
+            'Clean architecture',
+            'Performance optimization'
+        ]
     },
     'key-03': {
-        title: 'Python',
-        description: 'Python è popolare per l AI, la scienza e la chiarezza della sintassi.'
+        title: 'Python Engineering',
+        highlights: [
+            'Data analysis & visualization',
+            'Automation scripts',
+            'Rapid prototyping',
+            'Web scraping solutions'
+        ]
     },
     'key-04': {
-        title: 'React',
-        description: 'React è una libreria front-end per creare interfacce utente dinamiche.'
+        title: 'React Expertise',
+        highlights: [
+            'Component design systems',
+            'State management',
+            'Interactive UIs',
+            'Accessibility focus'
+        ]
     },
+    'default': {
+        title: 'My Tech Stack',
+        subtitle: 'Hover over keyboard keys to explore my skills',
+        highlights: [
+            '5+ years professional experience',
+            'Full-stack capabilities',
+            'Clean & maintainable code',
+            'Problem-solving focus'
+        ]
+    },
+    'unknown': {
+        title: 'More Skills',
+        subtitle: 'This key represents additional capabilities',
+        highlights: [
+            'Continuous learning approach',
+            'Adaptability to new technologies',
+            'Focus on best practices',
+            'Custom solutions development'
+        ]
+    }
 }
 
 export default function Skills() {
-    const { isDarkMode } = useTheme();
-    const [hoveredKey, setHoveredKey] = useState(null);
+    const [hoveredKey, setHoveredKey] = useState(null)
+    const { isDarkMode } = useTheme()
 
     const handleKeyHover = useCallback((keyName) => {
-        setHoveredKey(keyName);
-    }, []);
+        setHoveredKey(keyName)
+    }, [])
 
-    const card = hoveredKey ? keyCardMap[hoveredKey] : null;
+    const getCurrentContent = () => {
+        if (!hoveredKey) return keyDescriptions['default']
+        return keyDescriptions[hoveredKey] || keyDescriptions['unknown']
+    }
+
+    const { title, subtitle, highlights } = getCurrentContent()
 
     return (
         <section id="skills" className="skills-section">
@@ -41,46 +86,37 @@ export default function Skills() {
                 <h2>SKILLS</h2>
                 <div className="title-underline"></div>
             </div>
+            
             <Container fluid className="skills-container">
-                <Row className="align-items-stretch h-100">
-                    <Col lg={8} className="skills-scene-col px-0"> {/* 75% (9/12) */}
-                        <div className="skills-scene-wrapper">
-                            <KeyboardScene
-                                onKeyHover={handleKeyHover}
-                                fixedRotation={[0.7, 0.5, 0]}
-                                scale={1.5}
-                            />
-                        </div>
+                <Row className="h-100">
+                    <Col lg={8} className="skills-scene-col px-0">
+                        <KeyboardScene
+                            onKeyHover={handleKeyHover}
+                            fixedRotation={[0.7, 0.5, 0]}
+                            scale={1.5}
+                        />
                     </Col>
-                    <Col lg={4} className="skills-title-col"> {/* 25% (3/12) */}
-                        <div className="skill-card-container">
-                            {card && (
-                                <div className="skill-card">
-                                    <div className="skill-card-header">
-                                        <div className="skill-card-icon">
-                                            {/* Qui puoi inserire un'icona SVG o un carattere icona */}
-                                            <span>⌨️</span>
-                                        </div>
-                                        <h3>{card.title}</h3>
-                                    </div>
-                                    <p>{card.description}</p>
-
-                                    <div className="skill-level">
-                                        <div className="skill-level-bar" style={{ width: '80%' }}></div>
-                                    </div>
-
-                                    <div className="skill-card-footer">
-                                        <div className="skill-tags">
-                                            <span className="skill-tag">Expert</span>
-                                            <span className="skill-tag">5+ years</span>
-                                        </div>
-                                    </div>
-                                </div>
+                    
+                    <Col lg={4} className="skills-text-col">
+                        <div className="skills-text-content">
+                            <h3 className="skill-main-title">{title}</h3>
+                            
+                            {subtitle && (
+                                <p className="skill-subtitle">{subtitle}</p>
                             )}
+                            
+                            <ul className="skill-highlights">
+                                {highlights.map((item, index) => (
+                                    <li key={index} className="highlight-item">
+                                        <span className="highlight-icon">▸</span>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </Col>
                 </Row>
             </Container>
         </section>
-    );
+    )
 }
