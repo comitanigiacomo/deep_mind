@@ -19,7 +19,7 @@
 .navbar .nav-link {
   color: var(--nav-text) !important;
   position: relative;
-  margin: 0 1rem;
+  margin: 0 rem;
   display: inline-block;
   font-family: monospace;
   text-decoration: none;
