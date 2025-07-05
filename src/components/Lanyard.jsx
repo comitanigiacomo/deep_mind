@@ -32,7 +32,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         <Physics gravity={gravity} timeStep={1 / 60}>
           <Band onFirstDrag={() => {
             setFadeOut(true);
-            setTimeout(() => setHasDragged(true), 1000); // Wait for fade animation
+            setTimeout(() => setHasDragged(true), 1000);
           }} />
         </Physics>
 
@@ -44,7 +44,6 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
         </Environment>
       </Canvas>
 
-      {/* Overlay HTML con ShinyText */}
       {!hasDragged && (
         <div className={`fade-wrapper ${fadeOut ? 'fade-out' : ''}`}>
           <ShinyText
