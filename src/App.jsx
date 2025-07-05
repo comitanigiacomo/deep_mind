@@ -42,11 +42,11 @@ export default function App() {
           </section>
           {!showIntro && (
             <>
-              <section id="skills">
-                <Skills />
-              </section>
               <section id="interests">
                 <Interests />
+              </section>
+              <section id="skills">
+                <Skills />
               </section>
               <section id="education">
                 <Experience />
