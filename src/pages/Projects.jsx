@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
+import TiltedCard from '../components/TiltedCard';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -159,85 +160,87 @@ export default function Projects() {
                     transitionDelay: `${index === activeIndex ? 0.1 : 0}s`
                   }}
                 >
-                  <article className="project-item">
-                    <div className="project-image-container">
-                      <div className="project-image">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          loading="lazy"
-                        />
-                        <div className="stats-overlay">
-                          <span><i className="pi pi-star" /> {project.stats.stars}</span>
-                          <span><i className="pi pi-share-alt" /> {project.stats.forks}</span>
-                          <span><GoCommit /> {project.stats.commits}</span>
+                  <TiltedCard>
+                    <article className="project-item">
+                      <div className="project-image-container">
+                        <div className="project-image">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            loading="lazy"
+                          />
+                          <div className="stats-overlay">
+                            <span><i className="pi pi-star" /> {project.stats.stars}</span>
+                            <span><i className="pi pi-share-alt" /> {project.stats.forks}</span>
+                            <span><GoCommit /> {project.stats.commits}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="project-info-container">
-                      <div className="project-info">
-                        <div className="repo-header">
-                          <h3>{project.title}</h3>
-                          <div className="repo-status-badges">
-                            {project.stats.archived && (
-                              <span className="badge archived-badge">
-                                <i className="pi pi-lock"></i> Archived
+                      <div className="project-info-container">
+                        <div className="project-info">
+                          <div className="repo-header">
+                            <h3>{project.title}</h3>
+                            <div className="repo-status-badges">
+                              {project.stats.archived && (
+                                <span className="badge archived-badge">
+                                  <i className="pi pi-lock"></i> Archived
+                                </span>
+                              )}
+                              <span className="badge branch-badge">
+                                <i className="pi pi-code"></i> {project.stats.default_branch}
                               </span>
-                            )}
-                            <span className="badge branch-badge">
-                              <i className="pi pi-code"></i> {project.stats.default_branch}
-                            </span>
-                          </div>
-                        </div>
-
-                        <p className="repo-description">{project.stats.description}</p>
-
-                        <div className="repo-metadata">
-                          <div className="metadata-item">
-                            <i className="pi pi-calendar"></i>
-                            <span>Updated: {lastUpdated}</span>
-                          </div>
-                          <div className="metadata-item">
-                            <i className="pi pi-database"></i>
-                            <span>Size: {repoSize}</span>
-                          </div>
-                        </div>
-
-                        {project.stats.topics.length > 0 && (
-                          <div className="topics-container">
-                            {project.stats.topics.map((topic, i) => (
-                              <span key={i} className="topic-badge">
-                                {topic}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        <div className="project-links">
-                          <div className="license-badge-wrapper">
-                            {project.stats.license !== "No license" && (
-                              <div className="license-badge">
-                                <i className="pi pi-file"></i>
-                                {project.stats.license}
-                              </div>
-                            )}
+                            </div>
                           </div>
 
-                          <a
-                            href={`https://github.com/${project.owner}/${project.repo}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="github-link"
-                          >
-                            <Button className="github-button">
-                              <i className="pi pi-github"></i> Repository
-                            </Button>
-                          </a>
+                          <p className="repo-description">{project.stats.description}</p>
+
+                          <div className="repo-metadata">
+                            <div className="metadata-item">
+                              <i className="pi pi-calendar"></i>
+                              <span>Updated: {lastUpdated}</span>
+                            </div>
+                            <div className="metadata-item">
+                              <i className="pi pi-database"></i>
+                              <span>Size: {repoSize}</span>
+                            </div>
+                          </div>
+
+                          {project.stats.topics.length > 0 && (
+                            <div className="topics-container">
+                              {project.stats.topics.map((topic, i) => (
+                                <span key={i} className="topic-badge">
+                                  {topic}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+
+                          <div className="project-links">
+                            <div className="license-badge-wrapper">
+                              {project.stats.license !== "No license" && (
+                                <div className="license-badge">
+                                  <i className="pi pi-file"></i>
+                                  {project.stats.license}
+                                </div>
+                              )}
+                            </div>
+
+                            <a
+                              href={`https://github.com/${project.owner}/${project.repo}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="github-link"
+                            >
+                              <Button className="github-button">
+                                <i className="pi pi-github"></i> Repository
+                              </Button>
+                            </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </article>
+                    </article>
+                  </TiltedCard>
                 </div>
               );
             })}
