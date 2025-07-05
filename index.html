@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>Deep Mind</title>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="85abdd6c-280f-4484-b7fb-dac569b2b6d0"></script>
@@ -34,8 +35,11 @@
       window.__INITIAL_THEME__ = initialTheme;
 
       document.documentElement.setAttribute('data-theme', initialTheme);
-      document.body.style.backgroundColor = initialTheme === 'dark' ? '#000000' : '#f8f9fa';
-      document.body.style.transition = 'none';
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.backgroundColor = initialTheme === 'dark' ? '#000000' : '#f8f9fa';
+        document.body.style.transition = 'none';
+      });
     })();
   </script>
 </head>
