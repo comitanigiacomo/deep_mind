@@ -1,9 +1,12 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, useGLTF } from '@react-three/drei'
-import { useRef, useMemo, useState, Suspense, useEffect } from 'react'
+import { OrbitControls, Html } from '@react-three/drei'
+import { useRef, useMemo, useState, useEffect, Suspense } from 'react'
 import { animated, useSpring } from '@react-spring/three'
 import Spinner from 'react-bootstrap/Spinner'
 import './KeyboardScene.css'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { unzip } from 'fflate'
+
 
 function KeyWithPanel({ keyNode, panelNode, onHover, onClick }) {
   const [hovered, setHovered] = useState(false)
@@ -13,29 +16,23 @@ function KeyWithPanel({ keyNode, panelNode, onHover, onClick }) {
     config: { mass: 1, tension: 300, friction: 20 }
   })
 
-  const handlePointerOver = (e) => {
-    e.stopPropagation()
-    setHovered(true)
-    onHover(keyNode.name)
-  }
-
-  const handlePointerOut = (e) => {
-    e.stopPropagation()
-    setHovered(false)
-    onHover(null)
-  }
-
-  const handleClick = (e) => {
-    e.stopPropagation()
-    onClick && onClick(keyNode.name)
-  }
-
   return (
     <animated.group
       position-y={y}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
-      onClick={handleClick}
+      onPointerOver={(e) => {
+        e.stopPropagation()
+        setHovered(true)
+        onHover(keyNode.name)
+      }}
+      onPointerOut={(e) => {
+        e.stopPropagation()
+        setHovered(false)
+        onHover(null)
+      }}
+      onClick={(e) => {
+        e.stopPropagation()
+        onClick && onClick(keyNode.name)
+      }}
       style={{ cursor: 'pointer' }}
     >
       <primitive object={keyNode} />
@@ -44,8 +41,61 @@ function KeyWithPanel({ keyNode, panelNode, onHover, onClick }) {
   )
 }
 
-function Keyboard({ onKeyHover, onKeyClick, onLoaded, ...props }) {
-  const { scene } = useGLTF('/skils.glb')
+
+function useGLTFZip(zipUrl, glbFileName) {
+  const [scene, setScene] = useState(null)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    let mounted = true
+
+    async function loadGLBFromZip() {
+      try {
+        const response = await fetch(zipUrl)
+        const zipBuffer = await response.arrayBuffer()
+
+        const files = await new Promise((resolve, reject) => {
+          unzip(new Uint8Array(zipBuffer), (err, files) => {
+            if (err) reject(err)
+            else resolve(files)
+          })
+        })
+
+        const glbFile = files[glbFileName]
+
+        if (!glbFile) throw new Error(`File ${glbFileName} not found in ZIP`)
+
+        const loader = new GLTFLoader()
+        loader.parse(
+          glbFile.buffer,
+          '',
+          (gltf) => {
+            if (mounted) setScene(gltf.scene)
+          },
+          (err) => {
+            if (mounted) {
+              console.error('GLTF parse error:', err)
+              setError(err)
+            }
+          }
+        )
+      } catch (err) {
+        console.error('ZIP load error:', err)
+        if (mounted) setError(err)
+      }
+    }
+
+    loadGLBFromZip()
+    return () => {
+      mounted = false
+    }
+  }, [zipUrl, glbFileName])
+
+  return { scene, error }
+}
+
+
+function KeyboardModel({ scene, onKeyHover, onKeyClick, onLoaded, ...props }) {
   const loadedRef = useRef(false)
 
   const { keyWithPanels, others } = useMemo(() => {
@@ -99,6 +149,17 @@ function Keyboard({ onKeyHover, onKeyClick, onLoaded, ...props }) {
   )
 }
 
+
+function KeyboardWrapper(props) {
+  const { scene, error } = useGLTFZip('/skils.zip', 'skils.glb')
+
+  if (error) throw error
+  if (!scene) return null // invece di bloccare il Suspense
+
+  return <KeyboardModel {...props} scene={scene} />
+}
+
+
 function CameraControls({ initialCameraPosition, initialTarget }) {
   const controlsRef = useRef()
   const { camera } = useThree()
@@ -124,10 +185,8 @@ function CameraControls({ initialCameraPosition, initialTarget }) {
   useEffect(() => {
     const controls = controlsRef.current
     if (!controls) return
-
     controls.enableZoom = false
     controls.enablePan = false
-
   }, [])
 
   const handleEnd = () => {
@@ -147,6 +206,18 @@ function CameraControls({ initialCameraPosition, initialTarget }) {
   )
 }
 
+
+function CanvasLoader() {
+  return (
+    <Html center>
+      <div className="canvas-spinner">
+        <Spinner animation="border" variant="light" />
+      </div>
+    </Html>
+  )
+}
+
+
 export default function KeyboardScene({
   onKeyHover,
   onKeyClick,
@@ -155,7 +226,7 @@ export default function KeyboardScene({
   ...props
 }) {
   const [loading, setLoading] = useState(true)
-  const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0]) 
+  const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0])
 
   const initialCameraPosition = [-2.261, 23.82, -4.378]
   const initialTarget = [9.593, -2.817, -6.848]
@@ -183,8 +254,8 @@ export default function KeyboardScene({
       <Canvas camera={{ position: initialCameraPosition, fov: 80 }} {...props}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
-        <Suspense fallback={null}>
-          <Keyboard
+        <Suspense fallback={<CanvasLoader />}>
+          <KeyboardWrapper
             position={keyboardPosition}
             rotation={fixedRotation}
             scale={[scale, scale, scale]}
