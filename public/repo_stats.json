@@ -135,7 +135,7 @@
     "image": "/reti.png",
     "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
     "stars": 2,
-    "forks": 3,
+    "forks": 2,
     "commits": 39,
     "languages": [
       {
@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 353,
+    "commits": 354,
     "languages": [
       {
         "name": "JavaScript",
@@ -181,7 +181,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2025-07-23T00:53:35Z",
+    "updated_at": "2025-07-24T00:53:04Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
