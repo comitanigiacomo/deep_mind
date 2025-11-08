@@ -5,7 +5,7 @@
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 0,
-    "commits": 83,
+    "commits": 84,
     "languages": [
       {
         "name": "JavaScript",
@@ -16,7 +16,7 @@
         "percent": 3.0
       }
     ],
-    "updated_at": "2025-08-13T17:00:53Z",
+    "updated_at": "2025-11-07T14:36:50Z",
     "license": "GNU General Public License v3.0",
     "topics": [
       "application-launcher",
@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 459,
+    "commits": 460,
     "languages": [
       {
         "name": "JavaScript",
@@ -181,7 +181,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2025-11-06T00:47:35Z",
+    "updated_at": "2025-11-07T00:47:37Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
