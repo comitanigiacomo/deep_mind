@@ -68,7 +68,7 @@
     "description": "A growing archive of LeetCode problem solutions",
     "stars": 0,
     "forks": 0,
-    "commits": 526,
+    "commits": 529,
     "languages": [
       {
         "name": "Python",
@@ -87,7 +87,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2025-11-05T11:43:11Z",
+    "updated_at": "2025-11-10T10:44:58Z",
     "license": "MIT License",
     "topics": [
       "algorithms",
@@ -96,7 +96,7 @@
       "interview-preparation",
       "problem-solving"
     ],
-    "size": 2.48,
+    "size": 2.5,
     "archived": false,
     "default_branch": "main"
   },
@@ -162,7 +162,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 462,
+    "commits": 463,
     "languages": [
       {
         "name": "JavaScript",
@@ -181,7 +181,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2025-11-09T00:51:10Z",
+    "updated_at": "2025-11-10T00:51:33Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
