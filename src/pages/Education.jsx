@@ -12,7 +12,7 @@ const EducationPage = () => {
       date: '2021 – 2025',
       title: 'Bachelor of Science in Computer Science',
       institution: 'University of Milan',
-      description: 'Undergraduate degree program (in progress)',
+      description: 'Undergraduate degree program',
       type: 'bachelor',
       icon: 'pi pi-microchip',
       logo: '/Unimi-logo.png',
