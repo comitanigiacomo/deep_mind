@@ -17,7 +17,7 @@ const EducationPage = () => {
       icon: 'pi pi-microchip',
       logo: '/Unimi-logo.png',
       color: '#3b82f6',
-      progress: 85
+      progress: 100
     },
     {
       date: '2016 – 2021',
