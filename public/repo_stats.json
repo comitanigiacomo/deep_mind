@@ -166,7 +166,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 499,
+    "commits": 500,
     "languages": [
       {
         "name": "JavaScript",
@@ -185,7 +185,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2025-12-14T00:59:48Z",
+    "updated_at": "2025-12-15T00:54:17Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
