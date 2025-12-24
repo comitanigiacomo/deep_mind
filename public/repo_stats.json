@@ -107,18 +107,30 @@
   "comitanigiacomo/cyberSecurity": {
     "title": "CyberSecurity",
     "image": "/cybersecurity.png",
-    "description": "N/A",
+    "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
     "stars": 0,
     "forks": 0,
-    "commits": 0,
-    "languages": [],
-    "updated_at": "",
-    "license": "No license",
-    "topics": [],
-    "size": 0,
-    "open_issues": 0,
-    "watchers": 0,
-    "homepage": "",
+    "commits": 82,
+    "languages": [
+      {
+        "name": "Python",
+        "percent": 91.2
+      },
+      {
+        "name": "Shell",
+        "percent": 8.8
+      }
+    ],
+    "updated_at": "2025-05-16T15:16:52Z",
+    "license": "MIT License",
+    "topics": [
+      "cybersecurity",
+      "ethical-hacking",
+      "linux",
+      "network-security",
+      "security-tools"
+    ],
+    "size": 0.29,
     "archived": false,
     "default_branch": "main"
   },
@@ -128,7 +140,7 @@
     "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
     "stars": 3,
     "forks": 2,
-    "commits": 0,
+    "commits": 39,
     "languages": [
       {
         "name": "Typst",
@@ -154,7 +166,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 512,
+    "commits": 513,
     "languages": [
       {
         "name": "JavaScript",
@@ -173,7 +185,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2025-12-22T22:14:28Z",
+    "updated_at": "2025-12-23T00:52:54Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
