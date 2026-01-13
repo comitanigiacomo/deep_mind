@@ -1,20 +1,16 @@
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import './Contact.css';
-// Lanyard import rimosso
 
 export default function Contact() {
   return (
     <section id="contacts" className="contact-section">
       <div className="contact-wrapper">
 
-        {/* NUOVA SEZIONE PROFILO STATICA */}
         <div className="profile-container">
-          {/* Sostituisci '/profile.jpg' con il percorso della tua foto nella cartella public */}
-          <img src="src/assets/profile.png" alt="Giacomo Comitani" className="profile-photo" />
+          <img src="../assets/profile.png" alt="Giacomo Comitani" className="profile-photo" />
           <h2 className="profile-name">Giacomo Comitani</h2>
           <p className="profile-location">Milan, Italy</p>
         </div>
-        {/* FINE NUOVA SEZIONE */}
 
         <div className="social-section">
           <div className="social-grid">
