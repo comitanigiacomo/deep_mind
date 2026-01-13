@@ -9,6 +9,17 @@ import './Education.css';
 const EducationPage = () => {
   const experiences = [
     {
+      date: '2026 – 2027',
+      title: 'Master of Science in Computer Science',
+      institution: 'University of Milan',
+      description: 'Graduate degree program',
+      type: 'master',
+      icon: 'pi pi-microchip',
+      logo: '/Unimi-logo.png',
+      color: '#3b82f6',
+      progress: 10
+    },
+    {
       date: '2021 – 2025',
       title: 'Bachelor of Science in Computer Science',
       institution: 'University of Milan',
