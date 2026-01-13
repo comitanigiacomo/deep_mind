@@ -9,7 +9,7 @@ import './Education.css';
 const EducationPage = () => {
   const experiences = [
     {
-      date: '2026 – 2027',
+      date: '2025– 2026',
       title: 'Master of Science in Computer Science',
       institution: 'University of Milan',
       description: 'Graduate degree program',
@@ -24,6 +24,7 @@ const EducationPage = () => {
       title: 'Bachelor of Science in Computer Science',
       institution: 'University of Milan',
       description: 'Undergraduate degree program',
+      thesis: 'Thesis: "Study and analysis of cryptographic functions used by mobile devices to protect sensitive data" (Reverse Engineering focus)',
       type: 'bachelor',
       icon: 'pi pi-microchip',
       logo: '/Unimi-logo.png',
@@ -48,7 +49,7 @@ const EducationPage = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('timeline-item-visible');
-          
+
           const progressFill = entry.target.querySelector('.progress-fill');
           if (progressFill) {
             const progress = progressFill.dataset.progress;
@@ -77,7 +78,7 @@ const EducationPage = () => {
           }} />
         ))}
       </div>
-      
+
       <div className="timeline-container">
         <div className="section-header">
           <h1 className="section-title" style={{ marginTop: '1px' }}>
@@ -87,7 +88,7 @@ const EducationPage = () => {
             Building knowledge through structured learning and continuous growth
           </p>
         </div>
-        
+
         <Timeline
           value={experiences}
           align="alternate"
@@ -106,7 +107,7 @@ const EducationPage = () => {
               <div className="card-glow" style={{ backgroundColor: `${item.color}20` }} />
               <div className="timeline-card-content">
                 <div className="experience-header">
-                  <span 
+                  <span
                     className="experience-type"
                     style={{ backgroundColor: item.color }}
                   >
@@ -114,10 +115,10 @@ const EducationPage = () => {
                   </span>
                   <span className="experience-date">{item.date}</span>
                 </div>
-                
+
                 <div className="progress-container">
                   <div className="progress-bar">
-                    <div 
+                    <div
                       className="progress-fill"
                       data-progress={item.progress}
                       style={{ backgroundColor: item.color }}
@@ -125,7 +126,7 @@ const EducationPage = () => {
                   </div>
                   <span className="progress-text">{item.progress}% Complete</span>
                 </div>
-                
+
                 <h3>{item.title}</h3>
                 <h5>
                   {item.logo && (
@@ -138,6 +139,11 @@ const EducationPage = () => {
                   <p>{item.institution}</p>
                 </h5>
                 <p>{item.description}</p>
+
+                {item.thesis && (
+                  <p className="thesis-row">{item.thesis}</p>
+                )}
+
                 <div className="experience-divider"></div>
                 <div className="experience-footer">
                   <i className={item.icon}></i>
