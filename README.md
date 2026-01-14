@@ -79,8 +79,6 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ## Acknowledgements
 
-## Acknowledgements
-
 - Typewriter animation inspired by Typed.js
 
 - Timeline component based on PrimeReact Timeline
