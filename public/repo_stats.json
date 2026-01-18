@@ -166,7 +166,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 545,
+    "commits": 546,
     "languages": [
       {
         "name": "JavaScript",
@@ -185,7 +185,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2026-01-16T00:54:03Z",
+    "updated_at": "2026-01-17T00:51:46Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -205,12 +205,7 @@
     "stars": 0,
     "forks": 0,
     "commits": 29,
-    "languages": [
-      {
-        "name": "Kotlin",
-        "percent": 100.0
-      }
-    ],
+    "languages": [],
     "updated_at": "2025-06-29T12:44:45Z",
     "license": "GNU General Public License v3.0",
     "topics": [
