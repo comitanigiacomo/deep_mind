@@ -138,7 +138,7 @@
     "title": "Reti_di_calcolatori",
     "image": "/reti.png",
     "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
-    "stars": 2,
+    "stars": 1,
     "forks": 2,
     "commits": 39,
     "languages": [
@@ -147,7 +147,7 @@
         "percent": 100.0
       }
     ],
-    "updated_at": "2026-01-07T10:33:26Z",
+    "updated_at": "2026-01-25T15:00:35Z",
     "license": "MIT License",
     "topics": [
       "computer-networks",
@@ -166,7 +166,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 553,
+    "commits": 554,
     "languages": [
       {
         "name": "JavaScript",
@@ -185,7 +185,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2026-01-24T00:52:15Z",
+    "updated_at": "2026-01-25T00:59:38Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
