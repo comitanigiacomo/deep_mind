@@ -260,7 +260,7 @@ export default function Skills() {
                         <KeyboardScene
                             onKeyHover={handleKeyHover}
                             onKeyClick={handleKeyClick}
-                            fixedRotation={[0.7, 0.5, 0]}
+                            fixedRotation={[0.5, 0.6, 0]}
                             scale={1.5}
                         />
                     </Col>
