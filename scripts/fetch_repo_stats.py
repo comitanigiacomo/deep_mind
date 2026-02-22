@@ -6,6 +6,18 @@ from urllib.parse import parse_qs, urlparse
 
 PROJECTS = [
     {
+        "title": "kanso-sync-engine",
+        "owner": "comitanigiacomo",
+        "repo": "kanso-sync-engine",
+        "image": "/kanso-sync-engine.png",
+    },
+    {
+        "title": "kanso-web",
+        "owner": "comitanigiacomo",
+        "repo": "kanso-web",
+        "image": "/kanso-web.png",
+    },
+    {
         "title": "QuickLaunch",
         "owner": "comitanigiacomo",
         "repo": "quicklaunch",

@@ -150,21 +150,26 @@ export default function KeyboardScene({
 }) {
   const [loading, setLoading] = useState(true)
   const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0])
+  const [keyboardScale, setKeyboardScale] = useState(scale) // Nuovo stato per la scala
 
   const initialCameraPosition = [-10.261, 23.82, -4.378];
   const initialTarget = [2.0, -2.817, -6.848];
+  
   useEffect(() => {
-    const updatePosition = () => {
+    const updateLayout = () => {
       if (window.innerWidth <= 768) {
         setKeyboardPosition([27, -11, 0])
+        setKeyboardScale(2.2) // Scala ingrandita per Mobile
       } else {
         setKeyboardPosition([7, 1, 0])
+        setKeyboardScale(scale) // Scala standard per Desktop passata dai props
       }
     }
-    updatePosition()
-    window.addEventListener('resize', updatePosition)
-    return () => window.removeEventListener('resize', updatePosition)
-  }, [])
+    
+    updateLayout()
+    window.addEventListener('resize', updateLayout)
+    return () => window.removeEventListener('resize', updateLayout)
+  }, [scale]) // Aggiunto 'scale' come dipendenza
 
   return (
     <div className="keyboard-wrapper">
@@ -180,7 +185,7 @@ export default function KeyboardScene({
           <KeyboardWrapper
             position={keyboardPosition}
             rotation={fixedRotation}
-            scale={[scale, scale, scale]}
+            scale={[keyboardScale, keyboardScale, keyboardScale]} // Usa il nuovo stato qui
             onKeyHover={onKeyHover}
             onKeyClick={onKeyClick}
             onLoaded={() => setLoading(false)}

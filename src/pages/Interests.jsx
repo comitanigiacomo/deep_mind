@@ -14,17 +14,17 @@ export default function Interests() {
   const interests = [
     {
       number: "00",
+      title: "Computer Science",
+      description: "I'm currently studying IT at university, following a lifelong interest in technology and problem-solving.",
+      image: "/tec.png",
+      skills: ["Problem Solving", "Critical Thinking", "Tech Curiosity", "Team Collaboration"]
+    },
+    {
+      number: "01",
       title: "Formula 1",
       description: "Formula 1 has always fascinated me, i follow every race and enjoy learning about the technology and strategy behind the sport.",
       image: "/ferrari.png",
       skills: ["Race Enthusiast", "Strategic Thinking", "Curiosity for Technology", "Attention to Detail"]
-    },
-    {
-      number: "01",
-      title: "IT",
-      description: "I'm currently studying IT at university, following a lifelong interest in technology and problem-solving.",
-      image: "/tec.png",
-      skills: ["Problem Solving", "Critical Thinking", "Tech Curiosity", "Team Collaboration"]
     },
     {
       number: "02",
