@@ -417,7 +417,7 @@
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .projects-container {
     height: auto !important;
   }
@@ -429,8 +429,8 @@
   }
 
   .section-title {
-    font-size: 1.6rem;
-    margin-bottom: 1.6rem;
+    font-size: 1rem;
+    margin-top: 60px;
   }
 
   .projects-display {
