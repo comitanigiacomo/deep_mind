@@ -1,4 +1,80 @@
 {
+  "comitanigiacomo/kanso-sync-engine": {
+    "title": "kanso-sync-engine",
+    "image": "/kanso-sync-engine.png",
+    "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
+    "stars": 1,
+    "forks": 0,
+    "commits": 46,
+    "languages": [
+      {
+        "name": "Go",
+        "percent": 98.3
+      },
+      {
+        "name": "PLpgSQL",
+        "percent": 1.5
+      },
+      {
+        "name": "Dockerfile",
+        "percent": 0.2
+      }
+    ],
+    "updated_at": "2026-02-22T11:32:07Z",
+    "license": "MIT License",
+    "topics": [
+      "docker",
+      "golang",
+      "habit-tracker",
+      "hexagonal-architecture",
+      "offline-first",
+      "postgres",
+      "redis",
+      "sync-engine"
+    ],
+    "size": 0.2,
+    "archived": false,
+    "default_branch": "main"
+  },
+  "comitanigiacomo/kanso-web": {
+    "title": "kanso-web",
+    "image": "/kanso-web.png",
+    "description": "Minimalist habit tracker built with React, TypeScript, and Go, based on kanso philosophy",
+    "stars": 2,
+    "forks": 0,
+    "commits": 32,
+    "languages": [
+      {
+        "name": "TypeScript",
+        "percent": 71.5
+      },
+      {
+        "name": "CSS",
+        "percent": 27.9
+      },
+      {
+        "name": "JavaScript",
+        "percent": 0.5
+      },
+      {
+        "name": "HTML",
+        "percent": 0.2
+      }
+    ],
+    "updated_at": "2026-02-22T15:11:59Z",
+    "license": "MIT License",
+    "topics": [
+      "habit-tracker",
+      "kanso",
+      "minimalist",
+      "pwa",
+      "react",
+      "typescript"
+    ],
+    "size": 8.78,
+    "archived": false,
+    "default_branch": "main"
+  },
   "comitanigiacomo/quicklaunch": {
     "title": "QuickLaunch",
     "image": "/quicklaunch.png",
@@ -166,26 +242,26 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 581,
+    "commits": 586,
     "languages": [
       {
         "name": "JavaScript",
-        "percent": 52.6
+        "percent": 51.8
       },
       {
         "name": "CSS",
-        "percent": 42.3
+        "percent": 42.7
       },
       {
         "name": "Python",
-        "percent": 4.0
+        "percent": 4.3
       },
       {
         "name": "HTML",
         "percent": 1.1
       }
     ],
-    "updated_at": "2026-02-21T01:01:25Z",
+    "updated_at": "2026-02-22T21:28:02Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -194,7 +270,7 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 156.66,
+    "size": 157.1,
     "archived": false,
     "default_branch": "main"
   },
