@@ -1,4 +1,3 @@
-# File: .github/workflows/update-repo-stats.yml
 name: Update Repo Stats
 
 on:
@@ -35,16 +34,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Configura l’utente GitHub Actions Bot
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           # Aggiungi il file JSON e controlla se ci sono modifiche
-
           git add public/repo_stats.json
           if git diff --cached --quiet; then
             echo "Nessuna modifica da commettere"
           else
             git commit -m "🔄 Aggiorna repo_stats.json"
+            
+            git pull --rebase origin main
+            
             git push
           fi
