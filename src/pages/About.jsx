@@ -91,7 +91,7 @@ export default function About({ showIntro, setShowIntro }) {
             <Col md={6} className="d-flex flex-column justify-content-center text-column">
               <p className="small-text">Hey, I'm</p>
               <h1 className="display-1 fw-bold">Jack</h1>
-              <p className="medium-text">an IT student from Milan</p>
+              <p className="medium-text">Computer Science student from Milan</p>
               <div className="terminal">
                 <span className="terminal-prompt">&gt; console.log("Can you guess my favorite colors?")</span>
                 <div className="terminal-line">
@@ -116,7 +116,7 @@ export default function About({ showIntro, setShowIntro }) {
             <Col md={6} className="image-column">
               <div className="image-wrapper">
                 <img
-                  src="/face2.png"
+                  src="/prova.jpeg"
                   alt="Profile"
                   className="about-image"
                 />
