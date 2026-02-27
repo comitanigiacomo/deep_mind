@@ -5,7 +5,7 @@
     "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
     "stars": 1,
     "forks": 0,
-    "commits": 46,
+    "commits": 47,
     "languages": [
       {
         "name": "Go",
@@ -20,7 +20,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-02-22T11:32:07Z",
+    "updated_at": "2026-02-26T18:57:47Z",
     "license": "MIT License",
     "topics": [
       "docker",
@@ -242,7 +242,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 596,
+    "commits": 597,
     "languages": [
       {
         "name": "JavaScript",
@@ -261,7 +261,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2026-02-25T01:09:36Z",
+    "updated_at": "2026-02-26T01:03:05Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
