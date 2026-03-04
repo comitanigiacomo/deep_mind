@@ -10,64 +10,77 @@
   <a href="https://vitejs.dev/">
     <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
   </a>
-</p>
-
-<p align="center">
-  <a href="https://app.netlify.com/projects/jacksdeepmind/deploys">
-    <img src="https://api.netlify.com/api/v1/badges/2f39e815-3b18-48ba-902e-5b17104eb25c/deploy-status" alt="Netlify Status" />
+  <a href="https://www.docker.com/">
+    <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
   </a>
 </p>
 
-A clean and minimal portfolio to present my projects and experience. [Deep Mind](https://jacksdeepmind.netlify.app/)
+A minimal portfolio to present my projects and experience.
+
+**Live Demo:** [portfolio.jack-lab.dev](https://portfolio.jack-lab.dev) _(Self-Hosted)_
 
 ![Portfolio Screenshot](/public/Deep.png)
 
-## Features
+**Core:** 
 
-- **Dynamic Typewriter Effect** - *Animated header with custom typing/deleting animation*  
-- **Project Showcase** - *Interactive project cards with GitHub stats and live demos*  
-- **Experience Timeline** - *Animated vertical timeline with career milestones*  
-- **Responsive Design** - *Mobile-first approach with Bootstrap grid system*  
-- **Dark Theme** - *Custom dark UI with blue accent colors*  
-- **Smooth Transitions** - *CSS animations and scroll effects* 
-- **Social Integration** - *Direct links to GitHub, LinkedIn, and Instagram*  
+- `React.js`
+- `React Bootstrap`
+- `React Icons`
+- `CSS3`
 
-## Technologies
+**Infrastructure & Deployment:**
 
-**Core:**  
-- `React.js`  
-- `React Bootstrap`  
-- `React Icons`  
-- `CSS3`  
+- `Docker` & `Docker Compose`
+- `Nginx` (Multi-stage build)
+- Self-hosted on Debian Linux
 
-**Build Tools:**  
-- `Vite`  
-- `npm`  
-- `Git`  
+**Build Tools:**
 
-**Design:**  
-- Custom CSS Animations  
-- Modern Glassmorphism Effects  
-- Responsive Breakpoints  
-- CSS Variables  
+- `Vite`
+- `npm`
+- `Git`
 
-## Installation
+## Local Development
 
-1. Clone the repository  
-   ```bash
-   git clone https://github.com/comitanigiacomo/deep_mind.git
-   ```
-2. Navigate into the project directory
+1. Clone the repository
 
-3. Install dependencies
-   ```bash
-   npm install
-   ```
-4. Start the development server
-   ```bash
-   npm run dev
-   ```
-5. Open `http://localhost:3000` in your browser to view the portfolio.
+```bash
+git clone https://github.com/comitanigiacomo/deep_mind.git
+```
+
+2. Navigate into the project directory and install dependencies
+
+```Bash
+npm install
+```
+
+3. Start the development server
+
+```Bash
+npm run dev
+```
+
+4. Open http://localhost:3000 in your browser.
+
+## Production Deployment (Docker)
+
+This project includes a Docker setup. 
+It uses Node.js to build the Vite/React app, and a lightweight Nginx container to serve the static files.
+
+1. Clone the repository
+
+```Bash
+git clone https://github.com/comitanigiacomo/deep_mind.git
+cd deep_mind
+```
+
+2. Build and start the container in detached mode
+
+```Bash
+docker compose up -d --build
+```
+
+The application will be running on port `8090` (as defined in `docker-compose.yml`). You can expose this through a reverse proxy like Nginx Proxy Manager.
 
 ## Contributing
 
@@ -75,9 +88,8 @@ Contributions are welcome! If you want to suggest improvements or fix issues, pl
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
-
-## Acknowledgements
+This project is licensed under the `MIT` License. See the LICENSE file for details.
+Acknowledgements
 
 - Typewriter animation inspired by Typed.js
 
