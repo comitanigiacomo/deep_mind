@@ -5,7 +5,7 @@
     "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
     "stars": 1,
     "forks": 0,
-    "commits": 46,
+    "commits": 47,
     "languages": [
       {
         "name": "Go",
@@ -20,7 +20,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-02-22T11:32:07Z",
+    "updated_at": "2026-02-26T18:57:47Z",
     "license": "MIT License",
     "topics": [
       "docker",
@@ -185,7 +185,7 @@
     "image": "/cybersecurity.png",
     "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
     "stars": 0,
-    "forks": 0,
+    "forks": 1,
     "commits": 82,
     "languages": [
       {
@@ -242,7 +242,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 591,
+    "commits": 602,
     "languages": [
       {
         "name": "JavaScript",
@@ -250,7 +250,7 @@
       },
       {
         "name": "CSS",
-        "percent": 42.7
+        "percent": 42.8
       },
       {
         "name": "Python",
@@ -261,7 +261,7 @@
         "percent": 1.1
       }
     ],
-    "updated_at": "2026-02-22T21:54:09Z",
+    "updated_at": "2026-03-03T01:06:08Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -270,7 +270,7 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 157.86,
+    "size": 157.83,
     "archived": false,
     "default_branch": "main"
   },

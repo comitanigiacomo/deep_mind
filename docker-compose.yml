@@ -1,0 +1,7 @@
+services:
+  portfolio:
+    build: .
+    container_name: jack-portfolio
+    restart: unless-stopped
+    ports:
+      - "8090:80"
