@@ -5,7 +5,7 @@
     "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
     "stars": 1,
     "forks": 0,
-    "commits": 47,
+    "commits": 48,
     "languages": [
       {
         "name": "Go",
@@ -20,7 +20,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-02-26T18:57:47Z",
+    "updated_at": "2026-03-07T14:48:43Z",
     "license": "MIT License",
     "topics": [
       "docker",
@@ -42,7 +42,7 @@
     "description": "Minimalist habit tracker built with React, TypeScript, and Go, based on kanso philosophy",
     "stars": 2,
     "forks": 0,
-    "commits": 32,
+    "commits": 33,
     "languages": [
       {
         "name": "TypeScript",
@@ -61,7 +61,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-02-22T15:11:59Z",
+    "updated_at": "2026-03-07T14:53:50Z",
     "license": "MIT License",
     "topics": [
       "habit-tracker",
@@ -242,7 +242,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 607,
+    "commits": 608,
     "languages": [
       {
         "name": "JavaScript",
@@ -265,7 +265,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-03-06T01:09:04Z",
+    "updated_at": "2026-03-07T01:00:35Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
