@@ -184,7 +184,7 @@
     "title": "CyberSecurity",
     "image": "/cybersecurity.png",
     "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
-    "stars": 0,
+    "stars": 1,
     "forks": 1,
     "commits": 82,
     "languages": [
@@ -197,7 +197,7 @@
         "percent": 8.8
       }
     ],
-    "updated_at": "2025-05-16T15:16:52Z",
+    "updated_at": "2026-03-26T16:19:49Z",
     "license": "MIT License",
     "topics": [
       "cybersecurity",
@@ -242,7 +242,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 626,
+    "commits": 627,
     "languages": [
       {
         "name": "JavaScript",
@@ -265,7 +265,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-03-25T01:07:39Z",
+    "updated_at": "2026-03-26T01:13:19Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
