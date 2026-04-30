@@ -242,19 +242,19 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 661,
+    "commits": 664,
     "languages": [
       {
         "name": "JavaScript",
-        "percent": 51.7
+        "percent": 51.6
       },
       {
         "name": "CSS",
-        "percent": 42.7
+        "percent": 42.6
       },
       {
         "name": "Python",
-        "percent": 4.3
+        "percent": 4.6
       },
       {
         "name": "HTML",
@@ -265,7 +265,7 @@
         "percent": 0.2
       }
     ],
-    "updated_at": "2026-04-29T01:49:41Z",
+    "updated_at": "2026-04-30T13:39:55Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -301,6 +301,78 @@
       "smart-home"
     ],
     "size": 12.81,
+    "archived": false,
+    "default_branch": "main"
+  },
+  "comitanigiacomo/NYT-Stream-Analysis": {
+    "title": "NYT-Stream-Analysis",
+    "image": "/NYT-datastream.png",
+    "description": "Python implementation of Flajolet-Martin and Bloom Filter algorithms for massive data streams. Features lazy evaluation and strict O(1) RAM constraints.",
+    "stars": 1,
+    "forks": 0,
+    "commits": 17,
+    "languages": [
+      {
+        "name": "Typst",
+        "percent": 59.0
+      },
+      {
+        "name": "Jupyter Notebook",
+        "percent": 32.2
+      },
+      {
+        "name": "TeX",
+        "percent": 8.8
+      }
+    ],
+    "updated_at": "2026-03-28T15:50:56Z",
+    "license": "MIT License",
+    "topics": [
+      "algorithms",
+      "bloom-filter",
+      "data-streaming",
+      "flajolet-martin",
+      "python"
+    ],
+    "size": 0.41,
+    "archived": true,
+    "default_branch": "main"
+  },
+  "comitanigiacomo/double-descent-analysis": {
+    "title": "double-descent-analysis",
+    "image": "/double-descent.png",
+    "description": "Python empirical replication of the Double Descent risk curve in Machine Learning using from-scratch closed-form linear models.",
+    "stars": 0,
+    "forks": 0,
+    "commits": 29,
+    "languages": [
+      {
+        "name": "Jupyter Notebook",
+        "percent": 92.9
+      },
+      {
+        "name": "Typst",
+        "percent": 4.4
+      },
+      {
+        "name": "Python",
+        "percent": 1.8
+      },
+      {
+        "name": "TeX",
+        "percent": 0.9
+      }
+    ],
+    "updated_at": "2026-04-30T13:16:21Z",
+    "license": "MIT License",
+    "topics": [
+      "double-descent",
+      "linear-regression",
+      "machine-learning",
+      "python",
+      "ridge-regression"
+    ],
+    "size": 1.61,
     "archived": false,
     "default_branch": "main"
   }
