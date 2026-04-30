@@ -102,7 +102,7 @@ export default function Projects() {
 
   return (
     <section id="projects" ref={sectionRef} className="projects-section">
-      <div className="projects-container" style={{ height: isMobile ? 'auto' : `${projects.length * 200}vh` }}>
+      <div className="projects-container" style={{ height: isMobile ? 'auto' : `${projects.length + 1 * 200}vh` }}>
         <div className="sticky-content">
           <div className="section-title">
             <h2>PROJECTS</h2>
