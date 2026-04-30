@@ -58,7 +58,20 @@ PROJECTS = [
         "owner": "comitanigiacomo",
         "repo": "TankCheck",
         "image": "/mockup.png",
-    }]
+    },
+    {
+        "title": "NYT-Stream-Analysis",
+        "owner": "comitanigiacomo",
+        "repo": "NYT-Stream-Analysis",
+        "image": "/NYT-datastream.png",
+    },
+    {
+        "title": "double-descent-analysis",
+        "owner": "comitanigiacomo",
+        "repo": "double-descent-analysis",
+        "image": "/double-descent.png",
+    },
+    ]
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
 
