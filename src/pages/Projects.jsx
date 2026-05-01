@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
-import TiltedCard from '../components/TiltedCard';
+import Container from 'react-bootstrap/Container';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -160,7 +160,7 @@ export default function Projects() {
                     transitionDelay: `${index === activeIndex ? 0.1 : 0}s`
                   }}
                 >
-                  <TiltedCard>
+                  <Container>
                     <article className="project-item">
                       <div className="project-image-container">
                         <div className="project-image">
@@ -240,7 +240,7 @@ export default function Projects() {
                         </div>
                       </div>
                     </article>
-                  </TiltedCard>
+                  </Container>
                 </div>
               );
             })}
