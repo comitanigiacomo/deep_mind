@@ -4,10 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import './About.css';
-import Intro from '../components/Intro';
 import { useTheme } from '../context/ThemeContext';
 
-export default function About({ showIntro, setShowIntro }) {
+export default function About() {
   const { isDarkMode } = useTheme();
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
@@ -77,22 +76,6 @@ export default function About({ showIntro, setShowIntro }) {
       }
     }
   };
-
-  if (showIntro) {
-    return (
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 1000,
-        backgroundColor: isDarkMode ? '#000000' : '#f8f9fa'
-      }}>
-        <Intro onEnd={() => setShowIntro(false)} />
-      </div>
-    );
-  }
 
   return (
     <section id="about" style={{
