@@ -1,251 +1,219 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import KeyboardScene from '../components/keyboardScene'
 import './Skills.css'
 import { useTheme } from '../context/ThemeContext'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import ShinyText from '../components/ShinyText';
 
-const keyDescriptions = {
+const skillData = {
     'key-01': {
         title: 'Under construction 🚧',
-        highlights: [
-            "Still under construction, stay tuned for cool stuff coming soon!",
-            "I'm working on it, but it's not ready yet.",
-        ]
+        level: 'Coming Soon',
+        category: 'misc',
+        description: "Still under construction — cool stuff coming soon!",
     },
     'key-02': {
         title: 'Under construction 🚧',
-        highlights: [
-            "Still under construction, stay tuned for cool stuff coming soon!",
-            "I'm working on it, but it's not ready yet.",
-        ]
+        level: 'Coming Soon',
+        category: 'misc',
+        description: "Still under construction — cool stuff coming soon!",
     },
     'key-03': {
         title: 'Under construction 🚧',
-        highlights: [
-            "Still under construction, stay tuned for cool stuff coming soon!",
-            "I'm working on it, but it's not ready yet.",
-        ]
+        level: 'Coming Soon',
+        category: 'misc',
+        description: "Still under construction — cool stuff coming soon!",
     },
     'key-04': {
         title: 'Under construction 🚧',
-        highlights: [
-            "Still under construction, stay tuned for cool stuff coming soon!",
-            "I'm working on it, but it's not ready yet.",
-        ]
+        level: 'Coming Soon',
+        category: 'misc',
+        description: "Still under construction — cool stuff coming soon!",
     },
     'key-05': {
         title: 'GitHub Actions',
-        highlights: [
-            "I think it’s awesome to have automation working for you behind the scenes. I’ve set up a few automated workflows on my GitHub repos, which saved me a ton of time. ",
-            "I’ve set up a few automated workflows on my GitHub repos, which saved me a ton of time. ",
-            "It’s like having a little helper doing the boring tasks so I can focus on coding. ",
-            "I’m definitely planning to explore it further and make my projects more efficient. "
-        ]
+        level: 'Intermediate',
+        category: 'devops',
+        description: "Automated workflows on GitHub repos — CI/CD pipelines that save time and make projects more efficient.",
     },
     'key-06': {
         title: 'Kotlin',
-        highlights: [
-            "I tried building a small personal app with Kotlin and really enjoyed it. ",
-            "I’m still pretty new, but I’m excited to keep exploring because I like the idea of creating something for mobile. ",
-            "Overall, it’s a language I find pretty cool and I think it could be great for my future projects. "
-        ]
+        level: 'Beginner',
+        category: 'language',
+        description: "Built a small personal app and enjoyed the experience. Excited to keep exploring mobile development.",
     },
     'key-07': {
         title: 'Blender',
-        highlights: [
-            "I used Blender to create the 3D model of this keyboard, which was super cool. ",
-            "It was my first real dive into 3D modeling, and I found it really enjoyable. ",
-            "I’m planning to spend more time with Blender in the future to build more complex models. ",
-            "It’s amazing how creative you can get with it once you get the hang of the tools. "
-        ]
+        level: 'Beginner',
+        category: 'tool',
+        description: "Created the 3D keyboard model you see here. First dive into 3D modeling — planning to build more complex models.",
     },
     'key-08': {
         title: 'CSS',
-        highlights: [
-            "CSS is my go-to for styling websites along with HTML. ",
-            "I enjoy making layouts look clean and responsive on all devices. ",
-            "It’s satisfying to see a site come alive with good design and smooth animations. ",
-            "There’s always something new to learn, which keeps it interesting. "
-        ]
+        level: 'Advanced',
+        category: 'frontend',
+        description: "Go-to for styling — clean layouts, responsive designs, smooth animations across all devices.",
     },
     'key-09': {
         title: 'HTML5',
-        highlights: [
-            "HTML5 has been the foundation for some of my web projects at uni—simple and essential. ",
-            "That said, I prefer working with modern frameworks like React because they let me build more dynamic and scalable apps. ",
-            "React really takes things to the next level for me "
-        ]
+        level: 'Advanced',
+        category: 'frontend',
+        description: "Foundation for web projects. Prefer modern frameworks like React for dynamic, scalable apps.",
     },
     'key-10': {
         title: 'React',
-        highlights: [
-            "I build sites like this one with React because it’s intuitive and fast. ",
-            "React lets me create interactive UIs without too much hassle. ",
-            "I’ve done a few projects with it and love how reusable components make development easier. ",
-            "I’m constantly discovering new ways to improve my skills here. "
-        ]
+        level: 'Advanced',
+        category: 'frontend',
+        description: "Built this portfolio and several projects. Love reusable components and interactive UI development.",
     },
     'key-11': {
         title: 'LaTeX',
-        highlights: [
-            "I’ve used LaTeX mainly for making professional-looking notes at university. ",
-            "It’s great for formatting complex documents with precision. ",
-            "I’m comfortable with it and appreciate how clean and consistent the output looks. ",
-            "It might be old-school, but it really makes your work stand out. "
-        ]
+        level: 'Advanced',
+        category: 'tool',
+        description: "Professional-looking university notes with precision formatting. Clean, consistent output.",
     },
     'key-12': {
         title: 'Typst',
-        highlights: [
-            "Typst is a newer, more intuitive tool for writing documents, and I really like it. ",
-            "It feels simpler than LaTeX but still powerful enough for my projects. ",
-            "I used it for a small project and was impressed by how smooth the experience was. ",
-            "I’m excited to keep experimenting and see how it can improve my workflow. "
-        ]
+        level: 'Advanced',
+        category: 'tool',
+        description: "Modern, intuitive document writing. Simpler than LaTeX but powerful enough for projects.",
     },
     'key-13': {
         title: 'Docker',
-        highlights: [
-            "I’ve started looking into Docker but I’m still pretty new to it. ",
-            "I want to get better at containerizing apps to make deployment easier. ",
-            "It seems like a game-changer for development and production environments. ",
-            "Learning Docker feels like the next big step in leveling up my skills. "
-        ]
+        level: 'Intermediate',
+        category: 'devops',
+        description: "Getting into containerization for easier deployment. Next big step in leveling up.",
     },
     'key-14': {
         title: 'Insomnia',
-        highlights: [
-            "I used Insomnia for a personal project and found it really handy. ",
-            "It’s great for testing APIs quickly without fuss. ",
-            "I appreciate how user-friendly and reliable it is for backend development. ",
-            "I’m definitely going to keep using it for future projects. "
-        ]
+        level: 'Intermediate',
+        category: 'tool',
+        description: "Handy API testing tool — user-friendly and reliable for backend development.",
     },
     'key-15': {
         title: 'Linux',
-        highlights: [
-            "I’ve been using Linux for about four years now and I love it. ",
-            "It feels super stable and customizable, which fits perfectly with my workflow. ",
-            "I’m comfortable navigating the terminal and managing my system. ",
-            "Linux is definitely my daily driver, and I don’t plan on switching anytime soon. "
-        ]
+        level: 'Advanced',
+        category: 'tool',
+        description: "Daily driver for 4+ years. Stable, customizable, comfortable with terminal and system management.",
     },
     'key-16': {
         title: 'Git',
-        highlights: [
-            "Git is my absolute favorite for version control — I use it all the time. ",
-            "I know the main commands well and love how it helps me keep track of changes. ",
-            "There’s always more to learn, and I’m excited to dive deeper into advanced features. ",
-            "Versioning code properly just makes development so much smoother and safer. "
-        ]
+        level: 'Advanced',
+        category: 'devops',
+        description: "Favorite version control tool — used daily. Comfortable with all main commands and workflows.",
     },
     'key-17': {
         title: 'MongoDB',
-        highlights: [
-            "I used MongoDB for a university project and really liked how flexible it is. ",
-            "It’s great for handling data that changes often or has no strict schema. ",
-            "The document-based model feels very natural once you get used to it. "
-        ]
+        level: 'Intermediate',
+        category: 'database',
+        description: "Flexible document-based database. Used for university projects with non-strict schemas.",
     },
     'key-18': {
         title: 'PostgreSQL',
-        highlights: [
-            "PostgreSQL isn’t my favorite, but I know my way around it well enough. ",
-            "I can write queries, manage tables, and handle databases with confidence. ",
-            "It’s an important skill, even if it’s not the most exciting for me. ",
-            "Being able to work with both SQL and NoSQL is definitely a plus. "
-        ]
+        level: 'Intermediate',
+        category: 'database',
+        description: "Solid SQL skills — queries, table management, and database handling with confidence.",
     },
     'key-19': {
         title: 'Go',
-        highlights: [
-            "I learned Go during my first year of university programming courses. ",
-            "I like how simple and fast it is while still being powerful. ",
-            "It feels solid for backend work and I’m confident using it. ",
-            "I want to build some personal projects soon to deepen my knowledge. "
-        ]
+        level: 'Intermediate',
+        category: 'language',
+        description: "Learned during first year at university. Simple, fast, and powerful for backend work.",
     },
     'key-20': {
         title: 'Python',
-        highlights: [
-            "I use Python a lot for solving coding challenges on LeetCode. ",
-            "It’s super handy for AI and statistics too, making it really versatile. ",
-            "I feel pretty confident with it and enjoy writing clean, efficient code. ",
-            "Python is definitely one of my favorite languages right now. "
-        ]
+        level: 'Advanced',
+        category: 'language',
+        description: "LeetCode challenges, AI, and statistics. Versatile and one of my favorite languages.",
     },
     'key-21': {
         title: 'PHP',
-        highlights: [
-            "I used PHP to build the frontend of a personal project by generating the HTML and dynamic content.. ",
-            "It’s not my favorite language, but I know how to get the job done well. ",
-            "It still has its uses and I’m comfortable working with it when needed. ",
-            "I’m open to improving and maybe exploring alternatives too. "
-        ]
+        level: 'Intermediate',
+        category: 'language',
+        description: "Built frontend with dynamic HTML content generation. Gets the job done when needed.",
     },
     'key-22': {
         title: 'C',
-        highlights: [
-            "I’m currently using C for reverse engineering and security courses at university. ",
-            "It’s a bit old-school and low-level, but very powerful. ",
-            "Not my favorite language, but it’s useful and important to know. ",
-            "I’m learning a lot about how computers really work through it. "
-        ]
+        level: 'Beginner',
+        category: 'language',
+        description: "Used for reverse engineering and security courses. Low-level but powerful.",
     },
     'key-23': {
         title: 'Java',
-        highlights: [
-            "I learned Java at university to understand object-oriented programming better. ",
-            "I want to do a personal project soon to get even better at it. ",
-            "Java feels solid and versatile for lots of different applications. ",
-            "I’m excited to keep practicing and building cool stuff with it. "
-        ]
+        level: 'Intermediate',
+        category: 'language',
+        description: "University OOP foundation. Solid and versatile — planning personal projects to level up.",
     },
     'key-24': {
         title: 'JavaScript',
-        highlights: [
-            "Lately, I’ve been using JavaScript a lot to build websites. ",
-            "It’s a fun and flexible language that fits perfectly in web development. ",
-            "I enjoy exploring its many features and improving my skills constantly. ",
-            "It’s definitely one of the most useful tools in my coding toolbox. "
-        ]
+        level: 'Intermediate',
+        category: 'language',
+        description: "Primary web development language. Fun, flexible, and essential in my coding toolbox.",
     },
-    'default': {
-        title: 'My Tech Stack',
-        subtitle: <ShinyText text="Hover over keyboard to learn more about my skills" disabled={false} speed={3} className='custom-class' />,
-        highlights: []
-    }
+};
+
+const categoryConfig = {
+    language: { label: 'Language', icon: '⟨⟩' },
+    frontend: { label: 'Frontend', icon: '◈' },
+    devops: { label: 'DevOps', icon: '⚙' },
+    tool: { label: 'Tool', icon: '◆' },
+    database: { label: 'Database', icon: '⊡' },
+    misc: { label: 'Other', icon: '✦' },
+};
+
+const levelConfig = {
+    'Beginner': { width: '33%', color: '#3b82f6' },
+    'Intermediate': { width: '66%', color: '#07589D' },
+    'Advanced': { width: '100%', color: '#06b6d4' },
+    'Coming Soon': { width: '0%', color: '#64748b' },
 };
 
 
 export default function Skills() {
-    const [contentKey, setContentKey] = useState('default')
-    const [fadeClass, setFadeClass] = useState('fade-in')
-    const { isDarkMode } = useTheme()
-
-    const updateContentKey = useCallback((keyName) => {
-        if (keyName !== contentKey) {
-            setFadeClass('fade-out')
-            setTimeout(() => {
-                setContentKey(keyName || 'default')
-                setFadeClass('fade-in')
-            }, 200)
-        }
-    }, [contentKey])
+    // The key currently displayed in the card
+    const [displayedKey, setDisplayedKey] = useState(null)
+    // Whether the progress bar should animate (delayed after mount)
+    const [animateProgress, setAnimateProgress] = useState(false)
+    // Counter to force re-mount of card for fresh CSS animation
+    const [cardGeneration, setCardGeneration] = useState(0)
+    // Ref to cancel pending exit timeout
+    const exitTimerRef = useRef(null)
 
     const handleKeyHover = useCallback((keyName) => {
-        updateContentKey(keyName)
-    }, [updateContentKey])
+        // Always clear any pending exit when a new event arrives
+        if (exitTimerRef.current) {
+            clearTimeout(exitTimerRef.current)
+            exitTimerRef.current = null
+        }
+
+        if (keyName) {
+            // Immediately swap to the new key — bump generation to re-trigger CSS animation
+            setDisplayedKey(keyName)
+            setAnimateProgress(false)
+            setCardGeneration(prev => prev + 1)
+        } else {
+            // Mouse left a key — delay hiding so rapid re-hovers don't flicker
+            exitTimerRef.current = setTimeout(() => {
+                setDisplayedKey(null)
+                setAnimateProgress(false)
+            }, 150)
+        }
+    }, [])
+
+    // Trigger the progress bar animation shortly after card mounts
+    useEffect(() => {
+        if (displayedKey) {
+            const id = setTimeout(() => setAnimateProgress(true), 80)
+            return () => clearTimeout(id)
+        }
+    }, [displayedKey, cardGeneration])
 
     const handleKeyClick = useCallback((keyName) => {
-        updateContentKey(keyName)
-    }, [updateContentKey])
+        handleKeyHover(keyName)
+    }, [handleKeyHover])
 
-    const { title, subtitle, highlights } =
-        keyDescriptions[contentKey] || keyDescriptions['default']
+    const currentSkill = displayedKey ? skillData[displayedKey] : null
+    const category = currentSkill ? categoryConfig[currentSkill.category] : null
+    const level = currentSkill ? levelConfig[currentSkill.level] : null
 
     return (
         <section id="skills" className="skills-section">
@@ -254,33 +222,61 @@ export default function Skills() {
                 <div className="title-underline"></div>
             </div>
 
-            <Container fluid className="skills-container">
-                <Row className="h-100">
-                    <Col lg={7} className="skills-scene-col px-0">
-                        <KeyboardScene
-                            onKeyHover={handleKeyHover}
-                            onKeyClick={handleKeyClick}
-                            fixedRotation={[0.5, 0.6, 0]}
-                            scale={1.5}
-                        />
-                    </Col>
+            <div className="skills-layout">
+                {/* Keyboard column */}
+                <div className="skills-keyboard-area">
+                    <KeyboardScene
+                        onKeyHover={handleKeyHover}
+                        onKeyClick={handleKeyClick}
+                        fixedRotation={[0.5, 0.6, 0]}
+                        scale={1.5}
+                    />
+                </div>
 
-                    <Col lg={5} className="skills-text-col">
-                        <div className={`skills-text-content ${fadeClass}`}>
-                            <h3 className="skill-main-title">{title}</h3>
-                            {subtitle && <div className="skill-subtitle">{subtitle}</div>}
-                            <div className="skill-highlights">
-                                {highlights.map((item, index) => (
-                                    <span key={index}>
-                                        {item}
-                                        {index < highlights.length - 1 && <br />}
-                                    </span>
-                                ))}
+                {/* Card column — always in DOM, visibility controlled by CSS */}
+                <div className="skills-card-area">
+                    {currentSkill ? (
+                        <div className="skill-card skill-card--enter" key={cardGeneration}>
+                            <div className="skill-card__header">
+                                <div className="skill-card__category">
+                                    <span className="skill-card__category-icon">{category?.icon}</span>
+                                    <span className="skill-card__category-label">{category?.label}</span>
+                                </div>
+                                <span className={`skill-card__level skill-card__level--${currentSkill.level.toLowerCase().replace(' ', '-')}`}>
+                                    {currentSkill.level}
+                                </span>
                             </div>
+
+                            <h3 className="skill-card__title">{currentSkill.title}</h3>
+
+                            <p className="skill-card__description">{currentSkill.description}</p>
+
+                            {currentSkill.level !== 'Coming Soon' && (
+                                <div className="skill-card__progress">
+                                    <div className="skill-card__progress-track">
+                                        <div
+                                            className="skill-card__progress-fill"
+                                            style={{
+                                                width: animateProgress ? level?.width : '0%',
+                                                background: `linear-gradient(90deg, ${level?.color}, ${level?.color}88)`,
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+                    ) : (
+                        <div className="skills-prompt">
+                            <ShinyText
+                                text="Hover over a key to explore my skills"
+                                disabled={false}
+                                speed={3}
+                                className="skills-prompt-text"
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
         </section>
     )
 }
