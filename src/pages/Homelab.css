@@ -1,0 +1,465 @@
+/* ═══════════════════════════════════════════════════
+   Homelab Section
+   ═══════════════════════════════════════════════════ */
+
+.homelab-section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 0 4rem;
+  background-color: var(--bg);
+}
+
+.homelab-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.homelab--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Header ─────────────────────────────────────── */
+
+.homelab-subtitle {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.05rem;
+  margin-top: 0.75rem;
+  margin-bottom: 3rem;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+[data-theme="light"] .homelab-subtitle {
+  color: rgba(0,0,0,0.45);
+}
+
+/* ─── Architecture + Stack row ───────────────────── */
+
+.homelab-arch {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+/* ─── Terminal diagram ───────────────────────────── */
+
+.arch-terminal {
+  flex: 1 1 0;
+  min-width: 0;
+  background: rgba(10, 10, 18, 0.8);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="light"] .arch-terminal {
+  background: rgba(248,249,250,0.92);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.arch-terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.2rem;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="light"] .arch-terminal__bar {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.arch-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.arch-dot--red    { background: #ff5f57; }
+.arch-dot--yellow { background: #febc2e; }
+.arch-dot--green  { background: #28c840; }
+
+.arch-terminal__title {
+  margin-left: 0.5rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .arch-terminal__title {
+  color: rgba(0,0,0,0.35);
+}
+
+.arch-terminal__body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.arch-layer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.arch-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  font-weight: 600;
+}
+
+[data-theme="light"] .arch-label {
+  color: rgba(0,0,0,0.35);
+}
+
+.arch-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.arch-nodes--services {
+  gap: 0.4rem;
+}
+
+.arch-node {
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.arch-node--ext {
+  background: rgba(6,182,212,0.12);
+  color: #06b6d4;
+  border: 1px solid rgba(6,182,212,0.25);
+}
+
+.arch-node--proxy {
+  background: rgba(7,88,157,0.15);
+  color: #07589D;
+  border: 1px solid rgba(7,88,157,0.3);
+}
+
+[data-theme="light"] .arch-node--proxy {
+  color: #0d6efd;
+  background: rgba(13,110,253,0.08);
+  border-color: rgba(13,110,253,0.2);
+}
+
+.arch-node--service {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.7rem;
+}
+
+[data-theme="light"] .arch-node--service {
+  background: rgba(0,0,0,0.03);
+  color: rgba(0,0,0,0.6);
+  border-color: rgba(0,0,0,0.08);
+}
+
+.arch-node--host {
+  background: rgba(34,197,94,0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+
+.arch-arrow {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+[data-theme="light"] .arch-arrow {
+  color: rgba(0,0,0,0.2);
+}
+
+/* ─── Stack panel ────────────────────────────────── */
+
+.homelab-stack {
+  flex: 0 0 220px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(10, 10, 18, 0.8);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+[data-theme="light"] .homelab-stack {
+  background: rgba(248,249,250,0.92);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.homelab-stack__title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+  padding: 1rem 1.25rem 0.6rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+[data-theme="light"] .homelab-stack__title {
+  color: rgba(0,0,0,0.35);
+  border-color: rgba(0,0,0,0.06);
+}
+
+.homelab-stack__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.7rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+[data-theme="light"] .homelab-stack__item {
+  border-color: rgba(0,0,0,0.04);
+}
+
+.homelab-stack__label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+}
+
+[data-theme="light"] .homelab-stack__label {
+  color: rgba(0,0,0,0.35);
+}
+
+.homelab-stack__value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  font-family: 'Courier New', monospace;
+}
+
+[data-theme="light"] .homelab-stack__value {
+  color: rgba(0,0,0,0.7);
+}
+
+.homelab-github-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(135deg, rgba(7,88,157,0.8), rgba(7,88,157,1));
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-top: auto;
+}
+
+.homelab-github-btn:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(7,88,157,0.4);
+}
+
+/* ─── Service cards grid ─────────────────────────── */
+
+.homelab-services__heading {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+[data-theme="light"] .homelab-services__heading {
+  color: rgba(0,0,0,0.35);
+}
+
+.homelab-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.homelab-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem 1.3rem;
+  background: rgba(15,15,25,0.7);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: cardFadeUp 0.5s ease both;
+  animation-delay: var(--delay, 0s);
+  animation-play-state: paused;
+}
+
+.homelab--visible .homelab-card {
+  animation-play-state: running;
+}
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+[data-theme="light"] .homelab-card {
+  background: rgba(255,255,255,0.88);
+  border-color: rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.homelab-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-color, #07589D);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2), 0 0 0 1px var(--card-color, #07589D) inset;
+}
+
+.homelab-card__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.homelab-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.homelab-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+[data-theme="light"] .homelab-card__name {
+  color: rgba(0,0,0,0.82);
+}
+
+.homelab-card__live {
+  font-size: 0.75rem;
+  color: #06b6d4;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.homelab-card__live:hover {
+  opacity: 1;
+}
+
+.homelab-card__desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+[data-theme="light"] .homelab-card__desc {
+  color: rgba(0,0,0,0.45);
+}
+
+.homelab-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.homelab-tag {
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .homelab-tag {
+  background: rgba(0,0,0,0.04);
+  color: rgba(0,0,0,0.4);
+  border-color: rgba(0,0,0,0.07);
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .homelab-arch {
+    flex-direction: column;
+  }
+  .homelab-stack {
+    flex: none;
+    width: 100%;
+  }
+  .homelab-stack {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .homelab-stack__title {
+    width: 100%;
+  }
+  .homelab-stack__item {
+    flex: 1 1 140px;
+    border-right: 1px solid rgba(255,255,255,0.04);
+  }
+  [data-theme="light"] .homelab-stack__item {
+    border-right-color: rgba(0,0,0,0.04);
+  }
+  .homelab-github-btn {
+    width: 100%;
+    margin: 0.75rem;
+    box-sizing: border-box;
+    width: calc(100% - 1.5rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .homelab-section {
+    padding: 3rem 0 2rem;
+  }
+  .homelab-services {
+    grid-template-columns: 1fr;
+  }
+  .homelab-inner {
+    padding: 0 1.25rem;
+  }
+}
