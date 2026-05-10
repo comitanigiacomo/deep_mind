@@ -148,6 +148,8 @@
 .theme-toggle-icon>span {
   padding-left: 0 !important;
   line-height: 1;
+  margin-right: 20px;
+  margin-top: 5px;
 }
 
 .theme-toggle-icon>span::before,
