@@ -31,7 +31,7 @@ function Mynav() {
   return (
     <Navbar fixed="top" expand="lg">
       <Container fluid className="p-0">
-        <Navbar.Brand href="#about" className="d-none d-lg-block">
+        <Navbar.Brand href="/#about" className="d-none d-lg-block">
           <TypeWriter text="Deep mind" speed={150} delay={2000} textColor={isDarkMode ? "#fff" : "#2a2a2a"} />
         </Navbar.Brand>
         <Nav.Link
@@ -43,15 +43,15 @@ function Mynav() {
         </Nav.Link>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#about"><span>About</span></Nav.Link>
-            <Nav.Link href="#interests"><span>Interests</span></Nav.Link>
-            <Nav.Link href="#skills"><span>Skills</span></Nav.Link>
-            <Nav.Link href="#education"><span>Education</span></Nav.Link>
-            <Nav.Link href="#projects"><span>Projects</span></Nav.Link>
-            <Nav.Link href="#homelab"><span>Homelab</span></Nav.Link>
-            <Nav.Link href="#research"><span>Research</span></Nav.Link>
-            <Nav.Link href="#blog"><span>Blog</span></Nav.Link>
-            <Nav.Link href="#contacts"><span>Contacts</span></Nav.Link>
+            <Nav.Link href="/#about"><span>About</span></Nav.Link>
+            <Nav.Link href="/#interests"><span>Interests</span></Nav.Link>
+            <Nav.Link href="/#skills"><span>Skills</span></Nav.Link>
+            <Nav.Link href="/#education"><span>Education</span></Nav.Link>
+            <Nav.Link href="/#projects"><span>Projects</span></Nav.Link>
+            <Nav.Link href="/#homelab"><span>Homelab</span></Nav.Link>
+            <Nav.Link href="/#research"><span>Research</span></Nav.Link>
+            <Nav.Link href="/#blog"><span>Blog</span></Nav.Link>
+            <Nav.Link href="/#contacts"><span>Contacts</span></Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Nav className="ms-auto d-none d-lg-block">

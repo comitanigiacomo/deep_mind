@@ -1,64 +1,18 @@
 import { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { blogPosts } from '../data/blogPosts';
 import './Blog.css';
 
-const BLOG_URL = 'https://blog.jack-lab.dev';
-
 const categories = {
-  leetcode: { label: 'LeetCode',  color: '#f59e0b' },
-  homelab:  { label: 'Homelab',   color: '#06b6d4' },
-  cs:       { label: 'CS Theory', color: '#a855f7' },
-  tools:    { label: 'Tools',     color: '#22c55e' },
-  dev:      { label: 'Dev',       color: '#07589D' },
+  leetcode: { label: 'LeetCode', color: '#f59e0b' },
+  homelab: { label: 'Homelab', color: '#06b6d4' },
+  cs: { label: 'CS Theory', color: '#a855f7' },
+  tools: { label: 'Tools', color: '#22c55e' },
+  dev: { label: 'Dev', color: '#07589D' },
 };
 
-const posts = [
-  {
-    id: 1,
-    featured: true,
-    category: 'homelab',
-    title: 'How I self-host everything on a single Debian box',
-    excerpt:
-      'From Pi-hole to Vaultwarden: a walkthrough of my homelab stack — why I chose each service, how they are wired together with Nginx Proxy Manager, and the shell scripts that make the whole thing reproducible.',
-    date: 'May 2025',
-    readingTime: '8 min',
-  },
-  {
-    id: 2,
-    category: 'leetcode',
-    title: 'Sliding Window: the pattern that unlocked 40+ problems for me',
-    excerpt:
-      'Once I understood the invariant behind sliding window, subarray problems became formulaic. Here is the mental model I use, with three progressively harder examples.',
-    date: 'Apr 2025',
-    readingTime: '6 min',
-  },
-  {
-    id: 3,
-    category: 'tools',
-    title: 'Why I switched from LaTeX to Typst for my university notes',
-    excerpt:
-      'Faster compile times, a sane syntax, and native scripting. After one semester all my notes live in Typst — here is what I gained and what I had to give up.',
-    date: 'Mar 2025',
-    readingTime: '5 min',
-  },
-  {
-    id: 4,
-    category: 'cs',
-    title: 'Double Descent: when more data makes your model worse (then better)',
-    excerpt:
-      'An intuitive explanation of the double descent risk curve and why classical bias-variance decomposition breaks down in overparameterised models.',
-    date: 'Feb 2025',
-    readingTime: '10 min',
-  },
-  {
-    id: 5,
-    category: 'dev',
-    title: 'Building an offline-first sync engine in Go',
-    excerpt:
-      'The design decisions behind Kanso\'s sync engine: CRDTs vs timestamps, Redis as a message broker, and conflict resolution without a central clock.',
-    date: 'Jan 2025',
-    readingTime: '12 min',
-  },
-];
+const posts = Object.values(blogPosts);
+const featuredId = 'homelab-debian';
 
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
@@ -80,8 +34,8 @@ export default function Blog() {
   const [sectionRef, visible] = useInView();
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const featured = posts.find(p => p.featured);
-  const list = posts.filter(p => !p.featured);
+  const featured = posts.find(p => p.id === featuredId);
+  const list = posts.filter(p => p.id !== featuredId);
 
   const filteredList = activeCategory
     ? list.filter(p => p.category === activeCategory)
@@ -97,17 +51,6 @@ export default function Blog() {
             <h2>BLOG</h2>
             <div className="title-underline"></div>
           </div>
-          <a
-            href={BLOG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="blog-visit-link"
-          >
-            blog.jack-lab.dev
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
-              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
         </div>
 
         <p className="blog-subtitle">
@@ -116,10 +59,8 @@ export default function Blog() {
 
         {/* Featured */}
         {featured && (
-          <a
-            href={BLOG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to={`/blog/${featured.id}`}
             className="blog-featured"
           >
             <div className="blog-featured__top">
@@ -132,19 +73,23 @@ export default function Blog() {
               <span className="blog-featured__flag">Featured</span>
             </div>
             <h3 className="blog-featured__title">{featured.title}</h3>
-            <p className="blog-featured__excerpt">{featured.excerpt}</p>
+
+            <p className="blog-featured__excerpt">
+              Instead of a complex hypervisor setup or multiple Raspberry Pis, I went with a completely minimal approach: a single Debian machine where everything is containerized...
+            </p>
+
             <div className="blog-featured__meta">
               <span>{featured.date}</span>
               <span className="blog-meta-sep" />
-              <span>{featured.readingTime} read</span>
+              <span>{featured.readingTime}</span>
               <span className="blog-featured__arrow">
                 Read
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
             </div>
-          </a>
+          </Link>
         )}
 
         {/* Divider + category filter */}
@@ -174,16 +119,23 @@ export default function Blog() {
         <ul className="blog-list" role="list">
           {filteredList.map((post, i) => {
             const cat = categories[post.category];
+
+            // Short excerpts for the preview
+            let excerpt = '';
+            if (post.id === 'sliding-window') excerpt = 'Instead of recalculating everything from scratch for every possible subarray, you maintain a "window" of elements...';
+            if (post.id === 'typst-vs-latex') excerpt = 'Faster compile times, a sane syntax, and native scripting. After one semester all my notes live in Typst...';
+            if (post.id === 'double-descent') excerpt = 'An intuitive explanation of the double descent risk curve and why classical bias-variance decomposition breaks down...';
+            if (post.id === 'kanso-sync') excerpt = "The design decisions behind Kanso's sync engine: Delta-Sync, Optimistic Locking, and conflict resolution...";
+            if (post.id === 'nyt-stream') excerpt = 'Moving from static CSVs to real-time data: building a resilient, decoupled streaming pipeline using the New York Times API...';
+
             return (
               <li
                 key={post.id}
                 className="blog-item"
                 style={{ '--delay': `${i * 0.07}s` }}
               >
-                <a
-                  href={BLOG_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to={`/blog/${post.id}`}
                   className="blog-item__link"
                 >
                   <div className="blog-item__left">
@@ -191,7 +143,7 @@ export default function Blog() {
                       {cat.label}
                     </span>
                     <span className="blog-item__title">{post.title}</span>
-                    <span className="blog-item__excerpt">{post.excerpt}</span>
+                    <span className="blog-item__excerpt">{excerpt}</span>
                   </div>
                   <div className="blog-item__right">
                     <span className="blog-item__date">{post.date}</span>
@@ -205,29 +157,14 @@ export default function Blog() {
                       width="14"
                       height="14"
                     >
-                      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                </a>
+                </Link>
               </li>
             );
           })}
         </ul>
-
-        {/* CTA */}
-        <div className="blog-footer">
-          <a
-            href={BLOG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="blog-all-link"
-          >
-            Read all posts on the blog
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
-              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-        </div>
 
       </div>
     </section>
