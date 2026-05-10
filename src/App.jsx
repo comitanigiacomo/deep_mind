@@ -7,6 +7,7 @@ import Experience from './pages/Education';
 import Projects from './pages/Projects';
 import Homelab from './pages/Homelab.jsx';
 import Research from './pages/Research.jsx';
+import Blog from './pages/Blog.jsx';
 import Contacts from './pages/Contacts';
 import Interests from './pages/Interests.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -61,6 +62,9 @@ export default function App() {
               </section>
               <section id="research">
                 <Research />
+              </section>
+              <section id="blog">
+                <Blog />
               </section>
               <section id="contacts">
                 <Contacts />

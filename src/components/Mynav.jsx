@@ -50,6 +50,7 @@ function Mynav() {
             <Nav.Link href="#projects"><span>Projects</span></Nav.Link>
             <Nav.Link href="#homelab"><span>Homelab</span></Nav.Link>
             <Nav.Link href="#research"><span>Research</span></Nav.Link>
+            <Nav.Link href="#blog"><span>Blog</span></Nav.Link>
             <Nav.Link href="#contacts"><span>Contacts</span></Nav.Link>
           </Nav>
         </Navbar.Collapse>
