@@ -311,6 +311,20 @@ h1 {
 .terminal-output {
   margin-top: 0.4rem;
   font-size: 0.96rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.terminal-output .cursor {
+  color: var(--text);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .terminal-prompt,
@@ -426,10 +440,6 @@ h1 {
 }
 
 @media (max-width: 992px) {
-  .image-wrapper {
-    display: none;
-  }
-
   .text-column {
     width: 100%;
     max-width: 100%;
@@ -459,6 +469,22 @@ h1 {
 
   .scroll-indicator {
     display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    max-width: 180px;
+    margin: 0 auto 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .image-controls-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
   }
 }
 

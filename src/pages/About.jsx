@@ -11,7 +11,28 @@ export default function About({ showIntro, setShowIntro }) {
   const { isDarkMode } = useTheme();
   const [inputValue, setInputValue] = useState('');
   const [output, setOutput] = useState('');
+  const [displayedOutput, setDisplayedOutput] = useState('');
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    if (!output) {
+      setDisplayedOutput('');
+      return;
+    }
+
+    setDisplayedOutput('');
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < output.length) {
+        setDisplayedOutput(output.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, [output]);
 
   useEffect(() => {
     let timeoutId;
@@ -88,7 +109,7 @@ export default function About({ showIntro, setShowIntro }) {
       }}>
         <Container className="about-container py-5 fade-in">
           <Row>
-            <Col md={6} className="d-flex flex-column justify-content-center text-column">
+            <Col md={6} className="d-flex flex-column justify-content-center text-column order-2 order-md-1">
               <p className="small-text">Hey, I'm</p>
               <h1 className="display-1 fw-bold">Jack</h1>
               <p className="medium-text">Computer Science student from Milan</p>
@@ -107,13 +128,14 @@ export default function About({ showIntro, setShowIntro }) {
                 </div>
                 {output && (
                   <div className="terminal-output">
-                    <span>{output}</span>
+                    <span>{displayedOutput}</span>
+                    <span className="cursor">|</span>
                   </div>
                 )}
               </div>
             </Col>
 
-            <Col md={6} className="image-column">
+            <Col md={6} className="image-column order-1 order-md-2">
               <div className="image-wrapper">
                 <img
                   src="/prova.jpeg"
@@ -122,7 +144,7 @@ export default function About({ showIntro, setShowIntro }) {
                 />
               </div>
 
-              <div className="image-controls">
+              <div className="image-controls d-none d-md-block">
                 <div className="contact-icons">
                   <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
                     <FaGithub className="icon" />
@@ -141,6 +163,26 @@ export default function About({ showIntro, setShowIntro }) {
                   See My Projects
                 </button>
               </div>
+            </Col>
+
+            <Col xs={12} className="image-controls-mobile order-3 d-md-none">
+              <div className="contact-icons">
+                <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
+                  <FaGithub className="icon" />
+                </a>
+                <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="icon" />
+                </a>
+                <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="icon" />
+                </a>
+              </div>
+              <button
+                onClick={() => (window.location.href = '#projects')}
+                className="minimal-btn"
+              >
+                See My Projects
+              </button>
             </Col>
           </Row>
         </Container>
