@@ -51,19 +51,52 @@
 }
 
 .section-title {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   text-align: center;
-  padding: 1.6rem 0;
+  padding: 0;
   z-index: 10;
+  margin-bottom: 0;
+}
+
+.section-title h2 {
+  color: var(--text-color, #fff);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+[data-theme="light"] .section-title h2 {
+  color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .section-title h2 {
+  color: #fff !important;
+}
+
+.section-title .title-underline {
+  height: 3px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--primary-color, #3b82f6), var(--primary-color, #3b82f6));
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
 }
 
 .interests-section {
   position: relative;
   width: 100%;
   padding-top: 6rem;
+  z-index: 1;
+}
+
+.interests-title-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 0;
+  text-align: center;
 }
 
 .interests-container {
@@ -267,7 +300,7 @@
 }
 
 .interest-description p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--text-color);
   margin: 0;
@@ -365,12 +398,33 @@
 }
 
 @media (max-width: 62rem) {
-  .section-title{
-    margin-top: -6rem;
+  .section-title {
+    margin-top: 0;
+    padding: 0;
   }
+
+  .interests-title-wrapper {
+    padding: 1rem 0;
+  }
+
+  .interests-section {
+    padding-top: 2rem;
+  }
+
   .interests-container {
     height: auto !important;
-    padding: 1.6rem 0;
+    padding: 0.5rem 0;
+    margin-top: 0;
+  }
+
+  .interests-section {
+    padding-top: 1rem;
+  }
+
+  .interests-container {
+    height: auto !important;
+    padding: 0.5rem 0;
+    margin-top: 0;
   }
 
   .sticky-content {
@@ -469,6 +523,28 @@
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
+  }
+
+  /* Disable hover movement effects on mobile */
+  .interest-image {
+    transition: none !important;
+  }
+
+  .interest-content.active:hover .interest-image,
+  .interest-content.active .interest-image {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .interest-content.active:hover .interest-image img,
+  .interest-content.active .interest-image img {
+    filter: var(--image-filter) !important;
+  }
+
+  .interest-content.active:hover .interest-info,
+  .interest-content.active .interest-info {
+    transform: none !important;
+    box-shadow: none !important;
   }
 }
 

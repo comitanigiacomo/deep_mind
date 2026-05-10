@@ -81,12 +81,10 @@ const EducationPage = () => {
 
       <div className="timeline-container">
         <div className="section-header">
-          <h1 className="section-title" style={{ marginTop: '1px' }}>
-            <span className="title-line">Education</span>
-          </h1>
-          <p className="section-subtitle">
-            Building knowledge through structured learning and continuous growth
-          </p>
+          <div className="section-title">
+            <h2>EDUCATION</h2>
+            <div className="title-underline"></div>
+          </div>
         </div>
 
         <Timeline

@@ -1,31 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
-import Container from 'react-bootstrap/Container';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(-1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const sectionRef = useRef(null);
-  const animationFrameRef = useRef(null);
-  const transitionTimeoutRef = useRef(null);
+  const [selectedTags, setSelectedTags] = useState(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
 
+  // Load project data from JSON
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Load project data
-  useEffect(() => {
+    setIsLoading(true);
     fetch('/repo_stats.json')
       .then(res => res.json())
       .then(repoStats => {
@@ -38,59 +24,42 @@ export default function Projects() {
         }));
         setProjects(parsed);
       })
-      .catch(err => console.error('Errore caricamento JSON:', err));
+      .catch(err => {
+        console.error('Error loading projects:', err);
+        setProjects([]);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (isMobile) return;
+  // Get unique tags from all projects
+  const allTags = useMemo(() => {
+    const tagSet = new Set();
+    projects.forEach(project => {
+      project.stats.topics?.forEach(tag => tagSet.add(tag));
+    });
+    return Array.from(tagSet).sort();
+  }, [projects]);
 
-    const updateActiveIndex = () => {
-      if (!sectionRef.current || projects.length === 0) return;
+  // Filter projects based on selected tags
+  const filteredProjects = useMemo(() => {
+    if (selectedTags.size === 0) return projects;
+    return projects.filter(project =>
+      Array.from(selectedTags).some(tag => project.stats.topics?.includes(tag))
+    );
+  }, [projects, selectedTags]);
 
-      const section = sectionRef.current;
-      const { top, height } = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const scrollProgress = Math.max(0, Math.min(1,
-        (-top) / (height - windowHeight)
-      ));
-
-      const newIndex = Math.min(
-        projects.length - 1,
-        Math.floor(scrollProgress * projects.length)
-      );
-
-      if (newIndex !== activeIndex) {
-        setPrevIndex(activeIndex);
-        setActiveIndex(newIndex);
-        setIsTransitioning(true);
-
-        if (transitionTimeoutRef.current) {
-          clearTimeout(transitionTimeoutRef.current);
-        }
-
-        transitionTimeoutRef.current = setTimeout(() => {
-          setIsTransitioning(false);
-        }, 1200);
-      }
-
-      animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, [projects.length, activeIndex, isMobile]);
+  const toggleTag = (tag) => {
+    const newTags = new Set(selectedTags);
+    if (newTags.has(tag)) {
+      newTags.delete(tag);
+    } else {
+      newTags.add(tag);
+    }
+    setSelectedTags(newTags);
+  };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: 'short' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
@@ -101,151 +70,136 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="projects-section">
-      <div className="projects-container" style={{ height: isMobile ? 'auto' : `${projects.length * 200}vh` }}>
-        <div className="sticky-content">
+    <section id="projects" className="projects-section">
+      <div className="projects-wrapper">
+        <div className="projects-header">
           <div className="section-title">
             <h2>PROJECTS</h2>
             <div className="title-underline"></div>
           </div>
+          <p className="section-subtitle">A curated collection of my work across different domains</p>
+        </div>
 
-          <div className="projects-display">
-            {projects.map((project, index) => {
-              const repoSize = formatSize(project.stats.size);
-              const lastUpdated = formatDate(project.stats.updated_at);
+        {/* Tag Filter */}
+        <div className="tags-filter-container">
+          <button
+            className="filter-toggle-btn"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            <i className="pi pi-sliders-v" /> Filter by tag
+            <i className={`pi pi-chevron-${showFilters ? 'up' : 'down'}`} />
+          </button>
 
-              if (isMobile) {
-                return (
-                  <div key={index} className="project-item-mobile">
-                    <div className="project-image-mobile">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="project-info-mobile">
-                      <h3>{project.title}</h3>
-                      <p className="repo-description-mobile">{project.stats.description}</p>
-                      <div className="project-links-mobile">
-                        <a
-                          href={`https://github.com/${project.owner}/${project.repo}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button className="github-button-mobile">
-                            <i className="pi pi-github"></i> View Repository
-                          </Button>
-                        </a>
-                      </div>
+          {showFilters && (
+            <div className="tags-filter">
+              {allTags.map(tag => (
+                <button
+                  key={tag}
+                  className={`tag-button ${selectedTags.has(tag) ? 'active' : ''}`}
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {selectedTags.size > 0 && (
+            <button
+              className="clear-filters-btn"
+              onClick={() => setSelectedTags(new Set())}
+            >
+              Clear filters ({selectedTags.size})
+            </button>
+          )}
+        </div>
+
+        {/* Projects Grid */}
+        {isLoading ? (
+          <div className="loading-state">
+            <p>Loading projects...</p>
+          </div>
+        ) : filteredProjects.length === 0 ? (
+          <div className="empty-state">
+            <p>No projects match the selected filters.</p>
+          </div>
+        ) : (
+          <div className="projects-grid">
+            {filteredProjects.map((project) => (
+              <article key={`${project.owner}/${project.repo}`} className="project-card">
+                <div className="card-image-wrapper">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="card-image"
+                    loading="lazy"
+                  />
+                  <div className="card-overlay">
+                    <div className="card-stats">
+                      <span className="stat-item">
+                        <i className="pi pi-star-fill" /> {project.stats.stars}
+                      </span>
+                      <span className="stat-item">
+                        <i className="pi pi-share-alt" /> {project.stats.forks}
+                      </span>
+                      <span className="stat-item">
+                        <GoCommit /> {project.stats.commits}
+                      </span>
                     </div>
                   </div>
-                );
-              }
-
-              let className = 'project-content';
-              if (index === activeIndex) {
-                className += ' active';
-              } else if (index === prevIndex && isTransitioning) {
-                className += ' exiting';
-              }
-
-              const swapDirection = index % 2 === 0 ? 'swap-left' : 'swap-right';
-
-              return (
-                <div
-                  key={index}
-                  className={`${className} ${swapDirection}`}
-                  style={{
-                    transitionDelay: `${index === activeIndex ? 0.1 : 0}s`
-                  }}
-                >
-                  <Container>
-                    <article className="project-item">
-                      <div className="project-image-container">
-                        <div className="project-image">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            loading="lazy"
-                          />
-                          <div className="stats-overlay">
-                            <span><i className="pi pi-star" /> {project.stats.stars}</span>
-                            <span><i className="pi pi-share-alt" /> {project.stats.forks}</span>
-                            <span><GoCommit /> {project.stats.commits}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="project-info-container">
-                        <div className="project-info">
-                          <div className="repo-header">
-                            <h3>{project.title}</h3>
-                            <div className="repo-status-badges">
-                              {project.stats.archived && (
-                                <span className="badge archived-badge">
-                                  <i className="pi pi-lock"></i> Archived
-                                </span>
-                              )}
-                              <span className="badge branch-badge">
-                                <i className="pi pi-code"></i> {project.stats.default_branch}
-                              </span>
-                            </div>
-                          </div>
-
-                          <p className="repo-description">{project.stats.description}</p>
-
-                          <div className="repo-metadata">
-                            <div className="metadata-item">
-                              <i className="pi pi-calendar"></i>
-                              <span>Updated: {lastUpdated}</span>
-                            </div>
-                            <div className="metadata-item">
-                              <i className="pi pi-database"></i>
-                              <span>Size: {repoSize}</span>
-                            </div>
-                          </div>
-
-                          {project.stats.topics.length > 0 && (
-                            <div className="topics-container">
-                              {project.stats.topics.map((topic, i) => (
-                                <span key={i} className="topic-badge">
-                                  {topic}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
-                          <div className="project-links">
-                            <div className="license-badge-wrapper">
-                              {project.stats.license !== "No license" && (
-                                <div className="license-badge">
-                                  <i className="pi pi-file"></i>
-                                  {project.stats.license}
-                                </div>
-                              )}
-                            </div>
-
-                            <a
-                              href={`https://github.com/${project.owner}/${project.repo}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="github-link"
-                            >
-                              <Button className="github-button">
-                                <i className="pi pi-github"></i> Repository
-                              </Button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  </Container>
                 </div>
-              );
-            })}
+
+                <div className="card-content">
+                  <div className="card-header">
+                    <h3 className="card-title">{project.title}</h3>
+                    {project.stats.archived && (
+                      <span className="badge archived">
+                        <i className="pi pi-lock" /> Archived
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="card-description">{project.stats.description}</p>
+
+                  <div className="card-meta">
+                    <span className="meta-item">
+                      <i className="pi pi-calendar" /> {formatDate(project.stats.updated_at)}
+                    </span>
+                    <span className="meta-item">
+                      <i className="pi pi-database" /> {formatSize(project.stats.size)}
+                    </span>
+                  </div>
+
+                  {project.stats.topics.length > 0 && (
+                    <div className="card-tags">
+                      {project.stats.topics.slice(0, 3).map((topic) => (
+                        <span key={topic} className="tag-badge">
+                          {topic}
+                        </span>
+                      ))}
+                      {project.stats.topics.length > 3 && (
+                        <span className="tag-badge more">
+                          +{project.stats.topics.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <a
+                    href={`https://github.com/${project.owner}/${project.repo}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-link"
+                  >
+                    <Button className="view-repo-btn">
+                      <i className="pi pi-github" /> View Repository
+                    </Button>
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
