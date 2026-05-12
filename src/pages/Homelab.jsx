@@ -13,7 +13,7 @@ const services = [
     name: 'Nginx Proxy Manager',
     icon: '⇄',
     color: '#07589D',
-    description: 'Reverse proxy with SSL termination for all services.',
+    description: 'Reverse proxy for internal SSL and service routing.',
     tags: ['networking', 'ssl', 'proxy'],
   },
   {
@@ -77,12 +77,12 @@ const services = [
 ];
 
 const stackItems = [
-  { label: 'OS', value: 'Debian 12' },
-  { label: 'Runtime', value: 'Docker + Compose' },
-  { label: 'Proxy', value: 'Nginx Proxy Manager' },
-  { label: 'DNS', value: 'Pi-hole' },
-  { label: 'IaC', value: 'Shell scripts' },
-  { label: 'Secrets', value: '.env + .gitignore' },
+  { label: 'OS', value: 'Debian 12 (Clean Host)' },
+  { label: 'Runtime', value: 'Docker Engine' },
+  { label: 'Deployment', value: 'Docker Compose' },
+  { label: 'Network', value: 'Tailscale (Zero Trust)' },
+  { label: 'Ingress', value: 'Nginx Proxy Manager' },
+  { label: 'Databases', value: 'PostgreSQL / Redis' },
 ];
 
 function useInView(threshold = 0.15) {
@@ -112,7 +112,7 @@ export default function Homelab() {
           <div className="title-underline"></div>
         </div>
         <p className="homelab-subtitle">
-          A single Debian machine running a full self-hosted stack. Everything containerized, nothing on the host OS.
+          A single Debian machine running a full self-hosted stack. Secured via Tailscale with zero open ports. Everything containerized, keeping the host OS perfectly clean.
         </p>
 
         {/* Architecture banner */}
@@ -124,23 +124,29 @@ export default function Homelab() {
               <span className="arch-dot arch-dot--green" />
               <span className="arch-terminal__title">homelab architecture</span>
             </div>
+            
             <div className="arch-terminal__body">
+              {/* Level 5: Host (base) */}
               <div className="arch-layer">
-                <span className="arch-label">Internet</span>
+                <span className="arch-label">Baremetal</span>
                 <div className="arch-nodes">
-                  <span className="arch-node arch-node--ext">DNS (Pi-hole)</span>
-                  <span className="arch-node arch-node--ext">HTTPS (443)</span>
+                  <span className="arch-node arch-node--host">Clean Debian 12</span>
+                  <span className="arch-node arch-node--host">Docker Engine</span>
                 </div>
               </div>
               <div className="arch-arrow">↓</div>
+
+              {/* Level 4: Storage */}
               <div className="arch-layer">
-                <span className="arch-label">Reverse Proxy</span>
+                <span className="arch-label">Storage</span>
                 <div className="arch-nodes">
-                  <span className="arch-node arch-node--proxy">Nginx Proxy Manager</span>
-                  <span className="arch-node arch-node--proxy">SSL / Let's Encrypt</span>
+                  <span className="arch-node arch-node--data">Docker Volumes</span>
+                  <span className="arch-node arch-node--data">Bind Mounts</span>
                 </div>
               </div>
               <div className="arch-arrow">↓</div>
+
+              {/* Level 3: Services */}
               <div className="arch-layer">
                 <span className="arch-label">Services (Docker)</span>
                 <div className="arch-nodes arch-nodes--services">
@@ -150,11 +156,23 @@ export default function Homelab() {
                 </div>
               </div>
               <div className="arch-arrow">↓</div>
+
+              {/* Level 2: DNS & Routing */}
               <div className="arch-layer">
-                <span className="arch-label">Host</span>
+                <span className="arch-label">DNS & Ingress</span>
                 <div className="arch-nodes">
-                  <span className="arch-node arch-node--host">Debian 12</span>
-                  <span className="arch-node arch-node--host">Docker Engine</span>
+                  <span className="arch-node arch-node--proxy">Pi-hole (Local DNS)</span>
+                  <span className="arch-node arch-node--proxy">Nginx Proxy Manager</span>
+                </div>
+              </div>
+              <div className="arch-arrow">↓</div>
+
+              {/* Level 1: Network Entry (Zero Trust) */}
+              <div className="arch-layer">
+                <span className="arch-label">External Access</span>
+                <div className="arch-nodes">
+                  <span className="arch-node arch-node--ext">Tailscale (VPN Mesh)</span>
+                  <span className="arch-node arch-node--ext" style={{color: '#22c55e', borderColor: '#22c55e'}}>Zero Open Ports</span>
                 </div>
               </div>
             </div>
