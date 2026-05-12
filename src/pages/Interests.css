@@ -18,16 +18,16 @@
 }
 
 [data-theme="light"] {
-  --text-color: #555;
-  --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 249, 250, 0.96) 100%);
-  --card-border: 0.05rem solid rgba(220, 220, 220, 0.4);
-  --card-shadow: 0 1.5rem 3rem -1.25rem rgba(13, 110, 253, 0.18);
-  --skill-bg: rgba(13, 110, 253, 0.12);
+  --text-color: #333333;
+  --card-bg: linear-gradient(145deg, rgba(242, 242, 242, 0.96) 0%, rgba(238, 238, 238, 0.96) 100%);
+  --card-border: 0.05rem solid rgba(180, 180, 180, 0.3);
+  --card-shadow: 0 1.5rem 3rem -1.25rem rgba(13, 110, 253, 0.12);
+  --skill-bg: rgba(13, 110, 253, 0.1);
   --skill-color: #0d6efd;
-  --skill-border: 0.05rem solid rgba(13, 110, 253, 0.22);
-  --image-border: 0.05rem solid #e0e0e0;
-  --image-filter: grayscale(25%) brightness(0.9);
-  --divider-color: rgba(0, 0, 0, 0.05);
+  --skill-border: 0.05rem solid rgba(13, 110, 253, 0.18);
+  --image-border: 0.05rem solid #d0d0d0;
+  --image-filter: grayscale(15%) brightness(0.95);
+  --divider-color: rgba(0, 0, 0, 0.04);
 
   --interest-1-color: #07589D;
   --interest-2-color: #07589D;
@@ -88,7 +88,7 @@
 .interests-section {
   position: relative;
   width: 100%;
-  padding-top: 6rem;
+  padding-top: 4rem;
   z-index: 1;
 }
 
@@ -408,7 +408,7 @@
   }
 
   .interests-section {
-    padding-top: 2rem;
+    padding-top: 4rem;
   }
 
   .interests-container {
@@ -418,7 +418,7 @@
   }
 
   .interests-section {
-    padding-top: 1rem;
+    padding-top: 4rem;
   }
 
   .interests-container {
@@ -511,7 +511,7 @@
     transform: none !important;
     filter: none !important;
     margin-top: 0.8rem;
-    padding-top: 0.8rem;
+    padding-top: 4rem;
     border-top: 0.05rem solid var(--divider-color);
   }
 

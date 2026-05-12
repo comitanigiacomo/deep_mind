@@ -39,14 +39,13 @@
 .skills-card-area {
   flex: 0 0 35%;
   max-width: 35%;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 20vh;
   padding-right: 2rem;
 }
-
 /* ─── Default Prompt ─────────────────────────────── */
 
 .skills-prompt {

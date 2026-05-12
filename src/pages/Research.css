@@ -5,7 +5,7 @@
 .research-section {
   position: relative;
   width: 100%;
-  padding: 6rem 0 4rem;
+  padding: 4rem 0 3rem 0;
   background-color: var(--bg);
 }
 
@@ -206,7 +206,7 @@
   margin: 0 0 0.9rem;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 100%);
+  background: linear-gradient(135deg, #f5f5f5 0%, rgba(255,255,255,0.8) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

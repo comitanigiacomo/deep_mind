@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import './Mynav.css';
-import TypeWriter from './TypeWriter.jsx';
 import { useTheme } from '../context/ThemeContext';
 
 function Mynav() {
@@ -31,15 +31,13 @@ function Mynav() {
   return (
     <Navbar fixed="top" expand="lg">
       <Container fluid className="p-0">
-        <Navbar.Brand href="/#about" className="d-none d-lg-block">
-          <TypeWriter text="Deep mind" speed={150} delay={2000} textColor={isDarkMode ? "#fff" : "#2a2a2a"} />
-        </Navbar.Brand>
         <Nav.Link
           onClick={toggleTheme}
-          className={`theme-toggle-icon mobile-toggle d-lg-none ${showToggle ? 'visible' : 'hidden'}`}
+          className={`theme-toggle-btn mobile-toggle d-lg-none ${showToggle ? 'visible' : 'hidden'}`}
           title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          aria-label="Toggle theme"
         >
-          <span>{isDarkMode ? '☀️' : '🌙'}</span>
+          {isDarkMode ? <FaSun /> : <FaMoon />}
         </Nav.Link>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -57,10 +55,11 @@ function Mynav() {
         <Nav className="ms-auto d-none d-lg-block">
           <Nav.Link
             onClick={toggleTheme}
-            className="theme-toggle-icon"
+            className="theme-toggle-btn"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label="Toggle theme"
           >
-            <span>{isDarkMode ? '☀️' : '🌙'}</span>
+            {isDarkMode ? <FaSun /> : <FaMoon />}
           </Nav.Link>
         </Nav>
       </Container>
