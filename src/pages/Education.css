@@ -13,14 +13,14 @@
 
 [data-theme="light"] {
   --primary-color: #1e40af;
-  --text-color: #1e293b;
-  --text-secondary: #64748b;
-  --text-light: #475569;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --border-card: rgba(0, 0, 0, 0.1);
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.05);
-  --divider-color: rgba(0, 0, 0, 0.1);
-  --progress-bg: rgba(0, 0, 0, 0.1);
+  --text-color: #333333;
+  --text-secondary: #707070;
+  --text-light: #555555;
+  --bg-card: rgba(240, 240, 240, 0.8);
+  --border-card: rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.03);
+  --divider-color: rgba(0, 0, 0, 0.08);
+  --progress-bg: rgba(0, 0, 0, 0.08);
 }
 
 @keyframes twinkle {
@@ -83,7 +83,7 @@
 }
 
 .experience-section {
-  padding: 4.8rem 0 12rem 0;
+  padding: 4rem 0 3rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -112,7 +112,7 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 150px 16px 48px 16px;
+  padding: 2rem 16px 48px 16px;
   position: relative;
   z-index: 2;
   margin-bottom: 4rem;
@@ -120,7 +120,7 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 
 .section-title {

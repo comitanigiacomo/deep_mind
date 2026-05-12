@@ -6,10 +6,10 @@
 }
 
 [data-theme="light"] {
-  --nav-bg: #ffffff;
-  --nav-text: #2a2a2a;
+  --nav-bg: #f5f5f5;
+  --nav-text: #333333;
   --nav-accent: #0d6efd;
-  --nav-hover-line: #666666;
+  --nav-hover-line: #cccccc;
 }
 
 .navbar {
@@ -73,28 +73,14 @@
   align-items: center;
 }
 
+.navbar-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
 .navbar-brand {
   position: relative;
-}
-
-.navbar-brand::after {
-  content: "|";
-  animation: blink 1s step-end infinite;
-  color: var(--nav-text);
-  margin-left: 1px;
-  transition: color 0.3s ease;
-}
-
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
 }
 
 [data-theme="light"] .navbar {
@@ -114,51 +100,40 @@
   .mobile-toggle {
     position: absolute !important;
     right: 15px;
-    top: 55%;
-    transform: translateY(-50%);
+    top: 15px;
     z-index: 1000;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease;
   }
 
   .mobile-toggle.hidden {
     opacity: 0;
-    transform: translateY(-50%) translateX(20px);
     pointer-events: none;
   }
 
   .mobile-toggle.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(0);
   }
 }
 
-.theme-toggle-icon {
-  opacity: 0.7;
-  font-size: 1.35rem;
-  transition: opacity 0.3s ease !important;
+.theme-toggle-btn {
+  color: var(--nav-text);
+  padding: 8px 12px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transform: none !important;
+  margin-right: 12px;
+  border-radius: 50%;
+  transition: color 0.2s ease;
 }
 
-.theme-toggle-icon>span {
-  padding-left: 0 !important;
-  line-height: 1;
-  margin-right: 20px;
-  margin-top: 5px;
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
-.theme-toggle-icon>span::before,
-.theme-toggle-icon>span::after {
-  display: none !important;
-}
-
-.theme-toggle-icon:hover {
-  opacity: 1;
+.theme-toggle-btn:hover {
+  color: var(--nav-accent);
 }
 
 @media (max-width: 992px) {
@@ -172,9 +147,5 @@
 
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28127, 127, 127, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-
-  .theme-toggle-icon {
-    padding: 0.5rem 0;
   }
 }

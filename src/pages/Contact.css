@@ -14,16 +14,16 @@
 }
 
 [data-theme="light"] {
-  --bg-primary: #ffffff;
-  --text-primary: #2a2a2a;
+  --bg-primary: #f5f5f5;
+  --text-primary: #333333;
   --accent-color: #0d6efd;
-  --accent-light: rgba(13, 110, 253, 0.1);
-  --social-bg: rgba(0, 0, 0, 0.03);
+  --accent-light: rgba(13, 110, 253, 0.08);
+  --social-bg: rgba(0, 0, 0, 0.02);
   --photo-border: #0d6efd;
-  --photo-shadow: 0 4px 20px rgba(13, 110, 253, 0.2);
+  --photo-shadow: 0 4px 20px rgba(13, 110, 253, 0.15);
   
   --email: #D44638;
-  --github: #2a2a2a;
+  --github: #333333;
   --linkedin: #0A66C2;
 }
 
@@ -38,12 +38,13 @@
 
 .contact-section {
   background: var(--bg-primary);
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   color: var(--text-primary);
   position: relative;
   z-index: 1;
+  padding: 4rem 0 3rem 0;
 }
 
 .contact-wrapper {
