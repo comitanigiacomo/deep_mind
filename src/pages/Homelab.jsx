@@ -205,19 +205,20 @@ export default function Homelab() {
         <h3 className="homelab-services__heading">Running Services</h3>
         <div className="homelab-services">
           {services.map((svc, i) => (
-            <div
+            <a
               key={svc.name}
+              href={svc.link || '#'}
+              target={svc.link ? '_blank' : undefined}
+              rel={svc.link ? 'noopener noreferrer' : undefined}
               className="homelab-card"
-              style={{ '--card-color': svc.color, '--delay': `${i * 0.06}s` }}
+              style={{ '--card-color': svc.color, '--delay': `${i * 0.06}s`, textDecoration: 'none' }}
             >
               <div className="homelab-card__icon" style={{ color: svc.color }}>{svc.icon}</div>
               <div className="homelab-card__body">
                 <div className="homelab-card__name">
                   {svc.name}
                   {svc.link && (
-                    <a href={svc.link} target="_blank" rel="noopener noreferrer" className="homelab-card__live">
-                      ↗
-                    </a>
+                    <span className="homelab-card__live">↗</span>
                   )}
                 </div>
                 <p className="homelab-card__desc">{svc.description}</p>
@@ -225,7 +226,7 @@ export default function Homelab() {
                   {svc.tags.map(t => <span key={t} className="homelab-tag">{t}</span>)}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
