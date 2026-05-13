@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { blogPosts } from '../data/blogPosts';
 import { useTheme } from '../context/ThemeContext';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import './BlogPostPage.css';
 
 const categories = {
@@ -10,6 +11,7 @@ const categories = {
   cs:       { label: 'CS Theory', color: '#a855f7' },
   tools:    { label: 'Tools',     color: '#22c55e' },
   dev:      { label: 'Dev',       color: '#07589D' },
+  security: { label: 'Security',  color: '#ef4444' },
 };
 
 export default function BlogPostPage() {
@@ -59,8 +61,9 @@ export default function BlogPostPage() {
             onClick={toggleTheme} 
             className="theme-toggle-btn-blog"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label="Toggle theme"
           >
-            {isDarkMode ? '☀️' : '🌙'}
+            {isDarkMode ? <FaSun /> : <FaMoon />}
           </button>
         </div>
       </nav>

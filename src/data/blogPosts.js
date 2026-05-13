@@ -202,4 +202,91 @@ export const blogPosts = {
       <p>This project was a great reminder that understanding the theoretical time and space complexity is just the first step. Optimizing low-level operations, like bitwise arithmetic, is what actually makes these algorithms viable in a realistic environment.</p>
     `
   },
+  'firmware-crypto-analysis': {
+    id: 'firmware-crypto-analysis',
+    category: 'security',
+    title: 'Why algorithmic security isn\'t enough: Reverse engineering a mobile firmware',
+    date: 'November 2025',
+    readingTime: '10 min',
+    content: `
+      <p>For my Bachelor's thesis in Computer Science at Università degli Studi di Milano, I decided to look into a topic that connects high-level cryptography and low-level embedded systems: how cryptographic functions are actually implemented inside mobile firmware.</p>
+      
+      <p>We use smartphones every day to handle banking, private chats, and sensitive data. But the firmware running the underlying modem and hardware is often a complete black box closed source, undocumented, and rarely checked by anyone on the outside. I wanted to answer a basic question: are device manufacturers implementing crypto securely, or are they taking shortcuts for performance and legacy compatibility?</p>
+
+      <p>To find out, I didn't just read documentation. I acquired a raw binary firmware dump and started a static analysis process that led me to look into weird CPU architectures, old cryptography, and a long process of elimination to figure out exactly which outdated open-source library was used.</p>
+
+      <h3>1. The First Contact: Triaging the Binary</h3>
+      <p>My target was a raw binary file. Before using advanced decompilers, standard Linux tools are your best friends. Running the <code>file</code> command immediately showed that I was dealing with an <code>ELF 32-bit LSB executable</code>. It was Little Endian, and crucially, the output stated: <code>not stripped</code>. This was super lucky. It meant the firmware still retained its debug symbols, including function and variable names, which makes reverse engineering much easier.</p>
+      
+      <p>Next, I ran the <code>strings</code> command, piping it through <code>grep</code> to look for firmware names. I quickly found this string: <code>HUAQIN_ROMP3_K6833V1_64_MDBIN_PCB01_MT6833_S00.MOLY_NR15_R3_MP_V4_3_P61.bin</code>. Breaking this down, <strong>MT6833</strong> identifies the chipset as a MediaTek processor (often marketed as Dimensity 700), and <strong>MOLY</strong> is MediaTek's standard label for their baseband modems. Now I knew exactly what I was looking at: the brain of a 5G mobile modem.</p>
+
+      <h3>2. The nanoMIPS Problem</h3>
+      <p>With this information, I loaded the binary into Ghidra, the open-source reverse engineering framework. Based on the 32-bit architecture and MediaTek's history, I initially set the Language ID to standard MIPS.</p>
+      
+      <p>I was wrong. The decompilation didn't work at all. The code flow was a mess, and Ghidra flagged numerous invalid instructions. The binary wasn't standard MIPS. After looking into MediaTek's modem architectures, I discovered that they use the MIPS 17200 core, which implements the <strong>nanoMIPS</strong> Instruction Set Architecture (ISA).</p>
+
+      <p>nanoMIPS is an interesting architecture. Unlike standard MIPS, which uses fixed 32-bit instructions, nanoMIPS uses instructions of different lengths (16, 32, or 48 bits). This makes the code very compact, which is perfect for embedded systems with low memory like baseband modems. The problem? Ghidra didn't support nanoMIPS out of the box.</p>
+
+      <p>I had to find a workaround. Luckily, I found an experimental custom extension made by the NCC Group during their own baseband research. After compiling and adding this module to Ghidra, the assembly finally turned into readable C pseudocode. The real work could begin.</p>
+
+      <h3>3. Mapping the Cryptographic Primitives</h3>
+      <p>With readable code, I began mapping out the cryptographic functions using string searches and cross-references (XREF). I identified the main algorithms: Diffie-Hellman, DES, SHA-1, RSA, and AES. On paper, the math looked correct and aligned with FIPS standards. However, looking closer at how they were implemented showed some worrying choices.</p>
+
+      <h4>Diffie-Hellman: The 1024-bit Legacy</h4>
+      <p>While analyzing the Diffie-Hellman key exchange, I found functions loading hardcoded parameters. I checked the memory addresses and found setups for 2048/224 and 2048/256 bits, which are secure. But I also found a <code>DH_get_1024_160</code> function. Using 1024-bit primes for key exchange today is a big risk, falling well below the NIST minimum security strength recommendations.</p>
+
+      <h4>DES: The Electronic Codebook Issue</h4>
+      <p>Next was the Data Encryption Standard (DES). I confirmed the 64-bit key (with 56 effective bits) and the standard 16 rounds. But the real issue was the mode of operation. The firmware called <code>DES_ecb_encrypt</code>. </p>
+      <p>ECB (Electronic Codebook) is one of the weakest modes because it doesn't use an Initialization Vector (IV). In ECB, identical plaintext blocks always produce identical ciphertext blocks. If you encrypt an image with ECB, you can still visually see the shape of the original image in the encrypted version. Finding ECB in a modern device is concerning, even if it's just kept for legacy compatibility.</p>
+
+      <h4>AES: Trading Security for Speed</h4>
+      <p>The Advanced Encryption Standard (AES) implementation initially looked fine. It supported 128, 192, and 256-bit keys, executing the correct number of rounds (10, 12, and 14). However, looking at the memory accesses during the encryption round, I didn't see the standard 256-byte S-BOX.</p>
+      
+      <p>Instead, I found four large 1024-byte arrays. These are called <strong>T-tables</strong>. In embedded systems, calculating the <em>ShiftRows</em> and <em>MixColumns</em> steps of AES on the fly takes a lot of CPU power. To speed things up, developers calculate these steps in advance and put them into four large lookup tables. While this makes AES really fast, it introduces a serious hardware vulnerability, which I will discuss later.</p>
+
+      <h3>4. Identifying OpenSSL</h3>
+      <p>Throughout my analysis, I kept seeing function names, <code>BIGNUM</code> structures, and constants that looked exactly like OpenSSL. As Bruce Schneier said, cryptographic algorithms themselves rarely fail; it's the implementations that break. If I could figure out the exact version of OpenSSL used in this binary, I could check it against public CVE databases and find known vulnerabilities.</p>
+
+      <p>OpenSSL basically has three main eras: the very old 0.9.x, the 1.x.x series, and the new 3.x series. I used a step-by-step process of elimination:</p>
+
+      <ul>
+        <li><strong>Ruling out OpenSSL 3.0:</strong> Version 3.0 changed the architecture a lot, adding "Providers" and deprecating "Engines". A quick search in Ghidra showed dozens of references to <code>ENGINE_load_private_key</code> and zero references to <code>OSSL_PROVIDER</code>. So, it was definitely older than 3.0.</li>
+        <li><strong>Ruling out OpenSSL 1.1.x:</strong> Starting from version 1.1.0, OpenSSL added automatic initialization. You didn't need to manually call setup functions anymore. But the firmware explicitly called <code>SSL_library_init</code> and <code>OPENSSL_add_all_algorithms</code>. This proved the code belonged to the older 1.0.x family.</li>
+        <li><strong>1.0.1 vs 1.0.2:</strong> To tell these apart, I looked for DTLS 1.2 support, which was only added in 1.0.2. I found <code>DTLSv1_2_client_method</code> in the binary, which strongly suggested it was version 1.0.2. But I wanted absolute proof.</li>
+      </ul>
+
+      <h4>The Final Proof</h4>
+      <p>The definitive proof came from understanding a big change in how the code was written in OpenSSL 1.1.0: they hid the internal data structures. In older versions, structures like <code>RSA</code> were public. You could access the modulus <code>n</code> directly using a pointer, like <code>rsa->n</code>. In 1.1.0, these structures were made "opaque." Trying to access memory directly would cause a compilation error; developers had to use getter functions like <code>RSA_get0_key()</code>.</p>
+
+      <p>I looked at the <code>RSA_size()</code> API function in the decompiled firmware. In the source code of OpenSSL 1.0.2, <code>RSA_size</code> is just a C macro that directly accesses the <code>n</code> member. In OpenSSL 1.1.1, it's a full function that calls the getter.</p>
+
+      <p>Looking at Ghidra's pseudocode, it was pretty clear. The firmware performed a direct memory offset access to retrieve the BIGNUM size: <code>BN_num_bits(*(BIGNUM **) rsa->[offset])</code>. There was no call to <code>RSA_get0_key()</code>. The compilation would literally fail if this was 1.1.x.</p>
+      
+      <p>The conclusion was certain: <strong>the 5G modem was running OpenSSL 1.0.2.</strong></p>
+
+      <h3>5. CVEs and Side-Channel Attacks</h3>
+      <p>This discovery is really bad for the device's security. Official support for the OpenSSL 1.0.2 series ended on December 31, 2019. This means the crypto engine of this mobile modem is outdated and hasn't received a security patch in years.</p>
+
+      <p>By checking this version against the NIST National Vulnerability Database, I found that the firmware is open to several known attacks:</p>
+      <ul>
+        <li><strong>CVE-2016-2183 (SWEET32):</strong> Targets 64-bit block ciphers like the DES implementation I found, allowing attackers to recover plaintext from long encrypted sessions.</li>
+        <li><strong>CVE-2016-0800 (DROWN):</strong> A cross-protocol attack that can decrypt TLS sessions by exploiting old SSLv2 implementations.</li>
+        <li><strong>CVE-2019-1559:</strong> A Padding Oracle attack that allows an attacker to decrypt data without knowing the private key by measuring server response errors.</li>
+      </ul>
+
+      <h4>AES Cache-Timing Attacks</h4>
+      <p>But the most interesting vulnerability ties directly back to my earlier discovery of the AES <strong>T-tables</strong>.</p>
+      
+      <p>Because T-tables are large (4KB in total), they don't fit entirely inside the CPU's fastest L1 cache. During AES encryption, the algorithm accesses different parts of these tables depending on the bits of the secret key and the plaintext. If a required table entry is already in the CPU cache (a cache hit), it's fast. If it has to fetch it from main memory (a cache miss), it takes longer.</p>
+
+      <p>In 2005, cryptographer Daniel J. Bernstein demonstrated the <strong>AES Cache-Timing Attack</strong>. By simply sending network packets to the device and measuring the microseconds it takes to reply, an attacker can figure out if cache hits or misses happened. Using statistics on these timing differences, the attacker can basically reconstruct the entire 128-bit or 256-bit AES secret key.</p>
+      
+      <p>Because this firmware uses an outdated OpenSSL version compiled with T-table optimizations, it is vulnerable to this side-channel attack.</p>
+
+      <h3>Conclusion</h3>
+      <p>This thesis project was a great learning experience about real-world embedded security. It proved that theoretical algorithmic security means nothing if the software lifecycle is ignored. You can use AES-256 and RSA-2048, but if you wrap them in an old, unsupported library just to save a few kilobytes of memory or to avoid rewriting legacy code, the device is already compromised.</p>
+
+      <p>For a computer science student and developer, reverse engineering isn't just a cool trick; it's the best lesson in how not to build systems.</p>
+    `
+  },
 };
