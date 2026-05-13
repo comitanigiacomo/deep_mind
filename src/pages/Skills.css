@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════════════
-   Skills Section — Modern Redesign
+   Skills Section — Full Width 3D Keyboard Model
    ═══════════════════════════════════════════════════ */
 
 .skills-section {
   position: relative;
   width: 100%;
-  min-height: auto;
+  height: auto;
   padding: 3rem 0 2rem;
   overflow: hidden;
 }
@@ -14,298 +14,38 @@
   margin-top: 0;
 }
 
-/* ─── Layout: side-by-side on desktop ────────────── */
+/* ─── Layout: full width, centered ────────────── */
 
 .skills-layout {
   position: relative;
   width: 100%;
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 0;
   min-height: 100vh;
 }
 
-/* Keyboard takes 65% on desktop — keep 100vh so the 3D model is full size */
+/* Keyboard takes full width */
 .skills-keyboard-area {
-  position: relative;
-  flex: 0 0 65%;
-  max-width: 65%;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Card area takes 35% on desktop */
-.skills-card-area {
-  flex: 0 0 35%;
-  max-width: 35%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
-}
-/* ─── Default Prompt ─────────────────────────────── */
-
-.skills-prompt {
-  text-align: center;
-  padding: 1rem;
-}
-
-.skills-prompt-text {
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
-}
-
-/* ─── Floating Skill Card ─────────────────────────── */
-
-.skill-card {
-  width: 100%;
-  max-width: 420px;
-  padding: 1.8rem 2rem;
-  background: rgba(20, 20, 30, 0.75);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-    0 -1px 0 rgba(255, 255, 255, 0.05) inset;
-  position: relative;
-}
-
-/* Entry animation — triggered fresh each time via React key */
-.skill-card--enter {
-  animation: skillCardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes skillCardIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Gradient glow border */
-.skill-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 21px;
-  background: linear-gradient(135deg,
-      rgba(7, 88, 157, 0.3) 0%,
-      transparent 40%,
-      transparent 60%,
-      rgba(6, 182, 212, 0.2) 100%);
-  z-index: -1;
-}
-
-/* ─── Card Header ────────────────────────────────── */
-
-.skill-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
-}
-
-.skill-card__category {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.skill-card__category-icon {
-  font-size: 0.85rem;
-  color: #07589D;
-}
-
-.skill-card__level {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.3rem 0.75rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.skill-card__level--beginner {
-  color: #3b82f6;
-  border-color: rgba(59, 130, 246, 0.3);
-  background: rgba(59, 130, 246, 0.08);
-}
-
-.skill-card__level--intermediate {
-  color: #07589D;
-  border-color: rgba(7, 88, 157, 0.3);
-  background: rgba(7, 88, 157, 0.08);
-}
-
-.skill-card__level--advanced {
-  color: #06b6d4;
-  border-color: rgba(6, 182, 212, 0.3);
-  background: rgba(6, 182, 212, 0.08);
-}
-
-.skill-card__level--coming-soon {
-  color: #64748b;
-  border-color: rgba(100, 116, 139, 0.3);
-  background: rgba(100, 116, 139, 0.08);
-}
-
-/* ─── Card Title ─────────────────────────────────── */
-
-.skill-card__title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 0.6rem;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ─── Card Description ───────────────────────────── */
-
-.skill-card__description {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0 0 1.2rem;
-  font-weight: 400;
-}
-
-/* ─── Progress Bar ───────────────────────────────── */
-
-.skill-card__progress {
-  margin-top: auto;
-}
-
-.skill-card__progress-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.skill-card__progress-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
-  position: relative;
-}
-
-.skill-card__progress-fill::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: -2px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: inherit;
-  box-shadow: 0 0 12px currentColor;
+.skills-keyboard-area canvas {
+  margin-left: 6%;
+  margin-bottom: -300px;
+  margin-top: 7%;
 }
 
 /* ═══════════════════════════════════════════════════
-   Light Theme Overrides
-   ═══════════════════════════════════════════════════ */
-
-[data-theme="light"] .skill-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 0, 0, 0.03) inset;
-}
-
-[data-theme="light"] .skill-card::before {
-  background: linear-gradient(135deg,
-      rgba(7, 88, 157, 0.15) 0%,
-      transparent 40%,
-      transparent 60%,
-      rgba(6, 182, 212, 0.1) 100%);
-}
-
-[data-theme="light"] .skill-card__title {
-  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-[data-theme="light"] .skill-card__description {
-  color: rgba(0, 0, 0, 0.55);
-}
-
-[data-theme="light"] .skill-card__category {
-  color: rgba(0, 0, 0, 0.45);
-}
-
-[data-theme="light"] .skill-card__category-icon {
-  color: #07589D;
-}
-
-[data-theme="light"] .skill-card__level {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .skill-card__level--beginner {
-  color: #2563eb;
-  border-color: rgba(37, 99, 235, 0.2);
-  background: rgba(37, 99, 235, 0.06);
-}
-
-[data-theme="light"] .skill-card__level--intermediate {
-  color: #07589D;
-  border-color: rgba(7, 88, 157, 0.2);
-  background: rgba(7, 88, 157, 0.06);
-}
-
-[data-theme="light"] .skill-card__level--advanced {
-  color: #0891b2;
-  border-color: rgba(8, 145, 178, 0.2);
-  background: rgba(8, 145, 178, 0.06);
-}
-
-[data-theme="light"] .skill-card__level--coming-soon {
-  color: #64748b;
-  border-color: rgba(100, 116, 139, 0.2);
-  background: rgba(100, 116, 139, 0.06);
-}
-
-[data-theme="light"] .skill-card__progress-track {
-  background: rgba(0, 0, 0, 0.06);
-}
-
-[data-theme="light"] .skills-prompt .shiny-text {
-  color: rgb(122, 122, 122);
-}
-
-/* ═══════════════════════════════════════════════════
-   Responsive — Tablet  (≤992px): switch to stacked
+   Responsive — Tablet (≤992px)
    ═══════════════════════════════════════════════════ */
 
 @media (max-width: 992px) {
@@ -320,101 +60,39 @@
   }
 
   .skills-keyboard-area {
-    flex: none;
-    max-width: 100%;
     width: 100%;
-    height: 55vh;
-  }
-
-  .skills-card-area {
-    flex: none;
-    max-width: 100%;
-    width: 100%;
-    padding: 1.5rem;
-    min-height: auto;
-    justify-content: center;
-  }
-
-  .skill-card {
-    max-width: 480px;
-    margin: -1rem auto 0;
-    padding: 1.5rem 1.6rem;
-  }
-
-  .skill-card__title {
-    font-size: 1.4rem;
+    height: 65vh;
   }
 }
 
 /* ═══════════════════════════════════════════════════
-   Responsive — Mobile
+   Responsive — Mobile (≤768px)
    ═══════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   .skills-section {
     padding: 2rem 0 1.5rem;
-    min-height: auto;
-  }
-
-  .skills-section .section-title {
-    margin-top: 0;
   }
 
   .skills-keyboard-area {
-    height: 45vh;
+    height: 80vh;
   }
 
-  .skills-prompt-text {
-    font-size: 0.9rem;
-  }
-
-  .skill-card {
-    width: 92%;
-    max-width: 400px;
-    padding: 1.3rem 1.4rem;
-    margin-top: -1rem;
-    border-radius: 16px;
-  }
-
-  .skill-card__title {
-    font-size: 1.25rem;
-  }
-
-  .skill-card__description {
-    font-size: 0.85rem;
-  }
-
-  .skill-card__category {
-    font-size: 0.7rem;
-  }
-
-  .skill-card__level {
-    font-size: 0.65rem;
-    padding: 0.25rem 0.6rem;
+  .skills-keyboard-area canvas {
+    margin-top: 32%;
   }
 }
 
 /* ═══════════════════════════════════════════════════
-   Responsive — Small Mobile
+   Responsive — Small Mobile (≤480px)
    ═══════════════════════════════════════════════════ */
 
 @media (max-width: 480px) {
   .skills-keyboard-area {
-    height: 38vh;
+    height: 90vh;
   }
 
-  .skill-card {
-    width: 95%;
-    padding: 1.1rem 1.2rem;
-    border-radius: 14px;
-  }
-
-  .skill-card__title {
-    font-size: 1.15rem;
-  }
-
-  .skill-card__description {
-    font-size: 0.82rem;
-    margin-bottom: 0.8rem;
+  .skills-keyboard-area canvas {
+    margin-top: 42%;
   }
 }
