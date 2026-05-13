@@ -14,7 +14,7 @@ const EducationPage = () => {
       institution: 'University of Milan',
       description: 'Graduate degree program',
       type: 'master',
-      icon: 'pi pi-microchip',
+      icon: 'pi pi-graduation-cap',
       logo: '/Unimi-logo.png',
       color: '#3b82f6',
       progress: 10
@@ -26,7 +26,7 @@ const EducationPage = () => {
       description: 'Undergraduate degree program',
       thesis: 'Thesis: "Study and analysis of cryptographic functions used by mobile devices to protect sensitive data" (Reverse Engineering focus)',
       type: 'bachelor',
-      icon: 'pi pi-microchip',
+      icon: 'pi pi-bookmark',
       logo: '/Unimi-logo.png',
       color: '#3b82f6',
       progress: 100
@@ -34,10 +34,10 @@ const EducationPage = () => {
     {
       date: '2016 – 2021',
       title: 'High School Diploma',
-      institution: 'Leonardo Da Vinci State High School (Cologno Monzese)',
+      institution: 'Leonardo Da Vinci State High School (Cologno Monzese)',
       description: 'Scientific curriculum',
       type: 'highschool',
-      icon: 'pi pi-graduation-cap',
+      icon: 'pi pi-star',
       logo: '/leonardoDaVinci.png',
       color: '#3b82f6',
       progress: 100
