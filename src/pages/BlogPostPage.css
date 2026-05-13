@@ -44,16 +44,17 @@
 .theme-toggle-btn-blog {
   background: none;
   border: none;
-  font-size: 1.35rem;
   cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem;
 }
 
-.theme-toggle-btn-blog:hover {
-  opacity: 1;
-  transform: rotate(15deg) scale(1.15);
+.theme-toggle-btn-blog svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text);
 }
 
 /* ─── Article Header ─────────────────────────────── */

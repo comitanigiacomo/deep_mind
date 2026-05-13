@@ -9,6 +9,7 @@ const categories = {
   cs: { label: 'CS Theory', color: '#a855f7' },
   tools: { label: 'Tools', color: '#22c55e' },
   dev: { label: 'Dev', color: '#07589D' },
+  security: { label: 'Security', color: '#ef4444' },
 };
 
 const posts = Object.values(blogPosts);
@@ -127,6 +128,7 @@ export default function Blog() {
             if (post.id === 'double-descent') excerpt = 'An intuitive explanation of the double descent risk curve and why classical bias-variance decomposition breaks down...';
             if (post.id === 'kanso-sync') excerpt = "The design decisions behind Kanso's sync engine: Delta-Sync, Optimistic Locking, and conflict resolution...";
             if (post.id === 'nyt-stream') excerpt = 'Moving from static CSVs to real-time data: building a resilient, decoupled streaming pipeline using the New York Times API...';
+            if (post.id === 'firmware-crypto-analysis') excerpt = 'Reverse engineering a mobile modem to uncover how obsolete OpenSSL libraries and AES T-table optimizations open the door to cache-timing attacks...';
 
             return (
               <li
