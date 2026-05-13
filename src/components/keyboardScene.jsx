@@ -7,9 +7,10 @@ import './KeyboardScene.css'
 
 function Key({ keyNode, onHover, onClick }) {
   const [hovered, setHovered] = useState(false)
+  const isMobile = useMemo(() => window.matchMedia('(hover: none) and (pointer: coarse)').matches, [])
 
   const { y } = useSpring({
-    y: hovered ? -0.4 : 0,
+    y: isMobile ? 0 : (hovered ? -0.4 : 0),
     config: { mass: 1, tension: 300, friction: 20 }
   })
 
@@ -17,11 +18,13 @@ function Key({ keyNode, onHover, onClick }) {
     <animated.group
       position-y={y}
       onPointerOver={(e) => {
+        if (isMobile) return
         e.stopPropagation()
         setHovered(true)
         onHover(keyNode.name)
       }}
       onPointerOut={(e) => {
+        if (isMobile) return
         e.stopPropagation()
         setHovered(false)
         onHover(null)
@@ -30,7 +33,7 @@ function Key({ keyNode, onHover, onClick }) {
         e.stopPropagation()
         onClick && onClick(keyNode.name)
       }}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: isMobile ? 'default' : 'pointer' }}
     >
       <primitive object={keyNode} />
     </animated.group>
