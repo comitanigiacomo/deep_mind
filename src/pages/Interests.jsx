@@ -29,7 +29,7 @@ export default function Interests() {
     {
       number: "02",
       title: "Music",
-      description: "I’m passionate about music, I listen to all kinds of genres and enjoy playing the drums in my free time.",
+      description: "I'm passionate about music, I listen to all kinds of genres and enjoy playing the drums in my free time.",
       image: "./music.png",
       skills: ["Rhythm & Timing", "Creativity", "Active Listening", "Musical Expression"]
     },
@@ -43,7 +43,7 @@ export default function Interests() {
     {
       number: "04",
       title: "Gym",
-      description: "Going to the gym has become an important part of my routine. It helps me stay focused, build discipline, and improve both physically and mentally. I enjoy challenging myself and seeing progress over time. I'm currently on a short break due to my studies, but I’ll be getting back to it soon.",
+      description: "Going to the gym has become an important part of my routine. It helps me stay focused, build discipline, and improve both physically and mentally. I enjoy challenging myself and seeing progress over time. I'm currently on a short break due to my studies, but I'll be getting back to it soon.",
       image: "/gym.png",
       skills: ["Discipline", "Consistency", "Self-Motivation", "Goal-Oriented"]
     },
@@ -79,17 +79,17 @@ export default function Interests() {
     };
   }, [interests.length]);
 
-return (
-     <section id="interests" ref={sectionRef} className="interests-section">
-       <div className="interests-title-wrapper">
-         <div className="section-title">
-           <h2>INTERESTS</h2>
-           <div className="title-underline"></div>
-         </div>
-       </div>
-       <div className="interests-container" style={{ height: `${interests.length * 200}vh` }}>
-         <div className="sticky-content">
-           <Container>
+  return (
+    <section id="interests" ref={sectionRef} className="interests-section">
+      <div className="interests-title-wrapper">
+        <div className="section-title">
+          <h2>INTERESTS</h2>
+          <div className="title-underline"></div>
+        </div>
+      </div>
+      <div className="interests-container" style={{ height: `${interests.length * 200}vh` }}>
+        <div className="sticky-content">
+          <Container>
             <Row className="align-items-center h-100">
               <Col lg={6} className="interests-left">
                 <div className="number-title-wrapper">

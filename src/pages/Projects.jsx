@@ -1,13 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
-  const [selectedTags, setSelectedTags] = useState(new Set());
   const [isLoading, setIsLoading] = useState(true);
-  const [showFilters, setShowFilters] = useState(false);
 
   // Load project data from JSON
   useEffect(() => {
@@ -31,33 +29,6 @@ export default function Projects() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  // Get unique tags from all projects
-  const allTags = useMemo(() => {
-    const tagSet = new Set();
-    projects.forEach(project => {
-      project.stats.topics?.forEach(tag => tagSet.add(tag));
-    });
-    return Array.from(tagSet).sort();
-  }, [projects]);
-
-  // Filter projects based on selected tags
-  const filteredProjects = useMemo(() => {
-    if (selectedTags.size === 0) return projects;
-    return projects.filter(project =>
-      Array.from(selectedTags).some(tag => project.stats.topics?.includes(tag))
-    );
-  }, [projects, selectedTags]);
-
-  const toggleTag = (tag) => {
-    const newTags = new Set(selectedTags);
-    if (newTags.has(tag)) {
-      newTags.delete(tag);
-    } else {
-      newTags.add(tag);
-    }
-    setSelectedTags(newTags);
-  };
-
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'short' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -80,52 +51,18 @@ export default function Projects() {
           <p className="section-subtitle">A curated collection of my work across different domains</p>
         </div>
 
-        {/* Tag Filter */}
-        <div className="tags-filter-container">
-          <button
-            className="filter-toggle-btn"
-            onClick={() => setShowFilters(!showFilters)}
-          >
-            <i className="pi pi-sliders-v" /> Filter by tag
-            <i className={`pi pi-chevron-${showFilters ? 'up' : 'down'}`} />
-          </button>
-
-          {showFilters && (
-            <div className="tags-filter">
-              {allTags.map(tag => (
-                <button
-                  key={tag}
-                  className={`tag-button ${selectedTags.has(tag) ? 'active' : ''}`}
-                  onClick={() => toggleTag(tag)}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {selectedTags.size > 0 && (
-            <button
-              className="clear-filters-btn"
-              onClick={() => setSelectedTags(new Set())}
-            >
-              Clear filters ({selectedTags.size})
-            </button>
-          )}
-        </div>
-
         {/* Projects Grid */}
         {isLoading ? (
           <div className="loading-state">
             <p>Loading projects...</p>
           </div>
-        ) : filteredProjects.length === 0 ? (
+        ) : projects.length === 0 ? (
           <div className="empty-state">
-            <p>No projects match the selected filters.</p>
+            <p>No projects found.</p>
           </div>
         ) : (
           <div className="projects-grid">
-            {filteredProjects.map((project) => (
+            {projects.map((project) => (
               <article key={`${project.owner}/${project.repo}`} className="project-card">
                 <div className="card-image-wrapper">
                   <img
@@ -163,10 +100,10 @@ export default function Projects() {
 
                   <div className="card-meta">
                     <span className="meta-item">
-                      <i className="pi pi-calendar" /> {formatDate(project.stats.updated_at)}
+                      <i className="pi pi-calendar" /> Updated: {formatDate(project.stats.updated_at)}
                     </span>
                     <span className="meta-item">
-                      <i className="pi pi-database" /> {formatSize(project.stats.size)}
+                      <i className="pi pi-database" /> Size: {formatSize(project.stats.size)}
                     </span>
                   </div>
 

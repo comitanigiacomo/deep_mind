@@ -31,7 +31,7 @@
 .projects-section {
   width: 100%;
   background-color: var(--bg-primary);
-  padding: 4rem 0 3rem 0;
+  padding: 0rem 0 3rem 0;
   transition: background-color 0.3s ease;
   position: relative;
   z-index: 1;
@@ -89,108 +89,6 @@
   color: var(--text-secondary);
   max-width: 500px;
   margin: 0.5rem auto 1rem;
-}
-
-/* Tag Filter */
-.tags-filter-container {
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.filter-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.5rem;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.filter-toggle-btn:hover {
-  background-color: var(--accent-color);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(33, 150, 243, 0.3);
-}
-
-.filter-toggle-btn i:last-child {
-  transition: transform 0.3s ease;
-}
-
-.tags-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-  padding: 1.5rem;
-  max-width: 1200px;
-  background-color: var(--bg-card);
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tag-button {
-  padding: 0.5rem 1rem;
-  background-color: var(--bg-card);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.tag-button:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-}
-
-.tag-button.active {
-  background-color: var(--accent-color);
-  color: white;
-  border-color: var(--accent-color);
-}
-
-.clear-filters-btn {
-  padding: 0.5rem 1.25rem;
-  background-color: transparent;
-  color: var(--text-tertiary);
-  border: 1px solid var(--divider-color);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-}
-
-.clear-filters-btn:hover {
-  color: var(--text-secondary);
-  border-color: var(--text-secondary);
 }
 
 /* Loading & Empty State */

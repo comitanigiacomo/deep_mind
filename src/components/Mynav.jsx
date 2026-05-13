@@ -31,14 +31,16 @@ function Mynav() {
   return (
     <Navbar fixed="top" expand="lg">
       <Container fluid className="p-0">
-        <Nav.Link
-          onClick={toggleTheme}
-          className={`theme-toggle-btn mobile-toggle d-lg-none ${showToggle ? 'visible' : 'hidden'}`}
-          title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          aria-label="Toggle theme"
-        >
-          {isDarkMode ? <FaSun /> : <FaMoon />}
-        </Nav.Link>
+        <div className={`navbar-toggles mobile-toggles d-lg-none ${showToggle ? 'visible' : 'hidden'}`}>
+          <Nav.Link
+            onClick={toggleTheme}
+            className="theme-toggle-btn"
+            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label="Toggle theme"
+          >
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </Nav.Link>
+        </div>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/#about"><span>About</span></Nav.Link>
@@ -52,7 +54,7 @@ function Mynav() {
             <Nav.Link href="/#contacts"><span>Contacts</span></Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Nav className="ms-auto d-none d-lg-block">
+        <Nav className="ms-auto d-none d-lg-flex align-items-center gap-2">
           <Nav.Link
             onClick={toggleTheme}
             className="theme-toggle-btn"
