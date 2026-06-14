@@ -1,46 +1,37 @@
-import React, { useEffect } from 'react';
-import { Timeline } from 'primereact/timeline';
-import { Card } from 'primereact/card';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
+import React, { useEffect, useRef } from 'react';
 import './Education.css';
 
 const EducationPage = () => {
+  const sectionRef = useRef(null);
+
   const experiences = [
     {
-      date: '2025– 2026',
+      date: '2025 – 2026',
       title: 'Master of Science in Computer Science',
       institution: 'University of Milan',
-      description: 'Graduate degree program',
+      description: 'Currently pursuing my graduate degree with a focus on advanced computing concepts.',
       type: 'master',
-      icon: 'pi pi-graduation-cap',
       logo: '/Unimi-logo.png',
-      color: '#3b82f6',
-      progress: 10
+      active: true,
     },
     {
       date: '2021 – 2025',
       title: 'Bachelor of Science in Computer Science',
       institution: 'University of Milan',
-      description: 'Undergraduate degree program',
-      thesis: 'Thesis: "Study and analysis of cryptographic functions used by mobile devices to protect sensitive data" (Reverse Engineering focus)',
+      description: 'Undergraduate degree program focused on systems programming and software engineering.',
+      thesis: 'Study and analysis of cryptographic functions used by mobile devices to protect sensitive data',
       type: 'bachelor',
-      icon: 'pi pi-bookmark',
       logo: '/Unimi-logo.png',
-      color: '#3b82f6',
-      progress: 100
+      active: false,
     },
     {
       date: '2016 – 2021',
       title: 'High School Diploma',
-      institution: 'Leonardo Da Vinci State High School (Cologno Monzese)',
+      institution: 'Leonardo Da Vinci State High School',
       description: 'Scientific curriculum',
       type: 'highschool',
-      icon: 'pi pi-star',
       logo: '/leonardoDaVinci.png',
-      color: '#3b82f6',
-      progress: 100
+      active: false,
     }
   ];
 
@@ -48,38 +39,20 @@ const EducationPage = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('timeline-item-visible');
-
-          const progressFill = entry.target.querySelector('.progress-fill');
-          if (progressFill) {
-            const progress = progressFill.dataset.progress;
-            progressFill.style.width = `${progress}%`;
-          }
+          entry.target.classList.add('edu-card--visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
-    document.querySelectorAll('.p-timeline-event').forEach((item) => {
-      observer.observe(item);
-    });
+    const cards = document.querySelectorAll('.edu-card-wrapper');
+    cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="education" className="experience-section">
-      <div className="stars-bg">
-        {[...Array(30)].map((_, i) => (
-          <div key={i} className="star" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${2 + Math.random() * 3}s`
-          }} />
-        ))}
-      </div>
-
-      <div className="timeline-container">
+    <section id="education" className="education-section" ref={sectionRef}>
+      <div className="education-container">
         <div className="section-header">
           <div className="section-title">
             <h2>EDUCATION</h2>
@@ -87,69 +60,48 @@ const EducationPage = () => {
           </div>
         </div>
 
-        <Timeline
-          value={experiences}
-          align="alternate"
-          className="customized-timeline"
-          marker={(item) => (
-            <div className="timeline-marker">
-              <div className="marker-ring" style={{ borderColor: item.color }} />
-              <div className="marker-dot" style={{ backgroundColor: item.color }}>
-                <i className={item.icon}></i>
+        <div className="edu-timeline">
+          {experiences.map((exp, index) => (
+            <div key={index} className="edu-card-wrapper">
+              
+              {/* Timeline Line & Dot */}
+              <div className="edu-timeline-visual">
+                <div className={`edu-timeline-dot ${exp.active ? 'edu-timeline-dot--active' : ''}`}>
+                  {exp.active && <div className="edu-timeline-dot-pulse" />}
+                </div>
+                {index !== experiences.length - 1 && <div className="edu-timeline-line"></div>}
               </div>
-              <div className="marker-pulse" style={{ borderColor: item.color }} />
-            </div>
-          )}
-          content={(item) => (
-            <Card className="timeline-card">
-              <div className="card-glow" style={{ backgroundColor: `${item.color}20` }} />
-              <div className="timeline-card-content">
-                <div className="experience-header">
-                  <span
-                    className="experience-type"
-                    style={{ backgroundColor: item.color }}
-                  >
-                    {item.type.toUpperCase()}
+
+              {/* Card Content */}
+              <div className="edu-card">
+                <div className="edu-card__header">
+                  <span className="edu-card__date">{exp.date}</span>
+                  <span className={`edu-card__type edu-card__type--${exp.type}`}>
+                    {exp.type.toUpperCase()}
                   </span>
-                  <span className="experience-date">{item.date}</span>
                 </div>
 
-                <div className="progress-container">
-                  <div className="progress-bar">
-                    <div
-                      className="progress-fill"
-                      data-progress={item.progress}
-                      style={{ backgroundColor: item.color }}
-                    />
-                  </div>
-                  <span className="progress-text">{item.progress}% Complete</span>
-                </div>
-
-                <h3>{item.title}</h3>
-                <h5>
-                  {item.logo && (
-                    <img
-                      src={item.logo}
-                      alt={`${item.institution} logo`}
-                      className="institution-logo"
-                    />
+                <h3 className="edu-card__title">{exp.title}</h3>
+                
+                <div className="edu-card__institution">
+                  {exp.logo && (
+                    <img src={exp.logo} alt={exp.institution} className="edu-card__logo" />
                   )}
-                  <p>{item.institution}</p>
-                </h5>
-                <p>{item.description}</p>
-
-                {item.thesis && (
-                  <p className="thesis-row">{item.thesis}</p>
-                )}
-
-                <div className="experience-divider"></div>
-                <div className="experience-footer">
-                  <i className={item.icon}></i>
+                  <span>{exp.institution}</span>
                 </div>
+
+                <p className="edu-card__description">{exp.description}</p>
+
+                {exp.thesis && (
+                  <div className="edu-card__thesis">
+                    <span className="edu-card__thesis-label">Thesis</span>
+                    <p>{exp.thesis}</p>
+                  </div>
+                )}
               </div>
-            </Card>
-          )}
-        />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
