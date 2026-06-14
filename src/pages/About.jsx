@@ -1,184 +1,144 @@
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import './About.css';
-import { useTheme } from '../context/ThemeContext';
+
+const baseStats = [
+  { key: 'years',    value: '4+', label: 'Years of CS' },
+  { key: 'projects', value: '—',  label: 'Projects' },
+];
 
 export default function About() {
-  const { isDarkMode } = useTheme();
-  const [inputValue, setInputValue] = useState('');
-  const [output, setOutput] = useState('');
-  const [displayedOutput, setDisplayedOutput] = useState('');
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const heroRef = useRef(null);
+  const [projectCount, setProjectCount] = useState('—');
 
   useEffect(() => {
-    if (!output) {
-      setDisplayedOutput('');
-      return;
-    }
-
-    setDisplayedOutput('');
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < output.length) {
-        setDisplayedOutput(output.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, [output]);
-
-  useEffect(() => {
-    let timeoutId;
-    const handleScroll = () => {
-      requestAnimationFrame(() => {
-        if (timeoutId) clearTimeout(timeoutId);
-
-        if (window.scrollY > 50) {
-          setShowScrollIndicator(false);
-        } else {
-          timeoutId = setTimeout(() => {
-            setShowScrollIndicator(window.scrollY === 0);
-          }, 300);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
+    fetch('/repo_stats.json')
+      .then(r => r.json())
+      .then(data => setProjectCount(Object.keys(data).length))
+      .catch(() => setProjectCount('10+'));
   }, []);
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const guess = inputValue.trim().toLowerCase();
-
-      if (!guess) return;
-
-      const hasBlack = guess.includes('black') || guess.includes('nero');
-      const hasBlue = guess.includes('blue') || guess.includes('blu');
-
-      if (hasBlack && hasBlue) {
-        setOutput('Correct. My favorite colors are black and blue.');
-      } else if (hasBlack || hasBlue) {
-        setOutput('Almost there. You\'ve got one right, keep going!');
-      } else {
-        setOutput('Those aren\'t my colors. Try again with a different guess.');
-      }
-    }
-  };
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('about-hero--visible'); },
+      { threshold: 0.05 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section id="about" style={{
-      position: 'relative',
-      minHeight: '100vh',
-      backgroundColor: isDarkMode ? '#000000' : '#f8f9fa'
-    }}>
-      <div style={{
-        position: 'relative',
-        zIndex: 1,
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <Container className="about-container py-5 fade-in">
-          <Row>
-            <Col md={6} className="d-flex flex-column justify-content-center text-column order-2 order-md-1">
-              <p className="small-text">Hey, I'm</p>
-              <h1 className="display-1 fw-bold">Jack</h1>
-              <p className="medium-text">Computer Science student from Milan</p>
-              <div className="terminal">
-                <span className="terminal-prompt">&gt; console.log("Can you guess my favorite colors?")</span>
-                <div className="terminal-line">
-                  <span>&gt; </span>
-                  <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => { setInputValue(e.target.value); setOutput(''); }}
-                    onKeyDown={handleKeyDown}
-                    className="terminal-input"
-                    autoFocus
-                  />
-                </div>
-                {output && (
-                  <div className="terminal-output">
-                    <span>{displayedOutput}</span>
-                    <span className="cursor">|</span>
-                  </div>
-                )}
-              </div>
-            </Col>
+    <div id="about" className="about-hero" ref={heroRef}>
+      <div className="about-hero__inner">
 
-            <Col md={6} className="image-column order-1 order-md-2">
-              <div className="image-wrapper">
-                <img
-                  src="/prova.jpeg"
-                  alt="Profile"
-                  className="about-image"
-                />
-              </div>
+        {/* ── Left: text ── */}
+        <div className="about-hero__left">
 
-              <div className="image-controls d-none d-md-block">
-                <div className="contact-icons">
-                  <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
-                    <FaGithub className="icon" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin className="icon" />
-                  </a>
-                  <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className="icon" />
-                  </a>
-                </div>
-                <button
-                  onClick={() => (window.location.href = '#projects')}
-                  className="minimal-btn"
-                >
-                  See My Projects
-                </button>
-              </div>
-            </Col>
+          <span className="about-hero__eyebrow">Hello, I'm</span>
+          <h1 className="about-hero__name">Jack</h1>
 
-            <Col xs={12} className="image-controls-mobile order-3 d-md-none">
-              <div className="contact-icons">
-                <a href="https://github.com/comitanigiacomo" target="_blank" rel="noopener noreferrer">
-                  <FaGithub className="icon" />
-                </a>
-                <a href="https://www.linkedin.com/in/giacomo-comitani-249384326/" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedin className="icon" />
-                </a>
-                <a href="https://www.instagram.com/giacomo.comitani" target="_blank" rel="noopener noreferrer">
-                  <FaInstagram className="icon" />
-                </a>
+          <p className="about-hero__role">
+            MSc Computer Science · University of Milan
+          </p>
+
+          <div className="about-hero__currently">
+            <p className="about-currently__label">
+              <span className="about-currently__dot" />
+              Currently studying:
+            </p>
+            <p className="about-currently__courses">
+              Numerical Calculus
+              <span className="about-currently__sep">·</span>
+              Statistical Methods for Machine Learning
+            </p>
+          </div>
+
+          <p className="about-hero__bio">
+            CS graduate from Milan, focused on systems programming.
+            Currently in my MSc, actively exploring the field — still figuring out
+            which corner of computer science I want to make my own.
+          </p>
+
+          <p className="about-hero__bio">
+            My thesis analyzed how obsolete cryptographic libraries in mobile modems
+            expose devices to a range of attacks — mapping the vulnerability surface
+            and visualizing update trends to understand why these libraries stay outdated.
+            Outside uni I run a self-hosted homelab, grind LeetCode, and write notes
+            to organize my thoughts.
+          </p>
+
+          <p className="about-hero__bio about-hero__bio--goal">
+            My goal is to find what truly excites me in this field
+            and turn it into my work — so I never get bored.
+          </p>
+
+          <div className="about-hero__stats">
+            {baseStats.map((s) => (
+              <div key={s.key} className="about-stat">
+                <span className="about-stat__value">
+                  {s.key === 'projects' ? projectCount : s.value}
+                </span>
+                <span className="about-stat__label">{s.label}</span>
               </div>
-              <button
-                onClick={() => (window.location.href = '#projects')}
-                className="minimal-btn"
+            ))}
+          </div>
+
+          <div className="about-hero__footer">
+            <div className="about-hero__socials">
+              <a
+                href="https://github.com/comitanigiacomo"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="about-social-link"
               >
-                See My Projects
-              </button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/giacomo-comitani-249384326/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="about-social-link"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="https://www.instagram.com/giacomo.comitani"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="about-social-link"
+              >
+                <FaInstagram />
+              </a>
+              <span className="about-handle">@comitanigiacomo</span>
+            </div>
 
-      {showScrollIndicator && (
-        <div className="scroll-indicator">
-          <div className="scroll-text">Scroll down</div>
-          <div className="scroll-icon">
-            <div className="scroll-dot"></div>
+            <a href="/#projects" className="about-btn-primary">
+              View Projects
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
-      )}
-    </section>
+
+        {/* ── Right: big photo ── */}
+        <div className="about-hero__right">
+          <div className="about-photo-wrap">
+            <img
+              src="/prova.jpeg"
+              alt="Jack Comitani"
+              className="about-photo"
+            />
+            <div className="about-photo-glare" />
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 }
