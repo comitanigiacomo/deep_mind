@@ -34,10 +34,8 @@ export default function App() {
       <Mynav />
       <VerticalSectionIndicator />
       <div className="background-wrapper">
+        <About />
         <div className="container mt-3">
-          <section id="about">
-            <About />
-          </section>
           <section id="interests">
             <Interests />
           </section>
