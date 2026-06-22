@@ -14,9 +14,11 @@ import { useEffect } from 'react';
 import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import BlogPostPage from './pages/BlogPostPage.jsx';
+import { useLang } from './context/LanguageContext.jsx';
 
 export default function App() {
   const location = useLocation();
+  const { isTransitioning } = useLang();
 
   useEffect(() => {
     // Only scroll if there's a hash and we are actually on the main page
@@ -33,7 +35,9 @@ export default function App() {
     <>
       <Mynav />
       <VerticalSectionIndicator />
-      <div className="background-wrapper">
+      <div
+        className={`background-wrapper ${isTransitioning ? 'lang-transitioning' : 'lang-ready'}`}
+      >
         <About />
         <div className="container mt-3">
           <section id="interests">

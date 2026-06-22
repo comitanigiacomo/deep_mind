@@ -1,23 +1,16 @@
-
 import { useEffect, useState } from 'react';
 import './VerticalSectionIndicator.css';
-import {useTheme} from '../context/ThemeContext'
+import { useTheme } from '../context/ThemeContext';
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
-const sections = [
-  { id: 'about',     name: 'About' },
-  { id: 'skills',     name: 'Skills' },
-  { id: 'interests',     name: 'Interests' },
-  { id: 'education', name: 'Education' },
-  { id: 'projects',  name: 'Projects' },
-  { id: 'homelab',   name: 'Homelab' },
-  { id: 'research',  name: 'Research' },
-  { id: 'blog',      name: 'Blog' },
-  { id: 'contacts',  name: 'Contacts' },
-];
+const sectionIds = ['about', 'skills', 'interests', 'education', 'projects', 'homelab', 'research', 'blog', 'contacts'];
 
 export default function VerticalSectionIndicator() {
   const { isDarkMode } = useTheme();
-  const [currentSection, setCurrentSection] = useState(sections[0].name);
+  const { lang } = useLang();
+  const sectionNames = translations[lang].sections;
+  const [currentSection, setCurrentSection] = useState(sectionNames['about']);
 
   useEffect(() => {
     const options = {
@@ -28,19 +21,18 @@ export default function VerticalSectionIndicator() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const sec = sections.find(s => s.id === entry.target.id);
-          if (sec) setCurrentSection(sec.name);
+          setCurrentSection(sectionNames[entry.target.id] || entry.target.id);
         }
       });
     }, options);
 
-    sections.forEach(s => {
-      const el = document.getElementById(s.id);
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [lang, sectionNames]);
 
   return (
     <div className="vertical-line-container">
@@ -50,4 +42,3 @@ export default function VerticalSectionIndicator() {
     </div>
   );
 }
-
