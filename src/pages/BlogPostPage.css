@@ -57,6 +57,24 @@
   color: var(--text);
 }
 
+.blog-post-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.lang-toggle-blog {
+  color: var(--text);
+  gap: 3px;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.lang-toggle-blog:hover {
+  opacity: 1;
+}
+
 /* ─── Article Header ─────────────────────────────── */
 
 .blog-post-content {

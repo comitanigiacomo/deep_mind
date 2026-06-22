@@ -46,3 +46,16 @@ section {
   margin-top: 0 !important;
 }
 
+/* ── Language switch transition ── */
+.lang-transitioning {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+
+.lang-ready {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}

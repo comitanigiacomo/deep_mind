@@ -4,50 +4,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Interests.css';
 import { useTheme } from '../context/ThemeContext';
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export default function Interests() {
   const { isDarkMode } = useTheme();
+  const { lang } = useLang();
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
   const animationFrameRef = useRef(null);
 
-  const interests = [
-    {
-      number: "00",
-      title: "Computer Science",
-      description: "I'm currently studying IT at university, following a lifelong interest in technology and problem-solving.",
-      image: "/tec.png",
-      skills: ["Problem Solving", "Critical Thinking", "Tech Curiosity", "Team Collaboration"]
-    },
-    {
-      number: "01",
-      title: "Formula 1",
-      description: "Formula 1 has always fascinated me, i follow every race and enjoy learning about the technology and strategy behind the sport.",
-      image: "/ferrari.png",
-      skills: ["Race Enthusiast", "Strategic Thinking", "Curiosity for Technology", "Attention to Detail"]
-    },
-    {
-      number: "02",
-      title: "Music",
-      description: "I'm passionate about music, I listen to all kinds of genres and enjoy playing the drums in my free time.",
-      image: "./music.png",
-      skills: ["Rhythm & Timing", "Creativity", "Active Listening", "Musical Expression"]
-    },
-    {
-      number: "03",
-      title: "Anime",
-      description: "Anime is one of my biggest passions. I watch a wide variety of shows and enjoy the creativity and storytelling behind them.",
-      image: "/luffy.png",
-      skills: ["Anime Enthusiast", "Strong Visual Sense", "Narrative Curiosity", "Consistent Watcher"]
-    },
-    {
-      number: "04",
-      title: "Gym",
-      description: "Going to the gym has become an important part of my routine. It helps me stay focused, build discipline, and improve both physically and mentally. I enjoy challenging myself and seeing progress over time. I'm currently on a short break due to my studies, but I'll be getting back to it soon.",
-      image: "/gym.png",
-      skills: ["Discipline", "Consistency", "Self-Motivation", "Goal-Oriented"]
-    },
-  ];
+  const tr = translations[lang].interests;
+  const interests = tr.items.map((item, i) => ({
+    ...item,
+    image: ['/tec.png', '/ferrari.png', './music.png', '/luffy.png', '/gym.png'][i],
+  }));
 
   useEffect(() => {
     const updateActiveIndex = () => {
@@ -83,7 +54,7 @@ export default function Interests() {
     <section id="interests" ref={sectionRef} className="interests-section">
       <div className="interests-title-wrapper">
         <div className="section-title">
-          <h2>INTERESTS</h2>
+          <h2>{tr.title}</h2>
           <div className="title-underline"></div>
         </div>
       </div>

@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
 import { GoCommit } from "react-icons/go";
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { lang } = useLang();
+  const tr = translations[lang].projects;
 
-  // Load project data from JSON
   useEffect(() => {
     setIsLoading(true);
     fetch('/repo_stats.json')
@@ -30,8 +33,9 @@ export default function Projects() {
   }, []);
 
   const formatDate = (dateString) => {
+    const locale = lang === 'it' ? 'it-IT' : 'en-US';
     const options = { year: 'numeric', month: 'short' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    return new Date(dateString).toLocaleDateString(locale, options);
   };
 
   const formatSize = (sizeMB) => {
@@ -45,20 +49,20 @@ export default function Projects() {
       <div className="projects-wrapper">
         <div className="projects-header">
           <div className="section-title">
-            <h2>PROJECTS</h2>
+            <h2>{tr.title}</h2>
             <div className="title-underline"></div>
           </div>
-          <p className="section-subtitle">A curated collection of my work across different domains</p>
+          <p className="section-subtitle">{tr.subtitle}</p>
         </div>
 
         {/* Projects Grid */}
         {isLoading ? (
           <div className="loading-state">
-            <p>Loading projects...</p>
+            <p>{tr.loading}</p>
           </div>
         ) : projects.length === 0 ? (
           <div className="empty-state">
-            <p>No projects found.</p>
+            <p>{tr.noProjects}</p>
           </div>
         ) : (
           <div className="projects-grid">
@@ -91,7 +95,7 @@ export default function Projects() {
                     <h3 className="card-title">{project.title}</h3>
                     {project.stats.archived && (
                       <span className="badge archived">
-                        <i className="pi pi-lock" /> Archived
+                        <i className="pi pi-lock" /> {tr.archived}
                       </span>
                     )}
                   </div>
@@ -100,10 +104,10 @@ export default function Projects() {
 
                   <div className="card-meta">
                     <span className="meta-item">
-                      <i className="pi pi-calendar" /> Updated: {formatDate(project.stats.updated_at)}
+                      <i className="pi pi-calendar" /> {tr.updated}: {formatDate(project.stats.updated_at)}
                     </span>
                     <span className="meta-item">
-                      <i className="pi pi-database" /> Size: {formatSize(project.stats.size)}
+                      <i className="pi pi-database" /> {tr.size}: {formatSize(project.stats.size)}
                     </span>
                   </div>
 
@@ -129,7 +133,7 @@ export default function Projects() {
                     className="card-link"
                   >
                     <Button className="view-repo-btn">
-                      <i className="pi pi-github" /> View Repository
+                      <i className="pi pi-github" /> {tr.viewRepo}
                     </Button>
                   </a>
                 </div>
