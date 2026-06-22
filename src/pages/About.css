@@ -29,12 +29,13 @@
 }
 
 .about-hero__inner {
-  max-width: 1700px;
+  width: 100%;
+  max-width: 1350px;
   margin: 0 auto;
-  padding: 0 4vw;
+  padding: 0 3vw;
   display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 6vw;
+  grid-template-columns: 1fr 380px;
+  gap: 5vw;
   align-items: center;
 
   /* entrance */
@@ -53,7 +54,7 @@
 .about-hero__left {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.1rem;
 }
 
 /* eyebrow */
@@ -168,7 +169,7 @@
   line-height: 1.8;
   color: rgba(211, 211, 211, 0.65);
   margin: 0;
-  max-width: 640px;
+  max-width: 720px;
 }
 
 .about-hero__bio--goal {
@@ -215,6 +216,7 @@
   text-transform: uppercase;
   letter-spacing: 0.09em;
   color: rgba(211, 211, 211, 0.4);
+  white-space: nowrap;
 }
 
 [data-theme="light"] .about-stat__label {
@@ -449,4 +451,17 @@
     align-items: flex-start;
     gap: 1rem;
   }
+}
+
+/* ── Language line (below role) ───────────────── */
+.about-hero__lang {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.45;
+  margin: 0;
+  margin-top: 0.15rem;
+  margin-bottom: -0.2rem;
 }

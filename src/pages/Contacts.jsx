@@ -1,7 +1,12 @@
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import './Contact.css';
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 export default function Contact() {
+  const { lang } = useLang();
+  const tr = translations[lang].contacts;
+
   return (
     <section id="contacts" className="contact-section">
       <div className="contact-wrapper">
@@ -9,7 +14,7 @@ export default function Contact() {
         <div className="profile-container">
           <img src="/profile.png" alt="Giacomo Comitani" className="profile-photo" />
           <h2 className="profile-name">Giacomo Comitani</h2>
-          <p className="profile-location">Milan, Italy</p>
+          <p className="profile-location">{tr.location}</p>
         </div>
 
         <div className="social-section">

@@ -2,6 +2,8 @@ import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogPosts';
 import './Blog.css';
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 const categories = {
   leetcode: { label: 'LeetCode', color: '#f59e0b' },
@@ -34,6 +36,8 @@ function useInView(threshold = 0.1) {
 export default function Blog() {
   const [sectionRef, visible] = useInView();
   const [activeCategory, setActiveCategory] = useState(null);
+  const { lang } = useLang();
+  const tr = translations[lang].blog;
 
   const featured = posts.find(p => p.id === featuredId);
   const list = posts.filter(p => p.id !== featuredId);
@@ -49,14 +53,12 @@ export default function Blog() {
         {/* Header */}
         <div className="blog-header">
           <div className="section-title">
-            <h2>BLOG</h2>
+            <h2>{tr.title}</h2>
             <div className="title-underline"></div>
           </div>
         </div>
 
-        <p className="blog-subtitle">
-          Writeups on algorithms, homelab setups, and CS theory I find worth explaining properly.
-        </p>
+        <p className="blog-subtitle">{tr.subtitle}</p>
 
         {/* Featured */}
         {featured && (
@@ -71,20 +73,18 @@ export default function Blog() {
               >
                 {categories[featured.category].label}
               </span>
-              <span className="blog-featured__flag">Featured</span>
+              <span className="blog-featured__flag">{tr.featured}</span>
             </div>
-            <h3 className="blog-featured__title">{featured.title}</h3>
+            <h3 className="blog-featured__title">{tr.titles?.[featured.id] || featured.title}</h3>
 
-            <p className="blog-featured__excerpt">
-              Instead of a complex hypervisor setup or multiple Raspberry Pis, I went with a completely minimal approach: a single Debian machine where everything is containerized...
-            </p>
+            <p className="blog-featured__excerpt">{tr.featuredExcerpt}</p>
 
             <div className="blog-featured__meta">
               <span>{featured.date}</span>
               <span className="blog-meta-sep" />
               <span>{featured.readingTime}</span>
               <span className="blog-featured__arrow">
-                Read
+                {tr.read}
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" width="13" height="13">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -101,7 +101,7 @@ export default function Blog() {
               className={`blog-cat-btn ${activeCategory === null ? 'active' : ''}`}
               onClick={() => setActiveCategory(null)}
             >
-              All
+              {tr.all}
             </button>
             {Object.entries(categories).map(([key, cat]) => (
               <button
@@ -120,15 +120,7 @@ export default function Blog() {
         <ul className="blog-list" role="list">
           {filteredList.map((post, i) => {
             const cat = categories[post.category];
-
-            // Short excerpts for the preview
-            let excerpt = '';
-            if (post.id === 'sliding-window') excerpt = 'Instead of recalculating everything from scratch for every possible subarray, you maintain a "window" of elements...';
-            if (post.id === 'typst-vs-latex') excerpt = 'Faster compile times, a sane syntax, and native scripting. After one semester all my notes live in Typst...';
-            if (post.id === 'double-descent') excerpt = 'An intuitive explanation of the double descent risk curve and why classical bias-variance decomposition breaks down...';
-            if (post.id === 'kanso-sync') excerpt = "The design decisions behind Kanso's sync engine: Delta-Sync, Optimistic Locking, and conflict resolution...";
-            if (post.id === 'nyt-stream') excerpt = 'Moving from static CSVs to real-time data: building a resilient, decoupled streaming pipeline using the New York Times API...';
-            if (post.id === 'firmware-crypto-analysis') excerpt = 'Reverse engineering a mobile modem to uncover how obsolete OpenSSL libraries and AES T-table optimizations open the door to cache-timing attacks...';
+            const excerpt = tr.excerpts[post.id] || '';
 
             return (
               <li
@@ -144,7 +136,7 @@ export default function Blog() {
                     <span className="blog-item__cat" style={{ color: cat.color }}>
                       {cat.label}
                     </span>
-                    <span className="blog-item__title">{post.title}</span>
+                    <span className="blog-item__title">{tr.titles?.[post.id] || post.title}</span>
                     <span className="blog-item__excerpt">{excerpt}</span>
                   </div>
                   <div className="blog-item__right">

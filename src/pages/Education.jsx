@@ -1,39 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import './Education.css';
+import { useLang } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 const EducationPage = () => {
   const sectionRef = useRef(null);
-
-  const experiences = [
-    {
-      date: '2025 – 2026',
-      title: 'Master of Science in Computer Science',
-      institution: 'University of Milan',
-      description: 'Currently pursuing my graduate degree with a focus on advanced computing concepts.',
-      type: 'master',
-      logo: '/Unimi-logo.png',
-      active: true,
-    },
-    {
-      date: '2021 – 2025',
-      title: 'Bachelor of Science in Computer Science',
-      institution: 'University of Milan',
-      description: 'Undergraduate degree program focused on systems programming and software engineering.',
-      thesis: 'Study and analysis of cryptographic functions used by mobile devices to protect sensitive data',
-      type: 'bachelor',
-      logo: '/Unimi-logo.png',
-      active: false,
-    },
-    {
-      date: '2016 – 2021',
-      title: 'High School Diploma',
-      institution: 'Leonardo Da Vinci State High School',
-      description: 'Scientific curriculum',
-      type: 'highschool',
-      logo: '/leonardoDaVinci.png',
-      active: false,
-    }
-  ];
+  const { lang } = useLang();
+  const tr = translations[lang].education;
+  const experiences = tr.items;
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -48,14 +22,14 @@ const EducationPage = () => {
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, []);
+  }, [lang]);
 
   return (
     <section id="education" className="education-section" ref={sectionRef}>
       <div className="education-container">
         <div className="section-header">
           <div className="section-title">
-            <h2>EDUCATION</h2>
+            <h2>{tr.title}</h2>
             <div className="title-underline"></div>
           </div>
         </div>
@@ -94,7 +68,7 @@ const EducationPage = () => {
 
                 {exp.thesis && (
                   <div className="edu-card__thesis">
-                    <span className="edu-card__thesis-label">Thesis</span>
+                    <span className="edu-card__thesis-label">{tr.thesisLabel}</span>
                     <p>{exp.thesis}</p>
                   </div>
                 )}
