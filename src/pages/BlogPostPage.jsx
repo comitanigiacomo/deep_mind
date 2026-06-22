@@ -1,7 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { blogPosts } from '../data/blogPosts';
+import { blogPostsIT } from '../data/blogPostsIT';
 import { useTheme } from '../context/ThemeContext';
+import { useLang } from '../context/LanguageContext';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import './BlogPostPage.css';
 
@@ -14,17 +16,21 @@ const categories = {
   security: { label: 'Security',  color: '#ef4444' },
 };
 
+import { translations } from '../i18n/translations';
+
 export default function BlogPostPage() {
   const { id } = useParams();
   const { isDarkMode, toggleTheme } = useTheme();
+  const { lang, toggleLang } = useLang();
   const post = blogPosts[id];
+  const tr = translations[lang].blogPost;
+  const itPost = blogPostsIT[id];
+  const content = lang === 'it' && itPost ? itPost.content : post?.content;
 
   useEffect(() => {
-    // Scroll the overlay to top
     const page = document.querySelector('.blog-post-page');
     if (page) page.scrollTop = 0;
     
-    // Prevent background from scrolling
     document.body.style.overflow = 'hidden';
     
     return () => {
@@ -36,8 +42,8 @@ export default function BlogPostPage() {
     return (
       <div className="blog-post-page not-found">
         <div className="container">
-          <h2>Post not found</h2>
-          <Link to="/#blog" className="back-link">← Back to portfolio</Link>
+          <h2>{tr.notFound}</h2>
+          <Link to="/#blog" className="back-link">{tr.backPortfolio}</Link>
         </div>
       </div>
     );
@@ -53,10 +59,23 @@ export default function BlogPostPage() {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
             <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          Back
+          {tr.back}
         </Link>
         
         <div className="blog-post-nav-right">
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className="theme-toggle-btn-blog lang-toggle-blog"
+            title={lang === 'en' ? "Passa all'italiano" : 'Switch to English'}
+            aria-label="Toggle language"
+            style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.75rem', fontWeight: 600, minWidth: 52 }}
+          >
+            <span style={{ opacity: lang === 'en' ? 1 : 0.3 }}>EN</span>
+            <span style={{ opacity: 0.3 }}>|</span>
+            <span style={{ opacity: lang === 'it' ? 1 : 0.3 }}>IT</span>
+          </button>
+
           <button 
             onClick={toggleTheme} 
             className="theme-toggle-btn-blog"
@@ -75,20 +94,22 @@ export default function BlogPostPage() {
             <span className="blog-post-date">{post.date}</span>
             <span className="blog-post-time">{post.readingTime} read</span>
           </div>
-          <h1 className="blog-post-title">{post.title}</h1>
+          <h1 className="blog-post-title">
+            {lang === 'it' ? (translations.it.blog.titles?.[id] || post.title) : post.title}
+          </h1>
         </header>
 
         <div 
           className="blog-post-body"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: content }}
         />
       </article>
 
       <footer className="blog-post-footer">
         <div className="blog-post-footer-inner">
-          <p>Thanks for reading.</p>
+          <p>{tr.thanks}</p>
           <Link to="/#blog" className="back-link-bottom">
-            ← Back to all posts
+            {tr.backAll}
           </Link>
         </div>
       </footer>
