@@ -242,30 +242,30 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 739,
+    "commits": 742,
     "languages": [
       {
-        "name": "CSS",
-        "percent": 50.0
+        "name": "JavaScript",
+        "percent": 51.5
       },
       {
-        "name": "JavaScript",
-        "percent": 45.5
+        "name": "CSS",
+        "percent": 44.6
       },
       {
         "name": "Python",
-        "percent": 3.3
+        "percent": 2.9
       },
       {
         "name": "HTML",
-        "percent": 1.0
+        "percent": 0.9
       },
       {
         "name": "Dockerfile",
         "percent": 0.1
       }
     ],
-    "updated_at": "2026-06-21T02:30:27Z",
+    "updated_at": "2026-06-22T16:18:51Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -274,7 +274,7 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 158.24,
+    "size": 158.28,
     "archived": false,
     "default_branch": "main"
   },
