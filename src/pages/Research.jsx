@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import NeuralNetworkCanvas from '../components/NeuralNetworkCanvas';
 import './Research.css';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
@@ -26,9 +25,8 @@ export default function Research() {
 
   return (
     <section id="research" className="research-section" ref={sectionRef}>
-      <NeuralNetworkCanvas />
       
-      <div className={`research-inner ${visible ? 'research--visible' : ''}`} style={{ position: 'relative', zIndex: 1 }}>
+      <div className={`research-inner ${visible ? 'research--visible' : ''}`}>
 
         <div className="section-title">
           <h2>{tr.title}</h2>
