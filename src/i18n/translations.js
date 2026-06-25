@@ -30,8 +30,9 @@ export const translations = {
     about: {
       eyebrow: "Hello, I'm",
       name: 'Jack',
-      role: 'MSc Computer Science · University of Milan',
-      langLine: 'Native Italian · English B2',
+      role: 'Systems Programming | MSc Student',
+      langBadgeIt: 'Italian Native',
+      langBadgeEn: 'English B2',
       currentlyLabel: 'Currently studying:',
       currentlyCourses: ['Numerical Calculus', 'Statistical Methods for Machine Learning'],
       bio1: 'CS graduate from Milan, focused on systems programming. Currently in my MSc, actively exploring the field. Still figuring out which corner of computer science I want to make my own.',
@@ -272,8 +273,9 @@ export const translations = {
     about: {
       eyebrow: 'Ciao, sono',
       name: 'Jack',
-      role: 'Laurea Magistrale in Informatica · Università degli Studi di Milano',
-      langLine: 'Madrelingua Italiano · Inglese B2',
+      role: 'Programmazione di Sistema | Studente Magistrale',
+      langBadgeIt: 'Italiano Madrelingua',
+      langBadgeEn: 'Inglese B2',
       currentlyLabel: 'Attualmente sto studiando:',
       currentlyCourses: ['Calcolo Numerico', 'Metodi Statistici per il Machine Learning'],
       bio1: 'Laureato in Informatica a Milano, con un forte interesse per la programmazione di sistema. Attualmente sto frequentando la magistrale ed esplorando attivamente il settore. Sto ancora cercando di capire quale nicchia dell\'informatica fare mia.',
