@@ -94,25 +94,61 @@
   background-color: var(--nav-accent);
 }
 
-.theme-toggle-btn {
-  color: var(--nav-text);
-  padding: 8px 12px;
+/* ── Theme toggle: pill slider ── */
+.theme-toggle-pill {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 0;
+  margin-right: 12px;
+}
+
+.theme-toggle-track {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 3px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+[data-theme="light"] .theme-toggle-track {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--nav-accent);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 12px;
-  border-radius: 50%;
-  transition: color 0.2s ease;
+  color: #fff;
+  font-size: 10px;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-.theme-toggle-btn svg {
-  width: 20px;
-  height: 20px;
+.theme-toggle-track.is-dark .theme-toggle-thumb {
+  transform: translateX(0px);
 }
 
-.theme-toggle-btn:hover {
-  color: var(--nav-accent);
+.theme-toggle-track.is-light .theme-toggle-thumb {
+  transform: translateX(24px);
+}
+
+.theme-toggle-pill:hover .theme-toggle-track {
+  border-color: var(--nav-accent);
+  background: rgba(7, 88, 157, 0.12);
 }
 
 /* ── Language slot (always far-left) ── */

@@ -31,6 +31,7 @@ section {
   position: relative;
   overflow: visible;
   background-color: var(--bg);
+  scroll-margin-top: 40px;
 }
 
 .section-wrapper {
