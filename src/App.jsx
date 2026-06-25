@@ -52,12 +52,15 @@ export default function App() {
           <section id="projects">
             <Projects />
           </section>
-          <section id="homelab">
-            <Homelab />
-          </section>
-          <section id="research">
-            <Research />
-          </section>
+        </div>
+
+        {/* Homelab — fuori dal container per background full-bleed */}
+        <Homelab />
+        
+        {/* Research — fuori dal container per background full-bleed */}
+        <Research />
+
+        <div className="container">
           <section id="blog">
             <Blog />
           </section>
