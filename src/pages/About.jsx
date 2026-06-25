@@ -40,10 +40,6 @@ export default function About() {
 
           <p className="about-hero__role">{a.role}</p>
 
-          <p className="about-hero__lang">
-            {a.langLine}
-          </p>
-
           <div className="about-hero__currently">
             <p className="about-currently__label">
               <span className="about-currently__dot" />
@@ -113,15 +109,21 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── Right: big photo ── */}
+        {/* ── Right: big photo & badges ── */}
         <div className="about-hero__right">
           <div className="about-photo-wrap">
             <img
               src="/prova.jpeg"
-              alt="Jack Comitani"
+              alt="Giacomo Comitani"
               className="about-photo"
+              loading="lazy"
             />
-            <div className="about-photo-glare" />
+            <div className="about-photo-glare"></div>
+          </div>
+          
+          <div className="about-photo__badges">
+            <span className="about-lang-badge">{a.langBadgeIt}</span>
+            <span className="about-lang-badge">{a.langBadgeEn}</span>
           </div>
         </div>
 

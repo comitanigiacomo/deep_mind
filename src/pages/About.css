@@ -26,7 +26,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 3rem 0;
+  padding: 1rem 0;
   font-family: 'Inter', sans-serif;
   position: relative;
   scroll-margin-top: 40px;
@@ -70,8 +70,8 @@
 .about-hero__inner {
   width: 100%;
   max-width: 1350px;
-  margin: 0 auto;
-  padding: 0 3vw;
+  margin: -6vh auto 0 auto; /* pulls the entire block UP significantly */
+  padding: 3.5rem 4vw;
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 5vw;
@@ -79,10 +79,26 @@
   position: relative;
   z-index: 1;
 
+  /* ── Unified Glass Card ── */
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(2px) saturate(1.2);
+  -webkit-backdrop-filter: blur(2px) saturate(1.2);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
   /* entrance */
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+[data-theme="light"] .about-hero__inner {
+  background: rgba(255, 252, 245, 0.507);
+  backdrop-filter: blur(2px) saturate(1.4);
+  -webkit-backdrop-filter: blur(2px) saturate(1.4);
 }
 
 .about-hero--visible .about-hero__inner {
@@ -96,27 +112,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-
-  /* ── Frosted glass backdrop: crea separazione ottica dal dipinto ── */
-  background: rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(2px) saturate(1.2);
-  -webkit-backdrop-filter: blur(2px) saturate(1.2);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 2.4rem 2.6rem;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="light"] .about-hero__left {
-  background: rgba(255, 252, 245, 0.60);
-  backdrop-filter: blur(2px) saturate(1.4);
-  -webkit-backdrop-filter: blur(2px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* eyebrow */
@@ -285,12 +280,12 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  color: rgba(211, 211, 211, 0.4);
+  color: rgba(211, 211, 211, 0.899);
   white-space: nowrap;
 }
 
 [data-theme="light"] .about-stat__label {
-  color: rgba(0, 0, 0, 0.38);
+  color: rgba(0, 0, 0, 0.701);
 }
 
 /* ── Footer row: socials + CTA ───────────────── */
@@ -343,14 +338,14 @@
 .about-handle {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.92rem;
-  color: rgba(211, 211, 211, 0.5);
+  color: rgba(211, 211, 211, 0.896);
   letter-spacing: 0.01em;
   margin-left: 0.2rem;
   white-space: nowrap;
 }
 
 [data-theme="light"] .about-handle {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.703);
 }
 
 /* CTA button */
@@ -381,31 +376,10 @@
 
 .about-hero__right {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  /* ── Matching glass card: bilancia visivamente la colonna sinistra ── */
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(2px) saturate(1.2);
-  -webkit-backdrop-filter: blur(2px) saturate(1.2);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1.8rem;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
-
-[data-theme="light"] .about-hero__right {
-  background: rgba(255, 252, 245, 0.50);
-  backdrop-filter: blur(2px) saturate(1.3);
-  -webkit-backdrop-filter: blur(2px) saturate(1.3);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
 .about-photo-wrap {
   position: relative;
   width: 100%;
@@ -428,6 +402,48 @@
 .about-photo-wrap:hover .about-photo {
   filter: grayscale(0) contrast(1.08);
   transform: scale(1.02);
+}
+
+/* ── Badges under the photo ── */
+.about-photo__badges {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+
+.about-lang-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(220, 220, 220, 0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .about-lang-badge {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(10, 10, 10, 0.75);
+}
+
+.about-lang-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .about-lang-badge:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #000;
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 /* subtle glare overlay */
@@ -487,7 +503,7 @@
   .about-hero__inner {
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding: 0 5vw;
+    padding: 3rem 5vw;
   }
 
   .about-hero__right {
@@ -544,15 +560,4 @@
   }
 }
 
-/* ── Language line (below role) ───────────────── */
-.about-hero__lang {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--text);
-  opacity: 0.45;
-  margin: 0;
-  margin-top: 0.15rem;
-  margin-bottom: -0.2rem;
-}
+/* ── Removed old language line ── */
