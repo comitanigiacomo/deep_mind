@@ -53,14 +53,18 @@ function Mynav() {
 
         {/* Mobile toggles (theme) */}
         <div className={`navbar-toggles mobile-toggles d-lg-none ${showToggle ? 'visible' : 'hidden'}`}>
-          <Nav.Link
+          <button
             onClick={toggleTheme}
-            className="theme-toggle-btn"
+            className="theme-toggle-pill"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             aria-label="Toggle theme"
           >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </Nav.Link>
+            <span className={`theme-toggle-track ${isDarkMode ? 'is-dark' : 'is-light'}`}>
+              <span className="theme-toggle-thumb">
+                {isDarkMode ? <FaMoon size={13} /> : <FaSun size={13} />}
+              </span>
+            </span>
+          </button>
         </div>
 
         <Navbar.Collapse id="basic-navbar-nav">
@@ -78,14 +82,18 @@ function Mynav() {
         </Navbar.Collapse>
 
         <Nav className="ms-auto d-none d-lg-flex align-items-center gap-2">
-          <Nav.Link
+          <button
             onClick={toggleTheme}
-            className="theme-toggle-btn"
+            className="theme-toggle-pill"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             aria-label="Toggle theme"
           >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </Nav.Link>
+            <span className={`theme-toggle-track ${isDarkMode ? 'is-dark' : 'is-light'}`}>
+              <span className="theme-toggle-thumb">
+                {isDarkMode ? <FaMoon size={10} /> : <FaSun size={10} />}
+              </span>
+            </span>
+          </button>
         </Nav>
 
       </Container>

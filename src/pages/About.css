@@ -16,16 +16,55 @@
   --border: rgba(0, 0, 0, 0.08);
 }
 
+[data-theme="light"] .about-hero {
+  background-color: #e8e0d0; /* fallback caldo in light mode, nessuna linea nera */
+}
+
 /* ── Section wrapper ──────────────────────────── */
 
 .about-hero {
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: var(--bg);
   padding: 3rem 0;
   font-family: 'Inter', sans-serif;
-  overflow: hidden;
+  position: relative;
+  scroll-margin-top: 40px;
+  /* chiude il gap subpixel sotto la navbar */
+  margin-top: -1px;
+  padding-top: calc(3rem + 1px);
+
+  /* ── Sistine Chapel background ── */
+  background-image: url('/sistine_chapel_bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #0a0a0a;
+}
+
+/* Dark cinematic overlay – preserves image but makes content pop */
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.52) 0%,
+    rgba(0, 0, 0, 0.38) 50%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme="light"] .about-hero::before {
+  background: linear-gradient(
+    135deg,
+    rgba(250, 245, 235, 0.30) 0%,
+    rgba(255, 250, 240, 0.20) 50%,
+    rgba(248, 243, 233, 0.28) 100%
+  );
 }
 
 .about-hero__inner {
@@ -37,6 +76,8 @@
   grid-template-columns: 1fr 380px;
   gap: 5vw;
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   /* entrance */
   opacity: 0;
@@ -55,6 +96,27 @@
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
+
+  /* ── Frosted glass backdrop: crea separazione ottica dal dipinto ── */
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(2px) saturate(1.2);
+  -webkit-backdrop-filter: blur(2px) saturate(1.2);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.4rem 2.6rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .about-hero__left {
+  background: rgba(255, 252, 245, 0.60);
+  backdrop-filter: blur(2px) saturate(1.4);
+  -webkit-backdrop-filter: blur(2px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* eyebrow */
@@ -74,24 +136,28 @@
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 0.9;
-  color: var(--text);
+  color: #ffffff;
   margin: 0;
   text-transform: uppercase;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(0, 0, 0, 0.3);
 }
 
 /* role */
 .about-hero__role {
   font-size: 0.95rem;
-  color: rgba(211, 211, 211, 0.5);
+  color: rgba(220, 220, 220, 0.85);
   font-weight: 400;
   margin: 0;
   padding-left: 0.9rem;
   border-left: 2px solid var(--accent);
   line-height: 1.5;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="light"] .about-hero__role {
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(10, 10, 10, 0.80);
 }
 
 /* currently */
@@ -108,25 +174,25 @@
   font-family: 'JetBrains Mono', 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 500;
-  color: rgba(211, 211, 211, 0.4);
+  color: rgba(211, 211, 211, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.09em;
   margin: 0;
 }
 
 [data-theme="light"] .about-currently__label {
-  color: rgba(0, 0, 0, 0.35);
+  color: rgba(10, 10, 10, 0.62);
 }
 
 .about-currently__courses {
   font-size: 0.95rem;
-  color: rgba(211, 211, 211, 0.72);
+  color: rgba(220, 220, 220, 0.92);
   margin: 0;
   line-height: 1.55;
 }
 
 [data-theme="light"] .about-currently__courses {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(10, 10, 10, 0.85);
 }
 
 .about-currently__sep {
@@ -167,22 +233,26 @@
 .about-hero__bio {
   font-size: 0.97rem;
   line-height: 1.8;
-  color: rgba(211, 211, 211, 0.65);
+  color: rgba(225, 225, 225, 0.88);
   margin: 0;
   max-width: 720px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .about-hero__bio--goal {
-  color: rgba(211, 211, 211, 0.85);
+  color: #ffffff;
   font-style: italic;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="light"] .about-hero__bio {
-  color: rgba(0, 0, 0, 0.58);
+  color: rgba(10, 8, 2, 0.88);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="light"] .about-hero__bio--goal {
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(10, 5, 0, 0.9);
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
 }
 
 /* ── Stats ────────────────────────────────────── */
@@ -313,13 +383,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* ── Matching glass card: bilancia visivamente la colonna sinistra ── */
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(2px) saturate(1.2);
+  -webkit-backdrop-filter: blur(2px) saturate(1.2);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.8rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .about-hero__right {
+  background: rgba(255, 252, 245, 0.50);
+  backdrop-filter: blur(2px) saturate(1.3);
+  -webkit-backdrop-filter: blur(2px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .about-photo-wrap {
   position: relative;
   width: 100%;
   max-width: 420px;
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
