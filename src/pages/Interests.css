@@ -1,569 +1,356 @@
+/* ═══════════════════════════════════════════════════
+   Interests Section — Fading Glassmorphism Layout
+   Cards crossfade elegantly inside a central frame.
+   ═══════════════════════════════════════════════════ */
+
 :root {
-  --accent-color: #07589D;
-  --text-color: #ffffffcc;
-  --interest-1-color: #ffffff;
-  --interest-2-color: #ffffff;
-  --interest-3-color: #ffffff;
-  --interest-4-color: #ffffff;
-  --interest-5-color: #ffffff;
-  --card-bg: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(23, 23, 23, 0.95) 100%);
-  --card-border: 0.05rem solid rgba(255, 255, 255, 0.12);
-  --card-shadow: 0 1.5rem 3rem -1.25rem rgba(33, 150, 243, 0.18);
-  --skill-bg: rgba(33, 150, 243, 0.15);
-  --skill-color: #2196F3;
-  --skill-border: 0.05rem solid rgba(33, 150, 243, 0.25);
-  --image-border: 0.05rem solid #333;
-  --image-filter: grayscale(30%) brightness(0.85);
-  --divider-color: rgba(255, 255, 255, 0.1);
+  --int-accent: #07589D;
+  --int-text-primary: #ffffff;
+  --int-text-secondary: rgba(211, 211, 211, 0.75);
+  
+  --int-card-bg: rgba(14, 14, 22, 0.55);
+  --int-card-border: rgba(255, 255, 255, 0.08);
+  --int-card-shadow: 0 32px 64px rgba(0, 0, 0, 0.45);
+  
+  --int-badge-bg: rgba(7, 88, 157, 0.15);
+  --int-badge-text: #5b9fd4;
+  --int-badge-border: rgba(7, 88, 157, 0.3);
 }
 
 [data-theme="light"] {
-  --text-color: #333333;
-  --card-bg: linear-gradient(145deg, rgba(242, 242, 242, 0.96) 0%, rgba(238, 238, 238, 0.96) 100%);
-  --card-border: 0.05rem solid rgba(180, 180, 180, 0.3);
-  --card-shadow: 0 1.5rem 3rem -1.25rem rgba(13, 110, 253, 0.12);
-  --skill-bg: rgba(13, 110, 253, 0.1);
-  --skill-color: #0d6efd;
-  --skill-border: 0.05rem solid rgba(13, 110, 253, 0.18);
-  --image-border: 0.05rem solid #d0d0d0;
-  --image-filter: grayscale(15%) brightness(0.95);
-  --divider-color: rgba(0, 0, 0, 0.04);
-
-  --interest-1-color: #07589D;
-  --interest-2-color: #07589D;
-  --interest-3-color: #0984E3;
-  --interest-4-color: #07589D;
-  --interest-5-color: #07589D;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translateY(0.5rem) scale(0.9);
-    filter: blur(0.05rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-.section-title {
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 0;
-  z-index: 10;
-  margin-bottom: 0;
-}
-
-.section-title h2 {
-  color: var(--text-color, #fff);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-[data-theme="light"] .section-title h2 {
-  color: #1a1a1a !important;
-}
-
-[data-theme="dark"] .section-title h2 {
-  color: #fff !important;
-}
-
-.section-title .title-underline {
-  height: 3px;
-  width: 60px;
-  background: linear-gradient(90deg, var(--primary-color, #3b82f6), var(--primary-color, #3b82f6));
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
+  --int-text-primary: #1a1a1a;
+  --int-text-secondary: rgba(0, 0, 0, 0.75);
+  
+  --int-card-bg: rgba(255, 255, 255, 0.65);
+  --int-card-border: rgba(0, 0, 0, 0.06);
+  --int-card-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+  
+  --int-badge-bg: rgba(7, 88, 157, 0.08);
+  --int-badge-text: var(--int-accent);
+  --int-badge-border: rgba(7, 88, 157, 0.2);
 }
 
 .interests-section {
   position: relative;
   width: 100%;
-  padding-top: 4rem;
-  z-index: 1;
+  background-color: var(--bg);
 }
 
-.interests-title-wrapper {
-  position: relative;
-  width: 100%;
-  padding: 1.5rem 0;
+/* ── Normal Header ── */
+.interests-header-normal {
+  padding: 4rem 0 2rem;
   text-align: center;
 }
 
+.interests-section .section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.interests-section .section-title h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--int-text-primary);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.interests-section .section-title .title-underline {
+  height: 2px;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, var(--int-accent), transparent);
+  margin: 0.65rem auto 0;
+  border-radius: 1px;
+  opacity: 0.6;
+}
+
+/* ── Container & Sticky Logic ── */
 .interests-container {
   position: relative;
-  margin-top: -4rem;
+  width: 100%;
 }
 
 .sticky-content {
   position: sticky;
   top: 0;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.6rem 0;
-}
-
-.interest-title {
-  position: relative;
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-
-.interest-title p {
-  color: white;
-  font-size: 2.8rem;
-  font-weight: 700;
-  text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-}
-
-.interest-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5rem;
-  height: 0.15rem;
-  background: var(--accent-color);
-  border-radius: 0.15rem;
-}
-
-.interests-left {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 1.6rem;
-}
-
-.number-display {
-  position: relative;
-  height: 7.5rem;
-  margin-bottom: 1.6rem;
   width: 100%;
-}
-
-.number-item {
-  position: absolute;
-  font-size: 32rem;
-  font-weight: 700;
-  line-height: 0.8;
-  color: var(--accent-color);
-  left: -75%;
-  right: 0;
-  text-align: left;
-  top: -110%;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: translateY(1.5rem);
-  z-index: -2;
-  pointer-events: none;
-}
-
-.number-item.active {
-  opacity: 0.3;
-  transform: translateY(0);
-  color: var(--interest-1-color);
-}
-
-.number-item:nth-child(2).active {
-  color: var(--interest-2-color);
-}
-
-.number-item:nth-child(3).active {
-  color: var(--interest-3-color);
-}
-
-.number-item:nth-child(4).active {
-  color: var(--interest-4-color);
-}
-
-.number-item:nth-child(5).active {
-  color: var(--interest-5-color);
-}
-
-.titles-display {
-  position: relative;
-  height: 4rem;
-  margin-bottom: 0.8rem;
-  width: 100%;
-  text-align: center;
-}
-
-.title-item {
-  position: absolute;
-  font-size: 2.4rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  left: 23%;
-  transform: translateX(-50%) translateY(1rem);
-  width: max-content;
-}
-
-.title-item.active {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.interests-right {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-right: 1.6rem;
-}
-
-.interest-content {
-  position: absolute;
-  width: 70%;
-  height: 180%;
   display: flex;
   align-items: center;
   justify-content: center;
-  left: -20%;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: translateY(3rem) scale(0.95);
-  filter: blur(0.4rem);
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 20%);
-}
-
-.interest-content.active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
-  pointer-events: auto;
-}
-
-.interest-image {
-  position: relative;
-  width: 120%;
-  height: 120%;
-  border-radius: 1.6rem;
   overflow: hidden;
-  box-shadow: 0 1.5rem 4rem -2rem rgba(0, 0, 0, 0.7);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: var(--image-border);
-  z-index: 1;
 }
 
-.interest-image img {
+/* ── Giant Number Watermark ── */
+.interests-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.watermark-num {
+  position: absolute;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20rem, 38vw, 45rem);
+  font-weight: 800;
+  color: var(--int-accent);
+  line-height: 0.75;
+  letter-spacing: -0.05em;
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.watermark-num.active {
+  opacity: 0.35; /* Much more visible in dark mode */
+  transform: translateY(0) scale(1);
+  color: #3b82f6; /* Brighter blue for dark mode */
+}
+
+[data-theme="light"] .watermark-num.active {
+  opacity: 0.15;
+  color: var(--int-accent);
+}
+
+/* ── Central Glassmorphism Card ── */
+.interests-cardbox {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 1080px;
+  aspect-ratio: 16 / 8.5;
+  max-height: 65vh;
+  background: var(--int-card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 28px;
+  border: 1px solid var(--int-card-border);
+  box-shadow: var(--int-card-shadow);
+  overflow: hidden;
+}
+
+/* Accent line at top of card */
+.interests-cardbox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30%;
+  right: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--int-accent), transparent);
+  border-radius: 1px;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+/* ── Individual Crossfading Cards ── */
+.interest-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.interest-card.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* ── Left: Image Pane ── */
+.interest-card__image-pane {
+  flex: 0 0 45%;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--int-card-border);
+}
+
+.interest-card__image-pane img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: var(--image-filter);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: grayscale(15%) brightness(0.9);
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.interest-info {
+.interest-card.active .interest-card__image-pane img {
+  transform: scale(1);
+}
+
+.image-overlay {
   position: absolute;
-  right: -50%;
-  bottom: -35%;
-  width: 80%;
-  height: fit-content;
-  padding: 1.2rem;
-  background: var(--card-bg);
-  backdrop-filter: blur(1.25rem);
-  border-radius: 1.4rem;
-  border: var(--card-border);
-  box-shadow: var(--card-shadow);
-  z-index: 3;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  inset: 0;
+  background: linear-gradient(to right, transparent 70%, var(--int-card-bg) 100%);
+  pointer-events: none;
+}
+
+/* ── Right: Info Pane ── */
+.interest-card__info-pane {
+  flex: 1;
+  padding: 3.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Text stagger animation when card becomes active */
+.interest-card .info-header,
+.interest-card .info-title,
+.interest-card .info-desc,
+.interest-card .info-skills {
   opacity: 0;
-  transform: translateY(2rem) translateX(1.5rem) scale(0.9);
-  filter: blur(0.4rem);
+  transform: translateY(15px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.interest-description {
-  position: relative;
-  margin-bottom: 1.44rem;
-  padding-bottom: 1.2rem;
-  border-bottom: 0.05rem solid var(--divider-color);
+.interest-card.active .info-header { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.interest-card.active .info-title  { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.interest-card.active .info-desc   { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.interest-card.active .info-skills { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+
+.info-header {
+  margin-bottom: 1.2rem;
 }
 
-.interest-description p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--text-color);
-  margin: 0;
-  opacity: 0;
-  transform: translateY(0.75rem);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: blur(0.15rem);
+.info-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--int-accent);
+  font-weight: 600;
+  letter-spacing: 0.1em;
 }
 
-.interest-skills {
+.counter-sep {
+  opacity: 0.4;
+  margin: 0 0.2rem;
+  font-weight: 400;
+}
+
+.info-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--int-text-primary);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.info-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--int-text-secondary);
+  margin: 0 0 2.5rem 0;
+}
+
+.info-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.56rem;
-  justify-content: center;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: blur(0.15rem);
+  gap: 0.6rem;
 }
 
 .skill-badge {
-  background: var(--skill-bg);
-  color: var(--skill-color);
-  padding: 0.52rem 1.04rem;
-  border-radius: 1.1rem;
-  font-size: 0.64rem;
-  font-weight: 500;
-  border: var(--skill-border);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0;
-  transform: translateY(0.75rem) scale(0.85);
-  filter: blur(0.1rem);
+  background: var(--int-badge-bg);
+  color: var(--int-badge-text);
+  padding: 0.4rem 0.9rem;
+  border-radius: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid var(--int-badge-border);
+  text-transform: uppercase;
 }
 
-.interest-content.active .interest-info {
-  opacity: 1;
-  transform: translateY(0) translateX(0) scale(1);
-  filter: blur(0);
-  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: 0.2s;
+/* ── Vertical Progress Indicators ── */
+.interests-progress {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.interest-content.active .interest-description p {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-  transition-delay: 0.4s;
+.progress-dot {
+  width: 4px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.interest-content.active .interest-skills,
-.interest-content.active .skill-badge {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+[data-theme="light"] .progress-dot {
+  background: rgba(0, 0, 0, 0.12);
 }
 
-.skill-badge:nth-child(1) {
-  transition-delay: 0.6s;
+.progress-dot.active {
+  background: var(--int-accent);
+  height: 36px;
 }
 
-.skill-badge:nth-child(2) {
-  transition-delay: 0.7s;
-}
-
-.skill-badge:nth-child(3) {
-  transition-delay: 0.8s;
-}
-
-.skill-badge:nth-child(4) {
-  transition-delay: 0.9s;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .interest-content.active:hover .interest-image {
-    transform: translateX(-0.75rem) scale(1.03);
-    box-shadow: 0 1.75rem 4.5rem -1.75rem rgba(0, 0, 0, 0.8);
+/* ── Responsive ── */
+@media (max-width: 992px) {
+  .interests-cardbox {
+    aspect-ratio: auto;
+    height: 75vh;
+    max-height: none;
+    width: 85%;
   }
-
-  .interest-content.active:hover .interest-image img {
-    filter: grayscale(0) brightness(1);
-  }
-
-  .interest-content.active:hover .interest-info {
-    transform: translateY(-0.4rem) scale(1.04) translateX(-0.4rem);
-    box-shadow: 0 1.75rem 3.5rem rgba(33, 150, 243, 0.25);
-    backdrop-filter: blur(1.5rem);
-  }
-
-  .skill-badge:hover {
-    background: rgba(33, 150, 243, 0.3);
-    transform: translateY(-0.2rem) scale(1.08);
-    box-shadow: 0 0.5rem 1.25rem rgba(33, 150, 243, 0.3);
-    border-color: rgba(33, 150, 243, 0.4);
-  }
-}
-
-@media (max-width: 62rem) {
-  .section-title {
-    margin-top: 0;
-    padding: 0;
-  }
-
-  .interests-title-wrapper {
-    padding: 1rem 0;
-  }
-
-  .interests-section {
-    padding-top: 4rem;
-  }
-
-  .interests-container {
-    height: auto !important;
-    padding: 0.5rem 0;
-    margin-top: 0;
-  }
-
-  .interests-section {
-    padding-top: 4rem;
-  }
-
-  .interests-container {
-    height: auto !important;
-    padding: 0.5rem 0;
-    margin-top: 0;
-  }
-
-  .sticky-content {
-    position: relative;
-    height: auto;
-    padding: 0;
-  }
-
-  .interests-left {
-    display: none;
-  }
-
-  .interests-right {
-    width: 100%;
-    max-width: 30rem;
-    margin: 0 auto;
-    padding: 0 0.8rem;
-  }
-
-  .interest-content {
-    position: relative !important;
-    height: auto !important;
-    left: 15% !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    pointer-events: auto !important;
-    margin-bottom: 1.6rem;
-    background: var(--card-bg);
-    border-radius: 0.8rem;
-    overflow: hidden;
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
-    border: var(--card-border);
-    display: flex;
+  
+  .interest-card {
     flex-direction: column;
   }
-
-  .interest-image {
-    width: 100% !important;
-    height: 9rem !important;
-    border-radius: 0 !important;
-    border-bottom: 0.05rem solid var(--divider-color);
+  
+  .interest-card__image-pane {
+    flex: 0 0 40%;
+    border-right: none;
+    border-bottom: 1px solid var(--int-card-border);
   }
-
-  .interest-info {
-    position: relative !important;
-    width: 100% !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    padding: 1.2rem !important;
-    box-shadow: none !important;
-    border: none !important;
+  
+  .image-overlay {
+    background: linear-gradient(to bottom, transparent 60%, var(--int-card-bg) 100%);
   }
-
-  .interest-title p {
-    font-size: 1.44rem !important;
-    margin-bottom: 0.8rem;
-    text-align: left;
+  
+  .interest-card__info-pane {
+    flex: 1;
+    padding: 2rem 2.5rem;
   }
-
-  .interest-description {
-    padding-bottom: 0;
-    border-bottom: none;
-    margin-bottom: 0.8rem;
+  
+  .info-title {
+    font-size: 2.2rem;
   }
-
-  .interest-description p {
-    font-size: 0.8rem;
-    line-height: 1.6;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    margin-bottom: 0;
+  
+  .info-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
-
-  .interest-skills {
-    justify-content: flex-start;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    margin-top: 0.8rem;
-    padding-top: 4rem;
-    border-top: 0.05rem solid var(--divider-color);
+  
+  .watermark-num {
+    font-size: 60vw;
   }
-
-  .skill-badge {
-    font-size: 0.6rem;
-    padding: 0.32rem 0.64rem;
-    margin-right: 0.4rem;
-    margin-bottom: 0.4rem;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-  }
-
-  /* Disable hover movement effects on mobile */
-  .interest-image {
-    transition: none !important;
-  }
-
-  .interest-content.active:hover .interest-image,
-  .interest-content.active .interest-image {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-
-  .interest-content.active:hover .interest-image img,
-  .interest-content.active .interest-image img {
-    filter: var(--image-filter) !important;
-  }
-
-  .interest-content.active:hover .interest-info,
-  .interest-content.active .interest-info {
-    transform: none !important;
-    box-shadow: none !important;
+  
+  .interests-progress {
+    right: 1rem;
   }
 }
 
-@media (max-width: 36rem) {
-  .interest-image {
-    height: 8rem !important;
+@media (max-width: 576px) {
+  .interests-cardbox {
+    width: 92%;
   }
-
-  .interest-title p {
-    font-size: 1.28rem !important;
-    text-align: center;
-  }
-
-  .interest-info {
-    padding: 0.96rem !important;
-  }
-
-  .skill-badge {
-    font-size: 0.56rem;
-    padding: 0.28rem 0.56rem;
+  
+  .interest-card__info-pane {
+    padding: 1.5rem;
   }
 }

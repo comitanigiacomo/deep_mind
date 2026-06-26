@@ -1,14 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import './Interests.css';
-import { useTheme } from '../context/ThemeContext';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 
 export default function Interests() {
-  const { isDarkMode } = useTheme();
   const { lang } = useLang();
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -23,98 +18,95 @@ export default function Interests() {
   useEffect(() => {
     const updateActiveIndex = () => {
       if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const { top, height } = section.getBoundingClientRect();
+      const { top, height } = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      const scrollProgress = Math.max(0, Math.min(1,
-        (-top) / (height - windowHeight)
-      ));
-
-      const newIndex = Math.min(
-        interests.length - 1,
-        Math.floor(scrollProgress * interests.length)
-      );
-
+      
+      const scrollProgress = Math.max(0, Math.min(1, (-top) / (height - windowHeight)));
+      const newIndex = Math.min(interests.length - 1, Math.floor(scrollProgress * interests.length));
+      
       setActiveIndex(newIndex);
       animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
     };
 
     animationFrameRef.current = requestAnimationFrame(updateActiveIndex);
-
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
   }, [interests.length]);
 
   return (
-    <section id="interests" ref={sectionRef} className="interests-section">
-      <div className="interests-title-wrapper">
+    <section id="interests" className="interests-section">
+      {/* Title strictly outside to prevent duplication */}
+      <div className="interests-header-normal">
         <div className="section-title">
           <h2>{tr.title}</h2>
           <div className="title-underline"></div>
         </div>
       </div>
-      <div className="interests-container" style={{ height: `${interests.length * 200}vh` }}>
-        <div className="sticky-content">
-          <Container>
-            <Row className="align-items-center h-100">
-              <Col lg={6} className="interests-left">
-                <div className="number-title-wrapper">
-                  <div className="number-display">
-                    {interests.map((interest, index) => (
-                      <div
-                        key={`num-${index}`}
-                        className={`number-item ${index === activeIndex ? 'active' : ''}`}
-                      >
-                        {interest.number}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="titles-display">
-                    {interests.map((interest, index) => (
-                      <h2
-                        key={`title-${index}`}
-                        className={`title-item ${index === activeIndex ? 'active' : ''}`}
-                      >
 
-                      </h2>
+      <div
+        className="interests-container"
+        ref={sectionRef}
+        style={{ height: `${interests.length * 120}vh` }}
+      >
+        <div className="sticky-content">
+          
+          {/* Giant Number Watermark (Background) */}
+          <div className="interests-watermark" aria-hidden="true">
+             {interests.map((interest, index) => (
+                <span 
+                  key={`watermark-${index}`} 
+                  className={`watermark-num ${index === activeIndex ? 'active' : ''}`}
+                >
+                  {interest.number}
+                </span>
+             ))}
+          </div>
+
+          {/* Central Glassmorphism Card */}
+          <div className="interests-cardbox">
+            {interests.map((interest, index) => (
+              <div
+                key={`card-${index}`}
+                className={`interest-card ${index === activeIndex ? 'active' : ''}`}
+              >
+                {/* Left: Image Pane */}
+                <div className="interest-card__image-pane">
+                  <img src={interest.image} alt={interest.title} />
+                  <div className="image-overlay" />
+                </div>
+
+                {/* Right: Info Pane */}
+                <div className="interest-card__info-pane">
+                  <div className="info-header">
+                    <span className="info-counter">
+                      {String(index).padStart(2, '0')} <span className="counter-sep">/</span> {String(interests.length - 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  
+                  <h3 className="info-title">{interest.title}</h3>
+                  <p className="info-desc">{interest.description}</p>
+                  
+                  <div className="info-skills">
+                    {interest.skills.map((skill, i) => (
+                      <span key={i} className="skill-badge">{skill}</span>
                     ))}
                   </div>
                 </div>
-              </Col>
-              <Col lg={6} className="interests-right">
-                {interests.map((interest, index) => (
-                  <div
-                    key={`interest-${index}`}
-                    className={`interest-content ${index === activeIndex ? 'active' : ''}`}
-                  >
-                    <div className="interest-image">
-                      <img src={interest.image} alt={interest.title} />
-                    </div>
-                    <div className="interest-info">
-                      <div className="interest-title">
-                        <p>{interest.title}</p>
-                      </div>
-                      <div className="interest-description">
-                        <p>{interest.description}</p>
-                      </div>
-                      <div className="interest-skills">
-                        {interest.skills.map((skill, skillIndex) => (
-                          <span key={skillIndex} className="skill-badge">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Col>
-            </Row>
-          </Container>
+              </div>
+            ))}
+          </div>
+
+          {/* Vertical Progress Indicators */}
+          <div className="interests-progress" aria-hidden="true">
+            {interests.map((_, i) => (
+              <div
+                key={`dot-${i}`}
+                className={`progress-dot ${i === activeIndex ? 'active' : ''}`}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
