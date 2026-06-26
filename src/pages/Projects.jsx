@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Projects.css';
 import Button from 'react-bootstrap/Button';
-import { GoCommit } from "react-icons/go";
+import { GoCommit, GoStar, GoRepoForked } from "react-icons/go";
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 
@@ -78,10 +78,10 @@ export default function Projects() {
                   <div className="card-overlay">
                     <div className="card-stats">
                       <span className="stat-item">
-                        <i className="pi pi-star-fill" /> {project.stats.stars}
+                        <GoStar style={{ marginRight: '4px' }} /> {project.stats.stars}
                       </span>
                       <span className="stat-item">
-                        <i className="pi pi-share-alt" /> {project.stats.forks}
+                        <GoRepoForked style={{ marginRight: '4px' }} /> {project.stats.forks}
                       </span>
                       <span className="stat-item">
                         <GoCommit /> {project.stats.commits}
