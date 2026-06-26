@@ -21,8 +21,8 @@
   --int-text-primary: #1a1a1a;
   --int-text-secondary: rgba(0, 0, 0, 0.75);
   
-  --int-card-bg: rgba(255, 255, 255, 0.65);
-  --int-card-border: rgba(0, 0, 0, 0.06);
+  --int-card-bg: rgba(220, 225, 230, 0.45); /* Molto più trasparente e meno luminoso */
+  --int-card-border: rgba(0, 0, 0, 0.08);
   --int-card-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
   
   --int-badge-bg: rgba(7, 88, 157, 0.08);
@@ -114,8 +114,8 @@
 }
 
 [data-theme="light"] .watermark-num.active {
-  opacity: 0.15;
-  color: var(--int-accent);
+  opacity: 0.30; /* Much more visible in light mode */
+  color: #043c6b; /* Darker blue to contrast well on the light background */
 }
 
 /* ── Central Glassmorphism Card ── */
@@ -196,10 +196,12 @@
 /* ── Right: Info Pane ── */
 .interest-card__info-pane {
   flex: 1;
+  position: relative;
   padding: 3.5rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 1;
 }
 
 /* Text stagger animation when card becomes active */
