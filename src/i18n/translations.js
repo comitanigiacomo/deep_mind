@@ -29,7 +29,7 @@ export const translations = {
     // ── About ──
     about: {
       eyebrow: "Hello, I'm",
-      name: 'Jack',
+      name: 'Giacomo',
       role: 'Systems Programming | MSc Student',
       langBadgeIt: 'Italian Native',
       langBadgeEn: 'English B2',
@@ -272,7 +272,7 @@ export const translations = {
     // ── About ──
     about: {
       eyebrow: 'Ciao, sono',
-      name: 'Jack',
+      name: 'Giacomo',
       role: 'Programmazione di Sistema | Studente Magistrale',
       langBadgeIt: 'Italiano Madrelingua',
       langBadgeEn: 'Inglese B2',

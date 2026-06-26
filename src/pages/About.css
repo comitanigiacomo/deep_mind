@@ -127,7 +127,7 @@
 /* big name */
 .about-hero__name {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(5rem, 10vw, 9rem);
+  font-size: clamp(5rem, 10vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 0.9;
