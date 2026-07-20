@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import './Homelab.css';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import BootTerminal from '../components/BootTerminal';
 
 const servicesMeta = [
   { icon: '⬡', color: '#06b6d4' },
@@ -61,6 +62,9 @@ export default function Homelab() {
           <div className="title-underline"></div>
         </div>
         <p className="homelab-subtitle">{tr.subtitle}</p>
+
+        {/* Boot Terminal Easter Egg */}
+        <BootTerminal />
 
         {/* Architecture banner */}
         <div className="homelab-arch">

@@ -3,6 +3,7 @@ import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import './About.css';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import Magnetic from '../components/Magnetic.jsx';
 
 export default function About() {
   const heroRef = useRef(null);
@@ -70,33 +71,39 @@ export default function About() {
 
           <div className="about-hero__footer">
             <div className="about-hero__socials">
-              <a
-                href="https://github.com/comitanigiacomo"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="about-social-link"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/giacomo-comitani-249384326/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="about-social-link"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://www.instagram.com/giacomo.comitani"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="about-social-link"
-              >
-                <FaInstagram />
-              </a>
+              <Magnetic strength={20}>
+                <a
+                  href="https://github.com/comitanigiacomo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="about-social-link"
+                >
+                  <FaGithub />
+                </a>
+              </Magnetic>
+              <Magnetic strength={20}>
+                <a
+                  href="https://www.linkedin.com/in/giacomo-comitani-249384326/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="about-social-link"
+                >
+                  <FaLinkedin />
+                </a>
+              </Magnetic>
+              <Magnetic strength={20}>
+                <a
+                  href="https://www.instagram.com/giacomo.comitani"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="about-social-link"
+                >
+                  <FaInstagram />
+                </a>
+              </Magnetic>
               <span className="about-handle">@comitanigiacomo</span>
             </div>
 
