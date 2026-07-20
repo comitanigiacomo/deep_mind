@@ -34,12 +34,18 @@
   position: relative;
   width: 100%;
   background-color: var(--bg);
+  padding: 0 !important;
+  scroll-margin-top: 0 !important;
 }
 
-/* ── Normal Header ── */
-.interests-header-normal {
-  padding: 4rem 0 2rem;
+/* ── Sticky Header ── */
+.interests-header-sticky {
+  position: absolute;
+  top: 10vh; /* space from the navbar */
+  left: 0;
+  width: 100%;
   text-align: center;
+  z-index: 10;
 }
 
 .interests-section .section-title {
@@ -55,15 +61,6 @@
   margin: 0;
   letter-spacing: -0.04em;
   line-height: 1;
-}
-
-.interests-section .section-title .title-underline {
-  height: 2px;
-  width: 40px;
-  background: linear-gradient(90deg, transparent, var(--int-accent), transparent);
-  margin: 0.65rem auto 0;
-  border-radius: 1px;
-  opacity: 0.6;
 }
 
 /* ── Container & Sticky Logic ── */

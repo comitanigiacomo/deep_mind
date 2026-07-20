@@ -40,7 +40,7 @@
 }
 
 .chat-bubble {
-  background-color: #f0f2f5;
+  background-color: #e4e6eb; /* darker gray for better visibility in light mode */
   color: #1c1e21;
   padding: 14px 20px;
   border-radius: 24px 24px 24px 6px;

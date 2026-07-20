@@ -76,13 +76,17 @@ export default function BlogPostPage() {
             <span style={{ opacity: lang === 'it' ? 1 : 0.3 }}>IT</span>
           </button>
 
-          <button 
-            onClick={toggleTheme} 
-            className="theme-toggle-btn-blog"
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle-pill"
             title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             aria-label="Toggle theme"
           >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
+            <span className={`theme-toggle-track ${isDarkMode ? 'is-dark' : 'is-light'}`}>
+              <span className="theme-toggle-thumb">
+                {isDarkMode ? <FaMoon size={10} /> : <FaSun size={10} />}
+              </span>
+            </span>
           </button>
         </div>
       </nav>
