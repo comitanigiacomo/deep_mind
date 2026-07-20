@@ -1,4 +1,27 @@
 export const blogPostsIT = {
+  'minimal-aesthetic': {
+    id: 'minimal-aesthetic',
+    category: 'dev',
+    title: "Perché l'estetica minimal è la mia scelta di design definitiva",
+    date: 'Luglio 2026',
+    readingTime: '6 min',
+    content: `
+      <p>Penso onestamente che i siti minimal siano i migliori, ma questa convinzione va ben oltre una semplice preferenza visiva superficiale. Quando elimini il disordine, non stai solo cancellando dei pixel; stai attivamente indirizzando l'attenzione dell'utente esattamente dove conta di più. Uno sfondo nero assoluto, ad esempio, non è solo una scelta stilistica. Funziona come un vuoto assoluto che permette agli oggetti, alla tipografia e ai colori posizionati sopra di esso di brillare e risaltare in un modo che design caotici e sovraccarichi non possono eguagliare. Ti costringe a essere intenzionale con ogni singolo elemento.</p>
+
+      <h3>La Psicologia dello Spazio Vuoto</h3>
+      <p>Inoltre, un sito o un'app minimal non ti assale con infinite informazioni. Viviamo in un'epoca in cui l'attenzione è la risorsa più scarsa in assoluto. Ogni app vuole inviarti notifiche, ogni sito ha un popup, e ogni dashboard è piena di metriche di cui non hai bisogno. Il design minimalista agisce come antidoto a questo esaurimento digitale. Mette l'utente in uno stato di tranquillità visiva e mentale. Quando il carico cognitivo viene ridotto, il cervello assimila naturalmente meglio le informazioni, senza alcun affaticamento. Non devi sforzarti di separare il segnale dal rumore, perché il segnale è l'unica cosa rimasta.</p>
+
+      <h3>Creatività attraverso i Limiti</h3>
+      <p>Penso anche che, per quanto possa sembrare paradossale, l'estetica minimal aiuti le persone a esprimersi meglio. Si potrebbe pensare che avere infinite opzioni, colori e layout porti ai risultati migliori, ma molto spesso porta solo alla paralisi. Concentrandosi su forme fondamentali, colori selezionati con cura e una tipografia raffinata poco alla volta, eliminando il rumore di fondo, le idee iniziano a fluire con più facilità. I vincoli generano creatività. Quando non puoi fare affidamento su animazioni appariscenti o dieci colori diversi per rendere bello un design, sei costretto a perfezionare la struttura e il contenuto di base. Un'estetica pulita ed elegante trasmette un profondo senso di ordine che si riflette direttamente sulla mente di chi crea e di chi usa il prodotto.</p>
+
+      <h3>Applicare la Filosofia</h3>
+      <p>Per questo motivo ho realizzato questo sito portfolio con sezioni di nero assoluto. Volevo trovare l'equilibrio perfetto: creare un forte impatto visivo cercando di non esagerare o di sopraffare il visitatore. Ogni riga di testo, ogni card dei progetti e ogni effetto hover è stato progettato per avere uno scopo preciso.</p>
+
+      <p>Questa filosofia si estende anche al software che scrivo. È il motivo per cui ho creato un intero habit tracker chiamato <a href="https://kanso.jack-lab.dev/" target="_blank" rel="noopener noreferrer"><strong>Kanso</strong></a>. Il nome stesso deriva dal principio Zen della semplicità e dell'eliminazione del superfluo. In Kanso non ci sono feed social, nessun sistema di gamification complesso e nessun grafico inutile. Ci sei solo tu e le tue abitudini, presentate nel modo più pulito possibile.</p>
+
+      <p>Andando avanti, questo approccio minimalista sarà il mio principio guida fondamentale. Che io stia disegnando un'interfaccia utente, strutturando lo schema di un database o scrivendo un algoritmo, l'obiettivo rimane lo stesso: ottenere il massimo impatto possibile con la minima complessità assoluta. Meno è davvero di più, se sai cosa conservare.</p>
+    `
+  },
   'homelab-debian': {
     content: `
       <p>Studiare Informatica alla magistrale significa sorbirsi tantissima teoria su reti e sistemi distribuiti. A un certo punto, però, ho sentito il bisogno di mettere le mani in pasta e avere il controllo totale sui miei dati e servizi. Così ho deciso di costruire il mio homelab trasformando il mio PC nel mio server.</p>

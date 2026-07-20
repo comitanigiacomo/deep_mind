@@ -15,7 +15,7 @@ const categories = {
 };
 
 const posts = Object.values(blogPosts);
-const featuredId = 'homelab-debian';
+const featuredIds = ['minimal-aesthetic', 'homelab-debian'];
 
 function useInView(threshold = 0.1) {
   const ref = useRef(null);
@@ -39,8 +39,8 @@ export default function Blog() {
   const { lang } = useLang();
   const tr = translations[lang].blog;
 
-  const featured = posts.find(p => p.id === featuredId);
-  const list = posts.filter(p => p.id !== featuredId);
+  const featuredList = posts.filter(p => featuredIds.includes(p.id));
+  const list = posts.filter(p => !featuredIds.includes(p.id));
 
   const filteredList = activeCategory
     ? list.filter(p => p.category === activeCategory)
@@ -61,8 +61,9 @@ export default function Blog() {
         <p className="blog-subtitle">{tr.subtitle}</p>
 
         {/* Featured */}
-        {featured && (
+        {featuredList.map(featured => (
           <Link
+            key={featured.id}
             to={`/blog/${featured.id}`}
             className="blog-featured"
           >
@@ -77,7 +78,7 @@ export default function Blog() {
             </div>
             <h3 className="blog-featured__title">{tr.titles?.[featured.id] || featured.title}</h3>
 
-            <p className="blog-featured__excerpt">{tr.featuredExcerpt}</p>
+            <p className="blog-featured__excerpt">{tr.excerpts?.[featured.id]}</p>
 
             <div className="blog-featured__meta">
               <span>{featured.date}</span>
@@ -91,7 +92,7 @@ export default function Blog() {
               </span>
             </div>
           </Link>
-        )}
+        ))}
 
         {/* Divider + category filter */}
         <div className="blog-divider-row">
