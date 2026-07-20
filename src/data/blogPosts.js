@@ -1,4 +1,27 @@
 export const blogPosts = {
+  'minimal-aesthetic': {
+    id: 'minimal-aesthetic',
+    category: 'dev',
+    title: 'Why Minimal Aesthetic is my ultimate design choice',
+    date: 'July 2026',
+    readingTime: '6 min',
+    content: `
+      <p>I genuinely believe that minimalist websites are the best, but this conviction goes far beyond just a surface-level visual preference. When you remove the clutter, you aren't just deleting pixels; you are actively directing the user's focus exactly where it matters most. A pure black background, for instance, isn't just a stylistic choice. It acts as an absolute void that makes the objects, typography, and colors placed upon it shine and stand out in a way that busy, colorful, or cluttered designs simply can't achieve. It forces you to be intentional with every single element.</p>
+
+      <h3>The Psychology of Empty Space</h3>
+      <p>Moreover, a minimal app or website doesn't assault you with an overwhelming amount of information. We live in an era where attention is the most scarce resource. Every app wants a notification, every website has a popup, and every dashboard is filled with metrics you don't need. Minimalist design acts as an antidote to this digital exhaustion. It puts the user in a state of visual and mental tranquility. When the cognitive load is reduced, the brain naturally assimilates information better and without fatigue. You don't have to scan through noise to find the signal; the signal is the only thing there.</p>
+
+      <h3>Fostering Creativity Through Constraints</h3>
+      <p>Paradoxically, I also think that minimalist aesthetics help people express themselves better. You might think that having endless options, colors, and layout possibilities would lead to the best results, but that often leads to paralysis. By stripping away the noise and focusing strictly on core shapes, carefully selected colors, and refined typography little by little, ideas start to flow more easily. Constraints breed creativity. When you can't rely on flashy animations or ten different colors to make something look good, you are forced to perfect the underlying structure and content. A clean and elegant aesthetic provides a deep sense of order that directly translates to the mind of the creator and the consumer.</p>
+
+      <h3>Applying the Philosophy</h3>
+      <p>This is exactly why I built this portfolio with sections of absolute black. I wanted to strike the perfect balance—creating a strong visual impact without exaggerating or overwhelming the visitor. Every line of text, every project card, and every hover effect was designed to be intentional.</p>
+
+      <p>This philosophy extends to the software I write. It's the reason why I created an entire habit tracker app called <a href="https://kanso.jack-lab.dev/" target="_blank" rel="noopener noreferrer"><strong>Kanso</strong></a>. The name itself comes from the Zen principle of simplicity and the elimination of the non-essential. In Kanso, there are no social feeds, no complex gamification systems, and no unnecessary charts. It's just you and your habits, presented in the cleanest way possible.</p>
+
+      <p>Moving forward, this minimalist approach will be my main guiding principle. Whether I'm designing a user interface, structuring a database schema, or writing an algorithm, the goal remains the same: achieve the maximum possible impact with the absolute minimum amount of complexity. Less really is more, if you know what to keep.</p>
+    `
+  },
   'homelab-debian': {
     id: 'homelab-debian',
     category: 'homelab',

@@ -202,7 +202,7 @@ export const translations = {
       title: 'BLOG',
       subtitle: 'Writeups on algorithms, homelab setups, and CS theory I find worth explaining properly.',
       featured: 'Featured',
-      featuredExcerpt: 'Instead of a complex hypervisor setup or multiple Raspberry Pis, I went with a completely minimal approach: a single Debian machine where everything is containerized...',
+      featuredExcerpt: 'A pure black background makes objects shine, and a clean interface puts the mind in a state of tranquility that helps ideas flow. This is why I built Kanso...',
       read: 'Read',
       all: 'All',
       titles: {
@@ -213,6 +213,7 @@ export const translations = {
         'kanso-sync': 'Building an offline-first sync engine in Go',
         'nyt-stream': 'Processing 13M records in O(1) space: my dive into Data Streaming algorithms',
         'firmware-crypto-analysis': "Why algorithmic security isn't enough: Reverse engineering a mobile firmware",
+        'minimal-aesthetic': 'Why Minimal Aesthetic is my ultimate design choice',
       },
       excerpts: {
         'sliding-window': "Instead of recalculating everything from scratch for every possible subarray, you maintain a \"window\" of elements...",
@@ -221,6 +222,8 @@ export const translations = {
         'kanso-sync': "The design decisions behind Kanso's sync engine: Delta-Sync, Optimistic Locking, and conflict resolution...",
         'nyt-stream': 'Moving from static CSVs to real-time data: building a resilient, decoupled streaming pipeline using the New York Times API...',
         'firmware-crypto-analysis': 'Reverse engineering a mobile modem to uncover how obsolete OpenSSL libraries and AES T-table optimizations open the door to cache-timing attacks...',
+        'minimal-aesthetic': 'A pure black background makes objects shine, and a clean interface puts the mind in a state of tranquility that helps ideas flow...',
+        'homelab-debian': 'Instead of a complex hypervisor setup or multiple Raspberry Pis, I went with a completely minimal approach: a single Debian machine where everything is containerized...',
       },
     },
 
@@ -454,7 +457,7 @@ export const translations = {
       title: 'BLOG',
       subtitle: 'Articoli su algoritmi, configurazioni homelab e concetti di informatica teorica che vale la pena spiegare per bene.',
       featured: 'In Primo Piano',
-      featuredExcerpt: 'Invece di affidarmi a un setup complesso basato su hypervisor o a molteplici Raspberry Pi, ho optato per un approccio estremamente minimale: una singola macchina Debian in cui tutto è containerizzato...',
+      featuredExcerpt: "Uno sfondo nero fa brillare gli oggetti, e un'interfaccia pulita mette la mente in uno stato di tranquillità che fa fluire le idee. Per questo ho creato Kanso...",
       read: 'Leggi',
       all: 'Tutti',
       titles: {
@@ -463,16 +466,19 @@ export const translations = {
         'typst-vs-latex': 'Perché sono passato da LaTeX a Typst per i miei appunti universitari',
         'double-descent': 'Double Descent: quando aggiungere dati peggiora il modello (per poi migliorarlo)',
         'kanso-sync': 'Costruire un motore di sincronizzazione offline-first in Go',
-        'nyt-stream': 'Elaborare 13M di record con spazio O(1): la mia analisi sugli algoritmi di Data Streaming',
-        'firmware-crypto-analysis': 'Perché la sicurezza degli algoritmi non basta: reverse engineering di un firmware mobile',
+        'nyt-stream': 'Elaborare 13M di record in spazio O(1): il mio viaggio negli algoritmi di Data Streaming',
+        'firmware-crypto-analysis': 'Perché la sicurezza algoritmica non basta: Reverse engineering di un firmware',
+        'minimal-aesthetic': "Perché l'estetica minimal è la mia scelta di design definitiva",
       },
       excerpts: {
         'sliding-window': 'Invece di ricalcolare tutto da zero per ogni possibile subarray, si mantiene una "finestra" di elementi...',
         'typst-vs-latex': 'Tempi di compilazione rapidissimi, una sintassi sensata e scripting nativo. Dopo un semestre tutti i miei appunti sono scritti in Typst...',
         'double-descent': 'Una spiegazione intuitiva della curva di rischio del double descent e dei motivi per cui la classica scomposizione bias-varianza non è più sufficiente...',
         'kanso-sync': "Le decisioni architetturali alla base del motore di sincronizzazione di Kanso: Delta-Sync, Optimistic Locking e risoluzione dei conflitti...",
-        'nyt-stream': 'Passare da file CSV statici a flussi di dati in tempo reale: come ho costruito una pipeline di streaming resiliente e disaccoppiata usando le API del New York Times...',
-        'firmware-crypto-analysis': 'Reverse engineering di un modem mobile per scoprire in che modo le librerie OpenSSL obsolete e le ottimizzazioni AES T-table aprano la strada ad attacchi di tipo cache-timing...',
+        'nyt-stream': "Passare dai CSV statici ai dati in tempo reale: costruire una pipeline di streaming resiliente utilizzando l'API del New York Times...",
+        'firmware-crypto-analysis': 'Reverse engineering di un modem mobile per scoprire come librerie obsolete e ottimizzazioni aprano le porte ad attacchi side-channel...',
+        'minimal-aesthetic': "Uno sfondo nero fa brillare gli oggetti, e un'interfaccia pulita mette la mente in uno stato di tranquillità che fa fluire le idee...",
+        'homelab-debian': 'Invece di affidarmi a un setup complesso basato su hypervisor o a molteplici Raspberry Pi, ho optato per un approccio estremamente minimale: una singola macchina Debian in cui tutto è containerizzato...',
       },
     },
 
