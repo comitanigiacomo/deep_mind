@@ -237,6 +237,15 @@ export const translations = {
       backPortfolio: '← Back to portfolio',
       thanks: 'Thanks for reading.',
     },
+
+    // ── Chat Animation ──
+    chat: {
+      messages: [
+        "Hey there! 👋",
+        "What do you think about the background images?",
+        "By the way, make sure to check out my <a href='https://github.com/comitanigiacomo' target='_blank' rel='noopener noreferrer' class='chat-link'>GitHub profile</a>!"
+      ]
+    },
   },
 
   // ─────────────────────────────────────────────────────────────────
@@ -479,6 +488,15 @@ export const translations = {
       notFound: 'Articolo non trovato',
       backPortfolio: '← Torna al portfolio',
       thanks: 'Grazie per la lettura.',
+    },
+
+    // ── Chat Animation ──
+    chat: {
+      messages: [
+        "Ehi ciao! 👋",
+        "Cosa ne pensi delle immagini di sfondo?",
+        "A proposito, dai un'occhiata al mio <a href='https://github.com/comitanigiacomo' target='_blank' rel='noopener noreferrer' class='chat-link'>profilo GitHub</a>!"
+      ]
     },
   },
 };

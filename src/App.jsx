@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useEffect } from 'react';
 import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx';
+import ChatSection from './components/ChatSection.jsx';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import BlogPostPage from './pages/BlogPostPage.jsx';
 import { useLang } from './context/LanguageContext.jsx';
@@ -68,6 +69,9 @@ export default function App() {
             <Contacts />
           </section>
         </div>
+
+        {/* Chat Animation Section at the very bottom */}
+        <ChatSection />
       </div>
       
       {/* Blog post overlay routing */}
