@@ -289,4 +289,29 @@ export const blogPosts = {
       <p>For a computer science student and developer, reverse engineering isn't just a cool trick; it's the best lesson in how not to build systems.</p>
     `
   },
+  'distro-hopping': {
+    id: 'distro-hopping',
+    category: 'dev',
+    title: 'My journey through Linux distros: Why I settled on Fedora and Debian',
+    date: 'Jul 2026',
+    readingTime: '3 min',
+    content: `
+      <p>My journey into Linux started like many others: fed up with Windows, curious about the hype, and driven by recommendations from my university friends. On their advice, my very first daily-driver was <strong>Fedora</strong>. I have to say, it was love at first sight.</p>
+      
+      <h3>The Fedora Experience</h3>
+      <p>Since the day I installed Fedora, I haven't encountered a single issue. It just works, right out of the box, offering a perfect balance between cutting-edge packages and rock-solid stability. But beyond functionality, there is one thing that won me over entirely: its default aesthetics.</p>
+      <p>I've always been a fan of a minimal, clean, and elegant design (which is also the philosophy behind this portfolio). Fedora provides exactly that out of the box with plain GNOME. I tried Ubuntu, but honestly, its default aesthetic just doesn't align with my personal taste.</p>
+
+      <h3>The Arch Linux Temptation</h3>
+      <p>Of course, as a CS student, you eventually hear the siren call of Arch Linux and window managers like Hyprland. I was genuinely curious, so I decided to give Hyprland a try in a VM. I quickly realized that while you can create something absolutely gorgeous and highly customized, you have to configure literally <em>everything</em> yourself from scratch.</p>
+      <p>Don't get me wrong, it's a fantastic learning experience, but for my daily driver, passing dozens of hours writing configuration files just to get a working status bar or Wi-Fi menu simply isn't worth my time right now. Since Arch requires a similar level of manual intervention to set up the base system, I decided to respectfully pass on it.</p>
+
+      <h3>Servers vs Desktops: Enter Debian</h3>
+      <p>While Fedora is perfect for my laptop, a server has completely different requirements. This brings me to the fundamental difference between release models in the Linux world.</p>
+      <p>Distributions like Fedora are somewhat closer to the "rolling release" end of the spectrum (or at least, they have a very fast, 6-month release cycle). This is great for a desktop where you want the latest software and kernel updates. However, for a server, frequent updates mean potential breaking changes.</p>
+      <p>That is why, for my homelab, I chose <strong>Debian</strong>. Debian uses a fixed-release model and is famously conservative. Packages are heavily tested, frozen, and almost never change versions during a stable release cycle. You only get critical security patches. It might not have the newest features, but you can install it, configure it, and trust that it will keep running flawlessly for years without a single hiccup.</p>
+
+      <p>And so, my brief but satisfying distro-hopping journey concluded: Fedora for getting things done on my laptop, and Debian for keeping my server quietly humming in the background.</p>
+    `
+  }
 };

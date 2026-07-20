@@ -112,6 +112,31 @@ export const blogPostsIT = {
     `,
   },
 
+  'distro-hopping': {
+    id: 'distro-hopping',
+    category: 'dev',
+    title: 'Il mio viaggio tra le distro Linux: perché ho scelto Fedora e Debian',
+    date: 'Lug 2026',
+    readingTime: '3 min',
+    content: `
+      <p>Il mio viaggio nel mondo Linux è iniziato grazie ai consigli di alcuni amici dell'università. Spinto dalla loro insistenza, ho deciso di fare il grande salto e ho installato <strong>Fedora</strong> come mio sistema operativo principale. Devo dire che mi sono trovato benissimo fin dal primo istante: mai avuto un singolo problema.</p>
+      
+      <h3>L'esperienza con Fedora</h3>
+      <p>Fedora offre un bilanciamento perfetto tra pacchetti aggiornati e stabilità. Ma c'è una cosa che mi ha conquistato più di tutte: l'estetica. Sono sempre stato un amante del design pulito, minimale ed elegante (è la stessa filosofia "Kanso" che ho applicato a questo sito). Fedora, con la sua versione pulita di GNOME, rispecchia perfettamente i miei gusti personali fin dall'installazione, a differenza di Ubuntu, la cui estetica di base non mi ha mai fatto impazzire.</p>
+
+      <h3>La tentazione Arch Linux e Hyprland</h3>
+      <p>Essendo uno studente di informatica, la curiosità verso sistemi come Arch Linux è inevitabile. Ho voluto provare Hyprland (un window manager molto popolare) per vedere di cosa si trattasse. La verità? Puoi creare configurazioni esteticamente pazzesche, ma il prezzo da pagare è doversi configurare letteralmente <em>qualsiasi cosa</em> a mano.</p>
+      <p>Sebbene sia un ottimo esercizio per imparare, non credo ne valga la pena passare decine di ore a scrivere file di configurazione solo per far funzionare una barra di stato o il menu del Wi-Fi sul computer che uso per lavorare e studiare. E siccome anche l'installazione e la gestione di Arch Linux richiedono una filosofia simile di "fai-da-te" estremo, ho deciso di lasciar perdere e non approfondire ulteriormente.</p>
+
+      <h3>Desktop vs Server: La scelta di Debian</h3>
+      <p>Se Fedora è la perfezione sul mio portatile, per il mio server casalingo le priorità cambiano. È qui che entra in gioco la differenza tra i vari tipi di distribuzioni e i loro modelli di aggiornamento.</p>
+      <p>Fedora ha un ciclo di rilascio molto rapido (ogni 6 mesi hai una versione nuova con pacchetti freschissimi). Ottimo per un PC, ma su un server gli aggiornamenti frequenti e i cambi di versione del software possono significare rotture e instabilità.</p>
+      <p>Ecco perché per il mio server ho installato <strong>Debian</strong>. Debian utilizza un approccio estremamente conservativo: i pacchetti vengono testati a lungo, congelati e ricevono quasi esclusivamente patch di sicurezza per tutta la durata della release. Non avrai il software all'ultima versione, ma hai la garanzia di avere un sistema operativo solidissimo come la roccia, che non si "romperà" mai a causa di un aggiornamento avventato.</p>
+      
+      <p>E così si è conclusa (per ora) la mia esperienza con il "distro-hopping": ho trovato esattamente gli strumenti giusti per i lavori giusti.</p>
+    `
+  },
+
   'kanso-sync': {
     content: `
       <p>Di recente ho iniziato a sviluppare <strong>Kanso</strong>, un habit tracker personale. Avevo bisogno di un'app che funzionasse alla perfezione in modalità offline, senza l'ansia dei caricamenti infiniti ogni volta che perdevo la connessione. A dire il vero, però, costruire Kanso è stato molto più che risolvere un mio problema; è stata la scusa perfetta per obbligarmi a seguire un workflow di software engineering estremamente rigoroso e professionale.</p>

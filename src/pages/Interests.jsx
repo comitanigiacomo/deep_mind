@@ -36,20 +36,19 @@ export default function Interests() {
 
   return (
     <section id="interests" className="interests-section">
-      {/* Title strictly outside to prevent duplication */}
-      <div className="interests-header-normal">
-        <div className="section-title">
-          <h2>{tr.title}</h2>
-          <div className="title-underline"></div>
-        </div>
-      </div>
-
       <div
         className="interests-container"
         ref={sectionRef}
         style={{ height: `${interests.length * 120}vh` }}
       >
         <div className="sticky-content">
+          
+          <div className="interests-header-sticky">
+            <div className="section-title">
+              <h2>{tr.title}</h2>
+              <div className="title-underline"></div>
+            </div>
+          </div>
           
           {/* Giant Number Watermark (Background) */}
           <div className="interests-watermark" aria-hidden="true">

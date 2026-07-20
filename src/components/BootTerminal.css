@@ -1,12 +1,16 @@
 .boot-terminal-wrapper {
-  background-color: #0d1117;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 18, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 2rem;
   font-family: 'Fira Code', 'Courier New', Courier, monospace;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   animation: fadeIn 0.4s ease-out forwards;
+}
+
 .boot-terminal-wrapper.is-hacked {
   border-color: #22c55e;
   box-shadow: 0 0 40px rgba(34, 197, 94, 0.2);
@@ -18,11 +22,11 @@
 }
 
 .boot-terminal-header {
-  background-color: #161b22;
+  background: rgba(255, 255, 255, 0.04);
   padding: 10px 16px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .boot-dots {
@@ -68,6 +72,62 @@
   color: #c9d1d9;
   transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s;
   position: relative;
+}
+
+.status-text {
+  color: #22c55e;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── Light Mode Terminal ── */
+[data-theme="light"] .boot-terminal-wrapper {
+  background: rgba(255, 252, 248, 0.62) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+[data-theme="light"] .boot-terminal-header {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .boot-title {
+  color: #57606a !important;
+}
+
+[data-theme="light"] .boot-terminal-body.short,
+[data-theme="light"] .boot-terminal-body.is-connected {
+  color: #24292f !important;
+}
+
+[data-theme="light"] .boot-cursor-blink {
+  background-color: #24292f !important;
+}
+
+[data-theme="light"] .boot-prompt {
+  color: #0969da !important;
+}
+
+[data-theme="light"] .boot-success {
+  color: #24292f !important;
+}
+
+[data-theme="light"] .boot-ok-tag {
+  color: #1a7f37 !important;
+}
+
+[data-theme="light"] .boot-warning {
+  color: #9a6700 !important;
+}
+
+[data-theme="light"] .boot-root {
+  color: #1a7f37 !important;
+  text-shadow: none !important;
 }
 
 .boot-reset-btn {
