@@ -1,0 +1,115 @@
+.chat-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0rem 2rem 4rem;
+  background-color: var(--bg);
+  min-height: 50vh; /* Reserve space so no layout jumps occur */
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.chat-message-row {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform-origin: bottom left;
+}
+
+.chat-avatar-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chat-bubble-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.chat-bubble {
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  padding: 14px 20px;
+  border-radius: 24px 24px 24px 6px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"] .chat-bubble {
+  background-color: #2b2d31;
+  color: #e3e5e8;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+/* GitHub Link inside chat bubble */
+.chat-link {
+  color: #07589D;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.chat-link:hover {
+  color: #054070;
+}
+
+[data-theme="dark"] .chat-link {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .chat-link:hover {
+  color: #93c5fd;
+}
+
+.chat-timestamp {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 6px;
+  margin-left: 8px;
+}
+
+/* Typing Indicator */
+.typing-bubble {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 20px;
+  width: fit-content;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #888;
+  display: block;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
