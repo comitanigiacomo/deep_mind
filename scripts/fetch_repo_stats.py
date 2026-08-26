@@ -36,6 +36,12 @@ PROJECTS = [
         "image": "/leetcode.png",
     },
     {
+        "title": "kafka Fraud Sentinel",
+        "owner": "comitanigiacomo",
+        "repo": "kafka-fraud-sentinel",
+        "image": "/kafka_dashboard.png",
+    },
+    {
         "title": "CyberSecurity",
         "owner": "comitanigiacomo",
         "repo": "cyberSecurity",
