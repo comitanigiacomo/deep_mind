@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Projects.css';
-import Button from 'react-bootstrap/Button';
-import { GoCommit, GoStar, GoRepoForked } from "react-icons/go";
+import { GoCommit, GoStar, GoRepoForked, GoArrowUpRight } from "react-icons/go";
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 
@@ -32,18 +31,6 @@ export default function Projects() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const formatDate = (dateString) => {
-    const locale = lang === 'it' ? 'it-IT' : 'en-US';
-    const options = { year: 'numeric', month: 'short' };
-    return new Date(dateString).toLocaleDateString(locale, options);
-  };
-
-  const formatSize = (sizeMB) => {
-    return sizeMB > 1024
-      ? `${(sizeMB / 1024).toFixed(1)} GB`
-      : `${sizeMB.toFixed(1)} MB`;
-  };
-
   return (
     <section id="projects" className="projects-section">
       <div className="projects-wrapper">
@@ -55,7 +42,6 @@ export default function Projects() {
           <p className="section-subtitle">{tr.subtitle}</p>
         </div>
 
-        {/* Projects Grid */}
         {isLoading ? (
           <div className="loading-state">
             <p>{tr.loading}</p>
@@ -65,79 +51,58 @@ export default function Projects() {
             <p>{tr.noProjects}</p>
           </div>
         ) : (
-          <div className="projects-grid">
+          <div className="terminal-projects-list">
             {projects.map((project) => (
-              <article key={`${project.owner}/${project.repo}`} className="project-card">
-                <div className="card-image-wrapper">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="card-image"
-                    loading="lazy"
-                  />
-                  <div className="card-overlay">
-                    <div className="card-stats">
-                      <span className="stat-item">
-                        <GoStar style={{ marginRight: '4px' }} /> {project.stats.stars}
-                      </span>
-                      <span className="stat-item">
-                        <GoRepoForked style={{ marginRight: '4px' }} /> {project.stats.forks}
-                      </span>
-                      <span className="stat-item">
-                        <GoCommit /> {project.stats.commits}
-                      </span>
+              <a
+                href={`https://github.com/${project.owner}/${project.repo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={`${project.owner}/${project.repo}`}
+                className="terminal-project-row"
+              >
+                <div className="terminal-project-image">
+                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <div className="image-crosshair top-left"></div>
+                  <div className="image-crosshair top-right"></div>
+                  <div className="image-crosshair bottom-left"></div>
+                  <div className="image-crosshair bottom-right"></div>
+                </div>
+                
+                <div className="terminal-project-content">
+                  <div className="terminal-project-header">
+                    <h3 className="terminal-project-title">
+                      <span className="prompt-symbol">~/</span>{project.title}
+                    </h3>
+                    <div className="terminal-project-stats">
+                      <span><GoStar /> {project.stats.stars}</span>
+                      <span><GoRepoForked /> {project.stats.forks}</span>
+                      <span><GoCommit /> {project.stats.commits}</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="card-content">
-                  <div className="card-header">
-                    <h3 className="card-title">{project.title}</h3>
-                    {project.stats.archived && (
-                      <span className="badge archived">
-                        <i className="pi pi-lock" /> {tr.archived}
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="card-description">{project.stats.description}</p>
-
-                  <div className="card-meta">
-                    <span className="meta-item">
-                      <i className="pi pi-calendar" /> {tr.updated}: {formatDate(project.stats.updated_at)}
-                    </span>
-                    <span className="meta-item">
-                      <i className="pi pi-database" /> {tr.size}: {formatSize(project.stats.size)}
-                    </span>
-                  </div>
-
-                  {project.stats.topics.length > 0 && (
-                    <div className="card-tags">
-                      {project.stats.topics.slice(0, 3).map((topic) => (
-                        <span key={topic} className="tag-badge">
-                          {topic}
-                        </span>
+                  
+                  <p className="terminal-project-desc">{project.stats.description}</p>
+                  
+                  <div className="terminal-project-footer">
+                    <div className="terminal-project-tags">
+                      {project.stats.topics.slice(0, 5).map(t => (
+                        <span key={t} className="terminal-tag">{t}</span>
                       ))}
-                      {project.stats.topics.length > 3 && (
-                        <span className="tag-badge more">
-                          +{project.stats.topics.length - 3}
-                        </span>
-                      )}
                     </div>
-                  )}
-
-                  <a
-                    href={`https://github.com/${project.owner}/${project.repo}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="card-link"
-                  >
-                    <Button className="view-repo-btn">
-                      <i className="pi pi-github" /> {tr.viewRepo}
-                    </Button>
-                  </a>
+                    
+                    <div className="terminal-footer-bottom">
+                      {project.stats.languages && project.stats.languages.length > 0 && (
+                        <div className="terminal-project-lang">
+                          <span className="lang-dot"></span>
+                          {project.stats.languages[0].name}
+                        </div>
+                      )}
+                      <span className="github-link-btn">
+                        {tr.viewRepo || 'View Repository'} <GoArrowUpRight className="arrow-icon" />
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         )}
