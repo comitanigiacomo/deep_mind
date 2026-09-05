@@ -1,14 +1,8 @@
-.custom-spinner.top-left {
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    z-index: 1000;
-}
-
 
 .keyboard-wrapper {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    /* overflow: visible permette al canvas di ricevere transform senza clip interno */
+    overflow: visible;
 }
