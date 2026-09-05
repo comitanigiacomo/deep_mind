@@ -7,7 +7,7 @@
   width: 100%;
   height: auto;
   padding: 3rem 0 2rem;
-  overflow: hidden;
+  overflow: visible;      /* mai clippare il 3D */
 }
 
 .skills-section .section-title {
@@ -17,7 +17,7 @@
 /* ─── Layout: full width, centered ────────────── */
 
 .skills-layout {
-  position: relative;
+  position: relative;     /* contiene il bottone posizionato in assoluto */
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
@@ -29,19 +29,118 @@
   height: 80vh;
 }
 
-/* Keyboard takes full width */
+/* Keyboard prende tutta la larghezza disponibile */
 .skills-keyboard-area {
   width: 100%;
-  height: 100vh;
+  height: 120vh;          /* molto piu alto per dare spazio al 3D per un canvas senza spazi morti */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
+/*
+  Il canvas WebGL è renderizzato dentro il keyboard-wrapper.
+  Lo spostiamo con translateX così non altera il layout box (evita overflow-x).
+  Ridotto il margin-top per eliminare lo spazio vuoto in eccesso.
+*/
 .skills-keyboard-area canvas {
-  margin-left: 6%;
-  margin-bottom: -300px;
-  margin-top: 17%;
+  margin-top: 12%;
+  margin-bottom: 0px;
+  transform: translateX(0%);
+}
+
+/* ═══════════════════════════════════════════════════
+   Reset View Button — stile terminale
+   ═══════════════════════════════════════════════════ */
+
+.reset-view-btn {
+  position: absolute;
+  top: 0rem;
+  right: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  /* Aspetto */
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(7, 88, 157, 0.45);
+  border-radius: 6px;
+  padding: 7px 14px 7px 12px;
+  color: rgba(255, 255, 255, 0.55);
+
+  /* Tipografia coerente con il nav */
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+
+  /* Animazione di comparsa */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.reset-view-btn--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.reset-view-btn:hover {
+  color: #ffffff;
+  border-color: var(--accent, #07589D);
+  background: rgba(7, 88, 157, 0.18);
+}
+
+.reset-view-btn:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.reset-view-btn__prefix {
+  color: var(--accent, #07589D);
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+.reset-view-btn__icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.5s ease;
+}
+
+.reset-view-btn:hover .reset-view-btn__icon {
+  opacity: 1;
+  transform: rotate(-360deg);
+}
+
+/* Light theme */
+[data-theme="light"] .reset-view-btn {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(13, 110, 253, 0.35);
+  color: rgba(26, 26, 26, 0.6);
+}
+
+[data-theme="light"] .reset-view-btn:hover {
+  color: #1a1a1a;
+  border-color: var(--accent, #0d6efd);
+  background: rgba(13, 110, 253, 0.1);
+}
+
+[data-theme="light"] .reset-view-btn__prefix {
+  color: var(--accent, #0d6efd);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -63,6 +162,11 @@
     width: 100%;
     height: 65vh;
   }
+
+  .reset-view-btn {
+    top: 0rem;
+    right: 1.5rem;
+  }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -79,7 +183,13 @@
   }
 
   .skills-keyboard-area canvas {
-    margin-top: 32%;
+    margin-top: 0;
+    transform: translate(0%, 5%);
+  }
+
+  .reset-view-btn {
+    top: 0rem;
+    right: 1rem;
   }
 }
 
@@ -93,6 +203,6 @@
   }
 
   .skills-keyboard-area canvas {
-    margin-top: 42%;
+    transform: translate(0%, 5%);
   }
 }

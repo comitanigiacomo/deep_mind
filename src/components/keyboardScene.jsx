@@ -1,6 +1,6 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Html, useGLTF } from '@react-three/drei'
-import { useRef, useMemo, useState, useEffect, Suspense } from 'react'
+import { Canvas, useThree } from '@react-three/fiber'
+import { Html, useGLTF, CameraControls as DreiCameraControls } from '@react-three/drei'
+import { useRef, useMemo, useState, useEffect, useCallback, Suspense } from 'react'
 import { animated, useSpring } from '@react-spring/three'
 import Spinner from 'react-bootstrap/Spinner'
 import './KeyboardScene.css'
@@ -84,59 +84,61 @@ function KeyboardModel({ scene, onKeyHover, onKeyClick, onLoaded, ...props }) {
 
 function KeyboardWrapper(props) {
   const { scene } = useGLTF('/keyboard.glb')
-
   return <KeyboardModel {...props} scene={scene} />
 }
 
-function CameraControls({ initialCameraPosition, initialTarget }) {
+function CameraControls({ initialCameraPosition, initialTarget, onResetRef }) {
   const controlsRef = useRef()
-  const { camera } = useThree()
-
-  const [{ cameraPosition, target }, api] = useSpring(() => ({
-    cameraPosition: initialCameraPosition,
-    target: initialTarget,
-    config: { tension: 80, friction: 30 }
-  }))
-
-  useFrame(() => {
-    const controls = controlsRef.current
-    if (!controls) return
-
-    const camPos = cameraPosition.get()
-    const tarPos = target.get()
-
-    camera.position.set(...camPos)
-    controls.target.set(...tarPos)
-    controls.update()
-  })
 
   useEffect(() => {
-    const controls = controlsRef.current
-    if (!controls) return
-    controls.enableZoom = false
-    controls.enablePan = false
-  }, [])
+    if (controlsRef.current) {
+      controlsRef.current.setLookAt(
+        initialCameraPosition[0], initialCameraPosition[1], initialCameraPosition[2],
+        initialTarget[0], initialTarget[1], initialTarget[2],
+        false // no animation on mount
+      )
+    }
+  }, [initialCameraPosition, initialTarget])
 
-  const handleEnd = () => {
-    api.start({
-      cameraPosition: initialCameraPosition,
-      target: initialTarget
-    })
-  }
+  const resetView = useCallback(() => {
+    const controls = controlsRef.current
+    if (controls) {
+      controls.setLookAt(
+        initialCameraPosition[0], initialCameraPosition[1], initialCameraPosition[2],
+        initialTarget[0], initialTarget[1], initialTarget[2],
+        true // enable transition
+      )
+    }
+  }, [initialCameraPosition, initialTarget])
+
+  useEffect(() => {
+    if (onResetRef) onResetRef.current = resetView
+  }, [onResetRef, resetView])
 
   return (
-    <OrbitControls
+    <DreiCameraControls
       ref={controlsRef}
-      target={initialTarget}
-      enableZoom={false}
-      onEnd={handleEnd}
+      makeDefault
+      minDistance={10}
+      maxDistance={40}
+      mouseButtons={{
+        left: 1, // ACTION.ROTATE
+        middle: 0, // ACTION.NONE
+        right: 0, // ACTION.NONE
+        wheel: 0, // ACTION.NONE
+      }}
+      touches={{
+        one: 1, // ACTION.TOUCH_ROTATE
+        two: 0, // ACTION.NONE
+        three: 0 // ACTION.NONE
+      }}
     />
   )
 }
 
-function CanvasLoader() {
+function CanvasLoader({ position }) {
   return (
-    <Html center>
+    <Html center position={position}>
       <div className="canvas-spinner">
         <Spinner animation="border" variant="light" />
       </div>
@@ -149,54 +151,49 @@ export default function KeyboardScene({
   onKeyClick,
   fixedRotation = [0, 0, 0],
   scale = 1,
+  onResetRef,
   ...props
 }) {
-  const [loading, setLoading] = useState(true)
   const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0])
-  const [keyboardScale, setKeyboardScale] = useState(scale) // Nuovo stato per la scala
+  const [keyboardScale, setKeyboardScale] = useState(scale)
 
-  const initialCameraPosition = [-10.261, 23.82, -4.378];
-  const initialTarget = [2.0, -2.817, -6.848];
-  
+  const initialCameraPosition = useMemo(() => [-10.261, 23.82, -4.378], [])
+  const initialTarget = useMemo(() => [2.0, -2.817, -6.848], [])
+
   useEffect(() => {
     const updateLayout = () => {
       if (window.innerWidth <= 768) {
         setKeyboardPosition([27, -11, 0])
-        setKeyboardScale(2.2) // Scala ingrandita per Mobile
+        setKeyboardScale(2.2)
       } else {
         setKeyboardPosition([7, 1, 0])
-        setKeyboardScale(scale) // Scala standard per Desktop passata dai props
+        setKeyboardScale(scale)
       }
     }
-    
+
     updateLayout()
     window.addEventListener('resize', updateLayout)
     return () => window.removeEventListener('resize', updateLayout)
-  }, [scale]) // Aggiunto 'scale' come dipendenza
+  }, [scale])
 
   return (
     <div className="keyboard-wrapper">
-      {loading && (
-        <div className="custom-spinner top-left">
-          <Spinner animation="border" variant="primary" />
-        </div>
-      )}
       <Canvas camera={{ position: initialCameraPosition, fov: 80 }} {...props}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
-        <Suspense fallback={<CanvasLoader />}>
+        <Suspense fallback={<CanvasLoader position={initialTarget} />}>
           <KeyboardWrapper
             position={keyboardPosition}
             rotation={fixedRotation}
-            scale={[keyboardScale, keyboardScale, keyboardScale]} // Usa il nuovo stato qui
+            scale={[keyboardScale, keyboardScale, keyboardScale]}
             onKeyHover={onKeyHover}
             onKeyClick={onKeyClick}
-            onLoaded={() => setLoading(false)}
           />
         </Suspense>
         <CameraControls
           initialCameraPosition={initialCameraPosition}
           initialTarget={initialTarget}
+          onResetRef={onResetRef}
         />
       </Canvas>
     </div>
