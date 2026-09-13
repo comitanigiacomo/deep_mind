@@ -100,7 +100,7 @@
       "gnome-shell-extension",
       "quick-access"
     ],
-    "size": 1.36,
+    "size": 1.38,
     "archived": false,
     "default_branch": "main"
   },
@@ -186,7 +186,7 @@
     "description": "real-time fraud detection system using Apache Kafka, Python, and Docker",
     "stars": 0,
     "forks": 0,
-    "commits": 71,
+    "commits": 72,
     "languages": [
       {
         "name": "Python",
@@ -202,7 +202,7 @@
       },
       {
         "name": "CSS",
-        "percent": 11.0
+        "percent": 11.1
       },
       {
         "name": "Shell",
@@ -213,7 +213,7 @@
         "percent": 1.4
       }
     ],
-    "updated_at": "2026-09-05T09:48:15Z",
+    "updated_at": "2026-09-09T18:59:40Z",
     "license": "MIT License",
     "topics": [
       "docker",
@@ -222,7 +222,7 @@
       "kafka",
       "python"
     ],
-    "size": 1.97,
+    "size": 1.98,
     "archived": false,
     "default_branch": "main"
   },
@@ -288,7 +288,7 @@
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 360,
+    "commits": 361,
     "languages": [
       {
         "name": "JavaScript",
@@ -311,7 +311,7 @@
         "percent": 0.1
       }
     ],
-    "updated_at": "2026-09-05T15:46:34Z",
+    "updated_at": "2026-09-06T03:33:49Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
