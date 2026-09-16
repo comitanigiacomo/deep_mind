@@ -56,7 +56,7 @@ export default function ChatSection() {
         
         {messages.slice(0, visibleCount).map((msg, idx) => (
           <div key={idx} className="chat-message-row incoming">
-            <img src="/profile.png" alt="Giacomo" className="chat-avatar-small" />
+            <img src="/profile.webp" alt="Giacomo" className="chat-avatar-small" />
             <div className="chat-bubble-wrapper">
               <div 
                 className="chat-bubble" 
@@ -69,7 +69,7 @@ export default function ChatSection() {
 
         {isTyping && (
           <div className="chat-message-row incoming typing-row">
-            <img src="/profile.png" alt="Giacomo" className="chat-avatar-small" />
+            <img src="/profile.webp" alt="Giacomo" className="chat-avatar-small" />
             <div className="chat-bubble-wrapper">
               <div className="chat-bubble typing-bubble">
                 <div className="typing-dot"></div>

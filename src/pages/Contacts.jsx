@@ -12,7 +12,7 @@ export default function Contact() {
       <div className="contact-wrapper">
 
         <div className="profile-container">
-          <img src="/profile.png" alt="Giacomo Comitani" className="profile-photo" />
+          <img src="/profile.webp" alt="Giacomo Comitani" className="profile-photo" />
           <h2 className="profile-name">Giacomo Comitani</h2>
           <p className="profile-location">{tr.location}</p>
         </div>

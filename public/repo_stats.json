@@ -1,7 +1,7 @@
 {
   "comitanigiacomo/kanso-sync-engine": {
     "title": "kanso-sync-engine",
-    "image": "/kanso-sync-engine.png",
+    "image": "/kanso-sync-engine.webp",
     "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
     "stars": 1,
     "forks": 0,
@@ -38,7 +38,7 @@
   },
   "comitanigiacomo/kanso-web": {
     "title": "kanso-web",
-    "image": "/kanso-web.png",
+    "image": "/kanso-web.webp",
     "description": "Minimalist habit tracker built with React, TypeScript, and Go, based on kanso philosophy",
     "stars": 2,
     "forks": 0,
@@ -77,7 +77,7 @@
   },
   "comitanigiacomo/quicklaunch": {
     "title": "QuickLaunch",
-    "image": "/quicklaunch.png",
+    "image": "/quicklaunch.webp",
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 1,
@@ -106,7 +106,7 @@
   },
   "comitanigiacomo/Universal": {
     "title": "Universal",
-    "image": "/universal.png",
+    "image": "/universal.webp",
     "description": "University project for managing students, exams, and courses using a web-based database system.",
     "stars": 0,
     "forks": 0,
@@ -140,7 +140,7 @@
   },
   "comitanigiacomo/leetcode": {
     "title": "Leetcode",
-    "image": "/leetcode.png",
+    "image": "/leetcode.webp",
     "description": "A growing archive of LeetCode problem solutions",
     "stars": 0,
     "forks": 0,
@@ -182,7 +182,7 @@
   },
   "comitanigiacomo/kafka-fraud-sentinel": {
     "title": "kafka Fraud Sentinel",
-    "image": "/kafka_dashboard.png",
+    "image": "/kafka_dashboard.webp",
     "description": "real-time fraud detection system using Apache Kafka, Python, and Docker",
     "stars": 0,
     "forks": 0,
@@ -224,7 +224,7 @@
   },
   "comitanigiacomo/cyberSecurity": {
     "title": "CyberSecurity",
-    "image": "/cybersecurity.png",
+    "image": "/cybersecurity.webp",
     "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
     "stars": 1,
     "forks": 1,
@@ -254,7 +254,7 @@
   },
   "comitanigiacomo/Reti_di_calcolatori": {
     "title": "Reti_di_calcolatori",
-    "image": "/reti.png",
+    "image": "/reti.webp",
     "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
     "stars": 1,
     "forks": 2,
@@ -280,7 +280,7 @@
   },
   "comitanigiacomo/deep_mind": {
     "title": "Deep_mind",
-    "image": "/Deep.png",
+    "image": "/Deep.webp",
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
@@ -322,7 +322,7 @@
   },
   "comitanigiacomo/TankCheck": {
     "title": "TankCheck",
-    "image": "/mockup.png",
+    "image": "/mockup.webp",
     "description": "My first Kotlin Android app. A simple yet practical solution for tracking container status (full/empty) in real-time using Firebase",
     "stars": 0,
     "forks": 0,

@@ -35,7 +35,7 @@
   padding-top: calc(3rem + 1px);
 
   /* ── Sistine Chapel background ── */
-  background-image: url('/sistine_chapel_bg.jpg');
+  background-image: url('/sistine_chapel_bg.webp');
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;

@@ -120,7 +120,7 @@ export default function About() {
         <div className="about-hero__right">
           <div className="about-photo-wrap">
             <img
-              src="/prova.jpeg"
+              src="/prova.webp"
               alt="Giacomo Comitani"
               className="about-photo"
               loading="lazy"
