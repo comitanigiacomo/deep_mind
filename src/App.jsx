@@ -79,6 +79,7 @@ export default function App() {
       
       {/* Blog post overlay routing */}
       <Routes>
+        <Route path="/" element={null} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
