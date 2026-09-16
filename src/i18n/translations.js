@@ -83,6 +83,11 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'SKILLS',
+      categories: [
+        { name: 'Languages', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
+        { name: 'Technologies', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
+        { name: 'Concepts', items: ['Systems Programming', 'Algorithms', 'Machine Learning', 'Cybersecurity', 'Networking', 'Distributed Systems'] }
+      ]
     },
 
     // ── Education ──
@@ -338,6 +343,11 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'COMPETENZE',
+      categories: [
+        { name: 'Linguaggi', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
+        { name: 'Tecnologie', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
+        { name: 'Concetti', items: ['Sistemi Operativi', 'Algoritmi', 'Machine Learning', 'Cybersecurity', 'Reti di Calcolatori', 'Sistemi Distribuiti'] }
+      ]
     },
 
     // ── Education ──
