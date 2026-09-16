@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://comitanigiacomo.com/sitemap.xml
