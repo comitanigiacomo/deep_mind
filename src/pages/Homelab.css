@@ -8,7 +8,7 @@ section.homelab-section {
   padding: 4rem 0 3rem 0;
 
   /* ── Angelo Caduto background ── */
-  background: url('/fallen_angel_bg.jpg') center center / cover no-repeat #05040a;
+  background: url('/fallen_angel_bg.webp') center center / cover no-repeat #05040a;
   background-attachment: scroll;
 }
 

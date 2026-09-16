@@ -6,3 +6,10 @@
     /* overflow: visible permette al canvas di ricevere transform senza clip interno */
     overflow: visible;
 }
+
+/* Disabilita cattura eventi su mobile per permettere lo scroll perfetto */
+@media (max-width: 768px) {
+    .keyboard-wrapper {
+        pointer-events: none !important;
+    }
+}

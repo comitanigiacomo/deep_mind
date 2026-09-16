@@ -16,6 +16,7 @@ import ChatSection from './components/ChatSection.jsx';
 import CustomCursor from './components/CustomCursor.jsx';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import BlogPostPage from './pages/BlogPostPage.jsx';
+import NotFound from './pages/NotFound.jsx';
 import { useLang } from './context/LanguageContext.jsx';
 
 export default function App() {
@@ -78,7 +79,9 @@ export default function App() {
       
       {/* Blog post overlay routing */}
       <Routes>
+        <Route path="/" element={null} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

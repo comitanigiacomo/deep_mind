@@ -83,6 +83,11 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'SKILLS',
+      categories: [
+        { name: 'Languages', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
+        { name: 'Technologies', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
+        { name: 'Concepts', items: ['Systems Programming', 'Algorithms', 'Machine Learning', 'Cybersecurity', 'Networking', 'Distributed Systems'] }
+      ]
     },
 
     // ── Education ──
@@ -96,7 +101,7 @@ export const translations = {
           institution: 'University of Milan',
           description: 'Currently pursuing my graduate degree with a focus on advanced computing concepts.',
           type: 'master',
-          logo: '/Unimi-logo.png',
+          logo: '/Unimi-logo.webp',
           active: true,
         },
         {
@@ -106,7 +111,7 @@ export const translations = {
           description: 'Undergraduate degree program focused on systems programming and software engineering.',
           thesis: 'Study and analysis of cryptographic functions used by mobile devices to protect sensitive data',
           type: 'bachelor',
-          logo: '/Unimi-logo.png',
+          logo: '/Unimi-logo.webp',
           active: false,
         },
         {
@@ -115,7 +120,7 @@ export const translations = {
           institution: 'Leonardo Da Vinci State High School',
           description: 'Scientific curriculum',
           type: 'highschool',
-          logo: '/leonardoDaVinci.png',
+          logo: '/leonardoDaVinci.webp',
           active: false,
         },
       ],
@@ -176,7 +181,7 @@ export const translations = {
           course: 'MSc Computer Science — UniMi',
           abstract: 'Empirical replication of the Double Descent phenomenon in linear models. Built from-scratch closed-form solutions for ordinary and ridge regression to validate that prediction error can decrease, increase, then decrease again as model complexity grows beyond the interpolation threshold.',
           tags: ['Machine Learning', 'Linear Regression', 'Ridge Regression', 'Python', 'Jupyter'],
-          image: '/double-descent.png',
+          image: '/double-descent.webp',
           github: 'https://github.com/comitanigiacomo/double-descent-analysis',
           color: '#06b6d4',
           methods: ['Closed-form OLS', 'Ridge Regression', 'Bias-Variance Analysis'],
@@ -189,7 +194,7 @@ export const translations = {
           course: 'MSc Computer Science — UniMi',
           abstract: 'Python implementation of Flajolet-Martin and Bloom Filter algorithms applied to a live stream of New York Times articles. Designed under strict O(1) RAM constraints using lazy evaluation to handle massive data in constant memory.',
           tags: ['Data Streaming', 'Bloom Filter', 'Flajolet-Martin', 'Python', 'Algorithms'],
-          image: '/NYT-datastream.png',
+          image: '/NYT-datastream.webp',
           github: 'https://github.com/comitanigiacomo/NYT-Stream-Analysis',
           color: '#a855f7',
           methods: ['Bloom Filter', 'Flajolet-Martin', 'Lazy Evaluation'],
@@ -338,6 +343,11 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'COMPETENZE',
+      categories: [
+        { name: 'Linguaggi', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
+        { name: 'Tecnologie', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
+        { name: 'Concetti', items: ['Sistemi Operativi', 'Algoritmi', 'Machine Learning', 'Cybersecurity', 'Reti di Calcolatori', 'Sistemi Distribuiti'] }
+      ]
     },
 
     // ── Education ──
@@ -351,7 +361,7 @@ export const translations = {
           institution: 'Università degli Studi di Milano',
           description: 'Attualmente sto frequentando la laurea magistrale, concentrandomi su concetti avanzati di informatica.',
           type: 'master',
-          logo: '/Unimi-logo.png',
+          logo: '/Unimi-logo.webp',
           active: true,
         },
         {
@@ -361,7 +371,7 @@ export const translations = {
           description: 'Percorso di laurea triennale incentrato sulla programmazione di sistema e l\'ingegneria del software.',
           thesis: 'Studio e analisi delle funzioni crittografiche utilizzate dai dispositivi mobili per la protezione dei dati sensibili',
           type: 'bachelor',
-          logo: '/Unimi-logo.png',
+          logo: '/Unimi-logo.webp',
           active: false,
         },
         {
@@ -370,7 +380,7 @@ export const translations = {
           institution: 'Liceo Scientifico Statale Leonardo Da Vinci',
           description: 'Indirizzo scientifico',
           type: 'highschool',
-          logo: '/leonardoDaVinci.png',
+          logo: '/leonardoDaVinci.webp',
           active: false,
         },
       ],
@@ -431,7 +441,7 @@ export const translations = {
           course: 'LM Informatica — UniMi',
           abstract: 'Replica empirica del fenomeno del Double Descent in modelli lineari. Ho implementato da zero soluzioni in forma chiusa per la regressione ordinaria (OLS) e Ridge, al fine di validare come l\'errore di predizione possa diminuire, aumentare e poi diminuire nuovamente man mano che la complessità del modello supera la soglia di interpolazione.',
           tags: ['Machine Learning', 'Regressione Lineare', 'Ridge Regression', 'Python', 'Jupyter'],
-          image: '/double-descent.png',
+          image: '/double-descent.webp',
           github: 'https://github.com/comitanigiacomo/double-descent-analysis',
           color: '#06b6d4',
           methods: ['OLS in forma chiusa', 'Regressione Ridge', 'Analisi Bias-Varianza'],
@@ -444,7 +454,7 @@ export const translations = {
           course: 'LM Informatica — UniMi',
           abstract: 'Implementazione in Python degli algoritmi Flajolet-Martin e Bloom Filter, applicati a un flusso in tempo reale di articoli del New York Times. Progettato con stringenti vincoli di memoria RAM in O(1), utilizzando la valutazione lazy per gestire moli di dati massive in memoria costante.',
           tags: ['Data Streaming', 'Bloom Filter', 'Flajolet-Martin', 'Python', 'Algoritmi'],
-          image: '/NYT-datastream.png',
+          image: '/NYT-datastream.webp',
           github: 'https://github.com/comitanigiacomo/NYT-Stream-Analysis',
           color: '#a855f7',
           methods: ['Bloom Filter', 'Flajolet-Martin', 'Valutazione Lazy'],

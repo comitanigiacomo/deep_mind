@@ -8,7 +8,7 @@ section.research-section {
   padding: 4rem 0 3rem 0;
   
   /* ── Da Vinci Sketches background ── */
-  background: url('/research_davinci_bg.jpg') center center / cover no-repeat #05040a;
+  background: url('/research_davinci_bg.webp') center center / cover no-repeat #05040a;
   background-attachment: scroll;
 }
 

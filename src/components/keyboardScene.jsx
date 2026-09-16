@@ -87,7 +87,7 @@ function KeyboardWrapper(props) {
   return <KeyboardModel {...props} scene={scene} />
 }
 
-function CameraControls({ initialCameraPosition, initialTarget, onResetRef }) {
+function CameraControls({ initialCameraPosition, initialTarget, onResetRef, isMobile }) {
   const controlsRef = useRef()
 
   useEffect(() => {
@@ -122,13 +122,13 @@ function CameraControls({ initialCameraPosition, initialTarget, onResetRef }) {
       minDistance={10}
       maxDistance={40}
       mouseButtons={{
-        left: 1, // ACTION.ROTATE
+        left: isMobile ? 0 : 1, // ACTION.ROTATE only on desktop
         middle: 0, // ACTION.NONE
         right: 0, // ACTION.NONE
         wheel: 0, // ACTION.NONE
       }}
       touches={{
-        one: 1, // ACTION.TOUCH_ROTATE
+        one: isMobile ? 0 : 1, // ACTION.TOUCH_ROTATE only on desktop
         two: 0, // ACTION.NONE
         three: 0 // ACTION.NONE
       }}
@@ -156,15 +156,18 @@ export default function KeyboardScene({
 }) {
   const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0])
   const [keyboardScale, setKeyboardScale] = useState(scale)
+  const [isMobile, setIsMobile] = useState(false)
 
   const initialCameraPosition = useMemo(() => [-10.261, 23.82, -4.378], [])
   const initialTarget = useMemo(() => [2.0, -2.817, -6.848], [])
 
   useEffect(() => {
     const updateLayout = () => {
-      if (window.innerWidth <= 768) {
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+      if (mobile) {
         setKeyboardPosition([27, -11, 0])
-        setKeyboardScale(2.2)
+        setKeyboardScale(1.8) // Reduced scale so it doesn't get cut off
       } else {
         setKeyboardPosition([7, 1, 0])
         setKeyboardScale(scale)
@@ -178,7 +181,11 @@ export default function KeyboardScene({
 
   return (
     <div className="keyboard-wrapper">
-      <Canvas camera={{ position: initialCameraPosition, fov: 80 }} {...props}>
+      <Canvas 
+        camera={{ position: initialCameraPosition, fov: 80 }} 
+        style={{ touchAction: isMobile ? 'auto' : 'none' }}
+        {...props}
+      >
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
         <Suspense fallback={<CanvasLoader position={initialTarget} />}>
@@ -194,6 +201,7 @@ export default function KeyboardScene({
           initialCameraPosition={initialCameraPosition}
           initialTarget={initialTarget}
           onResetRef={onResetRef}
+          isMobile={isMobile}
         />
       </Canvas>
     </div>
