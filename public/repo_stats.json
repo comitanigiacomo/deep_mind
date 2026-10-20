@@ -125,7 +125,7 @@
         "percent": 10.0
       }
     ],
-    "updated_at": "2025-05-16T15:11:07Z",
+    "updated_at": "2026-10-20T13:23:34Z",
     "license": "MIT License",
     "topics": [
       "database",
@@ -135,7 +135,7 @@
       "web-application"
     ],
     "size": 9.86,
-    "archived": false,
+    "archived": true,
     "default_branch": "main"
   },
   "comitanigiacomo/leetcode": {
@@ -256,39 +256,13 @@
     "archived": false,
     "default_branch": "main"
   },
-  "comitanigiacomo/Reti_di_calcolatori": {
-    "title": "Reti_di_calcolatori",
-    "image": "/reti.webp",
-    "description": "Detailed notes and resources covering key concepts in computer networking and data communication.",
-    "stars": 1,
-    "forks": 2,
-    "commits": 39,
-    "languages": [
-      {
-        "name": "Typst",
-        "percent": 100.0
-      }
-    ],
-    "updated_at": "2026-01-25T15:00:35Z",
-    "license": "MIT License",
-    "topics": [
-      "computer-networks",
-      "course-notes",
-      "data-communicatio",
-      "network-security",
-      "networking"
-    ],
-    "size": 6.13,
-    "archived": false,
-    "default_branch": "main"
-  },
   "comitanigiacomo/deep_mind": {
     "title": "Deep_mind",
     "image": "/Deep.webp",
     "description": "A clean and minimal portfolio to present my projects and experience.  ",
     "stars": 0,
     "forks": 0,
-    "commits": 381,
+    "commits": 384,
     "languages": [
       {
         "name": "JavaScript",
@@ -296,7 +270,7 @@
       },
       {
         "name": "CSS",
-        "percent": 43.3
+        "percent": 43.4
       },
       {
         "name": "Python",
@@ -311,7 +285,7 @@
         "percent": 0.1
       }
     ],
-    "updated_at": "2026-10-11T04:43:54Z",
+    "updated_at": "2026-10-20T13:57:26Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -320,33 +294,38 @@
       "responsive-design",
       "show-project"
     ],
-    "size": 167.57,
+    "size": 167.58,
     "archived": false,
     "default_branch": "main"
   },
-  "comitanigiacomo/TankCheck": {
-    "title": "TankCheck",
-    "image": "/mockup.webp",
-    "description": "My first Kotlin Android app. A simple yet practical solution for tracking container status (full/empty) in real-time using Firebase",
-    "stars": 0,
+  "comitanigiacomo/homelab": {
+    "title": "Home lab",
+    "image": "/dashboard.webp",
+    "description": "Docker configurations for my personal home server.Docker configurations for my personal home server.",
+    "stars": 2,
     "forks": 0,
-    "commits": 29,
+    "commits": 25,
     "languages": [
       {
-        "name": "Kotlin",
-        "percent": 100.0
+        "name": "Shell",
+        "percent": 83.5
+      },
+      {
+        "name": "Dockerfile",
+        "percent": 16.5
       }
     ],
-    "updated_at": "2025-06-29T12:44:45Z",
-    "license": "GNU General Public License v3.0",
+    "updated_at": "2026-08-29T10:35:16Z",
+    "license": "No license",
     "topics": [
-      "android",
-      "firebase",
-      "kotlin",
-      "realtime-database",
-      "smart-home"
+      "debian",
+      "docker",
+      "homelab",
+      "iac",
+      "self-hosted",
+      "server"
     ],
-    "size": 12.81,
+    "size": 0.22,
     "archived": false,
     "default_branch": "main"
   }
