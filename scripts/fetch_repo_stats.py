@@ -24,12 +24,6 @@ PROJECTS = [
         "image": "/quicklaunch.webp",
     },
     {
-        "title": "Universal",
-        "owner": "comitanigiacomo",
-        "repo": "Universal",
-        "image": "/universal.webp",
-    },
-    {
         "title": "Leetcode",
         "owner": "comitanigiacomo",
         "repo": "leetcode",
