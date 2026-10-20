@@ -48,23 +48,17 @@ PROJECTS = [
         "image": "/cybersecurity.webp",
     },
     {
-        "title": "Reti_di_calcolatori",
-        "owner": "comitanigiacomo",
-        "repo": "Reti_di_calcolatori",
-        "image": "/reti.webp",
-    },
-    {
         "title": "Deep_mind",
         "owner": "comitanigiacomo",
         "repo": "deep_mind",
         "image": "/Deep.webp",
     },
     {
-        "title": "TankCheck",
+        "title": "Home lab",
         "owner": "comitanigiacomo",
-        "repo": "TankCheck",
-        "image": "/mockup.webp",
-    }
+        "repo": "homelab",
+        "image": "/dashboard.webp",
+    },
     ]
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
