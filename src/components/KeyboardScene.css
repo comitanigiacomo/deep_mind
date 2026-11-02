@@ -5,6 +5,20 @@
     position: relative;
     /* overflow: visible permette al canvas di ricevere transform senza clip interno */
     overflow: visible;
+    /* Il canvas entra in dissolvenza solo quando la scena è pronta: niente
+       lampo nero mentre WebGL inizializza e il modello viene montato. */
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
+}
+
+.keyboard-wrapper--ready {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .keyboard-wrapper {
+        transition: none;
+    }
 }
 
 /* Disabilita cattura eventi su mobile per permettere lo scroll perfetto */

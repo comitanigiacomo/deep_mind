@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useInView } from '../hooks/useInView';
+import { usePrefersReducedMotion } from '../hooks/useMediaQuery';
 import './BootTerminal.css';
 
 const bootSequence = [
@@ -19,7 +20,8 @@ const bootSequence = [
 ];
 
 export default function BootTerminal() {
-  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
+  const { ref, isInView } = useInView({ threshold: 0.5 });
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [lines, setLines] = useState([]);
   const [phase, setPhase] = useState('idle'); // idle -> booting -> connected
   const [clicks, setClicks] = useState(0);
@@ -28,7 +30,16 @@ export default function BootTerminal() {
   const bodyRef = useRef(null);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!isInView) {
+      return undefined;
+    }
+
+    // Reduced-motion users get the final state instead of a timed sequence.
+    if (prefersReducedMotion) {
+      setPhase('connected');
+      setLines(['[ OK ] Connection: Secure & Online']);
+      return undefined;
+    }
 
     let interval;
     // Delay boot by 1.5 seconds so user has time to scroll and watch
@@ -58,7 +69,7 @@ export default function BootTerminal() {
       clearTimeout(startDelay);
       if (interval) clearInterval(interval);
     };
-  }, [inView, trigger]);
+  }, [isInView, trigger, prefersReducedMotion]);
 
   useEffect(() => {
     if (bodyRef.current && phase === 'booting') {

@@ -388,16 +388,12 @@
 
 .blog-item__time {
   font-size: 0.75rem;
-  color: rgba(242, 242, 242, 0.4);
-}
-
-[data-theme="light"] .blog-item__time {
-  color: rgba(0, 0, 0, 0.4);
+  color: var(--text-muted);
 }
 
 .blog-item__arrow {
   margin-top: 0.5rem;
-  color: #07589D;
+  color: var(--accent-text);
   opacity: 0;
   transform: translateX(-6px);
   transition: all 0.25s ease;

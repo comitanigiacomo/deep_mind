@@ -8,9 +8,22 @@
   width: 100vw;
   height: 100vh;
   z-index: 9999;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--bg);
+  color: var(--text);
   text-align: center;
+}
+
+#page-content:focus {
+  outline: none;
+}
+
+.notfound-controls {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .notfound-content {
@@ -45,8 +58,8 @@
 .notfound-button {
   padding: 0.8rem 1.5rem;
   background-color: transparent;
-  color: var(--text-color, #fff);
-  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
@@ -54,6 +67,11 @@
 }
 
 .notfound-button:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-text);
   transform: translateY(-2px);
+}
+
+[data-theme='light'] .notfound-button:hover {
+  background-color: rgba(0, 0, 0, 0.06);
 }

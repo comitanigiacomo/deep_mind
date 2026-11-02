@@ -256,7 +256,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   display: block;
   margin-bottom: 0.4rem;
 }

@@ -1,104 +1,115 @@
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { FaSun, FaMoon } from 'react-icons/fa';
-import './Mynav.css';
-import { useTheme } from '../context/ThemeContext';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import LanguageToggle from './ui/LanguageToggle';
+import ThemeToggle from './ui/ThemeToggle';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import { scrollToSection } from '../lib/scroll';
+import './Mynav.css';
 
-function Mynav() {
-  const { isDarkMode, toggleTheme } = useTheme();
-  const { lang, toggleLang } = useLang();
-  const [showToggle, setShowToggle] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+const NAV_SECTIONS = [
+  'about',
+  'interests',
+  'skills',
+  'education',
+  'projects',
+  'homelab',
+  'research',
+  'blog',
+  'contacts',
+];
 
+const NAVIGATION_ID = 'primary-navigation';
+
+export default function Mynav() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { lang } = useLang();
+  const navigate = useNavigate();
+  const location = useLocation();
   const nav = translations[lang].nav;
 
+  const closeNavigation = useCallback(() => setIsExpanded(false), []);
+  const toggleNavigation = useCallback(() => setIsExpanded((previous) => !previous), []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowToggle(false);
-      } else {
-        setShowToggle(true);
+    if (!isExpanded) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeNavigation();
       }
-      
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+    const handlePointerDown = (event) => {
+      if (event.target instanceof Element && !event.target.closest('.app-navbar')) {
+        closeNavigation();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [isExpanded, closeNavigation]);
+
+  const handleSectionNavigation = useCallback(
+    (event, sectionId) => {
+      event.preventDefault();
+      closeNavigation();
+
+      if (location.pathname === '/' && scrollToSection(sectionId)) {
+        return;
+      }
+
+      navigate(`/#${sectionId}`);
+    },
+    [closeNavigation, location.pathname, navigate],
+  );
 
   return (
-    <Navbar fixed="top" expand="lg">
-      <Container fluid className="p-0">
+    <nav
+      className={`app-navbar ${isExpanded ? 'is-open' : ''}`}
+      aria-label={lang === 'it' ? 'Navigazione principale' : 'Main navigation'}
+    >
+      <div className="app-navbar__inner">
+        <LanguageToggle />
 
-        {/* Language toggle — always left, desktop & mobile */}
-        <div className="navbar-lang-slot">
-          <button
-            onClick={toggleLang}
-            className="language-toggle-btn"
-            title={lang === 'en' ? 'Passa all\'italiano' : 'Switch to English'}
-            aria-label="Toggle language"
-          >
-            <span className={`lang-opt ${lang === 'en' ? 'lang-active' : 'lang-inactive'}`}>EN</span>
-            <span className="lang-sep">|</span>
-            <span className={`lang-opt ${lang === 'it' ? 'lang-active' : 'lang-inactive'}`}>IT</span>
-          </button>
+        <div id={NAVIGATION_ID} className="app-navbar__menu">
+          <ul className="app-navbar__links">
+            {NAV_SECTIONS.map((sectionId) => (
+              <li key={sectionId}>
+                <a
+                  href={`/#${sectionId}`}
+                  className="app-navbar__link"
+                  data-section={sectionId}
+                  onClick={(event) => handleSectionNavigation(event, sectionId)}
+                >
+                  <span>{nav[sectionId]}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Mobile toggles (theme) */}
-        <div className={`navbar-toggles mobile-toggles d-lg-none ${showToggle ? 'visible' : 'hidden'}`}>
+        <div className="app-navbar__actions">
+          <ThemeToggle />
           <button
-            onClick={toggleTheme}
-            className="theme-toggle-pill"
-            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            aria-label="Toggle theme"
+            type="button"
+            className="app-navbar__toggler"
+            aria-controls={NAVIGATION_ID}
+            aria-expanded={isExpanded}
+            aria-label={lang === 'it' ? 'Apri il menu di navigazione' : 'Toggle navigation menu'}
+            onClick={toggleNavigation}
           >
-            <span className={`theme-toggle-track ${isDarkMode ? 'is-dark' : 'is-light'}`}>
-              <span className="theme-toggle-thumb">
-                {isDarkMode ? <FaMoon size={13} /> : <FaSun size={13} />}
-              </span>
-            </span>
+            <span className="app-navbar__toggler-icon" aria-hidden="true" />
           </button>
         </div>
-
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/#about"><span>{nav.about}</span></Nav.Link>
-            <Nav.Link href="/#interests"><span>{nav.interests}</span></Nav.Link>
-            <Nav.Link href="/#skills"><span>{nav.skills}</span></Nav.Link>
-            <Nav.Link href="/#education"><span>{nav.education}</span></Nav.Link>
-            <Nav.Link href="/#projects"><span>{nav.projects}</span></Nav.Link>
-            <Nav.Link href="/#homelab"><span>{nav.homelab}</span></Nav.Link>
-            <Nav.Link href="/#research"><span>{nav.research}</span></Nav.Link>
-            <Nav.Link href="/#blog"><span>{nav.blog}</span></Nav.Link>
-            <Nav.Link href="/#contacts"><span>{nav.contacts}</span></Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-
-        <Nav className="ms-auto d-none d-lg-flex align-items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            className="theme-toggle-pill"
-            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            aria-label="Toggle theme"
-          >
-            <span className={`theme-toggle-track ${isDarkMode ? 'is-dark' : 'is-light'}`}>
-              <span className="theme-toggle-thumb">
-                {isDarkMode ? <FaMoon size={10} /> : <FaSun size={10} />}
-              </span>
-            </span>
-          </button>
-        </Nav>
-
-      </Container>
-    </Navbar>
+      </div>
+    </nav>
   );
 }
-
-export default Mynav;

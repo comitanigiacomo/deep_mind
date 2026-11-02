@@ -4,4 +4,11 @@ services:
     container_name: jack-portfolio
     restart: unless-stopped
     ports:
-      - "8090:80"
+      - "8090:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

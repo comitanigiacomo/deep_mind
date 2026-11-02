@@ -1,8 +1,7 @@
-import { Canvas, useThree } from '@react-three/fiber'
-import { Html, useGLTF, CameraControls as DreiCameraControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, CameraControls as DreiCameraControls } from '@react-three/drei'
 import { useRef, useMemo, useState, useEffect, useCallback, Suspense } from 'react'
 import { animated, useSpring } from '@react-spring/three'
-import Spinner from 'react-bootstrap/Spinner'
 import './KeyboardScene.css'
 
 function Key({ keyNode, onHover, onClick }) {
@@ -136,19 +135,12 @@ function CameraControls({ initialCameraPosition, initialTarget, onResetRef, isMo
   )
 }
 
-function CanvasLoader({ position }) {
-  return (
-    <Html center position={position}>
-      <div className="canvas-spinner">
-        <Spinner animation="border" variant="light" />
-      </div>
-    </Html>
-  )
-}
+const noop = () => {}
 
 export default function KeyboardScene({
-  onKeyHover,
-  onKeyClick,
+  onKeyHover = noop,
+  onKeyClick = noop,
+  onLoaded = noop,
   fixedRotation = [0, 0, 0],
   scale = 1,
   onResetRef,
@@ -157,6 +149,12 @@ export default function KeyboardScene({
   const [keyboardPosition, setKeyboardPosition] = useState([7, 1, 0])
   const [keyboardScale, setKeyboardScale] = useState(scale)
   const [isMobile, setIsMobile] = useState(false)
+  const [isReady, setIsReady] = useState(false)
+
+  const handleLoaded = useCallback(() => {
+    setIsReady(true)
+    onLoaded()
+  }, [onLoaded])
 
   const initialCameraPosition = useMemo(() => [-10.261, 23.82, -4.378], [])
   const initialTarget = useMemo(() => [2.0, -2.817, -6.848], [])
@@ -180,7 +178,7 @@ export default function KeyboardScene({
   }, [scale])
 
   return (
-    <div className="keyboard-wrapper">
+    <div className={`keyboard-wrapper${isReady ? ' keyboard-wrapper--ready' : ''}`}>
       <Canvas 
         camera={{ position: initialCameraPosition, fov: 80 }} 
         style={{ touchAction: isMobile ? 'auto' : 'none' }}
@@ -188,13 +186,14 @@ export default function KeyboardScene({
       >
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
-        <Suspense fallback={<CanvasLoader position={initialTarget} />}>
+        <Suspense fallback={null}>
           <KeyboardWrapper
             position={keyboardPosition}
             rotation={fixedRotation}
             scale={[keyboardScale, keyboardScale, keyboardScale]}
             onKeyHover={onKeyHover}
             onKeyClick={onKeyClick}
+            onLoaded={handleLoaded}
           />
         </Suspense>
         <CameraControls
@@ -208,4 +207,6 @@ export default function KeyboardScene({
   )
 }
 
+// This module is loaded through React.lazy: the preload starts only when the
+// skills section is about to become visible, never on first paint.
 useGLTF.preload('/keyboard.glb')
