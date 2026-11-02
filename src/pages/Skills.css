@@ -31,12 +31,82 @@
 
 /* Keyboard prende tutta la larghezza disponibile */
 .skills-keyboard-area {
+  position: relative;     /* ancora il loader sopra il canvas */
   width: 100%;
   height: 120vh;          /* molto piu alto per dare spazio al 3D per un canvas senza spazi morti */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
+}
+
+/*
+  Overlay di caricamento: riempie l'area mentre il chunk three.js e il GLB
+  vengono scaricati, così non si vede mai un rettangolo nero vuoto.
+  Scompare in dissolvenza quando la scena segnala di essere pronta.
+*/
+.keyboard-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+.keyboard-loader--ready {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.keyboard-loader__track {
+  position: relative;
+  width: 180px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.keyboard-loader__bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: var(--accent-text);
+  animation: keyboard-loader-scan 1.15s ease-in-out infinite;
+}
+
+.keyboard-loader__label {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@keyframes keyboard-loader-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(222%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keyboard-loader {
+    transition: none;
+  }
+
+  .keyboard-loader__bar {
+    width: 100%;
+    opacity: 0.5;
+    animation: none;
+  }
 }
 
 /*
@@ -226,11 +296,11 @@
 
 .skills-mobile-category h3 {
     font-size: 1.2rem;
-    color: var(--text-color, #fff);
+    color: var(--text);
     margin-bottom: 1rem;
     font-weight: 600;
     font-family: 'Space Grotesk', sans-serif;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
     padding-bottom: 0.5rem;
 }
 
@@ -246,15 +316,25 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text);
     font-family: 'JetBrains Mono', monospace;
     transition: all 0.3s ease;
+}
+
+[data-theme='light'] .skill-badge {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
 }
 
 .skill-badge:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
     border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme='light'] .skill-badge:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.25);
 }
 
 @keyframes fadeIn {
