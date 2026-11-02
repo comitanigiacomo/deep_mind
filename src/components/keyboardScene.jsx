@@ -82,7 +82,10 @@ function KeyboardModel({ scene, onKeyHover, onKeyClick, onLoaded, ...props }) {
 }
 
 function KeyboardWrapper(props) {
-  const { scene } = useGLTF('/keyboard.glb')
+  // The model is plain glTF (no Draco, no Meshopt): disabling both decoders
+  // avoids fetching a CDN decoder and compiling WASM, which a strict CSP would
+  // otherwise block. See the CSP in nginx.conf.
+  const { scene } = useGLTF('/keyboard.glb', false, false)
   return <KeyboardModel {...props} scene={scene} />
 }
 
@@ -209,4 +212,4 @@ export default function KeyboardScene({
 
 // This module is loaded through React.lazy: the preload starts only when the
 // skills section is about to become visible, never on first paint.
-useGLTF.preload('/keyboard.glb')
+useGLTF.preload('/keyboard.glb', false, false)
