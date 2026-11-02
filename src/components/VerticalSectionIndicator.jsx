@@ -1,43 +1,53 @@
 import { useEffect, useState } from 'react';
-import './VerticalSectionIndicator.css';
-import { useTheme } from '../context/ThemeContext';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
+import './VerticalSectionIndicator.css';
 
-const sectionIds = ['about', 'skills', 'interests', 'education', 'projects', 'homelab', 'research', 'blog', 'contacts'];
+const SECTION_IDS = [
+  'about',
+  'skills',
+  'interests',
+  'education',
+  'projects',
+  'homelab',
+  'research',
+  'blog',
+  'contacts',
+];
 
 export default function VerticalSectionIndicator() {
-  const { isDarkMode } = useTheme();
   const { lang } = useLang();
   const sectionNames = translations[lang].sections;
-  const [currentSection, setCurrentSection] = useState(sectionNames['about']);
+  const [currentSectionId, setCurrentSectionId] = useState(SECTION_IDS[0]);
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setCurrentSection(sectionNames[entry.target.id] || entry.target.id);
-        }
-      });
-    }, options);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrentSectionId(entry.target.id);
+          }
+        });
+      },
+      { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+    );
 
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+    SECTION_IDS.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
     });
 
     return () => observer.disconnect();
-  }, [lang, sectionNames]);
+  }, []);
+
+  const currentSectionLabel = sectionNames[currentSectionId] || currentSectionId;
 
   return (
-    <div className="vertical-line-container">
+    <div className="vertical-line-container" aria-hidden="true">
       <div className="vertical-line top" />
-      <div className="section-label">{currentSection}</div>
+      <div className="section-label">{currentSectionLabel}</div>
       <div className="vertical-line bottom" />
     </div>
   );

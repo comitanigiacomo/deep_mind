@@ -1,5 +1,7 @@
 export const translations = {
   en: {
+    skipToContent: 'Skip to content',
+
     // ── Navbar ──
     nav: {
       about: 'About',
@@ -46,6 +48,7 @@ export const translations = {
     // ── Interests ──
     interests: {
       title: 'INTERESTS',
+      pageTitle: 'Beyond the screen',
       items: [
         {
           number: '00',
@@ -83,6 +86,8 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'SKILLS',
+      loading: 'Loading 3D scene…',
+      resetView: 'Reset view',
       categories: [
         { name: 'Languages', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
         { name: 'Technologies', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
@@ -132,6 +137,7 @@ export const translations = {
       subtitle: 'A curated collection of my work across different domains',
       loading: 'Loading projects...',
       noProjects: 'No projects found.',
+      error: 'Projects are temporarily unavailable. Please try again later.',
       updated: 'Updated',
       size: 'Size',
       archived: 'Archived',
@@ -243,7 +249,14 @@ export const translations = {
       backAll: '← Back to all posts',
       notFound: 'Post not found',
       backPortfolio: '← Back to portfolio',
+      readingTime: 'read',
       thanks: 'Thanks for reading.',
+    },
+
+    notFound: {
+      subtitle: 'Page not found',
+      text: 'It looks like you got lost in the depths of the Deep Mind.',
+      action: 'Back to home',
     },
 
     // ── Chat Animation ──
@@ -260,6 +273,8 @@ export const translations = {
   // ITALIANO
   // ─────────────────────────────────────────────────────────────────
   it: {
+    skipToContent: 'Vai al contenuto',
+
     // ── Navbar ──
     nav: {
       about: 'Chi sono',
@@ -306,6 +321,7 @@ export const translations = {
     // ── Interests ──
     interests: {
       title: 'INTERESSI',
+      pageTitle: 'Oltre lo schermo',
       items: [
         {
           number: '00',
@@ -343,6 +359,8 @@ export const translations = {
     // ── Skills ──
     skills: {
       title: 'COMPETENZE',
+      loading: 'Caricamento scena 3D…',
+      resetView: 'Reimposta vista',
       categories: [
         { name: 'Linguaggi', items: ['Python', 'Go', 'TypeScript', 'JavaScript', 'C/C++', 'Kotlin', 'Bash', 'SQL'] },
         { name: 'Tecnologie', items: ['Docker', 'React', 'Apache Kafka', 'Linux', 'Tailscale', 'Git', 'Nginx'] },
@@ -392,6 +410,7 @@ export const translations = {
       subtitle: 'Una raccolta curata dei miei lavori in vari ambiti',
       loading: 'Caricamento progetti...',
       noProjects: 'Nessun progetto trovato.',
+      error: 'I progetti non sono disponibili al momento. Riprova più tardi.',
       updated: 'Aggiornato',
       size: 'Dimensioni',
       archived: 'Archiviato',
@@ -503,7 +522,14 @@ export const translations = {
       backAll: '← Torna a tutti gli articoli',
       notFound: 'Articolo non trovato',
       backPortfolio: '← Torna al portfolio',
+      readingTime: 'di lettura',
       thanks: 'Grazie per la lettura.',
+    },
+
+    notFound: {
+      subtitle: 'Pagina non trovata',
+      text: 'Sembra che ti sia perso nei meandri della Deep Mind.',
+      action: 'Torna alla home',
     },
 
     // ── Chat Animation ──

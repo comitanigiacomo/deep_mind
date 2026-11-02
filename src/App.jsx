@@ -1,83 +1,94 @@
-import Mynav from './components/Mynav.jsx';
-import About from './pages/About';
-import Skills from './pages/Skills.jsx';
-import Experience from './pages/Education';
-import Projects from './pages/Projects';
-import Homelab from './pages/Homelab.jsx';
-import Research from './pages/Research.jsx';
-import Blog from './pages/Blog.jsx';
-import Contacts from './pages/Contacts';
-import Interests from './pages/Interests.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import { useEffect } from 'react';
-import VerticalSectionIndicator from './components/VerticalSectionIndicator.jsx';
-import ChatSection from './components/ChatSection.jsx';
-import CustomCursor from './components/CustomCursor.jsx';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import BlogPostPage from './pages/BlogPostPage.jsx';
-import NotFound from './pages/NotFound.jsx';
-import { useLang } from './context/LanguageContext.jsx';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Mynav from './components/Mynav';
+import CustomCursor from './components/CustomCursor';
+import VerticalSectionIndicator from './components/VerticalSectionIndicator';
+import ChatSection from './components/ChatSection';
+import About from './pages/About';
+import Interests from './pages/Interests';
+import Skills from './pages/Skills';
+import Education from './pages/Education';
+import Projects from './pages/Projects';
+import Homelab from './pages/Homelab';
+import Research from './pages/Research';
+import Blog from './pages/Blog';
+import Contacts from './pages/Contacts';
+import BlogPostPage from './pages/BlogPostPage';
+import NotFound from './pages/NotFound';
+import { useLang } from './context/LanguageContext';
+import { translations } from './i18n/translations';
+import { scrollToSection } from './lib/scroll';
+import './App.css';
 
 export default function App() {
   const location = useLocation();
-  const { isTransitioning } = useLang();
+  const { lang, isTransitioning } = useLang();
+  const isHomeRoute = location.pathname === '/';
+  const skipLinkTarget = isHomeRoute ? '#main-content' : '#page-content';
 
   useEffect(() => {
-    // Only scroll if there's a hash and we are actually on the main page
-    if (location.pathname === '/' && location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    if (!isHomeRoute || !location.hash) {
+      return;
     }
-  }, [location]);
+
+    scrollToSection(location.hash.replace('#', ''));
+  }, [isHomeRoute, location.hash, location.key]);
 
   return (
     <>
-      <CustomCursor />
-      <Mynav />
-      <VerticalSectionIndicator />
-      <div
-        className={`background-wrapper ${isTransitioning ? 'lang-transitioning' : 'lang-ready'}`}
-      >
-        <About />
-        <div className="container mt-3">
-          <section id="interests">
-            <Interests />
-          </section>
-          <section id="skills">
-            <Skills />
-          </section>
-          <section id="education">
-            <Experience />
-          </section>
-          <section id="projects">
-            <Projects />
-          </section>
-        </div>
+      <a className="skip-link" href={skipLinkTarget}>
+        {translations[lang].skipToContent}
+      </a>
 
-        {/* Homelab — fuori dal container per background full-bleed */}
-        <Homelab />
-        
-        {/* Research — fuori dal container per background full-bleed */}
-        <Research />
+      {/*
+       * The portfolio stays mounted behind the article/404 overlay so returning
+       * to it keeps the scroll position. While an overlay route is active the
+       * shell is `inert`: it is removed from the accessibility tree and its
+       * controls can no longer receive focus behind the overlay.
+       */}
+      <div className="portfolio-shell" inert={isHomeRoute ? undefined : ''}>
+        <CustomCursor />
+        <Mynav />
+        <VerticalSectionIndicator />
 
-        <div className="container">
-          <section id="blog">
-            <Blog />
-          </section>
-          <section id="contacts">
-            <Contacts />
-          </section>
-        </div>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className={`background-wrapper ${isTransitioning ? 'lang-transitioning' : 'lang-ready'}`}
+        >
+          <About />
 
-        {/* Chat Animation Section at the very bottom */}
-        <ChatSection />
+          <div className="container mt-3">
+            <section id="interests">
+              <Interests />
+            </section>
+            <section id="skills">
+              <Skills />
+            </section>
+            <section id="education">
+              <Education />
+            </section>
+            <section id="projects">
+              <Projects />
+            </section>
+          </div>
+
+          <Homelab />
+          <Research />
+
+          <div className="container">
+            <section id="blog">
+              <Blog />
+            </section>
+            <section id="contacts">
+              <Contacts />
+            </section>
+          </div>
+
+          <ChatSection />
+        </main>
       </div>
-      
-      {/* Blog post overlay routing */}
+
       <Routes>
         <Route path="/" element={null} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
