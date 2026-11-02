@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://comitanigiacomo.com/sitemap.xml
+
+Sitemap: https://portfolio.jack-lab.dev/sitemap.xml
