@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
   z-index: 999999;
+  pointer-events: none;
   mix-blend-mode: difference;
   transition: opacity 0.2s;
 }
@@ -11,26 +11,57 @@
 .custom-cursor-dot {
   width: 14px;
   height: 14px;
-  background-color: #fff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              background-color 0.25s,
-              border 0.2s;
   box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s,
+    border 0.2s;
 }
 
 .custom-cursor-wrapper.hovering .custom-cursor-dot {
   width: 14px;
   height: 14px;
-  background-color: transparent;
   border: 2px solid #fff;
+  background-color: transparent;
 }
 
-/* Hide default cursors everywhere if device supports hover */
+/*
+ * The native cursor is hidden only when the custom cursor is actually mounted
+ * and only on devices with a fine pointer. Form fields keep their native cursor
+ * so text editing affordances remain intact.
+ */
 @media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
+  html[data-custom-cursor='enabled'] body,
+  html[data-custom-cursor='enabled'] a,
+  html[data-custom-cursor='enabled'] button,
+  html[data-custom-cursor='enabled'] [role='button'] {
+    cursor: none;
+  }
+
+  html[data-custom-cursor='enabled'] input,
+  html[data-custom-cursor='enabled'] textarea,
+  html[data-custom-cursor='enabled'] [contenteditable='true'] {
+    cursor: text;
+  }
+
+  html[data-custom-cursor='enabled'] select {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-custom-cursor='enabled'] body,
+  html[data-custom-cursor='enabled'] a,
+  html[data-custom-cursor='enabled'] button,
+  html[data-custom-cursor='enabled'] [role='button'],
+  html[data-custom-cursor='enabled'] input,
+  html[data-custom-cursor='enabled'] textarea,
+  html[data-custom-cursor='enabled'] select,
+  html[data-custom-cursor='enabled'] [contenteditable='true'] {
+    cursor: auto;
   }
 }

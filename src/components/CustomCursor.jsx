@@ -1,71 +1,105 @@
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
+import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery, usePrefersReducedMotion } from '../hooks/useMediaQuery';
+import { loadGsap } from '../lib/loadGsap';
 import './CustomCursor.css';
 
+const POINTER_QUERY = '(hover: hover) and (pointer: fine)';
+const INTERACTIVE_SELECTOR = 'a, button, [role="button"], .social-card';
+const TEXT_INPUT_SELECTOR = 'input, textarea, select, [contenteditable="true"]';
+const CURSOR_ATTRIBUTE = 'data-custom-cursor';
+
 export default function CustomCursor() {
+  const hasFinePointer = useMediaQuery(POINTER_QUERY);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const isEnabled = hasFinePointer && !prefersReducedMotion;
+
   const cursorRef = useRef(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const isVisibleRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
-    // Disable on touch devices
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (!isEnabled) {
+      return undefined;
+    }
 
-    const el = cursorRef.current;
-    if (!el) return;
+    const cursorElement = cursorRef.current;
+    if (!cursorElement) {
+      return undefined;
+    }
 
-    // Fast, smooth tracking
-    const xTo = gsap.quickTo(el, "x", { duration: 0.15, ease: "power3.out" });
-    const yTo = gsap.quickTo(el, "y", { duration: 0.15, ease: "power3.out" });
+    let isDisposed = false;
+    let removeListeners = () => {};
 
-    const moveCursor = (e) => {
-      if (!isVisible) setIsVisible(true);
-      xTo(e.clientX);
-      yTo(e.clientY);
-    };
-
-    const handleMouseOver = (e) => {
-      const target = e.target;
-      if (
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'button' ||
-        target.closest('a') ||
-        target.closest('button') ||
-        target.classList.contains('social-card')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
+    loadGsap().then((gsap) => {
+      if (isDisposed) {
+        return;
       }
-    };
-    
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
 
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver);
-    document.addEventListener('mouseleave', handleMouseLeave); // When mouse leaves window
+      const moveX = gsap.quickTo(cursorElement, 'x', { duration: 0.15, ease: 'power3.out' });
+      const moveY = gsap.quickTo(cursorElement, 'y', { duration: 0.15, ease: 'power3.out' });
+
+      const handlePointerMove = (event) => {
+        if (!isVisibleRef.current) {
+          isVisibleRef.current = true;
+          setIsVisible(true);
+        }
+
+        moveX(event.clientX);
+        moveY(event.clientY);
+      };
+
+      const handlePointerOver = (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) {
+          return;
+        }
+
+        const isOverInteractive = target.closest(INTERACTIVE_SELECTOR) !== null;
+        const isOverTextInput = target.closest(TEXT_INPUT_SELECTOR) !== null;
+        setIsHovering(isOverInteractive && !isOverTextInput);
+      };
+
+      const handlePointerLeave = () => {
+        isVisibleRef.current = false;
+        setIsVisible(false);
+      };
+
+      window.addEventListener('pointermove', handlePointerMove);
+      window.addEventListener('pointerover', handlePointerOver);
+      document.addEventListener('pointerleave', handlePointerLeave);
+
+      removeListeners = () => {
+        window.removeEventListener('pointermove', handlePointerMove);
+        window.removeEventListener('pointerover', handlePointerOver);
+        document.removeEventListener('pointerleave', handlePointerLeave);
+        gsap.killTweensOf(cursorElement);
+      };
+
+      // The native cursor is hidden only once the custom one is ready to render.
+      document.documentElement.setAttribute(CURSOR_ATTRIBUTE, 'enabled');
+    });
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      isDisposed = true;
+      removeListeners();
+      document.documentElement.removeAttribute(CURSOR_ATTRIBUTE);
+      isVisibleRef.current = false;
     };
-  }, [isVisible]);
+  }, [isEnabled]);
 
-  // If not a hover device, render nothing
-  if (typeof window !== 'undefined' && window.matchMedia("(hover: none)").matches) {
+  if (!isEnabled) {
     return null;
   }
 
   return (
-    <div 
-      ref={cursorRef} 
+    <div
+      ref={cursorRef}
+      aria-hidden="true"
       className={`custom-cursor-wrapper ${isHovering ? 'hovering' : ''}`}
       style={{ opacity: isVisible ? 1 : 0 }}
     >
-      <div className="custom-cursor-dot"></div>
+      <div className="custom-cursor-dot" />
     </div>
   );
 }

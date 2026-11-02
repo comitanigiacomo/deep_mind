@@ -1,49 +1,69 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { cloneElement, isValidElement, useEffect, useRef } from 'react';
+import { usePrefersReducedMotion } from '../hooks/useMediaQuery';
+import { loadGsap } from '../lib/loadGsap';
 
 export default function Magnetic({ children, strength = 15 }) {
-  const magnetic = useRef(null);
+  const magneticRef = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    // Skip effect on touch devices
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (prefersReducedMotion) {
+      return undefined;
+    }
 
-    const el = magnetic.current;
-    if (!el) return;
+    const element = magneticRef.current;
+    if (!element || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
 
-    // GSAP quickTo provides high-performance tracking
-    // We use a very soft elastic ease for a "buttery" minimal feel
-    const xTo = gsap.quickTo(el, "x", { duration: 0.8, ease: "elastic.out(1, 0.4)" });
-    const yTo = gsap.quickTo(el, "y", { duration: 0.8, ease: "elastic.out(1, 0.4)" });
+    if (window.matchMedia('(hover: none)').matches) {
+      return undefined;
+    }
 
-    const mouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { height, width, left, top } = el.getBoundingClientRect();
-      
-      // Calculate distance from center of element
-      const x = clientX - (left + width / 2);
-      const y = clientY - (top + height / 2);
-      
-      // Move slightly towards the mouse based on strength
-      xTo(x * (strength / 100));
-      yTo(y * (strength / 100));
-    };
+    let isDisposed = false;
+    let removeListeners = () => {};
 
-    const mouseLeave = () => {
-      // Snap back to center
-      xTo(0);
-      yTo(0);
-    };
+    loadGsap().then((gsap) => {
+      if (isDisposed) {
+        return;
+      }
 
-    el.addEventListener("mousemove", mouseMove);
-    el.addEventListener("mouseleave", mouseLeave);
+      const moveX = gsap.quickTo(element, 'x', { duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+      const moveY = gsap.quickTo(element, 'y', { duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+
+      const handleMouseMove = (event) => {
+        const { height, width, left, top } = element.getBoundingClientRect();
+        const offsetX = event.clientX - (left + width / 2);
+        const offsetY = event.clientY - (top + height / 2);
+
+        moveX(offsetX * (strength / 100));
+        moveY(offsetY * (strength / 100));
+      };
+
+      const handleMouseLeave = () => {
+        moveX(0);
+        moveY(0);
+      };
+
+      element.addEventListener('mousemove', handleMouseMove);
+      element.addEventListener('mouseleave', handleMouseLeave);
+
+      removeListeners = () => {
+        element.removeEventListener('mousemove', handleMouseMove);
+        element.removeEventListener('mouseleave', handleMouseLeave);
+        gsap.killTweensOf(element);
+      };
+    });
 
     return () => {
-      el.removeEventListener("mousemove", mouseMove);
-      el.removeEventListener("mouseleave", mouseLeave);
+      isDisposed = true;
+      removeListeners();
     };
-  }, [strength]);
+  }, [strength, prefersReducedMotion]);
 
-  // Clone the child element to inject the ref seamlessly
-  return React.cloneElement(children, { ref: magnetic });
+  if (!isValidElement(children)) {
+    return children;
+  }
+
+  return cloneElement(children, { ref: magneticRef });
 }
