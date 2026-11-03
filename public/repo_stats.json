@@ -2,6 +2,8 @@
   "comitanigiacomo/kanso-sync-engine": {
     "title": "kanso-sync-engine",
     "image": "/kanso-sync-engine.webp",
+    "demo": "",
+    "demoType": "",
     "description": "Offline-first sync engine and API for habit tracking. Written in Go, Postgres, and Redis",
     "stars": 1,
     "forks": 0,
@@ -39,6 +41,8 @@
   "comitanigiacomo/kanso-web": {
     "title": "kanso-web",
     "image": "/kanso-web.webp",
+    "demo": "https://kanso.jack-lab.dev/",
+    "demoType": "live",
     "description": "Minimalist habit tracker built with React, TypeScript, and Go, based on kanso philosophy",
     "stars": 2,
     "forks": 0,
@@ -78,6 +82,8 @@
   "comitanigiacomo/quicklaunch": {
     "title": "QuickLaunch",
     "image": "/quicklaunch.webp",
+    "demo": "https://extensions.gnome.org/extension/8005/quick-launch/",
+    "demoType": "store",
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 1,
@@ -105,8 +111,10 @@
     "default_branch": "main"
   },
   "comitanigiacomo/leetcode": {
-    "title": "Leetcode",
+    "title": "LeetCode",
     "image": "/leetcode.webp",
+    "demo": "",
+    "demoType": "",
     "description": "A growing archive of LeetCode problem solutions",
     "stars": 0,
     "forks": 0,
@@ -147,8 +155,10 @@
     "default_branch": "main"
   },
   "comitanigiacomo/kafka-fraud-sentinel": {
-    "title": "kafka Fraud Sentinel",
+    "title": "Kafka Fraud Sentinel",
     "image": "/kafka_dashboard.webp",
+    "demo": "",
+    "demoType": "",
     "description": "real-time fraud detection system using Apache Kafka, Python, and Docker",
     "stars": 0,
     "forks": 0,
@@ -193,8 +203,10 @@
     "default_branch": "main"
   },
   "comitanigiacomo/cyberSecurity": {
-    "title": "CyberSecurity",
+    "title": "Cybersecurity",
     "image": "/cybersecurity.webp",
+    "demo": "",
+    "demoType": "",
     "description": "A collection of cybersecurity exercises and challenges completed over time as part of my continuous learning and skill development.",
     "stars": 1,
     "forks": 1,
@@ -223,9 +235,11 @@
     "default_branch": "main"
   },
   "comitanigiacomo/deep_mind": {
-    "title": "Deep_mind",
+    "title": "Portfolio",
     "image": "/Deep.webp",
-    "description": "A clean and minimal portfolio to present my projects and experience.  ",
+    "demo": "",
+    "demoType": "",
+    "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
     "commits": 389,
@@ -257,17 +271,18 @@
       "css-animations",
       "portfolio",
       "reactjs",
-      "responsive-design",
-      "show-project"
+      "responsive-design"
     ],
     "size": 167.64,
     "archived": false,
     "default_branch": "main"
   },
   "comitanigiacomo/homelab": {
-    "title": "Home lab",
+    "title": "Homelab",
     "image": "/dashboard.webp",
-    "description": "Docker configurations for my personal home server.Docker configurations for my personal home server.",
+    "demo": "",
+    "demoType": "",
+    "description": "Docker configurations for my personal home server.",
     "stars": 2,
     "forks": 0,
     "commits": 25,

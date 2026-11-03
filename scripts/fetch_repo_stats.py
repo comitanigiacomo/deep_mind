@@ -16,46 +16,69 @@ PROJECTS = [
         "owner": "comitanigiacomo",
         "repo": "kanso-web",
         "image": "/kanso-web.webp",
+        "demo": "https://kanso.jack-lab.dev/",
     },
     {
         "title": "QuickLaunch",
         "owner": "comitanigiacomo",
         "repo": "quicklaunch",
         "image": "/quicklaunch.webp",
+        # Distribution page, not a running demo: the UI labels it accordingly.
+        "demo": "https://extensions.gnome.org/extension/8005/quick-launch/",
+        "demo_type": "store",
     },
     {
-        "title": "Leetcode",
+        "title": "LeetCode",
         "owner": "comitanigiacomo",
         "repo": "leetcode",
         "image": "/leetcode.webp",
     },
     {
-        "title": "kafka Fraud Sentinel",
+        "title": "Kafka Fraud Sentinel",
         "owner": "comitanigiacomo",
         "repo": "kafka-fraud-sentinel",
         "image": "/kafka_dashboard.webp",
     },
     {
-        "title": "CyberSecurity",
+        "title": "Cybersecurity",
         "owner": "comitanigiacomo",
         "repo": "cyberSecurity",
         "image": "/cybersecurity.webp",
     },
     {
-        "title": "Deep_mind",
+        "title": "Portfolio",
         "owner": "comitanigiacomo",
         "repo": "deep_mind",
         "image": "/Deep.webp",
+        # This site is the demo itself: an explicit empty value stops the
+        # homepage fallback from linking a page to itself.
+        "demo": "",
     },
     {
-        "title": "Home lab",
+        "title": "Homelab",
         "owner": "comitanigiacomo",
         "repo": "homelab",
         "image": "/dashboard.webp",
     },
-    ]
+]
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
+
+# Topics that leak into GitHub metadata without saying anything about the work.
+IGNORED_TOPICS = {"show-project"}
+
+
+def resolve_demo(project, repo_data):
+    """Curated demo wins, even when empty; otherwise fall back to the GitHub homepage."""
+    if "demo" in project:
+        return str(project.get("demo") or "").strip()
+    return (repo_data.get("homepage") or "").strip()
+
+
+def resolve_demo_type(project, demo):
+    """Return the demo kind, keeping it empty when there is no demo link."""
+    return project.get("demo_type", "live") if demo else ""
+
 
 def get_commit_count(owner, repo):
     try:
@@ -108,18 +131,22 @@ def fetch_repo_data(project):
             for lang, bytes in langs_data.items()
         ]
 
+        demo = resolve_demo(project, repo_data)
+
         # Nuovi dati aggiunti
         return {
             "title": project["title"],
             "image": project["image"],
-            "description": repo_data.get("description", "N/A"),
+            "demo": demo,
+            "demoType": resolve_demo_type(project, demo),
+            "description": (repo_data.get("description") or "N/A").strip(),
             "stars": repo_data.get("stargazers_count", 0),
             "forks": repo_data.get("forks_count", 0),
             "commits": get_commit_count(owner, repo),
             "languages": languages,
             "updated_at": repo_data.get("updated_at", ""),
             "license": (repo_data.get("license") or {}).get("name", "No license"),
-            "topics": repo_data.get("topics", []),
+            "topics": [topic for topic in repo_data.get("topics", []) if topic not in IGNORED_TOPICS],
             "size": round(repo_data.get("size", 0) / 1024, 2),  # Size in MB
             "archived": repo_data.get("archived", False),
             "default_branch": repo_data.get("default_branch", "main")
@@ -127,9 +154,13 @@ def fetch_repo_data(project):
 
     except requests.exceptions.RequestException as e:
         print(f"API Error for {owner}/{repo}: {str(e)}")
+        demo = resolve_demo(project, {})
+
         return {
             "title": project["title"],
             "image": project["image"],
+            "demo": demo,
+            "demoType": resolve_demo_type(project, demo),
             "description": "N/A",
             "stars": 0,
             "forks": 0,

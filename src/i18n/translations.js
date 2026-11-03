@@ -138,10 +138,16 @@ export const translations = {
       loading: 'Loading projects...',
       noProjects: 'No projects found.',
       error: 'Projects are temporarily unavailable. Please try again later.',
-      updated: 'Updated',
-      size: 'Size',
-      archived: 'Archived',
       viewRepo: 'View Repository',
+      demoLabels: {
+        live: 'Live Demo',
+        store: 'Get Extension',
+      },
+      stats: {
+        stars: 'stars',
+        forks: 'forks',
+        commits: 'commits',
+      },
     },
 
     // ── Homelab ──
@@ -411,10 +417,16 @@ export const translations = {
       loading: 'Caricamento progetti...',
       noProjects: 'Nessun progetto trovato.',
       error: 'I progetti non sono disponibili al momento. Riprova più tardi.',
-      updated: 'Aggiornato',
-      size: 'Dimensioni',
-      archived: 'Archiviato',
       viewRepo: 'Vedi Repository',
+      demoLabels: {
+        live: 'Demo live',
+        store: 'Installa',
+      },
+      stats: {
+        stars: 'stelle',
+        forks: 'fork',
+        commits: 'commit',
+      },
     },
 
     // ── Homelab ──
