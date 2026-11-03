@@ -101,7 +101,6 @@
   flex-direction: row;
   align-items: center;
   gap: 0; /* Il gap lo gestiamo coi padding per avere i bordi puliti */
-  text-decoration: none;
   background: transparent;
   border: 1px solid transparent;
   padding: 1.5rem 0;
@@ -213,6 +212,20 @@
   color: var(--accent-color);
 }
 
+.terminal-project-title-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 4px;
+}
+
+.terminal-project-title-link:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
 .prompt-symbol {
   color: var(--text-tertiary);
   font-family: 'JetBrains Mono', monospace;
@@ -282,6 +295,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   border-top: 1px solid rgba(255,255,255,0.05);
   padding-top: 1rem;
 }
@@ -308,6 +323,14 @@
 
 /* GitHub Link Button */
 
+.terminal-project-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
 .github-link-btn {
   display: inline-flex;
   align-items: center;
@@ -316,11 +339,17 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-primary);
+  text-decoration: none;
   background: rgba(255, 255, 255, 0.08);
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.github-link-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
 }
 
 [data-theme="light"] .github-link-btn {
@@ -338,6 +367,30 @@
 .github-link-btn:active {
   transform: translateY(0);
   box-shadow: 0 2px 5px rgba(59, 130, 246, 0.2);
+}
+
+/* Kept last: the demo variant must win over the base hover and the light-theme
+   override above, otherwise its background turns light and the white label
+   disappears. #1d4ed8 on #ffffff is 6.7:1 in both themes. */
+.github-link-btn--demo,
+[data-theme="light"] .github-link-btn--demo {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.github-link-btn--demo:hover,
+[data-theme="light"] .github-link-btn--demo:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(29, 78, 216, 0.35);
+  filter: brightness(1.12);
+}
+
+.github-link-btn--demo:active,
+[data-theme="light"] .github-link-btn--demo:active {
+  box-shadow: 0 2px 5px rgba(29, 78, 216, 0.25);
 }
 
 .arrow-icon {
@@ -384,6 +437,10 @@
     border-top: 1px dashed var(--border-color);
     padding-top: 2rem;
     margin-top: 1rem;
+  }
+
+  .terminal-project-actions {
+    margin-left: 0;
   }
 }
 

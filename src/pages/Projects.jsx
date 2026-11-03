@@ -6,26 +6,42 @@ import './Projects.css';
 
 const MAX_VISIBLE_TOPICS = 5;
 
-function ProjectStats({ stars, forks, commits }) {
+/**
+ * Zeroes are hidden on purpose: a card that reads "0 stars, 0 forks" is
+ * negative social proof for a portfolio, so only real numbers are rendered.
+ */
+const PROJECT_STATS = [
+  { key: 'stars', Icon: GoStar },
+  { key: 'forks', Icon: GoRepoForked },
+  { key: 'commits', Icon: GoCommit },
+];
+
+function ProjectStats({ project, labels }) {
+  const visibleStats = PROJECT_STATS.filter(({ key }) => project[key] > 0);
+
+  if (visibleStats.length === 0) {
+    return null;
+  }
+
   return (
     <div className="terminal-project-stats">
-      <span><GoStar aria-hidden="true" /> {stars}</span>
-      <span><GoRepoForked aria-hidden="true" /> {forks}</span>
-      <span><GoCommit aria-hidden="true" /> {commits}</span>
+      {visibleStats.map(({ key, Icon }) => (
+        <span key={key}>
+          <Icon aria-hidden="true" />
+          <span className="sr-only">{`${labels[key]}: `}</span>
+          {project[key]}
+        </span>
+      ))}
     </div>
   );
 }
 
-function ProjectRow({ project, viewRepoLabel }) {
+function ProjectRow({ project, labels }) {
   const primaryLanguage = project.languages[0];
+  const repoUrl = `https://github.com/${project.owner}/${project.repo}`;
 
   return (
-    <a
-      href={`https://github.com/${project.owner}/${project.repo}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="terminal-project-row"
-    >
+    <article className="terminal-project-row">
       <div className="terminal-project-image">
         <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
         <div className="image-crosshair top-left" aria-hidden="true" />
@@ -37,9 +53,17 @@ function ProjectRow({ project, viewRepoLabel }) {
       <div className="terminal-project-content">
         <div className="terminal-project-header">
           <h3 className="terminal-project-title">
-            <span className="prompt-symbol">~/</span>{project.title}
+            <a
+              className="terminal-project-title-link"
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="prompt-symbol" aria-hidden="true">~/</span>
+              {project.title}
+            </a>
           </h3>
-          <ProjectStats stars={project.stars} forks={project.forks} commits={project.commits} />
+          <ProjectStats project={project} labels={labels.stats} />
         </div>
 
         <p className="terminal-project-desc">{project.description}</p>
@@ -58,13 +82,32 @@ function ProjectRow({ project, viewRepoLabel }) {
                 {primaryLanguage.name}
               </div>
             )}
-            <span className="github-link-btn">
-              {viewRepoLabel} <GoArrowUpRight className="arrow-icon" aria-hidden="true" />
-            </span>
+
+            <div className="terminal-project-actions">
+              {project.demo && (
+                <a
+                  className="github-link-btn github-link-btn--demo"
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {labels.demoLabels[project.demoType] ?? labels.demoLabels.live}{' '}
+                  <GoArrowUpRight className="arrow-icon" aria-hidden="true" />
+                </a>
+              )}
+              <a
+                className="github-link-btn"
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {labels.viewRepo} <GoArrowUpRight className="arrow-icon" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </a>
+    </article>
   );
 }
 
@@ -108,7 +151,7 @@ export default function Projects() {
               <ProjectRow
                 key={project.id}
                 project={project}
-                viewRepoLabel={tr.viewRepo}
+                labels={tr}
               />
             ))}
           </div>

@@ -43,6 +43,7 @@ export const translations = {
       statsYears: 'Years of CS',
       statsProjects: 'Projects',
       viewProjects: 'View Projects',
+      downloadCv: 'Download CV',
     },
 
     // ── Interests ──
@@ -53,19 +54,19 @@ export const translations = {
         {
           number: '00',
           title: 'Computer Science',
-          description: "I'm currently studying IT at university, following a lifelong interest in technology and problem-solving.",
+          description: "I'm currently studying computer science at university, following a lifelong interest in technology and problem-solving.",
           skills: ['Problem Solving', 'Critical Thinking', 'Tech Curiosity', 'Team Collaboration'],
         },
         {
           number: '01',
           title: 'Formula 1',
-          description: 'Formula 1 has always fascinated me, I follow every race and enjoy learning about the technology and strategy behind the sport.',
+          description: 'Formula 1 has always fascinated me: I follow every race and enjoy learning about the technology and strategy behind the sport.',
           skills: ['Race Enthusiast', 'Strategic Thinking', 'Curiosity for Technology', 'Attention to Detail'],
         },
         {
           number: '02',
           title: 'Music',
-          description: "I'm passionate about music, I listen to all kinds of genres and enjoy playing the drums in my free time.",
+          description: "I'm passionate about music: I listen to all kinds of genres and enjoy playing the drums in my free time.",
           skills: ['Rhythm & Timing', 'Creativity', 'Active Listening', 'Musical Expression'],
         },
         {
@@ -106,6 +107,7 @@ export const translations = {
           institution: 'University of Milan',
           description: 'Currently pursuing my graduate degree with a focus on advanced computing concepts.',
           type: 'master',
+          typeLabel: 'MASTER',
           logo: '/Unimi-logo.webp',
           active: true,
         },
@@ -116,6 +118,7 @@ export const translations = {
           description: 'Undergraduate degree program focused on systems programming and software engineering.',
           thesis: 'Study and analysis of cryptographic functions used by mobile devices to protect sensitive data',
           type: 'bachelor',
+          typeLabel: 'BACHELOR',
           logo: '/Unimi-logo.webp',
           active: false,
         },
@@ -125,6 +128,7 @@ export const translations = {
           institution: 'Leonardo Da Vinci State High School',
           description: 'Scientific curriculum',
           type: 'highschool',
+          typeLabel: 'HIGH SCHOOL',
           logo: '/leonardoDaVinci.webp',
           active: false,
         },
@@ -138,10 +142,16 @@ export const translations = {
       loading: 'Loading projects...',
       noProjects: 'No projects found.',
       error: 'Projects are temporarily unavailable. Please try again later.',
-      updated: 'Updated',
-      size: 'Size',
-      archived: 'Archived',
       viewRepo: 'View Repository',
+      demoLabels: {
+        live: 'Live Demo',
+        store: 'Get Extension',
+      },
+      stats: {
+        stars: 'stars',
+        forks: 'forks',
+        commits: 'commits',
+      },
     },
 
     // ── Homelab ──
@@ -316,6 +326,7 @@ export const translations = {
       statsYears: 'Anni di Informatica',
       statsProjects: 'Progetti',
       viewProjects: 'Vedi Progetti',
+      downloadCv: 'Scarica il CV',
     },
 
     // ── Interests ──
@@ -379,6 +390,7 @@ export const translations = {
           institution: 'Università degli Studi di Milano',
           description: 'Attualmente sto frequentando la laurea magistrale, concentrandomi su concetti avanzati di informatica.',
           type: 'master',
+          typeLabel: 'MAGISTRALE',
           logo: '/Unimi-logo.webp',
           active: true,
         },
@@ -389,6 +401,7 @@ export const translations = {
           description: 'Percorso di laurea triennale incentrato sulla programmazione di sistema e l\'ingegneria del software.',
           thesis: 'Studio e analisi delle funzioni crittografiche utilizzate dai dispositivi mobili per la protezione dei dati sensibili',
           type: 'bachelor',
+          typeLabel: 'TRIENNALE',
           logo: '/Unimi-logo.webp',
           active: false,
         },
@@ -398,6 +411,7 @@ export const translations = {
           institution: 'Liceo Scientifico Statale Leonardo Da Vinci',
           description: 'Indirizzo scientifico',
           type: 'highschool',
+          typeLabel: 'LICEO',
           logo: '/leonardoDaVinci.webp',
           active: false,
         },
@@ -411,10 +425,16 @@ export const translations = {
       loading: 'Caricamento progetti...',
       noProjects: 'Nessun progetto trovato.',
       error: 'I progetti non sono disponibili al momento. Riprova più tardi.',
-      updated: 'Aggiornato',
-      size: 'Dimensioni',
-      archived: 'Archiviato',
       viewRepo: 'Vedi Repository',
+      demoLabels: {
+        live: 'Demo live',
+        store: 'Installa',
+      },
+      stats: {
+        stars: 'stelle',
+        forks: 'fork',
+        commits: 'commit',
+      },
     },
 
     // ── Homelab ──

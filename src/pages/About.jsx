@@ -1,9 +1,10 @@
-import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaDownload, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import Magnetic from '../components/Magnetic';
 import { useLang } from '../context/LanguageContext';
 import { translations } from '../i18n/translations';
 import { useInView } from '../hooks/useInView';
 import { useRepoStats } from '../hooks/useRepoStats';
+import { cvFilename, cvHref } from '../lib/cv';
 import './About.css';
 
 const SOCIAL_LINKS = [
@@ -79,20 +80,31 @@ export default function About() {
               <span className="about-handle">@comitanigiacomo</span>
             </div>
 
-            <a href="/#projects" className="about-btn-primary">
-              {a.viewProjects}
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                width="13"
-                height="13"
-                aria-hidden="true"
+            <div className="about-hero__cta">
+              <a href="/#projects" className="about-btn-primary">
+                {a.viewProjects}
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  width="13"
+                  height="13"
+                  aria-hidden="true"
+                >
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+
+              <a
+                href={cvHref()}
+                download={cvFilename()}
+                className="about-btn-secondary"
               >
-                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+                <FaDownload aria-hidden="true" />
+                {a.downloadCv}
+              </a>
+            </div>
           </div>
         </div>
 

@@ -6,6 +6,8 @@ const RAW_STATS = {
     title: 'Kanso',
     description: 'Minimal habit tracker',
     image: '/kanso-web.webp',
+    demo: 'https://kanso.jack-lab.dev/',
+    demoType: 'store',
     stars: 12,
     forks: 2,
     commits: 140,
@@ -39,6 +41,25 @@ describe('parseRepoStats', () => {
     expect(projects[1].title).toBe('Portfolio');
   });
 
+  it('exposes the curated live demo URL and trims descriptions', () => {
+    const [project] = parseRepoStats({
+      'owner/repo': { description: '  Trailing spaces.  ', demo: '  https://example.dev/  ' },
+    });
+
+    expect(project.description).toBe('Trailing spaces.');
+    expect(project.demo).toBe('https://example.dev/');
+  });
+
+  it('maps the demo type and defaults it to a live demo', () => {
+    const [store, live] = parseRepoStats({
+      'owner/store': { demo: 'https://extensions.gnome.org/extension/1/', demoType: 'store' },
+      'owner/live': { demo: 'https://example.dev/' },
+    });
+
+    expect(store.demoType).toBe('store');
+    expect(live.demoType).toBe('live');
+  });
+
   it('applies safe defaults when optional fields are missing', () => {
     const [project] = parseRepoStats({ 'owner/repo': {} });
 
@@ -46,6 +67,8 @@ describe('parseRepoStats', () => {
       title: 'repo',
       description: '',
       image: '/fallback-image.png',
+      demo: '',
+      demoType: 'live',
       stars: 0,
       forks: 0,
       commits: 0,
