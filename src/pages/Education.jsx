@@ -19,7 +19,7 @@ function EducationCard({ experience, isLast, thesisLabel }) {
         <div className="edu-card__header">
           <span className="edu-card__date">{experience.date}</span>
           <span className={`edu-card__type edu-card__type--${experience.type}`}>
-            {experience.type.toUpperCase()}
+            {experience.typeLabel ?? experience.type.toUpperCase()}
           </span>
         </div>
 
