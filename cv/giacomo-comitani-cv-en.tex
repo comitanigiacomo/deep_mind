@@ -1,0 +1,228 @@
+%-------------------------
+% Resume in LaTeX
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins (template originale sb2nov)
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting (originale sb2nov)
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands (originali sb2nov)
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Giacomo Comitani} \\ \vspace{1pt}
+    \small Milan, Italy $|$
+    \href{mailto:comitanigiacomo@gmail.com}{\underline{comitanigiacomo@gmail.com}} $|$
+    \href{https://github.com/comitanigiacomo}{\underline{github.com/comitanigiacomo}}
+    \\ \vspace{1pt}
+    \small
+    \href{https://www.linkedin.com/in/giacomo-comitani-249384326/}{\underline{linkedin.com/in/giacomo-comitani}} $|$
+    \href{https://portfolio.jack-lab.dev}{\underline{portfolio.jack-lab.dev}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Milan}{Milan, Italy}
+      {M.Sc. in Computer Science}{2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{\textbf{Main Course Areas}: Artificial Intelligence, Data
+        Analytics \& Big Data, Algorithms, Software \& Theory, Computing Systems in
+        Industry \& Business}
+      \resumeItemListEnd
+    \resumeSubheading
+      {University of Milan}{Milan, Italy}
+      {B.Sc. in Computer Science}{2021 -- 2025}
+      \resumeItemListStart
+        \resumeItem{\textbf{Thesis}: \emph{Security Analysis of Obsolete Cryptographic
+        Libraries in Mobile Modems} --- Reverse-engineered baseband firmware to
+        evaluate vulnerabilities and vendor patch patterns across mobile devices}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{Kanso -- Offline-First Habit Tracker} $|$ \emph{Go,
+          PostgreSQL, Redis, React, TypeScript, Docker }}
+          {Jan. 2026 -- Mar. 2026}
+          \resumeItemListStart
+            \resumeItem{Engineered a Go sync engine using Hexagonal Architecture, with
+            delta-sync cursors and optimistic concurrency (HTTP 409)}
+            \resumeItem{Implemented Redis rate limiting, async background
+            workers, test suites, and Docker deployment
+            (\href{https://kanso.jack-lab.dev}{\underline{kanso.jack-lab.dev}})}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Kafka Fraud Sentinel} $|$ \emph{Python, Apache Kafka, mTLS,
+          MongoDB, FastAPI, WebSockets }}{Aug. 2026 -- Sep. 2026}
+          \resumeItemListStart
+            \resumeItem{Built a real-time fraud pipeline on a 3-node Kafka cluster in
+            KRaft mode, evaluating transaction velocity and amount}
+            \resumeItem{Secured end-to-end with mutual TLS (mTLS) via internal CA and
+            ACLs; streamed live alerts via MongoDB and WebSockets}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{QuickLaunch -- GNOME Shell Extension} $|$ \emph{JavaScript (GJS),
+          GNOME Shell, Libadwaita }}{Mar. 2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Created an open-source productivity dock on
+            \href{https://extensions.gnome.org/extension/8005/quick-launch/}{\underline{extensions.gnome.org}}, engineered with an event-driven model to
+            minimize CPU/battery usage}
+            \resumeItem{Integrated dynamic app search, keyboard shortcuts, and
+            Libadwaita preference windows using JavaScript (GJS)}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Personal Homelab \& Infrastructure} $|$ \emph{Debian, Docker,
+          Nginx, Tailscale, Linux}}{May 2025 -- Present}
+          \resumeItemListStart
+            \resumeItem{Configured a Debian home server hosting containerized services
+            (Nextcloud, Immich, Vaultwarden, Kanso) via Docker Compose}
+            \resumeItem{Hardened infrastructure by isolating all administration and
+            internal traffic strictly behind a private Tailscale mesh network}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {ICPC Southwestern Europe Regional Contest (SWERC)}{Pisa, Italy}
+      {Team Contestant (University of Milan)}{Nov. 2025}
+      \resumeItemListStart
+        \resumeItem{Represented the university in a 3-person team, solving complex
+        algorithmic and graph problems under strict 5-hour limits}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {NOI Techpark (SFSCON Hackathon)}{Bolzano, Italy}
+      {Hackathon Participant --- Frontend Developer}{Nov. 2023}
+      \resumeItemListStart
+        \resumeItem{Collaborated in an intensive 48-hour sprint to build a working
+        open-source prototype, owning the frontend interface}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Community Center (Oratorio Dio Trinit\`a d'Amore)}{Vimodrone, Italy}
+      {Youth Group Leader \& Coordinator}{June 2017 -- July 2021}
+      \resumeItemListStart
+        \resumeItem{Organized educational activities and summer camps for youth
+        groups, managing peer coordination, logistics, and group dynamics}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+ \small{\item{
+     \textbf{Languages}{: Go, Python, TypeScript, JavaScript, Java, SQL, Bash, C/C++
+     (academic), Rust (Beginner)} \\
+     \textbf{Backend \& Data}{: PostgreSQL, Redis, Apache Kafka, MongoDB, RESTful
+     APIs, WebSockets, FastAPI} \\
+     \textbf{DevOps \& Systems}{: Linux (Debian, Fedora), Docker, Docker Compose,
+     Nginx, Git, GitHub Actions, Tailscale} \\
+     \textbf{Concepts \& Architecture}{: Distributed Systems, Hexagonal Architecture,
+     Offline-First Sync, Event-Driven Design, mTLS \& ACLs} \\
+     \textbf{Spoken Languages}{: Italian (Native), English (B2)}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

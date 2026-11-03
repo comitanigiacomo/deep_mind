@@ -43,6 +43,7 @@ export const translations = {
       statsYears: 'Years of CS',
       statsProjects: 'Projects',
       viewProjects: 'View Projects',
+      downloadCv: 'Download CV',
     },
 
     // ── Interests ──
@@ -325,6 +326,7 @@ export const translations = {
       statsYears: 'Anni di Informatica',
       statsProjects: 'Progetti',
       viewProjects: 'Vedi Progetti',
+      downloadCv: 'Scarica il CV',
     },
 
     // ── Interests ──
