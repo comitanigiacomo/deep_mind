@@ -116,7 +116,7 @@ export default function About() {
               className="about-photo"
               width="420"
               height="560"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
             />
             <div className="about-photo-glare" aria-hidden="true" />
