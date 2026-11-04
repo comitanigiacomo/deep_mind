@@ -26,14 +26,18 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  height: 80vh;
+  /* Lascia spazio sotto al modello per il pulsante reset restando,
+     su schermi standard, dentro l'altezza della viewport. */
+  height: 75vh;
 }
 
-/* Keyboard prende tutta la larghezza disponibile */
+/* Keyboard prende tutta la larghezza disponibile.
+   L'altezza coincide con quella del layout: il canvas e' esattamente l'area
+   visibile, quindi il centro della scena coincide con il centro del modello. */
 .skills-keyboard-area {
   position: relative;     /* ancora il loader sopra il canvas */
   width: 100%;
-  height: 120vh;          /* molto piu alto per dare spazio al 3D per un canvas senza spazi morti */
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,13 +115,12 @@
 
 /*
   Il canvas WebGL è renderizzato dentro il keyboard-wrapper.
-  Lo spostiamo con translateX così non altera il layout box (evita overflow-x).
-  Ridotto il margin-top per eliminare lo spazio vuoto in eccesso.
+  Nessun margine o translate: la scena occupa esattamente l'area, così il
+  modello centrato in scena appare centrato anche nella sezione.
 */
 .skills-keyboard-area canvas {
-  margin-top: 12%;
-  margin-bottom: 0px;
-  transform: translateX(0%);
+  margin: 0;
+  transform: none;
 }
 
 /* ═══════════════════════════════════════════════════
