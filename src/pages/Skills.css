@@ -129,8 +129,8 @@
 
 .reset-view-btn {
   position: absolute;
-  top: 0rem;
-  right: 2.5rem;
+  bottom: 1.5rem;
+  left: 50%;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -150,7 +150,7 @@
 
   /* Animazione di comparsa */
   opacity: 0;
-  transform: translateY(8px);
+  transform: translate(-50%, 8px);
   pointer-events: none;
   transition:
     opacity 0.3s ease,
@@ -166,7 +166,7 @@
 
 .reset-view-btn--visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
   pointer-events: auto;
 }
 
@@ -177,7 +177,7 @@
 }
 
 .reset-view-btn:active {
-  transform: scale(0.97) translateY(0);
+  transform: translate(-50%, 0) scale(0.97);
 }
 
 .reset-view-btn__prefix {
@@ -237,8 +237,7 @@
   }
 
   .reset-view-btn {
-    top: 0rem;
-    right: 1.5rem;
+    bottom: 1rem;
   }
 }
 
@@ -261,8 +260,7 @@
   }
 
   .reset-view-btn {
-    top: 0rem;
-    right: 1rem;
+    bottom: 1rem;
   }
 }
 
