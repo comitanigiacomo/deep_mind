@@ -87,7 +87,7 @@
     "description": "GNOME Shell extension that integrates a quick-access launcher into the top bar.",
     "stars": 2,
     "forks": 1,
-    "commits": 95,
+    "commits": 96,
     "languages": [
       {
         "name": "JavaScript",
@@ -98,7 +98,7 @@
         "percent": 3.5
       }
     ],
-    "updated_at": "2026-09-03T14:36:28Z",
+    "updated_at": "2026-11-06T10:28:48Z",
     "license": "GNU General Public License v3.0",
     "topics": [
       "application-launcher",
@@ -106,15 +106,15 @@
       "gnome-shell-extension",
       "quick-access"
     ],
-    "size": 1.38,
+    "size": 1.39,
     "archived": false,
     "default_branch": "main"
   },
   "comitanigiacomo/leetcode": {
     "title": "LeetCode",
     "image": "/leetcode.webp",
-    "demo": "",
-    "demoType": "",
+    "demo": "https://leetcode.com/GiacomoLeetCode/",
+    "demoType": "live",
     "description": "A growing archive of LeetCode problem solutions",
     "stars": 0,
     "forks": 0,
@@ -242,15 +242,19 @@
     "description": "A clean and minimal portfolio to present my projects and experience.",
     "stars": 0,
     "forks": 0,
-    "commits": 389,
+    "commits": 394,
     "languages": [
       {
         "name": "JavaScript",
-        "percent": 52.6
+        "percent": 53.6
       },
       {
         "name": "CSS",
-        "percent": 43.4
+        "percent": 38.9
+      },
+      {
+        "name": "TeX",
+        "percent": 3.2
       },
       {
         "name": "Python",
@@ -258,14 +262,14 @@
       },
       {
         "name": "HTML",
-        "percent": 1.4
+        "percent": 1.5
       },
       {
         "name": "Dockerfile",
-        "percent": 0.1
+        "percent": 0.4
       }
     ],
-    "updated_at": "2026-10-25T03:45:48Z",
+    "updated_at": "2026-11-04T10:53:36Z",
     "license": "MIT License",
     "topics": [
       "css-animations",
@@ -273,7 +277,7 @@
       "reactjs",
       "responsive-design"
     ],
-    "size": 167.64,
+    "size": 168.0,
     "archived": false,
     "default_branch": "main"
   },
@@ -296,7 +300,7 @@
         "percent": 16.5
       }
     ],
-    "updated_at": "2026-08-29T10:35:16Z",
+    "updated_at": "2026-11-02T13:41:00Z",
     "license": "No license",
     "topics": [
       "debian",
